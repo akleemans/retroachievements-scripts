@@ -1,5 +1,5 @@
-cruncheevos-scripts
-===================
+retroachievements-scripts
+=========================
 
 My [cruncheevos](https://github.com/suXinjke/cruncheevos) scripts
 for [RetroAchievements](https://retroachievements.org/).
