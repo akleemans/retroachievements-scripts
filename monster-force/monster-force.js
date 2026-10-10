@@ -12,6 +12,7 @@ const GameStateEnum = {
   ShopOptions: 0x12,
   SaveGameOption: 0x13,
   GameOver: 0x14,
+  IgorInfoScreen: 0x17, // "Multiplayer is open", "Congrats, Mina is now playable" etc.
 };
 
 const PlayerStateEnum = {
@@ -364,7 +365,14 @@ set.addAchievement({
   type: 'win_condition',
   conditions: {
     core: $(
-      ...progression(LevelEnum.CastleSergeantSmash),
+      // Used for last boss - game state will move directly from "Mina unlocked" to score screen
+      ['',       'Mem',   '8bit', maxLevelUnlocked, '=',  'Value', '', LevelEnum.CastleSergeantSmash],
+      ['',       'Mem',   '8bit', currentLevel,     '=',  'Value', '', LevelEnum.CastleSergeantSmash],
+      ['OrNext', 'Delta', '8bit', gameState,        '=',  'Value', '', GameStateEnum.IgorInfoScreen],
+      ['',       'Delta', '8bit', gameState,        '=',  'Value', '', GameStateEnum.InGame],
+      ['',       'Mem',   '8bit', gameState,        '=',  'Value', '', GameStateEnum.ScoreScreen],
+      ['',       'Mem',   '8bit', characterActive,  '<=', 'Value', '', CharacterActive.Wolfie],
+
       ...invincibilityCheatProtection(),
       ...skipLevelCheatProtection(),
     ),
@@ -1258,6 +1266,7 @@ set.addAchievement({
 
       // Pop on score screen
       ['',        'Mem',   '8bit', currentLevel, '=', 'Value', '', LevelEnum.CastleSergeantSmash],
+      ['OrNext',  'Delta', '8bit', gameState,    '=', 'Value', '', GameStateEnum.IgorInfoScreen],
       ['',        'Delta', '8bit', gameState,    '=', 'Value', '', GameStateEnum.InGame],
       ['Trigger', 'Mem',   '8bit', gameState,    '=', 'Value', '', GameStateEnum.ScoreScreen],
       ...invincibilityCheatProtection(),

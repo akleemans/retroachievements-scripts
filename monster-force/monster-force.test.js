@@ -312,6 +312,16 @@ describe('Progression: Castle', () => {
     expect(result.triggeredFrame).toBe(s.marker('score-screen'));
   });
 
+  test('pops when Sergeant Smash is defeated for the first time', () => {
+    const s = scenario('castle-shadow-first-time');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('level-start'))).toBe('active');
+
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('score-screen'));
+  });
+
   test('does not pop on game over', () => {
     const s = scenario('castle-shadow-game-over');
     const result = runAchievement(cheevo, s);
