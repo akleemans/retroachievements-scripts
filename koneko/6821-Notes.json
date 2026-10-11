@@ -1,0 +1,112 @@
+[
+  {
+    "User": "adrianusk",
+    "Address": "0x000411",
+    "Note": "[16-bit] Position Y"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000413",
+    "Note": "[16-bit] Position X"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000704",
+    "Note": "[8-bit] Lives (initial value: 5)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000705",
+    "Note": "[8-bit] Season (1-4), goes up when stage reaches 4, 7 and 10"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000707",
+    "Note": "[8-bit] Time of day\r\n0x01 = Day\r\n0x02 = Night"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000709",
+    "Note": "[8-bit] Stage currently loaded from disk"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00071e",
+    "Note": "[8-bit] Player\/chatran state\r\n0x00 = Player alive\r\n0x01 = Player died"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000720",
+    "Note": "[8-bit] Ducking state\r\n0x00 = Sitting up\r\n0x01 = Ducking"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00072d",
+    "Note": "[8-bit] Amount of bonus HELP letters collected (0-3)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2d6",
+    "Note": "[8-bit] Score (hundred thousands) (tile index = byte - 0xd9)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2d7",
+    "Note": "[8-bit] Score (ten thousands)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2d8",
+    "Note": "[8-bit] Score (thousands)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2d9",
+    "Note": "[8-bit] Score (hundreds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2da",
+    "Note": "[8-bit] Score (tens)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2db",
+    "Note": "[8-bit] Score (ones)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2e1",
+    "Note": "[8-bit] Amount of eggs (tens)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2e2",
+    "Note": "[8-bit] Amount of eggs (ones)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2e8",
+    "Note": "[8-bit] Amount of apples (tens)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2e9",
+    "Note": "[8-bit] Amount of apples (ones)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2f4",
+    "Note": "[8-bit] Timer (hundreds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2f5",
+    "Note": "[8-bit] Timer (tens)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00b2f6",
+    "Note": "[8-bit] Timer (ones)"
+  }
+]
