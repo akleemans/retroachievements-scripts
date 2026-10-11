@@ -462,7 +462,7 @@ const checkTreatCollection = (amount) => {
     // Add hits for every treat collection
     ['AndNext', 'Delta', '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 3],
     ['AddHits', 'Mem',   '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 1],
-    ['',        'Value', '',     0,                           '=', 'Value', '', 1, amount],
+    ['Measured',        'Value', '',     0,                           '=', 'Value', '', 1, amount],
   ];
 };
 
