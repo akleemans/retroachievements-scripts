@@ -1,6 +1,11 @@
 [
   {
     "User": "adrianusk",
+    "Address": "0x000400",
+    "Note": "[16 bytes] Object table (16 bytes per slot)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x000411",
     "Note": "[16-bit] Position Y"
   },
@@ -21,13 +26,23 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x000706",
+    "Note": "[8-bit] Month, 1-12 (becomes 13 at the ending)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x000707",
     "Note": "[8-bit] Time of day\r\n0x01 = Day\r\n0x02 = Night"
   },
   {
     "User": "adrianusk",
+    "Address": "0x000708",
+    "Note": "[8-bit] Flag if starting from mid-stage checkpoint"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x000709",
-    "Note": "[8-bit] Stage currently loaded from disk"
+    "Note": "[8-bit] Month whose data is currently loaded from disk"
   },
   {
     "User": "adrianusk",
@@ -36,8 +51,23 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x00071f",
+    "Note": "[8-bit] Gold egg flag (TODO check) 1 = unlimited eggs. Cleared on death and on a new game."
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x000720",
     "Note": "[8-bit] Ducking state\r\n0x00 = Sitting up\r\n0x01 = Ducking"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000724",
+    "Note": "[8-bit] Flag: Goal reached"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00072c",
+    "Note": "[8-bit] Milk timer (TODO: check) - 0 = off; counts from 1 up to 0x96, then clears"
   },
   {
     "User": "adrianusk",
