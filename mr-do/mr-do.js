@@ -5,14 +5,6 @@ const set = new AchievementSet({gameId: 4746, title: 'Mr. Do!'});
 const level = 0xd0db; // 0-99
 const lives = 0xd1e8;
 
-// TODO remove
-// const monster1 = 0xd209;
-// const monster2 = 0xd212;
-// const monster3 = 0xd21b;
-// const monster4 = 0xd224;
-// const monster5 = 0xd22d;
-// const monster6 = 0xd236;
-
 const apple1 = 0xd287;
 const apple2 = 0xd28c;
 const apple3 = 0xd291;
@@ -49,17 +41,6 @@ const resetOnRunStart = () => {
     ['ResetIf', 'Mem', '8bit', timer256Seconds, '=', 'Value', '', 0],
   ];
 };
-
-// TODO remove
-// Old approach: Will also count collecting diamonds
-// const monsterKilled = (monsterId) => {
-//   return [
-//     // Add Hit if timer still running and monster state went under 7 (died)
-//     ['AndNext', 'Delta', '8bit', timerFrames, '!=', 'Mem',   '8bit', timerFrames],
-//     ['AndNext', 'Delta', '8bit', monsterId,   '>=', 'Value', '',     7],
-//     ['AddHits', 'Mem',   '8bit', monsterId,   '<',  'Value', '',     7],
-//   ];
-// };
 
 // A monster kill as the game counts it
 const monstersKilled = (flag, hits) => [
@@ -394,16 +375,6 @@ set.addAchievement({
   points: 5,
   conditions: {
     core: $(
-      // TODO remove
-      // Kill 20 normal monsters
-      // ...monsterKilled(monster1),
-      // ...monsterKilled(monster2),
-      // ...monsterKilled(monster3),
-      // ...monsterKilled(monster4),
-      // ...monsterKilled(monster5),
-      // ...monsterKilled(monster6),
-      // ['Measured', 'Value', '', 0, '=', 'Value', '', 1, 30],
-
       ...monstersKilled('Measured', 30),
     ),
     alt1: $(
@@ -517,12 +488,6 @@ set.addAchievement({
       // Dangerous Dudes - last required monster killed
       ['', 'Delta', '8bit', enemyKillsNeeded, '=', 'Value', '', 1],
       ['', 'Mem',   '8bit', enemyKillsNeeded, '=', 'Value', '', 0],
-
-      // TODO remove - Old approach:
-      // // Win condition 1: Enemy kills needed in current level = 0
-      // ['', 'Mem',   '8bit', enemyKillsNeeded, '=', 'Value', '', 0],
-      // // Pop on any level
-      // ['', 'Delta', '8bit', level, '<', 'Mem', '8bit', level],
     ),
   },
 });
@@ -554,12 +519,6 @@ set.addAchievement({
       ['', 'Delta', 'Lower4', score10,        '!=', 'Mem',   'Lower4', score10],
       ['', 'Delta', '8bit',   cherriesNeeded, '=',  'Value', '',       1],
       ['', 'Mem',   '8bit',   cherriesNeeded, '=',  'Value', '',       0],
-
-      // TODO remove - Old approach
-      // // Win condition 0: Cherries needed in current level = 0
-      // ['', 'Mem',   '8bit', cherriesNeeded, '=', 'Value', '', 0],
-      // // Pop on any level
-      // ['', 'Delta', '8bit', level, '<', 'Mem', '8bit', level],
     ),
   },
 });
