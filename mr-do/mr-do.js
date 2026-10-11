@@ -30,6 +30,9 @@ const progression = (levelId) => {
     // Pop if next level reached - there's no game state, just a continuous loop
     ['', 'Delta', '8bit', level, '=', 'Value', '', levelId - 1],
     ['', 'Mem',   '8bit', level, '=', 'Value', '', levelId],
+
+    // Add check for lives still > 0, to avoid one-condition cheevos
+    ['', 'Mem',   '8bit', lives, '>', 'Value', '', 0],
   ];
 };
 
@@ -42,11 +45,20 @@ const resetOnRunStart = () => {
   ];
 };
 
+const resetOnGameRestart = () => {
+  return [
+    // Reset on game restart
+    ['AndNext', 'Delta', '8bit', level, '!=', 'Value', '', 0],
+    ['ResetIf', 'Mem',   '8bit', level, '=',  'Value', '', 0],
+  ];
+};
+
 // A monster kill as the game counts it
 const monstersKilled = (flag, hits) => [
   // Count enemy kill changes except for initialization of game
-  ['AndNext', 'Mem', '16bit', timerSeconds,    '!=', 'Value', '', 0],
-  [flag,      'Delta', '8bit',  enemyKillsNeeded, '>',  'Mem',   '8bit', enemyKillsNeeded, hits],
+  ['AddSource', 'Mem',   '8bit', timerSeconds],
+  ['AndNext',   'Mem',   '8bit', timer256Seconds,  '!=', 'Value', '',     0],
+  [flag,        'Delta', '8bit',  enemyKillsNeeded, '>',  'Mem',   '8bit', enemyKillsNeeded, hits],
 ];
 
 
@@ -433,6 +445,9 @@ set.addAchievement({
     core: $(
       ...checkTreatCollection(5),
     ),
+    alt1: $(
+      ...resetOnGameRestart(),
+    ),
   },
 });
 
@@ -444,6 +459,9 @@ set.addAchievement({
   conditions: {
     core: $(
       ...checkTreatCollection(10),
+    ),
+    alt1: $(
+      ...resetOnGameRestart(),
     ),
   },
 });
@@ -473,6 +491,9 @@ set.addAchievement({
 
       // Make sure level is below 16 (0-15)
       ['', 'Mem',   '8bit', level, '<', 'Value', '', 16],
+    ),
+    alt1: $(
+      ...resetOnGameRestart(),
     ),
   },
 });
@@ -505,6 +526,9 @@ set.addAchievement({
       // Dangerous Dudes - last required monster killed
       ['', 'Delta', '8bit', enemyKillsNeeded, '=', 'Value', '', 1],
       ['', 'Mem',   '8bit', enemyKillsNeeded, '=', 'Value', '', 0],
+
+      // Add check for lives still > 0, to avoid one-condition cheevos
+      ['', 'Mem',   '8bit', lives, '>', 'Value', '', 0],
     ),
   },
 });
@@ -521,6 +545,9 @@ set.addAchievement({
       // Win condition 2: All EXTRA letters collected
       ['', 'Delta', '8bit', extraLettersNeeded, '=', 'Value', '', 1],
       ['', 'Mem',   '8bit', extraLettersNeeded, '=', 'Value', '', 0],
+
+      // Add check for lives still > 0, to avoid one-condition cheevos
+      ['', 'Mem',   '8bit', lives, '>', 'Value', '', 0],
     ),
   },
 });
@@ -551,6 +578,9 @@ set.addLeaderboard({
   type: 'SCORE',
   conditions: {
     start: $(
+      // Add additional condition to avoid one-condition cheevo
+      ['', 'Mem',   '8bit', level, '>', 'Value', '', 0],
+      // Trigger on game over (no more lives)
       ['', 'Delta', '8bit', lives, '=', 'Value', '', 1],
       ['', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
     ),
