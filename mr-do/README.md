@@ -1,9 +1,13 @@
 Mr. Do
 ======
 
-* Copy Code notes (format afterward):
+* Copy Code notes (format afterward) & RP:
 ```bash
 cp C:\RA\Emus\BizHawk-2.11.1-win-x64\RACache\Data\4746-Notes.json mr-do/4746-Notes.json
+```
+* Copy Rich Presence:
+```bash
+cp C:\RA\Emus\BizHawk-2.11.1-win-x64\RACache\Data\4746-Rich.txt mr-do/4746-Rich.txt
 ```
 * Sync:
 ```bash

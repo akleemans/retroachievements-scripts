@@ -1,0 +1,10 @@
+Lookup:Difficulty
+0=Easy
+1=Medium
+2=Hard
+
+Display:
+?0xHd1e8=255?Starting up
+?0xHd1e8=0?In the Menu
+?0xHd1e8>0?Mr. Do is in level @Number(A:0xHd0db_M:1) on @Difficulty(0xHd0cf) • @Number(0xH00d1e8) Lives • Score @Score(A:0xLd0d8_A:0xLd0d7*10_A:0xLd0d6*100_A:0xLd0d5*1000_A:0xLd0d4*10000_A:0xLd0d3*100000_M:0)
+Playing Mr. Do!
