@@ -230,7 +230,7 @@ set.addAchievement({
   badge: '734941',
   title: 'Disguised',
   type: 'missable',
-  description: 'Survive in level 1 for 2 minutes',
+  description: 'Survive in level 1 for 2 minutes without dying',
   points: 5,
   conditions: {
     core: $(
@@ -241,7 +241,7 @@ set.addAchievement({
       ['AddSource', 'Delta', '8bit', timer256Seconds, '*',  'Value', '', 256],
       ['',          'Delta', '8bit', timerSeconds,    '<',  'Value', '', 120],
       ['AddSource', 'Mem',   '8bit', timer256Seconds, '*',  'Value', '', 256],
-      ['',          'Mem',   '8bit', timerSeconds,    '>=', 'Value', '', 120],
+      ['Measured%',          'Mem',   '8bit', timerSeconds,    '>=', 'Value', '', 120],
 
       // Level must be 0
       ['', 'Mem',   '8bit', level, '=', 'Value', '', 0],
