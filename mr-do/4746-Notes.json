@@ -1,0 +1,252 @@
+[
+  {
+    "User": "adrianusk",
+    "Address": "0x00cc75",
+    "Note": "[8-bit] Map cell at the treat position (row 7, col 5). Death restores Treat.\r\n0x01 = Collected\r\n0x03 = Not collected\r\n0xff = In the menu"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0aa",
+    "Note": "[8-bit] Map Nr. (0-9, then wraps around)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0ae",
+    "Note": "[8-bit] Win condition 0: Cherries needed in current level (0x28 -> 0)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0b6",
+    "Note": "[8-bit] Win condition 2: Amount of \"EXTRA\" letters needed (5 -> 0)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0b9",
+    "Note": "[8-bit] Frame counter (0 -> 59); at 60 it bumps the second timers"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0be",
+    "Note": "[8-bit] Start menu cursor\r\n0x00 = Start\r\n0x01 = Remix"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0cf",
+    "Note": "[8-bit] Skill Option (difficulty)\r\n0x00 = Easy (default)\r\n0x01 = Medium\r\n0x02 = Hard"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0d0",
+    "Note": "[8-bit] Audio Option\r\n0x00 = Only effects\r\n0x01 = Only music\r\n0x02 = Music + effects (default)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0d2",
+    "Note": "[8-bit] Map Detail Option\r\n0x00 = Detailed (default)\r\n0x01 = Simple"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0d3",
+    "Note": "[Lower4] Score - 100,000s"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0d4",
+    "Note": "[Lower4] Score - 10,000s"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0d5",
+    "Note": "[Lower4] Score - 1,000s"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0d6",
+    "Note": "[Lower4] Score - 100s"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0d7",
+    "Note": "[Lower4] Score - 10s"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0d8",
+    "Note": "[Lower4] Score - 1s"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0d9",
+    "Note": "[8-bit] Total play time this game (seconds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0da",
+    "Note": "[8-bit] Total play time this game (256 seconds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0db",
+    "Note": "[8-bit] Level Nr. (0-99)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0e2",
+    "Note": "[8-bit] Timer map 1 (seconds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0e3",
+    "Note": "[8-bit] Timer map 1 (256 seconds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0e4",
+    "Note": "[8-bit] Win method map 1\r\n0x00 = All cherries collected\r\n0x01 = All 8 monsters defeated\r\n0x02 = All 4 Letters collected\r\n0x03 = Diamond collected"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0eb",
+    "Note": "[8-bit] Timer map 2 (seconds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0ec",
+    "Note": "[8-bit] Timer map 2 (256 seconds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0ed",
+    "Note": "[8-bit] Win method map 2\r\n0x00 = All cherries collected\r\n0x01 = All 8 monsters defeated\r\n0x02 = All 4 Letters collected\r\n0x03 = Diamond collected"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0f4",
+    "Note": "[8-bit] Timer map 3 (seconds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0f5",
+    "Note": "[8-bit] Timer map 3 (256 seconds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0f6",
+    "Note": "[8-bit] Win method map 3\r\n0x00 = All cherries collected\r\n0x01 = All 8 monsters defeated\r\n0x02 = All 4 Letters collected\r\n0x03 = Diamond collected"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0fd",
+    "Note": "[8-bit] Total time (seconds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0fe",
+    "Note": "[8-bit] Total time (256 seconds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d1e8",
+    "Note": "[8-bit] Lives (hearts) left"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d1f2",
+    "Note": "[8-bit] Win condition 1: Monsters to kill (8 for levels 1-3, 9 for levels 4-6, 10 for 7-9 etc., going towards 0)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d1fb",
+    "Note": "[8-bit] Death flag\r\n0x00 = Alive\r\n0xff = Dead or in menu"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d1fc",
+    "Note": "[8-bit] Win condition 3: Diamond collected\r\n0x00 = Not collected\r\n0x14 = Collected"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d209",
+    "Note": "[8-bit] Monster slot 1 (apple, diamond, letter)\r\n0x00 = Monster not on map\r\n0x06 = Apple monster spawning\r\n0x07 = Apple monster alive\r\n0x08 = Apple monster frozen\r\n0x09 = Apple monster transforming to rage mode\r\n0x0a = Raging apple monster\r\n0x0b = Raging apple monster transforming back\r\n0x0d = Black ghost\r\n0x10 = Letter monster in top bar\r\n0x15 = Monster with goggly eyes\r\n0x17 = Crushed by apple \/ dying\r\n0x18 = Diamond"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d212",
+    "Note": "[8-bit] Apple monster 2, see 0xd209"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d21b",
+    "Note": "[8-bit] Apple monster 3, see 0xd209"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d224",
+    "Note": "[8-bit] Apple monster 4, see 0xd209"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d22d",
+    "Note": "[8-bit] Apple monster 5, see 0xd209"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d236",
+    "Note": "[8-bit] Apple monster 6, see 0xd209"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d23f",
+    "Note": "[8-bit] Letter monster\r\n0x10 = In top bar\r\n0x12 = On map\r\n0x16 = Dying\r\n0xff = Mr. Do caught"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d248",
+    "Note": "[8-bit] Ghost monster 1\r\n0x0c = Spawning\r\n0x0d = Alive\r\n0x0e = Dying 1\r\n0x17 = Dying 2"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d251",
+    "Note": "[8-bit] Ghost monster 2, see 0xd248"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d25a",
+    "Note": "[8-bit] Ghost monster 3, see 0xd248"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d263",
+    "Note": "[8-bit] Ball status\r\n0x02 = Spinning out\r\n0x03 = Returning\r\n0x04 = Held\r\n0x05 = Flying out"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d287",
+    "Note": "[8-bit] Apple 1 state\r\n0x00 = Disappeared\r\n0x01 = Resting (initial or stopped)\r\n0x02 = Wiggling\r\n0x03 = Falling\r\n0x04 = Stopping\r\n0x05 = Exploding\r\n0x07 = Moving (pushed right by Mr. Do)\r\n0x08 = Moving (pushed left by Mr. Do)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d28c",
+    "Note": "[8-bit] Apple 2 state (see 0xd287)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d291",
+    "Note": "[8-bit] Apple 3 state (see 0xd287)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d296",
+    "Note": "[8-bit] Apple 4 state (see 0xd287)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d29b",
+    "Note": "[8-bit] Apple 5 state (see 0xd287)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d2a0",
+    "Note": "[8-bit] Apple 6 state (see 0xd287)"
+  }
+]
