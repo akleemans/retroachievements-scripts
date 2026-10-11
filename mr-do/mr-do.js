@@ -244,7 +244,7 @@ set.addAchievement({
       ['Measured%',          'Mem',   '8bit', timerSeconds,    '>=', 'Value', '', 120],
 
       // Level must be 0
-      ['', 'Mem',   '8bit', level, '=', 'Value', '', 0],
+      ['MeasuredIf', 'Mem',   '8bit', level, '=', 'Value', '', 0],
     ),
     alt1: $(
       // Resets on first level
