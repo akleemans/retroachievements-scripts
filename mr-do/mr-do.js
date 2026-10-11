@@ -1,0 +1,614 @@
+import {AchievementSet, define as $} from '@cruncheevos/core';
+
+const set = new AchievementSet({gameId: 4746, title: 'Mr. Do!'});
+
+const level = 0xd0db; // 0-99
+const lives = 0xd1e8;
+
+// TODO remove
+// const monster1 = 0xd209;
+// const monster2 = 0xd212;
+// const monster3 = 0xd21b;
+// const monster4 = 0xd224;
+// const monster5 = 0xd22d;
+// const monster6 = 0xd236;
+
+const apple1 = 0xd287;
+const apple2 = 0xd28c;
+const apple3 = 0xd291;
+const apple4 = 0xd296;
+const apple5 = 0xd29b;
+const apple6 = 0xd2a0;
+
+const timerFrames = 0xd0b9;
+const timerSeconds = 0xd0d9;
+const timer256Seconds = 0xd0da;
+
+const score1 = 0xd0d8;
+const score10 = 0xd0d7;
+const score100 = 0xd0d6;
+const score1k = 0xd0d5;
+const score10k = 0xd0d4;
+const score100k = 0xd0d3;
+
+const enemyKillsNeeded = 0xd1f2;
+
+const progression = (levelId) => {
+  return [
+    // Pop if next level reached - there's no game state, just a continuous loop
+    ['', 'Delta', '8bit', level, '=', 'Value', '', levelId - 1],
+    ['', 'Mem',   '8bit', level, '=', 'Value', '', levelId],
+  ];
+};
+
+const resetOnRunStart = () => {
+  return [
+    // Reset on start of level, if timer starts to run (frames = 1, apples initialized)
+    ['AndNext', 'Mem', '8bit', timerFrames,     '=', 'Value', '', 1],
+    ['AndNext', 'Mem', '8bit', timerSeconds,    '=', 'Value', '', 0],
+    ['ResetIf', 'Mem', '8bit', timer256Seconds, '=', 'Value', '', 0],
+  ];
+};
+
+// TODO remove
+// Old approach: Will also count collecting diamonds
+// const monsterKilled = (monsterId) => {
+//   return [
+//     // Add Hit if timer still running and monster state went under 7 (died)
+//     ['AndNext', 'Delta', '8bit', timerFrames, '!=', 'Mem',   '8bit', timerFrames],
+//     ['AndNext', 'Delta', '8bit', monsterId,   '>=', 'Value', '',     7],
+//     ['AddHits', 'Mem',   '8bit', monsterId,   '<',  'Value', '',     7],
+//   ];
+// };
+
+// A monster kill as the game counts it
+const monstersKilled = (flag, hits) => [
+  // Count enemy kill changes except for initialization of game
+  ['AndNext', 'Mem', '16bit', timerSeconds,    '!=', 'Value', '', 0],
+  [flag,      'Delta', '8bit',  enemyKillsNeeded, '>',  'Mem',   '8bit', enemyKillsNeeded, hits],
+];
+
+
+/* ----------------------------- */
+
+
+set.addAchievement({
+  title: 'Dirt Digger',
+  description: 'Beat level 1',
+  points: 1,
+  type: 'progression',
+  conditions: {
+    core: $(
+      ...progression(1),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Dribbler',
+  description: 'Beat level 3',
+  points: 3,
+  type: 'progression',
+  conditions: {
+    core: $(
+      ...progression(3),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Dropper',
+  description: 'Beat level 6',
+  points: 3,
+  type: 'progression',
+  conditions: {
+    core: $(
+      ...progression(6),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Dizzy Dorks',
+  description: 'Beat level 9',
+  points: 3,
+  type: 'progression',
+  conditions: {
+    core: $(
+      ...progression(9),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Delivery',
+  description: 'Finish a full loop by beating level 10',
+  points: 5,
+  type: 'progression',
+  conditions: {
+    core: $(
+      ...progression(10),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Disciplined',
+  description: 'Beat level 15',
+  points: 10,
+  type: 'progression',
+  conditions: {
+    core: $(
+      ...progression(15),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Mr. Do!',
+  description: 'Finish two loops by beating level 20',
+  points: 25,
+  type: 'win_condition',
+  conditions: {
+    core: $(
+      ...progression(20),
+    ),
+  },
+});
+
+const difficulty = 0xd0cf;
+
+set.addAchievement({
+  title: 'Dexterity',
+  description: 'Finish a full loop on Hard',
+  points: 10,
+  conditions: {
+    core: $(
+      ['', 'Mem', '8bit', difficulty, '=', 'Value', '', 2],
+      ...progression(10),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Dovish',
+  description: 'Finish one loop without killing normal monsters',
+  points: 10,
+  conditions: {
+    core: $(
+      // Kill no normal monsters - Pause if any killed
+      // ...monsterKilled(monster1),
+      // ...monsterKilled(monster2),
+      // ...monsterKilled(monster3),
+      // ...monsterKilled(monster4),
+      // ...monsterKilled(monster5),
+      // ...monsterKilled(monster6),
+      // ['PauseIf', 'Value', '', 0, '=', 'Value', '', 1, 1],
+
+      ...monstersKilled('PauseIf', 1),
+
+      // Pop on full loop
+      ...progression(10),
+    ),
+    alt1: $(
+      // Reset on start of first level
+      ...resetOnRunStart(),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Diligent',
+  description: 'Beat level 1 without letting an apple fall or move',
+  points: 5,
+  conditions: {
+    core: $(
+      // Pause if any apple moved (state != 1)
+      ['OrNext',  'Mem', '8bit', apple1, '!=', 'Value', '', 1],
+      ['OrNext',  'Mem', '8bit', apple2, '!=', 'Value', '', 1],
+      ['OrNext',  'Mem', '8bit', apple3, '!=', 'Value', '', 1],
+      ['OrNext',  'Mem', '8bit', apple4, '!=', 'Value', '', 1],
+      ['OrNext',  'Mem', '8bit', apple5, '!=', 'Value', '', 1],
+      ['PauseIf', 'Mem', '8bit', apple6, '!=', 'Value', '', 1, 1],
+
+      ...progression(1),
+    ),
+    alt1: $(
+      ...resetOnRunStart(),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Disguised',
+  description: 'Survive in level 1 for 2 minutes',
+  points: 5,
+  conditions: {
+    core: $(
+      // PauseLock if died
+      ['PauseIf', 'Delta', '8bit', lives, '>', 'Mem', '8bit', lives, 1],
+
+      // Total time must be equal to or above 120 seconds
+      ['AddSource', 'Delta', '8bit', timer256Seconds, '*',  'Value', '', 256],
+      ['',          'Delta', '8bit', timerSeconds,    '<',  'Value', '', 120],
+      ['AddSource', 'Mem',   '8bit', timer256Seconds, '*',  'Value', '', 256],
+      ['',          'Mem',   '8bit', timerSeconds,    '>=', 'Value', '', 120],
+
+      // Level must be 0
+      ['', 'Mem',   '8bit', level, '=', 'Value', '', 0],
+    ),
+    alt1: $(
+      // Resets on first level
+      ...resetOnRunStart(),
+    ),
+  },
+});
+
+const checkScore = (score) => {
+  return [
+    // Score was below "score" in last frame, and is now "score" or higher
+    ['AddSource', 'Delta', 'Lower4', score100k, '*', 'Value', '', 100_000],
+    ['AddSource', 'Delta', 'Lower4', score10k,  '*', 'Value', '', 10000],
+    ['AddSource', 'Delta', 'Lower4', score1k,   '*', 'Value', '', 1000],
+    ['AddSource', 'Delta', 'Lower4', score100,  '*', 'Value', '', 100],
+    ['AddSource', 'Delta', 'Lower4', score10,   '*', 'Value', '', 10],
+    ['',          'Delta', 'Lower4', score1,    '<', 'Value', '', score],
+
+
+    ['AddSource', 'Mem', 'Lower4', score100k, '*',  'Value', '', 100_000],
+    ['AddSource', 'Mem', 'Lower4', score10k,  '*',  'Value', '', 10000],
+    ['AddSource', 'Mem', 'Lower4', score1k,   '*',  'Value', '', 1000],
+    ['AddSource', 'Mem', 'Lower4', score100,  '*',  'Value', '', 100],
+    ['AddSource', 'Mem', 'Lower4', score10,   '*',  'Value', '', 10],
+    ['',          'Mem', 'Lower4', score1,    '>=', 'Value', '', score],
+  ];
+};
+
+set.addAchievement({
+  title: 'Decent',
+  description: 'Get a score of 50,000 or more',
+  points: 3,
+  conditions: {
+    core: $(
+      ...checkScore(50_000),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Devoted',
+  description: 'Get a score of 100,000 or more',
+  points: 5,
+  conditions: {
+    core: $(
+      ...checkScore(100_000),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Deck the Duck',
+  description: 'Place first on the leaderboard by beating the score of 147,000',
+  points: 10,
+  conditions: {
+    core: $(
+      // Must be _above_ 147,000 to place first - exactly 147k will place second
+      ...checkScore(147_001),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Determined',
+  description: 'Finish one loop without dying',
+  points: 10,
+  conditions: {
+    core: $(
+      // Pause if life lost
+      ['PauseIf', 'Delta', '8bit', lives, '>', 'Mem',   '8bit', lives,            1],
+
+      // Progression, but with trigger
+      ['',        'Delta', '8bit', level, '=', 'Value', '', 9],
+      ['Trigger', 'Mem',   '8bit', level, '=', 'Value', '', 10],
+    ),
+    alt1: $(
+      // Reset on lives = 0 (game start or game over)
+      ['ResetIf', 'Mem', '8bit', lives, '=', 'Value', '', 0],
+    ),
+  },
+});
+
+const checkAll3MapsTimesBelow30s = () => {
+  const timeSecondsMap1 = 0xd0e2;
+  const time256SecondsMap1 = 0xd0e3;
+  const timeSecondsMap2 = 0xd0eb;
+  const time256SecondsMap2 = 0xd0ec;
+  const timeSecondsMap3 = 0xd0f4;
+  const time256SecondsMap3 = 0xd0f5;
+  return [
+    // We have to check Prior here, values will be already 0 at the point where the levelId increases
+    ['AddSource', 'Prior', '8bit', time256SecondsMap1, '*',  'Value', '', 256],
+    ['',          'Prior', '8bit', timeSecondsMap1,    '<=', 'Value', '', 30],
+    ['AddSource', 'Prior', '8bit', time256SecondsMap2, '*',  'Value', '', 256],
+    ['',          'Prior', '8bit', timeSecondsMap2,    '<=', 'Value', '', 30],
+    ['AddSource', 'Prior', '8bit', time256SecondsMap3, '*',  'Value', '', 256],
+    ['',          'Prior', '8bit', timeSecondsMap3,    '<=', 'Value', '', 30],
+  ];
+};
+
+
+set.addAchievement({
+  title: 'Dancing',
+  description: 'Finish levels 1-3 with 0:30 or less on the timer for all levels',
+  points: 5,
+  conditions: {
+    core: $(
+      ...checkAll3MapsTimesBelow30s(),
+      ...progression(3),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Dashing',
+  description: 'Finish levels 4-6 with 0:30 or less on the timer for all levels',
+  points: 5,
+  conditions: {
+    core: $(
+      ...checkAll3MapsTimesBelow30s(),
+      ...progression(6),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Darting',
+  description: 'Finish levels 7-9 with 0:30 or less on the timer for all levels',
+  points: 5,
+  conditions: {
+    core: $(
+      ...checkAll3MapsTimesBelow30s(),
+      ...progression(9),
+    ),
+  },
+});
+
+
+set.addAchievement({
+  title: 'Doing It All',
+  description: 'Finish one loop with 4:00 or less on the timer',
+  points: 10,
+  conditions: {
+    core: $(
+      // Total time must be equal or below to 4*60 = 240
+      ['AddSource', 'Mem', '8bit', timer256Seconds, '*',  'Value', '', 256],
+      ['',          'Mem', '8bit', timerSeconds,    '<=', 'Value', '', 240],
+      ...progression(10),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Daring',
+  description: 'Kill 30 normal monsters in a single run',
+  points: 5,
+  conditions: {
+    core: $(
+      // TODO remove
+      // Kill 20 normal monsters
+      // ...monsterKilled(monster1),
+      // ...monsterKilled(monster2),
+      // ...monsterKilled(monster3),
+      // ...monsterKilled(monster4),
+      // ...monsterKilled(monster5),
+      // ...monsterKilled(monster6),
+      // ['Measured', 'Value', '', 0, '=', 'Value', '', 1, 30],
+
+      ...monstersKilled('Measured', 30),
+    ),
+    alt1: $(
+      // Reset on first level
+      ...resetOnRunStart(),
+    ),
+  },
+});
+
+const itemCollectedInCurrentLevel = 0xcc75;
+
+set.addAchievement({
+  title: 'Do-Boy',
+  description: 'Find and collect the Game Boy collectible',
+  points: 3,
+  conditions: {
+    core: $(
+      // Item collected
+      ['', 'Delta', '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 3],
+      ['', 'Mem',   '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 1],
+
+      // Pop in level % 16 = 7 (8, 24, ...)
+      ['AddSource', 'Mem',   '8bit', level, '%', 'Value', '', 16],
+      ['',          'Value', '',     0,     '=', 'Value', '', 7],
+    ),
+  },
+});
+
+const checkTreatCollection = (amount) => {
+  return [
+    // Add hits for every treat collection
+    ['AndNext', 'Delta', '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 3],
+    ['AddHits', 'Mem',   '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 1],
+    ['',        'Value', '',     0,                           '=', 'Value', '', 1, amount],
+  ];
+};
+
+set.addAchievement({
+  title: 'Delicate',
+  description: 'Collect 5 treats',
+  points: 3,
+  conditions: {
+    core: $(
+      ...checkTreatCollection(5),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Delish',
+  description: 'Collect 10 treats',
+  points: 5,
+  conditions: {
+    core: $(
+      ...checkTreatCollection(10),
+    ),
+  },
+});
+
+const collectTreatInEveryLevel = () => {
+  const arr = [];
+  for (let i = 0; i < 16; i++) {
+    arr.push(
+      // Add hits for every treat collection, separately
+      ['AndNext', 'Mem',   '8bit', level,                       '=', 'Value', '', i],
+      ['AndNext', 'Delta', '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 3],
+      ['',        'Mem',   '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 1, 1],
+    );
+  }
+
+  return arr;
+};
+
+set.addAchievement({
+  title: 'Dinner',
+  description: 'Collect 16 different treats in the first 16 levels',
+  points: 10,
+  conditions: {
+    core: $(
+      ...collectTreatInEveryLevel(),
+
+      // Make sure level is below 16 (0-15)
+      ['', 'Mem',   '8bit', level, '<', 'Value', '', 16],
+    ),
+  },
+});
+
+const diamondCollected = 0xd1fc;
+
+set.addAchievement({
+  title: 'Diamond Delight',
+  description: 'Beat a level by collecting a diamond',
+  points: 5,
+  conditions: {
+    core: $(
+      // Win condition 3: Diamond collected
+      ['', 'Mem',   '8bit', diamondCollected, '!=', 'Value', '', 0],
+
+      // Pop on any level
+      ['', 'Delta', '8bit', level, '<', 'Mem', '8bit', level],
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Dangerous Dudes',
+  description: 'Beat a level by defeating a full wave of enemies',
+  points: 3,
+  conditions: {
+    core: $(
+      // Dangerous Dudes - last required monster killed
+      ['', 'Delta', '8bit', enemyKillsNeeded, '=', 'Value', '', 1],
+      ['', 'Mem',   '8bit', enemyKillsNeeded, '=', 'Value', '', 0],
+
+      // TODO remove - Old approach:
+      // // Win condition 1: Enemy kills needed in current level = 0
+      // ['', 'Mem',   '8bit', enemyKillsNeeded, '=', 'Value', '', 0],
+      // // Pop on any level
+      // ['', 'Delta', '8bit', level, '<', 'Mem', '8bit', level],
+    ),
+  },
+});
+
+const extraLettersNeeded = 0xd0b6;
+
+set.addAchievement({
+  title: 'Duplication',
+  description: 'Beat a level and get an Extra life by collecting all "EXTRA" letters',
+  points: 3,
+  conditions: {
+    core: $(
+      // Win condition 2: All EXTRA letters collected
+      ['', 'Delta', '8bit', extraLettersNeeded, '=', 'Value', '', 1],
+      ['', 'Mem',   '8bit', extraLettersNeeded, '=', 'Value', '', 0],
+    ),
+  },
+});
+
+const cherriesNeeded = 0xd0ae;
+
+set.addAchievement({
+  title: 'Delicious Cherries',
+  description: 'Beat a level by eating all cherries',
+  points: 2,
+  conditions: {
+    core: $(
+      // Pop on last cherry eaten (score changes in the same frame, not on score screen)
+      ['', 'Delta', 'Lower4', score10,        '!=', 'Mem',   'Lower4', score10],
+      ['', 'Delta', '8bit',   cherriesNeeded, '=',  'Value', '',       1],
+      ['', 'Mem',   '8bit',   cherriesNeeded, '=',  'Value', '',       0],
+
+      // TODO remove - Old approach
+      // // Win condition 0: Cherries needed in current level = 0
+      // ['', 'Mem',   '8bit', cherriesNeeded, '=', 'Value', '', 0],
+      // // Pop on any level
+      // ['', 'Delta', '8bit', level, '<', 'Mem', '8bit', level],
+    ),
+  },
+});
+
+/* ========= LEADERBOARDS ========= */
+
+set.addLeaderboard({
+  title: 'High Score',
+  description: 'Score the most points',
+  lowerIsBetter: false,
+  type: 'SCORE',
+  conditions: {
+    start: $(
+      ['', 'Delta', '8bit', lives, '=', 'Value', '', 1],
+      ['', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
+    ),
+    cancel: '0=1',
+    submit: '0=0',
+    value: $(
+      ['AddSource', 'Mem', 'Lower4', score100k, '*', 'Value', '', 100_000],
+      ['AddSource', 'Mem', 'Lower4', score10k,  '*', 'Value', '', 10000],
+      ['AddSource', 'Mem', 'Lower4', score1k,   '*', 'Value', '', 1000],
+      ['AddSource', 'Mem', 'Lower4', score100,  '*', 'Value', '', 100],
+      ['AddSource', 'Mem', 'Lower4', score10,   '*', 'Value', '', 10],
+      ['Measured',  'Mem', 'Lower4', score1],
+    ),
+  },
+});
+
+
+set.addLeaderboard({
+  title: 'Speedrun',
+  description: 'Finish 1 loop as fast as possible',
+  lowerIsBetter: true,
+  type: 'FRAMES',
+  conditions: {
+    start: $(
+      ...progression(10),
+    ),
+    cancel: '0=1',
+    submit: '0=0',
+    value: $(
+      // Submit time at level increase
+      ['AddSource', 'Mem', '8bit', timer256Seconds, '*', 'Value', '', 256 * 60],
+      ['AddSource', 'Mem', '8bit', timerSeconds,    '*', 'Value', '', 60],
+      ['Measured',  'Mem', '8bit', timerFrames],
+    ),
+  },
+});
+
+
+export default set;
