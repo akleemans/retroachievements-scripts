@@ -18,7 +18,7 @@ Order	Feature	Missable	Achievement Name	Achievement Description	Notes	Type	Point
 17		FALSE	Dexterity	Finish a full loop on Hard		Challenge	10
 18		FALSE	Dovish	Finish one loop without killing normal monsters	⭐ Enemy kill restriction	Challenge	10
 19		FALSE	Diligent	Beat level 1 without letting an apple fall or move	⭐ Map layout lvl 1	Challenge	5
-20		FALSE	Disguised	Survive in level 1 for 2 minutes without dying	⭐ Survival challenge	Challenge	5
+20	Measured%	FALSE	Disguised	Survive in level 1 for 2 minutes without dying	⭐ Survival challenge	Challenge	5
 21		FALSE	Do-Boy	Find and collect the Game Boy collectible	(in level 8)	Easter Egg	3
 22		FALSE	Delicate	Collect 5 treats		Collection	3
 23		FALSE	Delish	Collect 10 treats		Collection	5
