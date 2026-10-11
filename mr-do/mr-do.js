@@ -67,6 +67,7 @@ const monstersKilled = (flag, hits) => [
 
 set.addAchievement({
   id: 643776,
+  badge: '734921',
   title: 'Dirt Digger',
   description: 'Beat level 1',
   points: 1,
@@ -80,6 +81,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643777,
+  badge: '734922',
   title: 'Dribbler',
   description: 'Beat level 3',
   points: 3,
@@ -93,6 +95,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643778,
+  badge: '734923',
   title: 'Dropper',
   description: 'Beat level 6',
   points: 3,
@@ -106,6 +109,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643779,
+  badge: '734924',
   title: 'Dizzy Dorks',
   description: 'Beat level 9',
   points: 3,
@@ -119,6 +123,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643780,
+  badge: '734925',
   title: 'Delivery',
   description: 'Finish a full loop by beating level 10',
   points: 5,
@@ -132,6 +137,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643781,
+  badge: '734926',
   title: 'Disciplined',
   description: 'Beat level 15',
   points: 10,
@@ -145,6 +151,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643782,
+  badge: '734927',
   title: 'Mr. Do!',
   description: 'Finish two loops by beating level 20',
   points: 25,
@@ -160,6 +167,7 @@ const difficulty = 0xd0cf;
 
 set.addAchievement({
   id: 643783,
+  badge: '734938',
   title: 'Dexterity',
   description: 'Finish a full loop on Hard',
   points: 10,
@@ -173,7 +181,9 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643784,
+  badge: '734939',
   title: 'Dovish',
+  type: 'missable',
   description: 'Finish one loop without killing normal monsters',
   points: 10,
   conditions: {
@@ -192,7 +202,9 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643785,
+  badge: '734940',
   title: 'Diligent',
+  type: 'missable',
   description: 'Beat level 1 without letting an apple fall or move',
   points: 5,
   conditions: {
@@ -215,7 +227,9 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643786,
+  badge: '734941',
   title: 'Disguised',
+  type: 'missable',
   description: 'Survive in level 1 for 2 minutes',
   points: 5,
   conditions: {
@@ -261,6 +275,7 @@ const checkScore = (score) => {
 
 set.addAchievement({
   id: 643787,
+  badge: '734928',
   title: 'Decent',
   description: 'Get a score of 50,000 or more',
   points: 3,
@@ -273,6 +288,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643788,
+  badge: '734929',
   title: 'Devoted',
   description: 'Get a score of 100,000 or more',
   points: 5,
@@ -285,6 +301,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643789,
+  badge: '734930',
   title: 'Deck the Duck',
   description: 'Place first on the leaderboard by beating the score of 147,000',
   points: 10,
@@ -298,7 +315,9 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643790,
+  badge: '734931',
   title: 'Determined',
+  type: 'missable',
   description: 'Finish one loop without dying',
   points: 10,
   conditions: {
@@ -338,7 +357,9 @@ const checkAll3MapsTimesBelow30s = () => {
 
 set.addAchievement({
   id: 643791,
+  badge: '734942',
   title: 'Dancing',
+  type: 'missable',
   description: 'Finish levels 1-3 with 0:30 or less on the timer for all levels',
   points: 5,
   conditions: {
@@ -351,7 +372,9 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643792,
+  badge: '734943',
   title: 'Dashing',
+  type: 'missable',
   description: 'Finish levels 4-6 with 0:30 or less on the timer for all levels',
   points: 5,
   conditions: {
@@ -364,7 +387,9 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643793,
+  badge: '734944',
   title: 'Darting',
+  type: 'missable',
   description: 'Finish levels 7-9 with 0:30 or less on the timer for all levels',
   points: 5,
   conditions: {
@@ -378,7 +403,9 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643794,
+  badge: '734945',
   title: 'Doing It All',
+  type: 'missable',
   description: 'Finish one loop with 4:00 or less on the timer',
   points: 10,
   conditions: {
@@ -393,6 +420,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643795,
+  badge: '734946',
   title: 'Daring',
   description: 'Kill 30 normal monsters in a single run',
   points: 5,
@@ -411,7 +439,9 @@ const itemCollectedInCurrentLevel = 0xcc75;
 
 set.addAchievement({
   id: 643796,
+  badge: '734947',
   title: 'Do-Boy',
+  type: 'missable',
   description: 'Find and collect the Game Boy collectible',
   points: 3,
   conditions: {
@@ -438,6 +468,7 @@ const checkTreatCollection = (amount) => {
 
 set.addAchievement({
   id: 643797,
+  badge: '734948',
   title: 'Delicate',
   description: 'Collect 5 treats',
   points: 3,
@@ -453,6 +484,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643798,
+  badge: '734949',
   title: 'Delish',
   description: 'Collect 10 treats',
   points: 5,
@@ -482,7 +514,9 @@ const collectTreatInEveryLevel = () => {
 
 set.addAchievement({
   id: 643799,
+  badge: '734950',
   title: 'Dinner',
+  type: 'missable',
   description: 'Collect 16 different treats in the first 16 levels',
   points: 10,
   conditions: {
@@ -502,6 +536,7 @@ const diamondCollected = 0xd1fc;
 
 set.addAchievement({
   id: 643800,
+  badge: '734951',
   title: 'Diamond Delight',
   description: 'Beat a level by collecting a diamond',
   points: 5,
@@ -518,6 +553,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 643801,
+  badge: '734952',
   title: 'Dangerous Dudes',
   description: 'Beat a level by defeating a full wave of enemies',
   points: 3,
@@ -537,6 +573,7 @@ const extraLettersNeeded = 0xd0b6;
 
 set.addAchievement({
   id: 643802,
+  badge: '734953',
   title: 'Duplication',
   description: 'Beat a level and get an Extra life by collecting all "EXTRA" letters',
   points: 3,
@@ -556,6 +593,7 @@ const cherriesNeeded = 0xd0ae;
 
 set.addAchievement({
   id: 643803,
+  badge: '734954',
   title: 'Delicious Cherries',
   description: 'Beat a level by eating all cherries',
   points: 2,
