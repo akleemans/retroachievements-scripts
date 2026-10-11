@@ -1,0 +1,29 @@
+Order	Feature	Missable	Achievement Name	Achievement Description	Notes	Type	Points
+1		FALSE	Dirt Digger	Beat level 1	Starter achievement	Progression	1
+2		FALSE	Dribbler	Beat level 3		Progression	3
+3		FALSE	Dropper	Beat level 6		Progression	3
+4		FALSE	Dizzy Dorks	Beat level 9		Progression	3
+5		FALSE	Delivery	Finish a full loop by beating level 10		Progression	5
+6		FALSE	Disciplined	Beat level 15		Progression	10
+7		FALSE	Mr. Do!	Finish two loops by beating level 20		Win	25
+8		FALSE	Decent	Get a score of 50,000 or more	High score	Challenge	3
+9		FALSE	Devoted	Get a score of 100,000 or more	High score	Challenge	5
+10		FALSE	Deck the Duck	Place first on the leaderboard by beating the score of 147,000	High score	Challenge	10
+11	Trigger	FALSE	Determined	Finish one loop without dying	Deathless	Challenge	10
+12		FALSE	Dancing	Finish levels 1-3 with 0:30 or less on the timer for all levels	Speedrun	Time Trial	5
+13		FALSE	Dashing	Finish levels 4-6 with 0:30 or less on the timer for all levels	Speedrun	Time Trial	5
+14		FALSE	Darting	Finish levels 7-9 with 0:30 or less on the timer for all levels	Speedrun	Time Trial	5
+15		FALSE	Doing It All	Finish one loop with 4:00 or less on the timer	Speedrun	Time Trial	10
+16	Measured	FALSE	Daring	Kill 30 normal monsters in a single run		Challenge	5
+17		FALSE	Dexterity	Finish a full loop on Hard		Challenge	10
+18		FALSE	Dovish	Finish one loop without killing normal monsters	⭐ Enemy kill restriction	Challenge	10
+19		FALSE	Diligent	Beat level 1 without letting an apple fall or move	⭐ Map layout lvl 1	Challenge	5
+20		FALSE	Disguised	Survive in level 1 for 2 minutes	⭐ Survival challenge	Challenge	5
+21		FALSE	Do-Boy	Find and collect the Game Boy collectible	(in level 8)	Easter Egg	3
+22		FALSE	Delicate	Collect 5 treats		Collection	3
+23		FALSE	Delish	Collect 10 treats		Collection	5
+24		FALSE	Dinner	Collect 16 different treats in the first 16 levels	⭐ Collect all different treats	Collection	10
+25		FALSE	Diamond Delight	Beat a level by collecting a diamond	⭐ Win condition: Diamond	Side Quest	5
+26		FALSE	Dangerous Dudes	Beat a level by defeating a full wave of enemies	⭐ Win condition: Enemies	Side Quest	3
+27		FALSE	Duplication	Beat a level and get an Extra life by collecting all "EXTRA" letters	⭐ Win condition: EXTRA	Side Quest	3
+28		FALSE	Delicious Cherries	Beat a level by eating all cherries	⭐ Win condition: Cherries	Side Quest	2
