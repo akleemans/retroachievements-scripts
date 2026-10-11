@@ -1,0 +1,263 @@
+{
+  "name": "level20-finish",
+  "description": "",
+  "game": "Mr. Do",
+  "console": "GB",
+  "firstFrame": 47008,
+  "markers": {
+    "scenario-start": 47013,
+    "level-increase": 47348
+  },
+  "addresses": [
+    {
+      "address": "0xcc75",
+      "size": "u8",
+      "label": "Map cell at the treat position (row 7, col 5). Death restores Treat."
+    },
+    {
+      "address": "0xd0aa",
+      "size": "u8",
+      "label": "Map Nr. (0-9, then wraps around)"
+    },
+    {
+      "address": "0xd0ae",
+      "size": "u8",
+      "label": "Win condition 0: Cherries needed in current level (0x28 -> 0)"
+    },
+    {
+      "address": "0xd0b6",
+      "size": "u8",
+      "label": "Win condition 2: Amount of \"EXTRA\" letters needed (5 -> 0)"
+    },
+    {
+      "address": "0xd0b9",
+      "size": "u8",
+      "label": "Frame counter (0 -> 59); at 60 it bumps the second timers"
+    },
+    {
+      "address": "0xd0be",
+      "size": "u8",
+      "label": "Start menu cursor"
+    },
+    {
+      "address": "0xd0cf",
+      "size": "u8",
+      "label": "Skill Option (difficulty)"
+    },
+    {
+      "address": "0xd0d0",
+      "size": "u8",
+      "label": "Audio Option"
+    },
+    {
+      "address": "0xd0d2",
+      "size": "u8",
+      "label": "Map Detail Option"
+    },
+    {
+      "address": "0xd0d3",
+      "size": "u8",
+      "label": "[Lower4] Score - 100,000s"
+    },
+    {
+      "address": "0xd0d4",
+      "size": "u8",
+      "label": "[Lower4] Score - 10,000s"
+    },
+    {
+      "address": "0xd0d5",
+      "size": "u8",
+      "label": "[Lower4] Score - 1,000s"
+    },
+    {
+      "address": "0xd0d6",
+      "size": "u8",
+      "label": "[Lower4] Score - 100s"
+    },
+    {
+      "address": "0xd0d7",
+      "size": "u8",
+      "label": "[Lower4] Score - 10s"
+    },
+    {
+      "address": "0xd0d8",
+      "size": "u8",
+      "label": "[Lower4] Score - 1s"
+    },
+    {
+      "address": "0xd0d9",
+      "size": "u16",
+      "label": "Total play time this game (seconds)"
+    },
+    {
+      "address": "0xd0da",
+      "size": "u8",
+      "label": "Total play time this game (256 seconds)"
+    },
+    {
+      "address": "0xd0db",
+      "size": "u8",
+      "label": "Level Nr. (0-99)"
+    },
+    {
+      "address": "0xd0e2",
+      "size": "u8",
+      "label": "Timer map 1 (seconds)"
+    },
+    {
+      "address": "0xd0e3",
+      "size": "u8",
+      "label": "Timer map 1 (256 seconds)"
+    },
+    {
+      "address": "0xd0e4",
+      "size": "u8",
+      "label": "Win method map 1"
+    },
+    {
+      "address": "0xd0eb",
+      "size": "u8",
+      "label": "Timer map 2 (seconds)"
+    },
+    {
+      "address": "0xd0ec",
+      "size": "u8",
+      "label": "Timer map 2 (256 seconds)"
+    },
+    {
+      "address": "0xd0ed",
+      "size": "u8",
+      "label": "Win method map 2"
+    },
+    {
+      "address": "0xd0f4",
+      "size": "u8",
+      "label": "Timer map 3 (seconds)"
+    },
+    {
+      "address": "0xd0f5",
+      "size": "u8",
+      "label": "Timer map 3 (256 seconds)"
+    },
+    {
+      "address": "0xd0f6",
+      "size": "u8",
+      "label": "Win method map 3"
+    },
+    {
+      "address": "0xd0fd",
+      "size": "u8",
+      "label": "Total time (seconds)"
+    },
+    {
+      "address": "0xd0fe",
+      "size": "u8",
+      "label": "Total time (256 seconds)"
+    },
+    {
+      "address": "0xd1e8",
+      "size": "u8",
+      "label": "Lives (hearts) left"
+    },
+    {
+      "address": "0xd1f2",
+      "size": "u8",
+      "label": "Win condition 1: Monsters to kill (8 for levels 1-3, 9 for levels 4-6, 10 for 7-9 etc., going towards 0)"
+    },
+    {
+      "address": "0xd1fb",
+      "size": "u8",
+      "label": "Death flag"
+    },
+    {
+      "address": "0xd1fc",
+      "size": "u8",
+      "label": "Win condition 3: Diamond collected"
+    },
+    {
+      "address": "0xd209",
+      "size": "u8",
+      "label": "Monster slot 1 (apple, diamond, letter)"
+    },
+    {
+      "address": "0xd212",
+      "size": "u8",
+      "label": "Apple monster 2, see 0xd209"
+    },
+    {
+      "address": "0xd21b",
+      "size": "u8",
+      "label": "Apple monster 3, see 0xd209"
+    },
+    {
+      "address": "0xd224",
+      "size": "u8",
+      "label": "Apple monster 4, see 0xd209"
+    },
+    {
+      "address": "0xd22d",
+      "size": "u8",
+      "label": "Apple monster 5, see 0xd209"
+    },
+    {
+      "address": "0xd236",
+      "size": "u8",
+      "label": "Apple monster 6, see 0xd209"
+    },
+    {
+      "address": "0xd23f",
+      "size": "u8",
+      "label": "Letter monster"
+    },
+    {
+      "address": "0xd248",
+      "size": "u8",
+      "label": "Ghost monster 1"
+    },
+    {
+      "address": "0xd251",
+      "size": "u8",
+      "label": "Ghost monster 2, see 0xd248"
+    },
+    {
+      "address": "0xd25a",
+      "size": "u8",
+      "label": "Ghost monster 3, see 0xd248"
+    },
+    {
+      "address": "0xd263",
+      "size": "u8",
+      "label": "Ball status"
+    },
+    {
+      "address": "0xd287",
+      "size": "u8",
+      "label": "Apple 1 state"
+    },
+    {
+      "address": "0xd28c",
+      "size": "u8",
+      "label": "Apple 2 state (see 0xd287)"
+    },
+    {
+      "address": "0xd291",
+      "size": "u8",
+      "label": "Apple 3 state (see 0xd287)"
+    },
+    {
+      "address": "0xd296",
+      "size": "u8",
+      "label": "Apple 4 state (see 0xd287)"
+    },
+    {
+      "address": "0xd29b",
+      "size": "u8",
+      "label": "Apple 5 state (see 0xd287)"
+    },
+    {
+      "address": "0xd2a0",
+      "size": "u8",
+      "label": "Apple 6 state (see 0xd287)"
+    }
+  ]
+}
