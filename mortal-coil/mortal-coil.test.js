@@ -41,7 +41,7 @@ describe('Clockwise', () => {
     const s = scenario('level-5-clockwise');
     const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('level-start'))).toBe('active');
+    expect(result.stateAt(s.marker('level-start'))).toBe('primed');
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('level-solved'));
   });
@@ -50,7 +50,7 @@ describe('Clockwise', () => {
     const s = scenario('level-5-not-clockwise');
     const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('level-start'))).toBe('active');
+    expect(result.stateAt(s.marker('level-start'))).toBe('primed');
     expect(result.triggered).toBe(false);
   });
 });
@@ -84,7 +84,7 @@ describe('Turning Back Time', () => {
     const s = scenario('level-7-counter-clockwise');
     const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('level-start'))).toBe('active');
+    expect(result.stateAt(s.marker('level-start'))).toBe('primed');
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('level-solved'));
   });
@@ -119,7 +119,7 @@ describe('17x17', () => {
     const s = scenario('finish-level-17-in-18-moves');
     const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('level-start'))).toBe('active');
+    expect(result.stateAt(s.marker('level-start'))).toBe('primed');
     expect(result.triggered).toBe(false);
   });
 });
