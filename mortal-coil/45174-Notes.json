@@ -1,0 +1,112 @@
+[
+  {
+    "User": "adrianusk",
+    "Address": "0x00d000",
+    "Note": "[8-bit] Scene\r\n0x00 = Title\r\n0x01 = Level select\r\n0x02 = In level\r\n0x03 = About\r\n0x04 = End screen\r\n0x05 = Secret splash screen"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d001",
+    "Note": "[8-bit] Level (1-42, 43 = hidden board)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d002",
+    "Note": "[8-bit] Phase in level\r\n0x00 = Picking start\r\n0x01 = Coiling\r\n0x02 = Solved"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d003",
+    "Note": "[8-bit] Flag: Solved (1 = board is full)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d004",
+    "Note": "[8-bit] Stuck (1 = no move left and board not full)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d005",
+    "Note": "[8-bit] Total cells to fill"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d006",
+    "Note": "[8-bit] Cells filled so far (including start cell)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d007",
+    "Note": "[8-bit] Moves made until now (after picking start cell)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d008",
+    "Note": "[8-bit] Flag: Movement still clockwise"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d009",
+    "Note": "[8-bit] Flag: Movement still counter-clockwise"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d00a",
+    "Note": "[8-bit] Flag: Start cell is one of the 4 corner cells"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d00b",
+    "Note": "[8-bit] Flag: Current head is adjacent to start cell"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d00c",
+    "Note": "[8-bit] Amount of slides upwards"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d00d",
+    "Note": "[8-bit] Amount of slides right"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d00e",
+    "Note": "[8-bit] Amount of slides down"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d00f",
+    "Note": "[8-bit] Amount of slides left"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d010",
+    "Note": "[8-bit] Board width"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d011",
+    "Note": "[8-bit] Board height"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d012",
+    "Note": "[8-bit] Start cell X position"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d013",
+    "Note": "[8-bit] Start cell Y position"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d014",
+    "Note": "[8-bit] Head cell X position"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d015",
+    "Note": "[8-bit] Head cell Y position"
+  }
+]
