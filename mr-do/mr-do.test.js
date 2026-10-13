@@ -424,6 +424,17 @@ describe('Delicate', () => {
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('5-items-collected'));
   });
+
+  test('resets on game over', () => {
+    const s = scenario('collect-treats-game-over');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.measuredAt(s.marker('first-treat-collected'))).toBe(1);
+
+    // Should reset after game-over
+    expect(result.measuredAt(s.marker('second-treat-after-game-over'))).toBe(1);
+  });
 });
 
 describe('Delish', () => {

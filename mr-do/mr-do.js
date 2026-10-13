@@ -32,24 +32,15 @@ const progression = (levelId) => {
     ['', 'Mem',   '8bit', level, '=', 'Value', '', levelId],
 
     // Add check for lives still > 0, to avoid one-condition cheevos
-    ['', 'Mem',   '8bit', lives, '>', 'Value', '', 0],
-  ];
-};
-
-const resetOnRunStart = () => {
-  return [
-    // Reset on start of level, if timer starts to run (frames = 1, apples initialized)
-    ['AndNext', 'Mem', '8bit', timerFrames,     '=', 'Value', '', 1],
-    ['AndNext', 'Mem', '8bit', timerSeconds,    '=', 'Value', '', 0],
-    ['ResetIf', 'Mem', '8bit', timer256Seconds, '=', 'Value', '', 0],
+    ['', 'Mem', '8bit', lives, '>', 'Value', '', 0],
   ];
 };
 
 const resetOnGameRestart = () => {
   return [
-    // Reset on game restart
-    ['AndNext', 'Delta', '8bit', level, '!=', 'Value', '', 0],
-    ['ResetIf', 'Mem',   '8bit', level, '=',  'Value', '', 0],
+    // Reset on game over
+    ['AndNext', 'Delta', '8bit', lives, '=', 'Value', '', 1],
+    ['ResetIf', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
   ];
 };
 
@@ -58,7 +49,7 @@ const monstersKilled = (flag, hits) => [
   // Count enemy kill changes except for initialization of game
   ['AddSource', 'Mem',   '8bit', timerSeconds],
   ['AndNext',   'Mem',   '8bit', timer256Seconds,  '!=', 'Value', '',     0],
-  [flag,        'Delta', '8bit',  enemyKillsNeeded, '>',  'Mem',   '8bit', enemyKillsNeeded, hits],
+  [flag,        'Delta', '8bit', enemyKillsNeeded, '>',  'Mem',   '8bit', enemyKillsNeeded, hits],
 ];
 
 
@@ -195,7 +186,7 @@ set.addAchievement({
     ),
     alt1: $(
       // Reset on start of first level
-      ...resetOnRunStart(),
+      ...resetOnGameRestart(),
     ),
   },
 });
@@ -220,7 +211,10 @@ set.addAchievement({
       ...progression(1),
     ),
     alt1: $(
-      ...resetOnRunStart(),
+      // Reset on start of level, if timer starts to run (frames = 1, apples initialized)
+      ['AndNext', 'Mem', '8bit', timerFrames,     '=', 'Value', '', 1],
+      ['AndNext', 'Mem', '8bit', timerSeconds,    '=', 'Value', '', 0],
+      ['ResetIf', 'Mem', '8bit', timer256Seconds, '=', 'Value', '', 0],
     ),
   },
 });
@@ -241,14 +235,14 @@ set.addAchievement({
       ['AddSource', 'Delta', '8bit', timer256Seconds, '*',  'Value', '', 256],
       ['',          'Delta', '8bit', timerSeconds,    '<',  'Value', '', 120],
       ['AddSource', 'Mem',   '8bit', timer256Seconds, '*',  'Value', '', 256],
-      ['Measured%',          'Mem',   '8bit', timerSeconds,    '>=', 'Value', '', 120],
+      ['Measured%', 'Mem',   '8bit', timerSeconds,    '>=', 'Value', '', 120],
 
       // Level must be 0
-      ['MeasuredIf', 'Mem',   '8bit', level, '=', 'Value', '', 0],
+      ['MeasuredIf', 'Mem', '8bit', level, '=', 'Value', '', 0],
     ),
     alt1: $(
-      // Resets on first level
-      ...resetOnRunStart(),
+      // Resets on game over
+      ...resetOnGameRestart(),
     ),
   },
 });
@@ -323,7 +317,7 @@ set.addAchievement({
   conditions: {
     core: $(
       // Pause if life lost
-      ['PauseIf', 'Delta', '8bit', lives, '>', 'Mem',   '8bit', lives,            1],
+      ['PauseIf', 'Delta', '8bit', lives, '>', 'Mem', '8bit', lives, 1],
 
       // Progression, but with trigger
       ['',        'Delta', '8bit', level, '=', 'Value', '', 9],
@@ -430,7 +424,7 @@ set.addAchievement({
     ),
     alt1: $(
       // Reset on first level
-      ...resetOnRunStart(),
+      ...resetOnGameRestart(),
     ),
   },
 });
@@ -460,9 +454,9 @@ set.addAchievement({
 const checkTreatCollection = (amount) => {
   return [
     // Add hits for every treat collection
-    ['AndNext', 'Delta', '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 3],
-    ['AddHits', 'Mem',   '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 1],
-    ['Measured',        'Value', '',     0,                           '=', 'Value', '', 1, amount],
+    ['AndNext',  'Delta', '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 3],
+    ['AddHits',  'Mem',   '8bit', itemCollectedInCurrentLevel, '=', 'Value', '', 1],
+    ['Measured', 'Value', '',     0,                           '=', 'Value', '', 1, amount],
   ];
 };
 
@@ -524,7 +518,7 @@ set.addAchievement({
       ...collectTreatInEveryLevel(),
 
       // Make sure level is below 16 (0-15)
-      ['', 'Mem',   '8bit', level, '<', 'Value', '', 16],
+      ['', 'Mem', '8bit', level, '<', 'Value', '', 16],
     ),
     alt1: $(
       ...resetOnGameRestart(),
@@ -543,7 +537,7 @@ set.addAchievement({
   conditions: {
     core: $(
       // Win condition 3: Diamond collected
-      ['', 'Mem',   '8bit', diamondCollected, '!=', 'Value', '', 0],
+      ['', 'Mem', '8bit', diamondCollected, '!=', 'Value', '', 0],
 
       // Pop on any level
       ['', 'Delta', '8bit', level, '<', 'Mem', '8bit', level],
@@ -564,7 +558,7 @@ set.addAchievement({
       ['', 'Mem',   '8bit', enemyKillsNeeded, '=', 'Value', '', 0],
 
       // Add check for lives still > 0, to avoid one-condition cheevos
-      ['', 'Mem',   '8bit', lives, '>', 'Value', '', 0],
+      ['', 'Mem', '8bit', lives, '>', 'Value', '', 0],
     ),
   },
 });
@@ -584,7 +578,7 @@ set.addAchievement({
       ['', 'Mem',   '8bit', extraLettersNeeded, '=', 'Value', '', 0],
 
       // Add check for lives still > 0, to avoid one-condition cheevos
-      ['', 'Mem',   '8bit', lives, '>', 'Value', '', 0],
+      ['', 'Mem', '8bit', lives, '>', 'Value', '', 0],
     ),
   },
 });
