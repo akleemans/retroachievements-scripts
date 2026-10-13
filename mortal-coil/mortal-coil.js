@@ -34,6 +34,7 @@ const progression = (levelId, trigger) => {
 
 set.addAchievement({
   id: 644368,
+  badge: '735537',
   title: 'Like a Clock',
   description: 'Solve a level between 3 and 6 inclusive by only turning clockwise',
   points: 1,
@@ -51,6 +52,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644369,
+  badge: '735538',
   title: 'Cornerstone',
   description: 'Solve a level between 4 and 8 inclusive by starting in a corner',
   points: 2,
@@ -68,6 +70,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644370,
+  badge: '735539',
   title: 'Filling It Up',
   description: 'Beat level 6',
   points: 2,
@@ -81,6 +84,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644371,
+  badge: '735540',
   title: 'Turning Back Time',
   description: 'Solve a level between 7 and 10 inclusive by only turning counter-clockwise',
   points: 2,
@@ -99,6 +103,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644372,
+  badge: '735541',
   title: 'The Right Way',
   description: 'Solve level 10 by going right only once',
   points: 3,
@@ -112,6 +117,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644373,
+  badge: '735542',
   title: 'Still Easy',
   description: 'Beat level 12',
   points: 3,
@@ -125,6 +131,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644374,
+  badge: '735543',
   title: '17 by 17',
   description: 'Solve level 17 with at most 17 moves',
   points: 3,
@@ -138,6 +145,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644375,
+  badge: '735544',
   title: 'Solved in a Few Tries',
   description: 'Beat level 18',
   points: 5,
@@ -151,6 +159,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644376,
+  badge: '735545',
   title: 'Zooming Out',
   description: 'Beat level 24',
   points: 5,
@@ -164,6 +173,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644377,
+  badge: '735536',
   title: 'Hello RA!',
   description: 'Find the secret level',
   points: 3,
@@ -178,6 +188,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644378,
+  badge: '735546',
   title: 'Tail Biter',
   description: 'Solve a level between 26 and 30 inclusive while finishing your coil on a cell next to where it started',
   points: 3,
@@ -195,6 +206,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644379,
+  badge: '735547',
   title: 'Finding the Right Start',
   description: 'Beat level 30',
   points: 10,
@@ -208,6 +220,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644380,
+  badge: '735548',
   title: 'Things Are Getting Complicated',
   description: 'Beat level 36',
   points: 10,
@@ -221,10 +234,11 @@ set.addAchievement({
 
 set.addAchievement({
   id: 644381,
+  badge: '735549',
   title: 'Maybe I Should Start Writing a Solver',
   description: 'Beat level 42',
   points: 10,
-  type: 'progression',
+  type: 'win_condition',
   conditions: {
     core: $(
       ...progression(42),

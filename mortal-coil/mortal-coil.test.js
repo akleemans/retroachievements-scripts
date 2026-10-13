@@ -90,6 +90,20 @@ describe('Turning Back Time', () => {
   });
 });
 
+describe('The Right Way', () => {
+  const cheevo = achievement('The Right Way');
+
+  test('pops when solved with only going right once', () => {
+    const s = scenario('level-10-right-once');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('level-start'))).toBe('active');
+    expect(result.stateAt(s.marker('right-once'))).toBe('primed');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('level-solved'));
+  });
+});
+
 describe('Progression: Beat Level 12', () => {
   const cheevo = achievement('Still Easy');
 
