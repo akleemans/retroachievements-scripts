@@ -1,0 +1,5 @@
+Display:
+?0xHd000=0?On the title
+?0xHd000=1?Selecting level
+?0xHd000=2?Coiling in level @Number(0xHd001) • @Number(0xHd006) tiles filled
+Playing Mortal Coil
