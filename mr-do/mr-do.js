@@ -36,11 +36,22 @@ const progression = (levelId) => {
   ];
 };
 
+// Resets on game over, not the first time
 const resetOnGameRestart = () => {
   return [
     // Reset on game over
     ['AndNext', 'Delta', '8bit', lives, '=', 'Value', '', 1],
     ['ResetIf', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
+  ];
+};
+
+// Needed for initializing also on first start
+const resetOnStartOfFirstLevel = () => {
+  return [
+    // Reset on start of level, if timer starts to run (frames = 1, apples initialized)
+    ['AndNext', 'Mem', '8bit', timerFrames,     '=', 'Value', '', 1],
+    ['AndNext', 'Mem', '8bit', timerSeconds,    '=', 'Value', '', 0],
+    ['ResetIf', 'Mem', '8bit', timer256Seconds, '=', 'Value', '', 0],
   ];
 };
 
@@ -241,8 +252,8 @@ set.addAchievement({
       ['MeasuredIf', 'Mem', '8bit', level, '=', 'Value', '', 0],
     ),
     alt1: $(
-      // Resets on game over
-      ...resetOnGameRestart(),
+      // Resets on start of first level
+      ...resetOnStartOfFirstLevel(),
     ),
   },
 });
@@ -324,8 +335,8 @@ set.addAchievement({
       ['Trigger', 'Mem',   '8bit', level, '=', 'Value', '', 10],
     ),
     alt1: $(
-      // Reset on lives = 0 (game start or game over)
-      ['ResetIf', 'Mem', '8bit', lives, '=', 'Value', '', 0],
+      // Reset game start
+      ...resetOnStartOfFirstLevel()
     ),
   },
 });
@@ -339,12 +350,9 @@ const checkAll3MapsTimesBelow30s = () => {
   const time256SecondsMap3 = 0xd0f5;
   return [
     // We have to check Prior here, values will be already 0 at the point where the levelId increases
-    ['AddSource', 'Prior', '8bit', time256SecondsMap1, '*',  'Value', '', 256],
-    ['',          'Prior', '8bit', timeSecondsMap1,    '<=', 'Value', '', 30],
-    ['AddSource', 'Prior', '8bit', time256SecondsMap2, '*',  'Value', '', 256],
-    ['',          'Prior', '8bit', timeSecondsMap2,    '<=', 'Value', '', 30],
-    ['AddSource', 'Prior', '8bit', time256SecondsMap3, '*',  'Value', '', 256],
-    ['',          'Prior', '8bit', timeSecondsMap3,    '<=', 'Value', '', 30],
+    ['', 'Prior', '16bit', timeSecondsMap1, '<=', 'Value', '', 30],
+    ['', 'Prior', '16bit', timeSecondsMap2, '<=', 'Value', '', 30],
+    ['', 'Prior', '16bit', timeSecondsMap3, '<=', 'Value', '', 30],
   ];
 };
 
@@ -464,7 +472,7 @@ set.addAchievement({
   id: 643797,
   badge: '734948',
   title: 'Delicate',
-  description: 'Collect 5 treats',
+  description: 'Collect 5 treats in a single run',
   points: 3,
   conditions: {
     core: $(
@@ -480,7 +488,7 @@ set.addAchievement({
   id: 643798,
   badge: '734949',
   title: 'Delish',
-  description: 'Collect 10 treats',
+  description: 'Collect 10 treats in a single run',
   points: 5,
   conditions: {
     core: $(

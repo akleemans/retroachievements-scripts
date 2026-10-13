@@ -9,20 +9,20 @@ Order	Feature	Missable	Achievement Name	Achievement Description	Notes	Type	Point
 8		FALSE	Decent	Get a score of 50,000 or more	High score	Challenge	3
 9		FALSE	Devoted	Get a score of 100,000 or more	High score	Challenge	5
 10		FALSE	Deck the Duck	Place first on the leaderboard by beating the score of 147,000	High score	Challenge	10
-11	Trigger	FALSE	Determined	Finish one loop without dying	Deathless	Challenge	10
-12		FALSE	Dancing	Finish levels 1-3 with 0:30 or less on the timer for all levels	Speedrun	Time Trial	5
-13		FALSE	Dashing	Finish levels 4-6 with 0:30 or less on the timer for all levels	Speedrun	Time Trial	5
-14		FALSE	Darting	Finish levels 7-9 with 0:30 or less on the timer for all levels	Speedrun	Time Trial	5
-15		FALSE	Doing It All	Finish one loop with 4:00 or less on the timer	Speedrun	Time Trial	10
+11	Trigger	TRUE	Determined	Finish one loop without dying	Deathless	Challenge	10
+12		TRUE	Dancing	Finish levels 1-3 with 0:30 or less on the timer for all levels	Speedrun	Time Trial	5
+13		TRUE	Dashing	Finish levels 4-6 with 0:30 or less on the timer for all levels	Speedrun	Time Trial	5
+14		TRUE	Darting	Finish levels 7-9 with 0:30 or less on the timer for all levels	Speedrun	Time Trial	5
+15		TRUE	Doing It All	Finish one loop with 4:00 or less on the timer	Speedrun	Time Trial	10
 16	Measured	FALSE	Daring	Kill 30 normal monsters in a single run		Challenge	5
 17		FALSE	Dexterity	Finish a full loop on Hard		Challenge	10
-18		FALSE	Dovish	Finish one loop without killing normal monsters	⭐ Enemy kill restriction	Challenge	10
-19		FALSE	Diligent	Beat level 1 without letting an apple fall or move	⭐ Map layout lvl 1	Challenge	5
-20	Measured%	FALSE	Disguised	Survive in level 1 for 2 minutes without dying	⭐ Survival challenge	Challenge	5
-21		FALSE	Do-Boy	Find and collect the Game Boy collectible	(in level 8)	Easter Egg	3
-22	Measured	FALSE	Delicate	Collect 5 treats		Collection	3
-23	Measured	FALSE	Delish	Collect 10 treats		Collection	5
-24		FALSE	Dinner	Collect 16 different treats in the first 16 levels	⭐ Collect all different treats	Collection	10
+18		TRUE	Dovish	Finish one loop without killing normal monsters	⭐ Enemy kill restriction	Challenge	10
+19		TRUE	Diligent	Beat level 1 without letting an apple fall or move	⭐ Map layout lvl 1	Challenge	5
+20	Measured%	TRUE	Disguised	Survive in level 1 for 2 minutes without dying	⭐ Survival challenge	Challenge	5
+21		TRUE	Do-Boy	Find and collect the Game Boy collectible	(in level 8)	Easter Egg	3
+22	Measured	FALSE	Delicate	Collect 5 treats in a single run		Collection	3
+23	Measured	FALSE	Delish	Collect 10 treats in a single run		Collection	5
+24		TRUE	Dinner	Collect 16 different treats in the first 16 levels	⭐ Collect all different treats	Collection	10
 25		FALSE	Diamond Delight	Beat a level by collecting a diamond	⭐ Win condition: Diamond	Side Quest	5
 26		FALSE	Dangerous Dudes	Beat a level by defeating a full wave of enemies	⭐ Win condition: Enemies	Side Quest	3
 27		FALSE	Duplication	Beat a level and get an Extra life by collecting all "EXTRA" letters	⭐ Win condition: EXTRA	Side Quest	3
