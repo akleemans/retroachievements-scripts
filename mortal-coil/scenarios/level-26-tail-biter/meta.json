@@ -1,0 +1,123 @@
+{
+  "name": "level-26-tail-biter",
+  "description": "",
+  "game": "Mortal Coil",
+  "console": "GB",
+  "firstFrame": 535892,
+  "markers": {
+    "level-start": 535930,
+    "level-solved": 539152
+  },
+  "addresses": [
+    {
+      "address": "0xd000",
+      "size": "u8",
+      "label": "Scene"
+    },
+    {
+      "address": "0xd001",
+      "size": "u8",
+      "label": "Level (1-42, 43 = hidden board)"
+    },
+    {
+      "address": "0xd002",
+      "size": "u8",
+      "label": "Phase in level"
+    },
+    {
+      "address": "0xd003",
+      "size": "u8",
+      "label": "Flag: Solved (1 = board is full)"
+    },
+    {
+      "address": "0xd004",
+      "size": "u8",
+      "label": "Stuck (1 = no move left and board not full)"
+    },
+    {
+      "address": "0xd005",
+      "size": "u8",
+      "label": "Total cells to fill"
+    },
+    {
+      "address": "0xd006",
+      "size": "u8",
+      "label": "Cells filled so far (including start cell)"
+    },
+    {
+      "address": "0xd007",
+      "size": "u8",
+      "label": "Moves made until now (after picking start cell)"
+    },
+    {
+      "address": "0xd008",
+      "size": "u8",
+      "label": "Flag: Movement still clockwise"
+    },
+    {
+      "address": "0xd009",
+      "size": "u8",
+      "label": "Flag: Movement still counter-clockwise"
+    },
+    {
+      "address": "0xd00a",
+      "size": "u8",
+      "label": "Flag: Start cell is one of the 4 corner cells"
+    },
+    {
+      "address": "0xd00b",
+      "size": "u8",
+      "label": "Flag: Current head is adjacent to start cell"
+    },
+    {
+      "address": "0xd00c",
+      "size": "u8",
+      "label": "Amount of slides upwards"
+    },
+    {
+      "address": "0xd00d",
+      "size": "u8",
+      "label": "Amount of slides right"
+    },
+    {
+      "address": "0xd00e",
+      "size": "u8",
+      "label": "Amount of slides down"
+    },
+    {
+      "address": "0xd00f",
+      "size": "u8",
+      "label": "Amount of slides left"
+    },
+    {
+      "address": "0xd010",
+      "size": "u8",
+      "label": "Board width"
+    },
+    {
+      "address": "0xd011",
+      "size": "u8",
+      "label": "Board height"
+    },
+    {
+      "address": "0xd012",
+      "size": "u8",
+      "label": "Start cell X position"
+    },
+    {
+      "address": "0xd013",
+      "size": "u8",
+      "label": "Start cell Y position"
+    },
+    {
+      "address": "0xd014",
+      "size": "u8",
+      "label": "Head cell X position"
+    },
+    {
+      "address": "0xd015",
+      "size": "u8",
+      "label": "Head cell Y position"
+    }
+  ]
+}
