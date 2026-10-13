@@ -23,12 +23,12 @@ const rightMoveCount = 0xD00D;
 
 /* ========= PROGRESSION ========= */
 
-const progression = (levelId) => {
+const progression = (levelId, trigger) => {
   return [
-    ['', 'Mem',   '8bit', currentLevel, '=', 'Value', '', levelId],
-    ['', 'Mem',   '8bit', state,        '=', 'Value', '', StateEnum.InLevel],
-    ['', 'Delta', '8bit', isSolved,     '=', 'Value', '', 0],
-    ['', 'Mem',   '8bit', isSolved,     '=', 'Value', '', 1],
+    ['',                       'Mem',   '8bit', currentLevel, '=', 'Value', '', levelId],
+    ['',                       'Mem',   '8bit', state,        '=', 'Value', '', StateEnum.InLevel],
+    ['',                       'Delta', '8bit', isSolved,     '=', 'Value', '', 0],
+    [trigger ? 'Trigger' : '', 'Mem',   '8bit', isSolved,     '=', 'Value', '', 1],
   ];
 };
 
@@ -39,12 +39,12 @@ set.addAchievement({
   points: 1,
   conditions: {
     core: $(
-      ['', 'Mem',   '8bit', isClockwise,  '=',  'Value', '', 1],
-      ['', 'Mem',   '8bit', currentLevel, '>=', 'Value', '', 3],
-      ['', 'Mem',   '8bit', currentLevel, '<=', 'Value', '', 6],
-      ['', 'Mem',   '8bit', state,        '=',  'Value', '', StateEnum.InLevel],
-      ['', 'Delta', '8bit', isSolved,     '=',  'Value', '', 0],
-      ['', 'Mem',   '8bit', isSolved,     '=',  'Value', '', 1],
+      ['',        'Mem',   '8bit', isClockwise,  '=',  'Value', '', 1],
+      ['',        'Mem',   '8bit', currentLevel, '>=', 'Value', '', 3],
+      ['',        'Mem',   '8bit', currentLevel, '<=', 'Value', '', 6],
+      ['',        'Mem',   '8bit', state,        '=',  'Value', '', StateEnum.InLevel],
+      ['',        'Delta', '8bit', isSolved,     '=',  'Value', '', 0],
+      ['Trigger', 'Mem',   '8bit', isSolved,     '=',  'Value', '', 1],
     ),
   },
 });
@@ -56,12 +56,12 @@ set.addAchievement({
   points: 2,
   conditions: {
     core: $(
-      ['', 'Mem',   '8bit', isCornerStart, '=',  'Value', '', 1],
-      ['', 'Mem',   '8bit', currentLevel,  '>=', 'Value', '', 4],
-      ['', 'Mem',   '8bit', currentLevel,  '<=', 'Value', '', 8],
-      ['', 'Mem',   '8bit', state,         '=',  'Value', '', StateEnum.InLevel],
-      ['', 'Delta', '8bit', isSolved,      '=',  'Value', '', 0],
-      ['', 'Mem',   '8bit', isSolved,      '=',  'Value', '', 1],
+      ['',        'Mem',   '8bit', isCornerStart, '=',  'Value', '', 1],
+      ['',        'Mem',   '8bit', currentLevel,  '>=', 'Value', '', 4],
+      ['',        'Mem',   '8bit', currentLevel,  '<=', 'Value', '', 8],
+      ['',        'Mem',   '8bit', state,         '=',  'Value', '', StateEnum.InLevel],
+      ['',        'Delta', '8bit', isSolved,      '=',  'Value', '', 0],
+      ['Trigger', 'Mem',   '8bit', isSolved,      '=',  'Value', '', 1],
     ),
   },
 });
@@ -86,12 +86,12 @@ set.addAchievement({
   points: 2,
   conditions: {
     core: $(
-      ['', 'Mem',   '8bit', isCounterClockwise, '=',  'Value', '', 1],
-      ['', 'Mem',   '8bit', currentLevel,       '>=', 'Value', '', 7],
-      ['', 'Mem',   '8bit', currentLevel,       '<=', 'Value', '', 10],
-      ['', 'Mem',   '8bit', state,              '=',  'Value', '', StateEnum.InLevel],
-      ['', 'Delta', '8bit', isSolved,           '=',  'Value', '', 0],
-      ['', 'Mem',   '8bit', isSolved,           '=',  'Value', '', 1],
+      ['',        'Mem',   '8bit', isCounterClockwise, '=',  'Value', '', 1],
+      ['',        'Mem',   '8bit', currentLevel,       '>=', 'Value', '', 7],
+      ['',        'Mem',   '8bit', currentLevel,       '<=', 'Value', '', 10],
+      ['',        'Mem',   '8bit', state,              '=',  'Value', '', StateEnum.InLevel],
+      ['',        'Delta', '8bit', isSolved,           '=',  'Value', '', 0],
+      ['Trigger', 'Mem',   '8bit', isSolved,           '=',  'Value', '', 1],
     ),
   },
 });
@@ -105,7 +105,7 @@ set.addAchievement({
   conditions: {
     core: $(
       ['', 'Mem', '8bit', rightMoveCount, '=', 'Value', '', 1],
-      ...progression(10),
+      ...progression(10, true)
     ),
   },
 });
@@ -131,7 +131,7 @@ set.addAchievement({
   conditions: {
     core: $(
       ['', 'Mem', '8bit', moveCount, '<=', 'Value', '', 17],
-      ...progression(17),
+      ...progression(17, true),
     ),
   },
 });
@@ -179,7 +179,7 @@ set.addAchievement({
 set.addAchievement({
   id: 644378,
   title: 'Tail Biter',
-  description: 'Solve a level between 26 and 30 inclusive while finishing your coil on a cell next to where it started in a level',
+  description: 'Solve a level between 26 and 30 inclusive while finishing your coil on a cell next to where it started',
   points: 3,
   conditions: {
     core: $(
