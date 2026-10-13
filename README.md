@@ -1,14 +1,16 @@
 retroachievements-scripts
 =========================
 
-My [cruncheevos](https://github.com/suXinjke/cruncheevos) scripts
-for [RetroAchievements](https://retroachievements.org/).
+My Achievement Sets for [RetroAchievements](https://retroachievements.org/), implemented
+using [cruncheevos](https://github.com/suXinjke/cruncheevos).
 
 Sets:
 
-* [The Rugrats Movie](https://retroachievements.org/game/2563)
-* [Turok: Battle of the Bionosaurs](https://retroachievements.org/game/13955)
-* [Monster Force](https://retroachievements.org/game/5260)
+* [The Rugrats Movie (GB)](/rugrats) | [RA](https://retroachievements.org/game/2563) - My first set!
+* [Turok: Battle of the Bionosaurs (GB)](/turok) | [RA](https://retroachievements.org/game/13955)
+* [Monster Force (GBA)](/monster-force) | [RA](https://retroachievements.org/game/5260) - My graduation set for the [RA junior program](https://docs.retroachievements.org/developer-docs/jr-dev-rules.html)
+* [Mr. Do! (GB)](/mr-do) | [RA](https://retroachievements.org/game/4746)
+* [Mortal Coil (GB)](/mortal-coil) | [RA](https://retroachievements.org/game/45174) - Homebrew game which I made myself, see [itch.io](https://adrianusk.itch.io/mortal-coil)
 
 ## Setup
 
