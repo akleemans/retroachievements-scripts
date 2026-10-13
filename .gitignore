@@ -4,5 +4,5 @@ node_modules
 # Ignore images for now
 *.png
 */docs
-next-game-ideas
 temp
+docs/
