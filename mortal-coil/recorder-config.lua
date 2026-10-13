@@ -2,7 +2,7 @@
 -- `description`) before each recording session; the rest is per-game.
 return {
     -- this recording session
-    name = "level-26-tail-biter",
+    name = "my-scenario",
     description = "",
 
     -- this game

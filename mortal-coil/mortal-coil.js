@@ -11,7 +11,7 @@ const StateEnum = {
   EndScreen: 4,
   SecretSplash: 5,
 };
-
+const phaseInLevel = 0xD002; // 0: picking start, 1: coiling, 2: solved
 const currentLevel = 0xD001;
 const isSolved = 0xD003;
 const moveCount = 0xD007;
@@ -33,6 +33,7 @@ const progression = (levelId) => {
 };
 
 set.addAchievement({
+  id: 644368,
   title: 'Like a Clock',
   description: 'Solve a level between 3 and 6 inclusive by only turning clockwise',
   points: 1,
@@ -49,6 +50,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 644369,
   title: 'Cornerstone',
   description: 'Solve a level between 4 and 8 inclusive by starting in a corner',
   points: 2,
@@ -65,6 +67,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 644370,
   title: 'Filling It Up',
   description: 'Beat level 6',
   points: 2,
@@ -77,6 +80,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 644371,
   title: 'Turning Back Time',
   description: 'Solve a level between 7 and 10 inclusive by only turning counter-clockwise',
   points: 2,
@@ -94,6 +98,7 @@ set.addAchievement({
 
 
 set.addAchievement({
+  id: 644372,
   title: 'The Right Way',
   description: 'Solve level 10 by going right only once',
   points: 3,
@@ -106,6 +111,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 644373,
   title: 'Still Easy',
   description: 'Beat level 12',
   points: 3,
@@ -118,6 +124,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 644374,
   title: '17 by 17',
   description: 'Solve level 17 with at most 17 moves',
   points: 3,
@@ -130,6 +137,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 644375,
   title: 'Solved in a Few Tries',
   description: 'Beat level 18',
   points: 5,
@@ -142,6 +150,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 644376,
   title: 'Zooming Out',
   description: 'Beat level 24',
   points: 5,
@@ -154,18 +163,21 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 644377,
   title: 'Hello RA!',
   description: 'Find the secret level',
   points: 3,
   conditions: {
     core: $(
-      ['', 'Delta', '8bit', state, '!=', 'Value', '', StateEnum.InLevel],
-      ['', 'Mem',   '8bit', state, '=',  'Value', '', StateEnum.SecretSplash],
+      ['', 'Delta', '8bit', state,        '=', 'Value', '', StateEnum.InLevel],
+      ['', 'Mem',   '8bit', state,        '=', 'Value', '', StateEnum.SecretSplash],
+      ['', 'Mem',   '8bit', phaseInLevel, '=', 'Value', '', 1],
     ),
   },
 });
 
 set.addAchievement({
+  id: 644378,
   title: 'Tail Biter',
   description: 'Solve a level between 26 and 30 inclusive while finishing your coil on a cell next to where it started in a level',
   points: 3,
@@ -182,6 +194,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 644379,
   title: 'Finding the Right Start',
   description: 'Beat level 30',
   points: 10,
@@ -194,7 +207,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
-  title: 'Things are getting complicated',
+  id: 644380,
+  title: 'Things Are Getting Complicated',
   description: 'Beat level 36',
   points: 10,
   type: 'progression',
@@ -206,6 +220,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 644381,
   title: 'Maybe I Should Start Writing a Solver',
   description: 'Beat level 42',
   points: 10,

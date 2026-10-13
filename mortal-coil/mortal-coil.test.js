@@ -190,7 +190,7 @@ describe('Tail Biter', () => {
 });
 
 describe('Progression: Beat Level 36', () => {
-  const cheevo = achievement('Things are getting complicated');
+  const cheevo = achievement('Things Are Getting Complicated');
 
   test('pops when level 36 is finished', () => {
     const s = scenario('finish-level-36');
