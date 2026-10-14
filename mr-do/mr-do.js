@@ -186,14 +186,18 @@ set.addAchievement({
   badge: '734939',
   title: 'Dovish',
   type: 'missable',
-  description: 'Finish one loop without killing normal monsters',
+  description: 'Finish one loop without killing any normal monsters, whether by shooting or falling apples',
   points: 10,
   conditions: {
     core: $(
       ...monstersKilled('PauseIf', 1),
 
       // Pop on full loop
-      ...progression(10),
+      ['Trigger', 'Delta', '8bit', level, '=', 'Value', '', 9],
+      ['Trigger', 'Mem',   '8bit', level, '=', 'Value', '', 10],
+
+      // From progression method (check for lives still > 0)
+      ['', 'Mem', '8bit', lives, '>', 'Value', '', 0],
     ),
     alt1: $(
       // Reset on start of first level

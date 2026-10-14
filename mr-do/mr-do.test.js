@@ -149,7 +149,7 @@ describe('Dovish', () => {
     const s = scenario('level10-no-enemies-killed');
     const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('primed');
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('level-increase'));
   });
@@ -158,7 +158,7 @@ describe('Dovish', () => {
     const s = scenario('level09-monster-killed');
     const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('primed');
     expect(result.stateAt(s.marker('monster-killed'))).toBe('paused');
     expect(result.triggered).toBe(false);
   });
@@ -461,15 +461,6 @@ describe('Dinner', () => {
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('16-different-items-collected'));
   });
-
-  // No test for now
-  // test('does not pop on 15 treats collected', () => {
-  //   const s = scenario('level16-collect-15-treats');
-  //   const result = runAchievement(cheevo, s);
-  //
-  //   expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-  //   expect(result.triggered).toBe(false);
-  // });
 });
 
 
