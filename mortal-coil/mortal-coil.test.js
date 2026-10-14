@@ -6,7 +6,7 @@ const achievement = (title) => Object.values(set.achievements).find((a) => a.tit
 const scenario = (name) => loadScenario(new URL(`./scenarios/${name}`, import.meta.url));
 
 describe('Progression: Beat Level 6', () => {
-  const cheevo = achievement('Filling It Up');
+  const cheevo = achievement('Getting the Hang of It');
 
   test('pops when level 6 is finished', () => {
     const s = scenario('finish-level-6');
@@ -118,7 +118,7 @@ describe('Progression: Beat Level 12', () => {
 });
 
 describe('17x17', () => {
-  const cheevo = achievement('17 by 17');
+  const cheevo = achievement('17 for 17');
 
   test('pops when level 17 is solved in 17 moves', () => {
     const s = scenario('finish-level-17-in-17-moves');
@@ -139,7 +139,7 @@ describe('17x17', () => {
 });
 
 describe('Progression: Beat Level 18', () => {
-  const cheevo = achievement('Solved in a Few Tries');
+  const cheevo = achievement('A Few More Tries');
 
   test('pops when level 18 is finished', () => {
     const s = scenario('finish-level-18');
@@ -204,7 +204,7 @@ describe('Tail Biter', () => {
 });
 
 describe('Progression: Beat Level 36', () => {
-  const cheevo = achievement('Things Are Getting Complicated');
+  const cheevo = achievement('There Must Be a Pattern');
 
   test('pops when level 36 is finished', () => {
     const s = scenario('finish-level-36');
@@ -217,7 +217,7 @@ describe('Progression: Beat Level 36', () => {
 });
 
 describe('Progression: Beat Level 42', () => {
-  const cheevo = achievement('Maybe I Should Start Writing a Solver');
+  const cheevo = achievement('Maybe I Should Write a Solver');
 
   test('pops when level 42 is finished', () => {
     const s = scenario('level-42-finish');

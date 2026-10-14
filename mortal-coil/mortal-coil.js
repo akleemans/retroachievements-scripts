@@ -71,7 +71,7 @@ set.addAchievement({
 set.addAchievement({
   id: 644370,
   badge: '735539',
-  title: 'Filling It Up',
+  title: 'Getting the Hang of It',
   description: 'Beat level 6',
   points: 2,
   type: 'progression',
@@ -132,7 +132,7 @@ set.addAchievement({
 set.addAchievement({
   id: 644374,
   badge: '735543',
-  title: '17 by 17',
+  title: '17 for 17',
   description: 'Solve level 17 with at most 17 moves',
   points: 3,
   conditions: {
@@ -146,7 +146,7 @@ set.addAchievement({
 set.addAchievement({
   id: 644375,
   badge: '735544',
-  title: 'Solved in a Few Tries',
+  title: 'A Few More Tries',
   description: 'Beat level 18',
   points: 5,
   type: 'progression',
@@ -221,7 +221,7 @@ set.addAchievement({
 set.addAchievement({
   id: 644380,
   badge: '735548',
-  title: 'Things Are Getting Complicated',
+  title: 'There Must Be a Pattern',
   description: 'Beat level 36',
   points: 10,
   type: 'progression',
@@ -235,7 +235,7 @@ set.addAchievement({
 set.addAchievement({
   id: 644381,
   badge: '735549',
-  title: 'Maybe I Should Start Writing a Solver',
+  title: 'Maybe I Should Write a Solver',
   description: 'Beat level 42',
   points: 10,
   type: 'win_condition',
