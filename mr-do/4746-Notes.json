@@ -1,6 +1,11 @@
 [
   {
     "User": "adrianusk",
+    "Address": "0x000000",
+    "Note": "Cruncheevos script: https:\/\/github.com\/akleemans\/retroachievements-scripts"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00cc75",
     "Note": "[8-bit] Map cell at the treat position (row 7, col 5). Death restores Treat.\r\n0x01 = Collected\r\n0x03 = Not collected\r\n0xff = In the menu"
   },
