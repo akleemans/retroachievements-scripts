@@ -1,0 +1,162 @@
+[
+  {
+    "User": "adrianusk",
+    "Address": "0x00c100",
+    "Note": "[16-bit] Score (in hundreds)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c102",
+    "Note": "[16-bit] Echo: Score"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c104",
+    "Note": "[8-bit] Current lives"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c105",
+    "Note": "[8-bit] Echo: Current lives"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c106",
+    "Note": "[8-bit] Time remaining (seconds, based on 0xc184)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c107",
+    "Note": "[8-bit] Echo: Time remaining"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c108",
+    "Note": "[8-bit] Tickets to collect"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c109",
+    "Note": "[8-bit] Echo: Tickets to collect"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c10a",
+    "Note": "[8-bit] Max. possible health (0x07-0x0b)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c10c",
+    "Note": "[8-bit] Current health"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c10d",
+    "Note": "[8-bit] Echo: Current health"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c10e",
+    "Note": "[8-bit] Echo: Max. possible health"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c10f",
+    "Note": "[8-bit] Special item selected (lower right corner)\r\n0x00 = Empty\r\n0x01 = Rocket (Scene 5)\r\n0x02 = Bomb (Scene 4)\r\n0x03 = Door bomb (Scene 1)\r\n0x04 = Fire extinguisher (Scene 1)\r\n0x05 = Nitro (Scene 3)\r\n0x06 = Key (Scene 7)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c110",
+    "Note": "[8-bit] Echo: Special item selected"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c111",
+    "Note": "[8-bit] Number of continues"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c112",
+    "Note": "[8-bit] Scene number"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c113",
+    "Note": "[8-bit] Upcoming scene number to load next"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c12e",
+    "Note": "[16-bit] Viewport distance from far left"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c130",
+    "Note": "[16-bit] Viewport distance from top"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c174",
+    "Note": "[8-bit] Progress unlocked (Scene 1, by extinguishing fire)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c184",
+    "Note": "[8-bit] Frame timer (steps of 3), used for seconds"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c191",
+    "Note": "[8-bit] Shots needed for Benedict (final boss)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c805",
+    "Note": "[8-bit] Player animation\r\n0x01 = Crouched\r\n0x03 = Running 1\r\n0x04 = Running 2\r\n0x05 = Running 3\r\n0x06 = Standing still\r\n0x07 = Looking into camera\r\n0x08 = Looking over shoulder\r\n0x0a = Crouch to jump\r\n0x0b = Roundhouse kick 1 \/ jumping\r\n0x0c = Roundhouse kick 2\r\n0x0d = Roundhouse kick 3\r\n0x0e = Roundhouse kick 4\r\n0x0f = Roundhouse kick 5\r\n0x10 = Roundhouse kick 6\r\n0x11 = Punch 1\r\n0x12 = Punch 2\r\n0x15 = Getting thrown back by enemy\/fire\r\n0x16 = Falling 1\r\n0x17 = Falling 2"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c807",
+    "Note": "[8-bit] Player state\r\n0x00 = Standing still\r\n0x01 = Looking over shoulder\r\n0x08 = Roundhouse kick\r\n0x09 = Jumping\r\n0x11 = Punching\r\n0x0a = Using fire extinguisher\r\n0x0b = Lying after damage\r\n0x0c = Falling from damage"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c808",
+    "Note": "[16-bit] Player distance from far left"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c80a",
+    "Note": "[16-bit] Player distance from top"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c80e",
+    "Note": "[8-bit] Echo: Player state"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c834",
+    "Note": "[8-bit] Enemy slot 1 hits (Scene 1)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c854",
+    "Note": "[8-bit] Enemy slot 2 hits (Scene 1)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c874",
+    "Note": "[8-bit] Enemy slot 3 hits (Scene 1)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c894",
+    "Note": "[8-bit] Enemy slot 4 hits (Scene 1)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c8b4",
+    "Note": "[8-bit] Enemy slot 5 hits (Scene 1)"
+  }
+]
