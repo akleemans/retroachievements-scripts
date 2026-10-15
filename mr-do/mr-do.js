@@ -186,7 +186,7 @@ set.addAchievement({
   badge: '734939',
   title: 'Dovish',
   type: 'missable',
-  description: 'Finish one loop without killing any normal monsters, whether by shooting or falling apples',
+  description: 'Finish one loop without killing any regular monsters, whether by power ball or apple - killing letter monsters and ghosts is allowed',
   points: 10,
   conditions: {
     core: $(
@@ -428,7 +428,7 @@ set.addAchievement({
   id: 643795,
   badge: '734946',
   title: 'Daring',
-  description: 'Kill 30 normal monsters in a single run',
+  description: 'Kill 30 regular monsters in a single run',
   points: 5,
   conditions: {
     core: $(
