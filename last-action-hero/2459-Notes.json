@@ -1,6 +1,11 @@
 [
   {
     "User": "adrianusk",
+    "Address": "0x000000",
+    "Note": "Cruncheevos script: https:\/\/github.com\/akleemans\/retroachievements-scripts"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00c100",
     "Note": "[16-bit] Score (in hundreds)"
   },
