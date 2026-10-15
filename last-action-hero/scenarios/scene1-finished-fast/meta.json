@@ -1,0 +1,153 @@
+{
+  "name": "scene1-finished-fast",
+  "description": "",
+  "game": "Last Action Hero",
+  "console": "GB",
+  "firstFrame": 13846,
+  "markers": {
+    "scenario-start": 13848,
+    "scene-finished": 14051
+  },
+  "addresses": [
+    {
+      "address": "0xc100",
+      "size": "u16",
+      "label": "Score (in hundreds)"
+    },
+    {
+      "address": "0xc102",
+      "size": "u16",
+      "label": "Echo: Score"
+    },
+    {
+      "address": "0xc104",
+      "size": "u8",
+      "label": "Current lives"
+    },
+    {
+      "address": "0xc105",
+      "size": "u8",
+      "label": "Echo: Current lives"
+    },
+    {
+      "address": "0xc106",
+      "size": "u8",
+      "label": "Time remaining (seconds, based on 0xc184)"
+    },
+    {
+      "address": "0xc107",
+      "size": "u8",
+      "label": "Echo: Time remaining"
+    },
+    {
+      "address": "0xc108",
+      "size": "u8",
+      "label": "Tickets to collect"
+    },
+    {
+      "address": "0xc109",
+      "size": "u8",
+      "label": "Echo: Tickets to collect"
+    },
+    {
+      "address": "0xc10a",
+      "size": "u8",
+      "label": "Max. possible health (0x07-0x0b)"
+    },
+    {
+      "address": "0xc10c",
+      "size": "u8",
+      "label": "Current health"
+    },
+    {
+      "address": "0xc10d",
+      "size": "u8",
+      "label": "Echo: Current health"
+    },
+    {
+      "address": "0xc10e",
+      "size": "u8",
+      "label": "Echo: Max. possible health"
+    },
+    {
+      "address": "0xc10f",
+      "size": "u8",
+      "label": "Special item selected (lower right corner)"
+    },
+    {
+      "address": "0xc110",
+      "size": "u8",
+      "label": "Echo: Special item selected"
+    },
+    {
+      "address": "0xc111",
+      "size": "u8",
+      "label": "Number of continues"
+    },
+    {
+      "address": "0xc112",
+      "size": "u8",
+      "label": "Scene number"
+    },
+    {
+      "address": "0xc113",
+      "size": "u8",
+      "label": "Upcoming scene number to load next"
+    },
+    {
+      "address": "0xc12e",
+      "size": "u16",
+      "label": "Viewport distance from far left"
+    },
+    {
+      "address": "0xc130",
+      "size": "u16",
+      "label": "Viewport distance from top"
+    },
+    {
+      "address": "0xc174",
+      "size": "u8",
+      "label": "Progress unlocked (Scene 1, by extinguishing fire)"
+    },
+    {
+      "address": "0xc191",
+      "size": "u8",
+      "label": "Shots needed for Benedict (final boss)"
+    },
+    {
+      "address": "0xc805",
+      "size": "u8",
+      "label": "Player animation"
+    },
+    {
+      "address": "0xc80e",
+      "size": "u8",
+      "label": "Echo: Player state"
+    },
+    {
+      "address": "0xc834",
+      "size": "u8",
+      "label": "Enemy slot 1 hits (Scene 1)"
+    },
+    {
+      "address": "0xc854",
+      "size": "u8",
+      "label": "Enemy slot 2 hits (Scene 1)"
+    },
+    {
+      "address": "0xc874",
+      "size": "u8",
+      "label": "Enemy slot 3 hits (Scene 1)"
+    },
+    {
+      "address": "0xc894",
+      "size": "u8",
+      "label": "Enemy slot 4 hits (Scene 1)"
+    },
+    {
+      "address": "0xc8b4",
+      "size": "u8",
+      "label": "Enemy slot 5 hits (Scene 1)"
+    }
+  ]
+}
