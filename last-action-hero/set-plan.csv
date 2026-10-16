@@ -8,7 +8,7 @@ Order	Feature	Missable	Achievement Name	Achievement Description	Notes	Type	Point
 7		FALSE	Bonneville Car Chase	Finish Scene 3		Progression	5
 8		TRUE	Full Throttle, Full Health	Get the big heart at the end of Scene 3		Collection	2
 9	Trigger	TRUE	Motion-Picture Style	Finish Scene 3 with 20 or more seconds left		Challenge	5
-10		FALSE	Outside Thе Subway	Finish Scene 4		Progression	5
+10		FALSE	Outside The Subway	Finish Scene 4		Progression	5
 11	Trigger	TRUE	Subway Sprint	Finish Scene 4 with 15 or more seconds left		Time Trial	5
 12		TRUE	Crane Climbing	Reach the crane hook at the far left of Scene 5 without using the elevator	RAM: left/right distance. Possible by jumping	Easter Egg	3
 13		FALSE	Leo's Funeral	Finish Scene 5		Progression	5
@@ -16,11 +16,11 @@ Order	Feature	Missable	Achievement Name	Achievement Description	Notes	Type	Point
 15		FALSE	The Car Chase	Finish Scene 6		Progression	5
 16	Trigger	TRUE	Mobster Motorcade	Achieve the ticket goal in Scene 6 with at least 40 seconds left on the timer		Time Trial	10
 17		FALSE	Premiere Night	Finish Scene 7		Progression	5
-18		TRUE	Jack Slater IV	Finish Scene 7 with 15 or more seconds left		Time Trial	5
+18	Trigger	TRUE	Jack Slater IV	Finish Scene 7 with 15 or more seconds left		Time Trial	5
 19		FALSE	Déjà-vu Experience	Finish Scene 8 by beating the Ripper a second time		Progression	5
 20	Trigger	TRUE	Just You, Him and a 40-Story Drop	Finish Scene 8 with at least 20 seconds left on the timer		Time Trial	5
 21		FALSE	Last of the Action Heroes	Beat Benedict in Scene 9 and beat the game		Win	25
 22	Trigger	TRUE	No Jump Cuts	Beat Benedict without jumping or pressing B with at least 6 hearts of remaining health		Challenge	10
 23		TRUE	To Be or Not to Be	Fill up your health bar to the maximum by collecting hearts		Challenge	10
 24		FALSE	Exceptionally Well Trained	Beat the game without using a continue		Challenge	10
-25		FALSE	Big-Screen Bandit	Reach a total score of 120,0000		Challenge	10
+25		FALSE	Big-Screen Bandit	Reach a total score of 120,000		Challenge	10
