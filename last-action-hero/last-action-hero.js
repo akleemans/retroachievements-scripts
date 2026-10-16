@@ -220,6 +220,11 @@ set.addAchievement({
       ['', 'Mem', '16bit', playerX, '<',  'Value', '', 40],
       ['', 'Mem', '16bit', playerY, '>=', 'Value', '', 1250],
       ['', 'Mem', '16bit', playerY, '<',  'Value', '', 1288],
+
+      // Player was outside the box in the previous frame
+      ['OrNext', 'Delta', '16bit', playerX, '>=', 'Value', '', 40],
+      ['OrNext', 'Delta', '16bit', playerY, '<',  'Value', '', 1250],
+      ['',       'Delta', '16bit', playerY, '>=', 'Value', '', 1288],
     ),
   },
 });
