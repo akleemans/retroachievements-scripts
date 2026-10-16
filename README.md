@@ -11,6 +11,8 @@ Sets:
 * [Monster Force (GBA)](/monster-force) | [RA](https://retroachievements.org/game/5260) - My graduation set for the [RA junior program](https://docs.retroachievements.org/developer-docs/jr-dev-rules.html)
 * [Mr. Do! (GB)](/mr-do) | [RA](https://retroachievements.org/game/4746)
 * [Mortal Coil (GB)](/mortal-coil) | [RA](https://retroachievements.org/game/45174) - Homebrew game which I made myself, see [itch.io](https://adrianusk.itch.io/mortal-coil)
+* [Koneko Monogatari (FDS)](/koneko) | [RA](https://retroachievements.org/game/6821) - FDS game for the DevJam
+* [Last Action Hero (GB)](/last-action-hero) | [RA](https://retroachievements.org/game/2459)
 
 ## Setup
 
