@@ -412,7 +412,7 @@ set.addAchievement({
 
 set.addLeaderboard({
   title: 'High Score',
-  description: 'Score the most points by beating the game',
+  description: 'Beat the game by scoring the most points',
   lowerIsBetter: false,
   type: 'SCORE',
   conditions: {
