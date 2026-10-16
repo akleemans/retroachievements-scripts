@@ -340,22 +340,18 @@ set.addAchievement({
   },
 });
 
-// TODO
 set.addAchievement({
   title: 'No Jump Cuts',
-  description: 'Beat Benedict without jumping or pressing B with at least 6 hearts of remaining health',
+  description: 'Beat Benedict without jumping with at least 6 hearts of remaining health',
   points: 10,
   type: 'missable',
   conditions: {
     core: $(
-      // PauseLock if jumped in Scene 9 (the intro jump comes from state 0x0e and is ignored)
+      // PauseLock if jumped in Scene 9: a jump enters state 0x09 from a ground state (standing/running),
+      // the intro landing enters it from state 0x0e and is ignored
       ['AndNext', 'Mem',   '8bit', scene,       '=', 'Value', '', 9],
       ['AndNext', 'Delta', '8bit', playerState, '<', 'Value', '', 0x09],
       ['PauseIf', 'Mem',   '8bit', playerState, '=', 'Value', '', 0x09, 1],
-
-      // PauseLock if punched (B) in Scene 9
-      ['AndNext', 'Mem', '8bit', scene,       '=', 'Value', '', 9],
-      ['PauseIf', 'Mem', '8bit', playerState, '=', 'Value', '', 0x11, 1],
 
       // Health is refilled on scene change, so check the health before
       ['',        'Delta', '8bit', health,      '>=', 'Value', '', 6],

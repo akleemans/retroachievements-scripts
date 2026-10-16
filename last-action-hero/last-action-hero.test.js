@@ -434,13 +434,11 @@ describe('Win Condition: Beat Benedict', () => {
 describe('No Jump Cuts', () => {
   const cheevo = achievement('No Jump Cuts');
 
-  test('pops when Benedict is beaten without jumping', () => {
-    const s = scenario('scene9-no-jumping');
+  test('does not lock when pressing B while crouching or taking damage', () => {
+    const s = scenario('scene9-crouch-and-press-b');
     const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('primed');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('scene-finished'));
+    expect(result.wasEver('paused')).toBe(false);
   });
 
   test('pops when Benedict is beaten without jumping, ignoring the intro jump', () => {

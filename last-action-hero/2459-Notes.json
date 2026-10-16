@@ -12,7 +12,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00c102",
-    "Note": "[16-bit] Echo: Score"
+    "Note": "[16-bit] HUD: Displayed score"
   },
   {
     "User": "adrianusk",
@@ -22,7 +22,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00c105",
-    "Note": "[8-bit] Echo: Current lives"
+    "Note": "[8-bit] HUD: Displayed lives"
   },
   {
     "User": "adrianusk",
@@ -32,7 +32,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00c107",
-    "Note": "[8-bit] Echo: Time remaining"
+    "Note": "[8-bit] HUD: Displayed time"
   },
   {
     "User": "adrianusk",
@@ -42,7 +42,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00c109",
-    "Note": "[8-bit] Echo: Tickets to collect"
+    "Note": "[8-bit] HUD: Displayed tickets"
   },
   {
     "User": "adrianusk",
@@ -57,12 +57,12 @@
   {
     "User": "adrianusk",
     "Address": "0x00c10d",
-    "Note": "[8-bit] Echo: Current health"
+    "Note": "[8-bit] HUD: Displayed health"
   },
   {
     "User": "adrianusk",
     "Address": "0x00c10e",
-    "Note": "[8-bit] Echo: Max. possible health"
+    "Note": "[8-bit] HUD: Displayed max. health"
   },
   {
     "User": "adrianusk",
@@ -72,7 +72,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00c110",
-    "Note": "[8-bit] Echo: Special item selected"
+    "Note": "[8-bit] HUD: Displayed special item"
   },
   {
     "User": "adrianusk",
@@ -122,7 +122,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00c807",
-    "Note": "[8-bit] Player state\r\n0x00 = Standing still\r\n0x01 = Looking over shoulder\r\n0x08 = Roundhouse kick\r\n0x09 = Jumping\r\n0x11 = Punching\r\n0x0a = Using fire extinguisher\r\n0x0b = Lying after damage\r\n0x0c = Falling from damage"
+    "Note": "[8-bit] Player state\r\n0x00 = Standing still\r\n0x01 = Looking over shoulder\r\n0x02 = Walking\r\n0x03 = Running\r\n0x04 = Crouching down\r\n0x05 = Standing up\r\n0x06 = Turning\r\n0x07 = Crouched\r\n0x08 = Roundhouse kick\r\n0x09 = Jumping\r\n0x10 = Knocked back\r\n0x11 = Punching\r\n0x0a = Using fire extinguisher\r\n0x0b = Lying after damage\r\n0x0c = Falling from damage"
   },
   {
     "User": "adrianusk",
@@ -137,7 +137,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00c80e",
-    "Note": "[8-bit] Echo: Player state"
+    "Note": "[8-bit] Echo: Player animation"
   },
   {
     "User": "adrianusk",
