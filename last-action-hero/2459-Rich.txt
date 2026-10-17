@@ -1,0 +1,11 @@
+Lookup:Action
+3=Car chase
+6=Car chase
+*=Fighting
+
+Display:
+?0xHc112=255?Starting up
+?0xHc112=0?On the title screen
+?0xHc112=10?Jack Slater beat Benedict and returned to the movie world
+?0xHc112<10?@Action(0xHc112) in Scene @Number(0xHc112) • @Number(0xHc104) Lives • @Number(0xHc10c)/@Number(0xHc10a) Hearts • Score @Score(0x c100*100)
+Playing Last Action Hero
