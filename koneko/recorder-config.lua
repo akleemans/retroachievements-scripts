@@ -2,7 +2,7 @@
 -- `description`) before each recording session; the rest is per-game.
 return {
     -- this recording session
-    name = "my-first-scenario",
+    name = "enter-lives-cheat",
     description = "",
 
     -- this game
