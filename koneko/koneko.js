@@ -34,6 +34,16 @@ const infiniteLivesCheatProtection = () => {
   ];
 };
 
+const continueCheatProtection = () => {
+  return [
+    // Pause if levels was reset from 0 to 5 while not at start
+    ['OrNext', 'Mem', '8bit', month, '!=', 'Value', '', 1],
+    ['AndNext', 'Mem', '8bit', timeOfDay, '!=', 'Value', '', 1],
+    ['AndNext', 'Delta', '8bit', lives, '=', 'Value', '', 0],
+    ['PauseIf', 'Mem', '8bit', lives, '=', 'Value', '', 5, 1],
+  ];
+};
+
 const levelSelectReset = () => {
   return [
     // Reset on game start (init will be 0 lives at month 1 and time of day 1)
@@ -54,6 +64,7 @@ set.addAchievement({
     core: $(
       ...progression(3),
       ...infiniteLivesCheatProtection(),
+      ...continueCheatProtection(),
     ),
     alt1: $(
       ...levelSelectReset(),
@@ -69,6 +80,11 @@ set.addAchievement({
   conditions: {
     core: $(
       ...progression(6),
+      ...infiniteLivesCheatProtection(),
+      ...continueCheatProtection(),
+    ),
+    alt1: $(
+      ...levelSelectReset(),
     ),
   },
 });

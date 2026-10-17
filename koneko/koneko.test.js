@@ -35,14 +35,22 @@ describe('Progression: Beat Scene 3', () => {
     expect(result.stateAt(s.marker('died-on-enemy'))).toBe('paused');
   });
 
+  test('does pause if continue cheat was entered', () => {
+    const s = scenario('scene3-continue-cheat');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+    expect(result.stateAt(s.marker('cheat-entered'))).toBe('paused');
+  });
+
   test('does reset on game start', () => {
     const s = scenario('game-startup');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(false);
-    // Would reset if any hit count
-    expect(result.stateAt(s.marker('first-scene-init'))).toBe('active');
+    expect(result.stateAt(s.marker('first-scene-init'))).toBe('reset');
   });
 });
 
