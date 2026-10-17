@@ -2,17 +2,92 @@
   {
     "User": "adrianusk",
     "Address": "0x000400",
-    "Note": "[16 bytes] Object table (16 bytes per slot)"
+    "Note": "[688 bytes] Object table (16 bytes per slot) - Slot 0 ID: Rideable box, (Scene 3, 4, ...)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000410",
+    "Note": "[8-bit] Object 1 ID: Chatran (player)"
   },
   {
     "User": "adrianusk",
     "Address": "0x000411",
-    "Note": "[16-bit] Position Y"
+    "Note": "[16-bit] Position Y chatran (player)"
   },
   {
     "User": "adrianusk",
     "Address": "0x000413",
-    "Note": "[16-bit] Position X"
+    "Note": "[16-bit] Position X chatran (player)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000420",
+    "Note": "[8-bit] Object 2 ID: Poo-suke (dog)\r\n0x00 = Not in game\r\n0x02 = Spawned"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000470",
+    "Note": "[8-bit] Enemy 0 ID\r\n0x03 = Chicken\r\n0x04 = Owl\r\n0x05 = Beetle\r\n0x06 = Boar\r\n0x07 = Squirrel\r\n0x09 = Pingu\r\n0x0a = Frog\r\n0x0b = Rabbit\r\n0x0c = Blue penguin\r\n0x0e = Bat \/ green bird\r\n0x0d = Crab\r\n0x0f = Mouse\r\n0x10 = Mole\r\n0x11 = Turtle (black?)\r\n0x12 = Blue turtle\r\n0x13 = Red fish\r\n0x15 = Green fish\r\n0x16 = Snake\r\n0x18 = Red bird\r\n0x26 = Falling water drop"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000480",
+    "Note": "[8-bit] Enemy 1 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000488",
+    "Note": "[8-bit] Enemy 8 kill flag\r\n0x04 = Killed by falling item\r\n0x02 = Killed by contact with milk-powered Chatran or Poo-suke"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000490",
+    "Note": "[8-bit] Enemy 2 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0004a0",
+    "Note": "[8-bit] Enemy 3 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0004b0",
+    "Note": "[8-bit] Enemy 4 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0004c0",
+    "Note": "[8-bit] Enemy 5 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0004d0",
+    "Note": "[8-bit] Enemy 6 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0004e0",
+    "Note": "[8-bit] Enemy 7 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0004f0",
+    "Note": "[8-bit] Enemy 8 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000500",
+    "Note": "[8-bit] Enemy 9 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0005d0",
+    "Note": "[8-bit] Item 0 ID\r\n0x1d = Golden egg\r\n0x2b = Apple"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0006a0",
+    "Note": "[8-bit] Thrown egg ID\r\n0x00 = No thrown egg\r\n0x1c = Egg is thrown by player"
   },
   {
     "User": "adrianusk",
@@ -22,7 +97,7 @@
   {
     "User": "adrianusk",
     "Address": "0x000705",
-    "Note": "[8-bit] Season (1-4), goes up when stage reaches 4, 7 and 10"
+    "Note": "[8-bit] Season (1-4), goes up when month reaches 4, 7 and 10"
   },
   {
     "User": "adrianusk",
@@ -73,6 +148,21 @@
     "User": "adrianusk",
     "Address": "0x00072d",
     "Note": "[8-bit] Amount of bonus HELP letters collected (0-3)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00077c",
+    "Note": "[8-bit] Projectile slot? TODO\r\n0x00 = No projectile\r\n0x2a = Egg"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00077d",
+    "Note": "[8-bit] On hit: Enemy slot Nr. (TODO)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000789",
+    "Note": "[8-bit] Current music playing\r\n0x01 = Title\r\n0x02 = Stage intro day\r\n0x03 = Stage music day\r\n0x04 = Stage clear\r\n0x05 = Stage intro night\r\n0x06 = Stage music night\r\n0x08 = Milk\r\n0x09 = Poo-suke (dog)\r\n0x0a = Death"
   },
   {
     "User": "adrianusk",
