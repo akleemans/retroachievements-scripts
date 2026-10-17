@@ -3,18 +3,19 @@ import {AchievementSet, define as $} from '@cruncheevos/core';
 const set = new AchievementSet({gameId: 6821, title: 'Koneko Monogatari: The Adventures of Chatran'});
 
 // Addresses and helpers
-
+const season = 0x0705; // 1-4
+const month = 0x0706; // 1-12
+const timeOfDay = 0x0707; // 1-2
 
 /* ========= PROGRESSION ========= */
 
-const progression = (levelId) => {
+const progression = (sceneId) => {
+  // TODO handle even/odd differently
+
   return [
-    // // Pop on reaching score screen in correct level, with max level = current level (will be incremented later, on save game screen)
-    // // This is also save-protection - must just have finished the level and reached score screen
-    // ['', 'Mem',   '8bit', maxLevelUnlocked, '=', 'Value', '', levelId],
-    // ['', 'Mem',   '8bit', currentLevel,     '=', 'Value', '', levelId],
-    // ['', 'Delta', '8bit', gameState,        '=', 'Value', '', GameStateEnum.InGame],
-    // ['', 'Mem',   '8bit', gameState,        '=', 'Value', '', GameStateEnum.ScoreScreen],
+    ['', 'Mem',   '8bit', month, '=', 'Value', '', 2],
+    ['', 'Delta', '8bit', timeOfDay, '=', 'Value', '', 1],
+    ['', 'Mem',   '8bit', timeOfDay, '=', 'Value', '', 2],
   ];
 };
 
@@ -26,9 +27,8 @@ set.addAchievement({
   conditions: {
     core: $(
       ...progression(3),
-      // ...invincibilityCheatProtection(),
-      // ...skipLevelCheatProtection(),
     ),
+    // TODO cheat-protection
     // alt1: $(
     //   // Reset has to be in a separate alt (and PauseIf can't be), because the reset will not trigger if
     //   // the Pause in the same group has accumulated a hit
