@@ -184,7 +184,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
-  title: 'Outside The Subway',
+  title: 'Outside the Subway',
   description: 'Finish Scene 4',
   points: 5,
   type: 'progression',

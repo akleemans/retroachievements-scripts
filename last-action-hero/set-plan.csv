@@ -8,7 +8,7 @@ Order	Feature	Missable	Achievement Name	Achievement Description	Notes	Type	Point
 7		FALSE	Bonneville Car Chase	Finish Scene 3		Progression	5
 8		TRUE	Full Throttle, Full Health	Get the big heart at the end of Scene 3		Collection	2
 9	Trigger	TRUE	Motion-Picture Style	Finish Scene 3 with 20 or more seconds left		Challenge	5
-10		FALSE	Outside The Subway	Finish Scene 4		Progression	5
+10		FALSE	Outside the Subway	Finish Scene 4		Progression	5
 11	Trigger	TRUE	Subway Sprint	Finish Scene 4 with 15 or more seconds left		Time Trial	5
 12		TRUE	Crane Climbing	Reach the crane hook at the far left of Scene 5 without using the elevator	RAM: left/right distance. Possible by jumping	Easter Egg	3
 13		FALSE	Leo's Funeral	Finish Scene 5		Progression	5
