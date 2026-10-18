@@ -31,13 +31,18 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x000478",
+    "Note": "[8-bit] Enemy 0 kill flag\r\n0x02 = Killed by contact with milk-powered Chatran or Poo-suke\r\n0x04 = Killed by falling item"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x000480",
     "Note": "[8-bit] Enemy 1 ID (see 0x0470)"
   },
   {
     "User": "adrianusk",
     "Address": "0x000488",
-    "Note": "[8-bit] Enemy 8 kill flag\r\n0x04 = Killed by falling item\r\n0x02 = Killed by contact with milk-powered Chatran or Poo-suke"
+    "Note": "[8-bit] Enemy 2 kill flag (see 0x0478)"
   },
   {
     "User": "adrianusk",
@@ -46,8 +51,18 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x000498",
+    "Note": "[8-bit] Enemy 2 kill flag (see 0x0478)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x0004a0",
     "Note": "[8-bit] Enemy 3 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0004a8",
+    "Note": "[8-bit] Enemy 3 kill flag (see 0x0478)"
   },
   {
     "User": "adrianusk",
@@ -56,8 +71,18 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x0004b8",
+    "Note": "[8-bit] Enemy 4 kill flag (see 0x0478)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x0004c0",
     "Note": "[8-bit] Enemy 5 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0004c8",
+    "Note": "[8-bit] Enemy 5 kill flag (see 0x0478)"
   },
   {
     "User": "adrianusk",
@@ -66,8 +91,18 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x0004d8",
+    "Note": "[8-bit] Enemy 6 kill flag (see 0x0478)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x0004e0",
     "Note": "[8-bit] Enemy 7 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0004e8",
+    "Note": "[8-bit] Enemy 7 kill flag (see 0x0478)"
   },
   {
     "User": "adrianusk",
@@ -76,8 +111,18 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x0004f8",
+    "Note": "[8-bit] Enemy 8 kill flag (see 0x0478)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x000500",
     "Note": "[8-bit] Enemy 9 ID (see 0x0470)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x000508",
+    "Note": "[8-bit] Enemy 9 kill flag (see 0x0478)"
   },
   {
     "User": "adrianusk",
@@ -127,7 +172,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00071f",
-    "Note": "[8-bit] Gold egg flag (TODO check) 1 = unlimited eggs. Cleared on death and on a new game."
+    "Note": "[8-bit] Gold egg flag (unlimited eggs) - cleared on death and on a new game\r\n0x00 = No golden egg active\r\n0x01 = Golden egg active"
   },
   {
     "User": "adrianusk",
@@ -142,7 +187,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00072c",
-    "Note": "[8-bit] Milk timer (TODO: check) - 0 = off; counts from 1 up to 0x96, then clears"
+    "Note": "[8-bit] Milk timer. 0 = off; counts from 1 up to 0x96, then clears"
   },
   {
     "User": "adrianusk",
@@ -152,12 +197,12 @@
   {
     "User": "adrianusk",
     "Address": "0x00077c",
-    "Note": "[8-bit] Projectile slot? TODO\r\n0x00 = No projectile\r\n0x2a = Egg"
+    "Note": "[8-bit] Projectile slot\r\n0x00 = No projectile\r\n0x2a = Egg"
   },
   {
     "User": "adrianusk",
     "Address": "0x00077d",
-    "Note": "[8-bit] On hit: Enemy slot Nr. (TODO)"
+    "Note": "[8-bit] On hit: Enemy slot Nr."
   },
   {
     "User": "adrianusk",
