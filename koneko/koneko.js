@@ -9,6 +9,12 @@ const timeOfDay = 0x0707; // 1-2
 const lives = 0x0704;
 const goldenEggFlag = 0x071f;
 
+const bearHitCountsDay = 0xb2fb;
+const bearHitCountsNight = 0xb305;
+
+const projectileSlot = 0x077c;
+const enemyKillFlags = [0x0478, 0x0488, 0x0498, 0x04a8, 0x04b8, 0x04c8, 0x04d8, 0x04e8, 0x04f8, 0x0508];
+
 const progression = (sceneId) => {
   const expectedMonth = Math.floor(sceneId / 2) + 1;
   if (sceneId % 2 === 1) {
@@ -51,6 +57,13 @@ const levelSelectReset = () => {
     ['AndNext', 'Mem', '8bit', month, '=', 'Value', '', 1],
     ['AndNext', 'Mem', '8bit', timeOfDay, '=', 'Value', '', 1],
     ['ResetIf', 'Mem', '8bit', lives, '=', 'Value', '', 0],
+  ];
+};
+
+const deathReset = () => {
+  return [
+    // Reset on death
+    ['ResetIf', 'Delta', '8bit', lives, '>', 'Mem', '8bit', lives],
   ];
 };
 
@@ -193,16 +206,36 @@ set.addAchievement({
 });
 
 /* ========= CHALLENGES & COLLECTION ========= */
+const enemyKills = () => {
+  const arr = [];
+  for (let enemyKillFlag of enemyKillFlags) {
+    // const lastEnemy = (enemyKillFlag === enemyKillFlags[9]);
+    arr.push(...[
+      // Killed by either falling fruit or player/poosuke
+      ['OrNext', 'Mem', '8bit', enemyKillFlag, '=', 'Value', '', 0x02],
+      ['AndNext', 'Mem', '8bit', enemyKillFlag, '=', 'Value', '', 0x04],
+      ['AddHits', 'Delta', '8bit', enemyKillFlag, '=', 'Value', '', 0x00],
+    ])
+  }
+  arr.push(['Measured', 'Value', '', 0, '=', 'Value', '', 1, 10]);
+  return arr;
+};
+
 
 set.addAchievement({
   title: 'Pest Control',
   description: 'Defeat 10(?) enemies in one scene without dying',
   points: 5,
   conditions: {
-    // TODO: Measured
     core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      // Add hits on enemy kills with
+      ...enemyKills(),
+      ...infiniteLivesCheatProtection(),
+    ),
+    alt1: $(
+      // Reset on death
+      ...deathReset(),
+      ...levelSelectReset(),
     ),
   },
 });
@@ -221,9 +254,6 @@ set.addAchievement({
 });
 
 const goalReached = 0x0724;
-
-const bearHitCountsDay = 0xb2fb;
-const bearHitCountsNight = 0xb305;
 
 set.addAchievement({
   title: 'Bear Trouble',
@@ -327,9 +357,6 @@ set.addAchievement({
     ),
   },
 });
-
-const projectileSlot = 0x077c;
-const enemyKillFlags = [0x0478, 0x0488, 0x0498, 0x04a8, 0x04b8, 0x04c8, 0x04d8, 0x04e8, 0x04f8, 0x0508];
 
 set.addAchievement({
   title: 'Egg Drop',

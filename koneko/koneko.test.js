@@ -209,7 +209,7 @@ describe('Win: Beat Scene 24', () => {
   });
 });
 
-/*
+
 describe('Pest Control', () => {
   const cheevo = achievement('Pest Control');
 
@@ -218,19 +218,38 @@ describe('Pest Control', () => {
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.measuredAt(s.marker('scenario-start'))).toBe(0);
     expect(result.triggered).toBe(true);
+
+    expect(result.measuredAt(s.marker('2-enemies-killed'))).toBe(2);
     expect(result.triggeredFrame).toBe(s.marker('tenth-kill'));
   });
 
   test('does not pop if dying in between', () => {
-    const s = scenario('pest-control-died');
+    const s = scenario('pest-control-death');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.measuredAt(s.marker('scenario-start'))).toBe(0);
     expect(result.triggered).toBe(false);
+
+    expect(result.measuredAt(s.marker('killed-enemy'))).toBe(1);
+    expect(result.measuredAt(s.marker('after-death'))).toBe(0);
+  });
+
+  test('does not increment measured if no enemies killed', () => {
+    const s = scenario('pest-control-no-killing');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.measuredAt(s.marker('scenario-start'))).toBe(0);
+    expect(result.triggered).toBe(false);
+
+    expect(result.measuredAt(s.marker('scenario-end'))).toBe(0);
   });
 });
 
+/*
 describe('Good Boy', () => {
   const cheevo = achievement('Good Boy');
 
