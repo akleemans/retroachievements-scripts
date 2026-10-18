@@ -249,28 +249,28 @@ describe('Pest Control', () => {
   });
 });
 
-/*
 describe('Good Boy', () => {
   const cheevo = achievement('Good Boy');
 
-  test('pops when Poo-suke defeats 5 enemies', () => {
-    const s = scenario('poosuke-5-kills');
+  test('pops when Poo-suke is alive for 10 seconds', () => {
+    const s = scenario('poosuke-long-run');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('fifth-kill'));
+    expect(result.triggeredFrame).toBe(s.marker('twenty-seconds'));
   });
 
-  test('does not pop when Poo-suke defeats only 4 enemies', () => {
-    const s = scenario('poosuke-4-kills');
+  test('does not pop when Poo-suke despawns early', () => {
+    const s = scenario('poosuke-short-run');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(false);
+
+    expect(result.measuredAt(s.marker('5-seconds'))).toBe(300);
   });
 });
-*/
 
 describe('Bear Trouble', () => {
   const cheevo = achievement('Bear Trouble');

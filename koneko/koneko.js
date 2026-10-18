@@ -260,18 +260,24 @@ set.addAchievement({
   },
 });
 
+const pooSukeSlot = 0x0420;
+
 set.addAchievement({
   title: 'Good Boy',
-  description: 'Defeat 5 enemies with a single Poo-suke summoning',
+  description: 'Keep Poo-suke the dog alive for 20 seconds',
   points: 5,
   type: 'missable',
   conditions: {
     core: $(
-      // TODO
-      // poo-suke slot filled, + enemy kills with Bit1
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      // Add hits on poo-suke alive
+      ['Measured%', 'Mem', '8bit', pooSukeSlot, '=', 'Value', '', 2, 20*60],
 
-      // Reset if poo-suke no longer on screen
+      ...infiniteLivesCheatProtection(),
+    ),
+    alt1: $(
+      // Reset if poo-suke despawns
+      ['ResetIf', 'Mem', '8bit', pooSukeSlot, '=', 'Value', '', 0],
+      ...levelSelectReset(),
     ),
   },
 });
@@ -432,7 +438,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Milk Run',
-  description: 'Defeat 5(?) enemies while being invincible by Milk',
+  description: 'Defeat 5 enemies while being invincible by Milk',
   points: 5,
   conditions: {
     core: $(
