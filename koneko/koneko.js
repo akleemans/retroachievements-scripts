@@ -24,6 +24,16 @@ const tileIndexStart = 0xd9;
 const score10k = 0xb2d7;
 // const score100k = 0xb2d6;
 
+const goalReached = 0x0724;
+const apples1 = 0xb2e8;
+const apples10 = 0xb2e9;
+const eggs10 = 0xb2e1;
+
+const lettersCollected = 0x072d;
+const milkTimer = 0x072c;
+
+/* ------------------------------------------ */
+
 const progression = (sceneId) => {
   const expectedMonth = Math.floor(sceneId / 2) + 1;
   if (sceneId % 2 === 1) {
@@ -215,7 +225,8 @@ set.addAchievement({
 });
 
 /* ========= CHALLENGES & COLLECTION ========= */
-const enemyKills = () => {
+
+const enemyKills = (amount) => {
   const arr = [];
   for (let enemyKillFlag of enemyKillFlags) {
     // const lastEnemy = (enemyKillFlag === enemyKillFlags[9]);
@@ -227,7 +238,7 @@ const enemyKills = () => {
       ['AddHits', 'Delta', 'Bit2', enemyKillFlag, '=', 'Value', '', 0],
     ])
   }
-  arr.push(['Measured', 'Value', '', 0, '=', 'Value', '', 1, 10]);
+  arr.push(['Measured', 'Value', '', 0, '=', 'Value', '', 1, amount]);
   return arr;
 };
 
@@ -238,7 +249,7 @@ set.addAchievement({
   conditions: {
     core: $(
       // Add hits on enemy kills with
-      ...enemyKills(),
+      ...enemyKills(10),
       ...infiniteLivesCheatProtection(),
     ),
     alt1: $(
@@ -265,8 +276,6 @@ set.addAchievement({
   },
 });
 
-const goalReached = 0x0724;
-
 set.addAchievement({
   title: 'Bear Trouble',
   description: 'Get past Blacky the bear while his head is still fully visible before Scene 23',
@@ -289,9 +298,6 @@ set.addAchievement({
     ),
   },
 });
-
-const apples1 = 0xb2e8;
-const apples10 = 0xb2e9;
 
 set.addAchievement({
   title: 'Nine Lives, Plus One',
@@ -325,8 +331,6 @@ set.addAchievement({
   },
 });
 
-const lettersCollected = 0x072d;
-
 set.addAchievement({
   title: 'H-E-L-P!',
   description: 'Collect all four letters and summon Poo-suke',
@@ -343,7 +347,6 @@ set.addAchievement({
   },
 });
 
-const milkTimer = 0x072c;
 
 set.addAchievement({
   title: 'Source of Power',
@@ -433,8 +436,14 @@ set.addAchievement({
   points: 5,
   conditions: {
     core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      // Add hits on enemy kills with
+      ...enemyKills(5),
+      ...infiniteLivesCheatProtection(),
+    ),
+    alt1: $(
+      // Reset if milk runs out
+      ['ResetIf', 'Mem', '8bit', milkTimer, '=', 'Value', '', 0],
+      ...levelSelectReset(),
     ),
   },
 });
@@ -508,8 +517,15 @@ set.addAchievement({
   points: 2,
   conditions: {
     core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      // Score was below 50k in last frame, and is now higher
+      ['', 'Delta', '8bit', eggs10, '<',  'Value', '', 0xdb],
+      ['', 'Mem',   '8bit', eggs10, '>=', 'Value', '', 0xdb],
+
+      ...infiniteLivesCheatProtection(),
+      ...continueCheatProtection(),
+    ),
+    alt1: $(
+      ...levelSelectReset(),
     ),
   },
 });
