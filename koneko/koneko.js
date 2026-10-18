@@ -56,7 +56,7 @@ const levelSelectReset = () => {
 /* ========= PROGRESSION ========= */
 
 set.addAchievement({
-  title: 'Spring Kitten',
+  title: 'Sunny Start',
   description: 'Clear stage 3',
   points: 3,
   type: 'progression',
@@ -73,7 +73,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
-  title: 'Spring Is Over',
+  title: 'Summer Is Over',
   description: 'Clear stage 6',
   points: 5,
   type: 'progression',

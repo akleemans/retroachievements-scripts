@@ -6,7 +6,7 @@ const achievement = (title) => Object.values(set.achievements).find((a) => a.tit
 const scenario = (name) => loadScenario(new URL(`./scenarios/${name}`, import.meta.url));
 
 describe('Progression: Beat Scene 3', () => {
-  const cheevo = achievement('Spring Kitten');
+  const cheevo = achievement('Sunny Start');
 
   test('pops when scene 3 is finished', () => {
     const s = scenario('scene3-finish');
@@ -55,7 +55,7 @@ describe('Progression: Beat Scene 3', () => {
 });
 
 describe('Progression: Beat Scene 6', () => {
-  const cheevo = achievement('Spring Is Over');
+  const cheevo = achievement('Summer Is Over');
 
   test('pops when scene 6 is finished', () => {
     const s = scenario('scene6-finish');
