@@ -315,27 +315,6 @@ describe('Nine Lives, Plus One', () => {
   });
 });
 
-describe('Dog for All Seasons', () => {
-  const cheevo = achievement('Dog for All Seasons');
-
-  test('pops when Poo-suke is summoned in all four seasons', () => {
-    const s = scenario('poosuke-all-seasons');
-    const result = runAchievement(cheevo, s);
-
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('winter-summon'));
-  });
-
-  test('does not pop when Poo-suke is summoned in only three seasons', () => {
-    const s = scenario('poosuke-three-seasons');
-    const result = runAchievement(cheevo, s);
-
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.triggered).toBe(false);
-  });
-});
-
 describe('Exterminator', () => {
   const cheevo = achievement('Exterminator');
 
@@ -443,28 +422,20 @@ describe('Egg Drop', () => {
   });
 });
 
-/*
-describe('TODO High Score', () => {
-  const cheevo = achievement('TODO High Score');
+describe('Purr-fect Score', () => {
+  const cheevo = achievement('Purr-fect Score');
 
   test('pops when score reaches 50,000', () => {
-    const s = scenario('score-50000');
+    const s = scenario('kill-fish-reach50k');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('score-reached'));
-  });
-
-  test('does not pop with a low score', () => {
-    const s = scenario('scene1-finish');
-    const result = runAchievement(cheevo, s);
-
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.triggered).toBe(false);
+    expect(result.triggeredFrame).toBe(s.marker('50k-score-reached'));
   });
 });
 
+/*
 describe('Milk Run', () => {
   const cheevo = achievement('Milk Run');
 
@@ -506,12 +477,14 @@ describe('Gentle Paws', () => {
     expect(result.triggered).toBe(false);
   });
 });
+*/
 
+// TODO
 describe('Catch of the Day', () => {
   const cheevo = achievement('Catch of the Day');
 
-  test('pops when defeating a fish', () => {
-    const s = scenario('fish-defeated');
+  test('pops when defeating a red fish', () => {
+    const s = scenario('kill-fish-reach50k');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
@@ -519,8 +492,18 @@ describe('Catch of the Day', () => {
     expect(result.triggeredFrame).toBe(s.marker('fish-defeated'));
   });
 
+  // TODO
+  // test('pops when defeating a blue fish', () => {
+  //   const s = scenario('kill-blue-fish');
+  //   const result = runAchievement(cheevo, s);
+  //
+  //   expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+  //   expect(result.triggered).toBe(true);
+  //   expect(result.triggeredFrame).toBe(s.marker('fish-defeated'));
+  // });
+
   test('does not pop when defeating another enemy', () => {
-    const s = scenario('non-fish-defeated');
+    const s = scenario('pest-control-10-kills');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
@@ -528,6 +511,7 @@ describe('Catch of the Day', () => {
   });
 });
 
+/*
 describe('Nothing goes to waste', () => {
   const cheevo = achievement('Nothing goes to waste');
 

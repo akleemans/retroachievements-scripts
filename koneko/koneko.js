@@ -3,7 +3,7 @@ import {AchievementSet, define as $} from '@cruncheevos/core';
 const set = new AchievementSet({gameId: 6821, title: 'Koneko Monogatari: The Adventures of Chatran'});
 
 // Addresses and helpers
-//const season = 0x0705; // 1-4
+// const season = 0x0705; // 1-4
 const month = 0x0706; // 1-12
 const timeOfDay = 0x0707; // 1-2
 const lives = 0x0704;
@@ -13,23 +13,32 @@ const bearHitCountsDay = 0xb2fb;
 const bearHitCountsNight = 0xb305;
 
 const projectileSlot = 0x077c;
+const enemyIds = [0x0470, 0x0480, 0x0490, 0x04a0, 0x04b0, 0x04c0, 0x04d0, 0x04e0, 0x04f0, 0x0500];
 const enemyKillFlags = [0x0478, 0x0488, 0x0498, 0x04a8, 0x04b8, 0x04c8, 0x04d8, 0x04e8, 0x04f8, 0x0508];
+
+// const tileIndexStart = 0xd9;
+// const score1 = 0xb2db;
+// const score10 = 0xb2da;
+// const score100 = 0xb2d9;
+// const score1k = 0xb2d8;
+const score10k = 0xb2d7;
+// const score100k = 0xb2d6;
 
 const progression = (sceneId) => {
   const expectedMonth = Math.floor(sceneId / 2) + 1;
   if (sceneId % 2 === 1) {
     // For odd scenes, check time of day increase
     return [
-      ['', 'Mem', '8bit', month, '=', 'Value', '', expectedMonth],
+      ['', 'Mem',   '8bit', month,     '=', 'Value', '', expectedMonth],
       ['', 'Delta', '8bit', timeOfDay, '=', 'Value', '', 1],
-      ['', 'Mem', '8bit', timeOfDay, '=', 'Value', '', 2],
+      ['', 'Mem',   '8bit', timeOfDay, '=', 'Value', '', 2],
     ];
   } else {
     // For even scenes, check month increase
     return [
-      ['', 'Mem', '8bit', timeOfDay, '=', 'Value', '', 1],
-      ['', 'Delta', '8bit', month, '=', 'Value', '', expectedMonth - 1],
-      ['', 'Mem', '8bit', month, '=', 'Value', '', expectedMonth],
+      ['', 'Mem',   '8bit', timeOfDay, '=', 'Value', '', 1],
+      ['', 'Delta', '8bit', month,     '=', 'Value', '', expectedMonth - 1],
+      ['', 'Mem',   '8bit', month,     '=', 'Value', '', expectedMonth],
     ];
   }
 };
@@ -44,19 +53,19 @@ const infiniteLivesCheatProtection = () => {
 const continueCheatProtection = () => {
   return [
     // Pause if levels was reset from 0 to 5 while not at start
-    ['OrNext', 'Mem', '8bit', month, '!=', 'Value', '', 1],
-    ['AndNext', 'Mem', '8bit', timeOfDay, '!=', 'Value', '', 1],
-    ['AndNext', 'Delta', '8bit', lives, '=', 'Value', '', 0],
-    ['PauseIf', 'Mem', '8bit', lives, '=', 'Value', '', 5, 1],
+    ['OrNext',  'Mem',   '8bit', month,     '!=', 'Value', '', 1],
+    ['AndNext', 'Mem',   '8bit', timeOfDay, '!=', 'Value', '', 1],
+    ['AndNext', 'Delta', '8bit', lives,     '=',  'Value', '', 0],
+    ['PauseIf', 'Mem',   '8bit', lives,     '=',  'Value', '', 5, 1],
   ];
 };
 
 const levelSelectReset = () => {
   return [
     // Reset on game start (init will be 0 lives at month 1 and time of day 1)
-    ['AndNext', 'Mem', '8bit', month, '=', 'Value', '', 1],
+    ['AndNext', 'Mem', '8bit', month,     '=', 'Value', '', 1],
     ['AndNext', 'Mem', '8bit', timeOfDay, '=', 'Value', '', 1],
-    ['ResetIf', 'Mem', '8bit', lives, '=', 'Value', '', 0],
+    ['ResetIf', 'Mem', '8bit', lives,     '=', 'Value', '', 0],
   ];
 };
 
@@ -190,7 +199,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Reunited with Shiro',
-  description: 'Clear scene 24 and see the ending',
+  description: 'Clear scene 24 and beat the game',
   points: 25,
   type: 'win_condition',
   conditions: {
@@ -212,15 +221,15 @@ const enemyKills = () => {
     // const lastEnemy = (enemyKillFlag === enemyKillFlags[9]);
     arr.push(...[
       // Killed by either falling fruit or player/poosuke
-      ['OrNext', 'Mem', '8bit', enemyKillFlag, '=', 'Value', '', 0x02],
-      ['AndNext', 'Mem', '8bit', enemyKillFlag, '=', 'Value', '', 0x04],
-      ['AddHits', 'Delta', '8bit', enemyKillFlag, '=', 'Value', '', 0x00],
+      ['OrNext',  'Mem',   'Bit1', enemyKillFlag, '=', 'Value', '', 1],
+      ['AndNext', 'Mem',   'Bit2', enemyKillFlag, '=', 'Value', '', 1],
+      ['AndNext', 'Delta', 'Bit1', enemyKillFlag, '=', 'Value', '', 0],
+      ['AddHits', 'Delta', 'Bit2', enemyKillFlag, '=', 'Value', '', 0],
     ])
   }
   arr.push(['Measured', 'Value', '', 0, '=', 'Value', '', 1, 10]);
   return arr;
 };
-
 
 set.addAchievement({
   title: 'Pest Control',
@@ -247,8 +256,11 @@ set.addAchievement({
   type: 'missable',
   conditions: {
     core: $(
-      // TODO: logic
+      // TODO
+      // poo-suke slot filled, + enemy kills with Bit1
       ['', 'Value', '', 0, '=', 'Value', '', 1],
+
+      // Reset if poo-suke no longer on screen
     ),
   },
 });
@@ -266,12 +278,12 @@ set.addAchievement({
       ['', 'Mem', '8bit', month, '<=', 'Value', '', 11],
 
       // Bear hits (day + night combined) no greater than 4. Uses Delta because it's reset on current frame when goal is reached
-      ['AddSource', 'Delta',   '8bit', bearHitCountsDay],
-      ['',   'Delta',   '8bit', bearHitCountsNight,  '<=', 'Value', '',     4],
+      ['AddSource', 'Delta', '8bit', bearHitCountsDay],
+      ['',          'Delta', '8bit', bearHitCountsNight, '<=', 'Value', '', 4],
 
       // Goal reached
       // ['', 'Delta', '8bit', timeOfDay, '!=', 'Mem', '8bit', timeOfDay],
-      ['', 'Mem', '8bit', goalReached, '=', 'Value', '', 0],
+      ['', 'Mem',   '8bit', goalReached, '=', 'Value', '', 0],
       ['', 'Delta', '8bit', goalReached, '=', 'Value', '', 1],
 
     ),
@@ -290,18 +302,6 @@ set.addAchievement({
   },
 });
 
-set.addAchievement({
-  title: 'Dog for All Seasons',
-  description: 'Summon Poo-suke in spring, summer, autumn and winter',
-  points: 10,
-  type: 'missable',
-  conditions: {
-    core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
-    ),
-  },
-});
 
 set.addAchievement({
   title: 'Exterminator',
@@ -349,7 +349,7 @@ set.addAchievement({
     core: $(
       // TODO
       ['', 'Delta', '8bit', goldenEggFlag, '=', 'Value', '', 0],
-      ['', 'Mem', '8bit', goldenEggFlag, '=', 'Value', '', 1],
+      ['', 'Mem',   '8bit', goldenEggFlag, '=', 'Value', '', 1],
       ...infiniteLivesCheatProtection(),
     ),
     alt1: $(
@@ -367,19 +367,19 @@ set.addAchievement({
     core: $(
       // Projectile slot = Egg
       ['', 'Delta', '8bit', projectileSlot, '=', 'Value', '', 0],
-      ['', 'Mem', '8bit', projectileSlot, '=', 'Value', '', 0x2a],
+      ['', 'Mem',   '8bit', projectileSlot, '=', 'Value', '', 0x2a],
 
       // Any enemy killed by egg
-      ['OrNext', 'Mem', '8bit', enemyKillFlags[0], '=', 'Value', '', 0x04],
-      ['OrNext', 'Mem', '8bit', enemyKillFlags[1], '=', 'Value', '', 0x04],
-      ['OrNext', 'Mem', '8bit', enemyKillFlags[2], '=', 'Value', '', 0x04],
-      ['OrNext', 'Mem', '8bit', enemyKillFlags[3], '=', 'Value', '', 0x04],
-      ['OrNext', 'Mem', '8bit', enemyKillFlags[4], '=', 'Value', '', 0x04],
-      ['OrNext', 'Mem', '8bit', enemyKillFlags[5], '=', 'Value', '', 0x04],
-      ['OrNext', 'Mem', '8bit', enemyKillFlags[6], '=', 'Value', '', 0x04],
-      ['OrNext', 'Mem', '8bit', enemyKillFlags[7], '=', 'Value', '', 0x04],
-      ['OrNext', 'Mem', '8bit', enemyKillFlags[8], '=', 'Value', '', 0x04],
-      ['', 'Mem', '8bit', enemyKillFlags[9], '=', 'Value', '', 0x04],
+      ['OrNext', 'Mem', 'Bit2', enemyKillFlags[0], '=', 'Value', '', 1],
+      ['OrNext', 'Mem', 'Bit2', enemyKillFlags[1], '=', 'Value', '', 1],
+      ['OrNext', 'Mem', 'Bit2', enemyKillFlags[2], '=', 'Value', '', 1],
+      ['OrNext', 'Mem', 'Bit2', enemyKillFlags[3], '=', 'Value', '', 1],
+      ['OrNext', 'Mem', 'Bit2', enemyKillFlags[4], '=', 'Value', '', 1],
+      ['OrNext', 'Mem', 'Bit2', enemyKillFlags[5], '=', 'Value', '', 1],
+      ['OrNext', 'Mem', 'Bit2', enemyKillFlags[6], '=', 'Value', '', 1],
+      ['OrNext', 'Mem', 'Bit2', enemyKillFlags[7], '=', 'Value', '', 1],
+      ['OrNext', 'Mem', 'Bit2', enemyKillFlags[8], '=', 'Value', '', 1],
+      ['', 'Mem', 'Bit2', enemyKillFlags[9], '=', 'Value', '', 1],
 
       ...infiniteLivesCheatProtection(),
     ),
@@ -390,13 +390,55 @@ set.addAchievement({
 });
 
 set.addAchievement({
-  title: 'TODO High Score',
+  title: 'Purr-fect Score',
   description: 'Get a total score of 50,000',
   points: 5,
   conditions: {
     core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      // Score was below 50k in last frame, and is now higher
+      ['', 'Delta', '8bit', score10k, '<',  'Value', '', 0xde],
+      ['', 'Mem',   '8bit', score10k, '>=', 'Value', '', 0xde],
+
+      // Try 2
+      // ['AddSource', 'Delta', '8bit', score10k,  '-', 'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 10_000],
+      // ['',          'Value', '',     0,         '<', 'Value', '', 50_000],
+      // ['AddSource', 'Mem', '8bit', score10k,  '-', 'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 10_000],
+      // ['',          'Value', '',     0,         '>=', 'Value', '', 50_000],
+
+      // Try 1
+      // ['AddSource', 'Delta', '8bit', score100k, '-', 'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 100_000],
+      // ['AddSource', 'Delta', '8bit', score10k,  '-', 'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 10_000],
+      // ['AddSource', 'Delta', '8bit', score1k,   '-', 'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 1_000],
+      // ['AddSource', 'Delta', '8bit', score100,  '-', 'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 100],
+      // ['AddSource', 'Delta', '8bit', score10,   '-', 'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 10],
+      // ['AddSource', 'Delta', '8bit', score1,    '-', 'Value', '', tileIndexStart],
+      // ['',          'Value', '',     0,         '<', 'Value', '', 50_000],
+      //
+      // ['AddSource', 'Mem',   '8bit', score100k, '-',  'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*',  'Value', '', 100_000],
+      // ['AddSource', 'Mem',   '8bit', score10k,  '-',  'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*',  'Value', '', 10_000],
+      // ['AddSource', 'Mem',   '8bit', score1k,   '-',  'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*',  'Value', '', 1_000],
+      // ['AddSource', 'Mem',   '8bit', score100,  '-',  'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*',  'Value', '', 100],
+      // ['AddSource', 'Mem',   '8bit', score10,   '-',  'Value', '', tileIndexStart],
+      // ['AddSource', 'Value', '',     0,         '*',  'Value', '', 10],
+      // ['AddSource', 'Mem',   '8bit', score1,    '-',  'Value', '', tileIndexStart],
+      // ['',          'Value', '',     0,         '>=', 'Value', '', 50_000],
+
+      ...infiniteLivesCheatProtection(),
+      ...continueCheatProtection(),
+    ),
+    alt1: $(
+      ...levelSelectReset(),
     ),
   },
 });
@@ -426,16 +468,41 @@ set.addAchievement({
   },
 });
 
+const catchOfTheDay = () => {
+  const conditions = {
+    core: $(
+      ...infiniteLivesCheatProtection(),
+    ),
+    alt1: $(
+      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      ...levelSelectReset(),
+    )
+  };
+
+  let count = 2;
+  for (let i = 0; i < 10; i += 1) {
+    const arr = [
+      // Enemy is fish
+      ['OrNext', 'Mem', '8bit', enemyIds[i], '=', 'Value', '', 0x13],
+      ['', 'Mem', '8bit', enemyIds[i], '=', 'Value', '', 0x15],
+
+      // Enemy killed by fruit or player/poo-suke
+      ['', 'Delta', 'Bit1', enemyKillFlags[i], '=', 'Value', '', 0],
+      ['', 'Delta', 'Bit2', enemyKillFlags[i], '=', 'Value', '', 0],
+      ['OrNext', 'Mem', 'Bit1', enemyKillFlags[i], '=', 'Value', '', 1],
+      ['', 'Mem', 'Bit2', enemyKillFlags[i], '=', 'Value', '', 1],
+    ];
+    conditions['alt' + count] = $(...arr);
+    count += 1;
+  }
+  return conditions;
+};
+
 set.addAchievement({
   title: 'Catch of the Day',
   description: 'Defeat a fish enemy',
   points: 2,
-  conditions: {
-    core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
-    ),
-  },
+  conditions: catchOfTheDay(),
 });
 
 set.addAchievement({
