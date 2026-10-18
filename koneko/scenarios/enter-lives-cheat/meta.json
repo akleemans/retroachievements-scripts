@@ -48,7 +48,7 @@
     {
       "address": "0x0488",
       "size": "u8",
-      "label": "Enemy 8 kill flag"
+      "label": "Enemy 1 kill flag (see 0x0478)"
     },
     {
       "address": "0x0490",
@@ -138,7 +138,7 @@
     {
       "address": "0x071f",
       "size": "u8",
-      "label": "Gold egg flag (TODO check) 1 = unlimited eggs. Cleared on death and on a new game."
+      "label": "Gold egg flag (unlimited eggs) - cleared on death and on a new game"
     },
     {
       "address": "0x0720",
@@ -153,7 +153,7 @@
     {
       "address": "0x072c",
       "size": "u8",
-      "label": "Milk timer (TODO: check) - 0 = off; counts from 1 up to 0x96, then clears"
+      "label": "Milk timer. 0 = off; counts from 1 up to 0x96, then clears"
     },
     {
       "address": "0x072d",
@@ -163,12 +163,12 @@
     {
       "address": "0x077c",
       "size": "u8",
-      "label": "Projectile slot? TODO"
+      "label": "Projectile slot"
     },
     {
       "address": "0x077d",
       "size": "u8",
-      "label": "On hit: Enemy slot Nr. (TODO)"
+      "label": "On hit: Enemy slot Nr."
     },
     {
       "address": "0x0789",
