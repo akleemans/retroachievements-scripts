@@ -16,7 +16,7 @@ const projectileSlot = 0x077c;
 const enemyIds = [0x0470, 0x0480, 0x0490, 0x04a0, 0x04b0, 0x04c0, 0x04d0, 0x04e0, 0x04f0, 0x0500];
 const enemyKillFlags = [0x0478, 0x0488, 0x0498, 0x04a8, 0x04b8, 0x04c8, 0x04d8, 0x04e8, 0x04f8, 0x0508];
 
-// const tileIndexStart = 0xd9;
+const tileIndexStart = 0xd9;
 // const score1 = 0xb2db;
 // const score10 = 0xb2da;
 // const score100 = 0xb2d9;
@@ -290,14 +290,23 @@ set.addAchievement({
   },
 });
 
+const apples1 = 0xb2e8;
+const apples10 = 0xb2e9;
+
 set.addAchievement({
   title: 'Nine Lives, Plus One',
   description: 'Earn an Extra life from collecting 50 apples',
   points: 5,
   conditions: {
     core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      // Lives increment
+      ['', 'Mem',   '8bit', lives, '>', 'Delta', '8bit', lives],
+
+      // Apples reset to 0
+      ['', 'Delta', '8bit', apples1, '!=', 'Value', '', tileIndexStart],
+      ['', 'Delta', '8bit', apples10, '!=', 'Value', '', tileIndexStart],
+      ['', 'Mem',   '8bit', apples1, '=', 'Value', '', tileIndexStart],
+      ['', 'Mem',   '8bit', apples10, '=', 'Value', '', tileIndexStart],
     ),
   },
 });
@@ -316,27 +325,38 @@ set.addAchievement({
   },
 });
 
+const lettersCollected = 0x072d;
+
 set.addAchievement({
   title: 'H-E-L-P!',
   description: 'Collect all four letters and summon Poo-suke',
   points: 2,
   conditions: {
     core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      ['', 'Delta', '8bit', lettersCollected, '=', 'Value', '', 3],
+      ['', 'Mem',   '8bit', lettersCollected, '=', 'Value', '', 0],
+      ...infiniteLivesCheatProtection(),
+    ),
+    alt1: $(
+      ...levelSelectReset(),
     ),
   },
 });
+
+const milkTimer = 0x072c;
 
 set.addAchievement({
   title: 'Source of Power',
   description: 'Get invincibility from milk',
   points: 3,
   conditions: {
-    // TODO: where? Memory: Milk timer
     core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      ['', 'Delta', '8bit', milkTimer, '=', 'Value', '', 0],
+      ['', 'Mem',   '8bit', milkTimer, '=', 'Value', '', 1],
+      ...infiniteLivesCheatProtection(),
+    ),
+    alt1: $(
+      ...levelSelectReset(),
     ),
   },
 });
@@ -347,7 +367,6 @@ set.addAchievement({
   points: 5,
   conditions: {
     core: $(
-      // TODO
       ['', 'Delta', '8bit', goldenEggFlag, '=', 'Value', '', 0],
       ['', 'Mem',   '8bit', goldenEggFlag, '=', 'Value', '', 1],
       ...infiniteLivesCheatProtection(),
@@ -398,41 +417,6 @@ set.addAchievement({
       // Score was below 50k in last frame, and is now higher
       ['', 'Delta', '8bit', score10k, '<',  'Value', '', 0xde],
       ['', 'Mem',   '8bit', score10k, '>=', 'Value', '', 0xde],
-
-      // Try 2
-      // ['AddSource', 'Delta', '8bit', score10k,  '-', 'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 10_000],
-      // ['',          'Value', '',     0,         '<', 'Value', '', 50_000],
-      // ['AddSource', 'Mem', '8bit', score10k,  '-', 'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 10_000],
-      // ['',          'Value', '',     0,         '>=', 'Value', '', 50_000],
-
-      // Try 1
-      // ['AddSource', 'Delta', '8bit', score100k, '-', 'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 100_000],
-      // ['AddSource', 'Delta', '8bit', score10k,  '-', 'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 10_000],
-      // ['AddSource', 'Delta', '8bit', score1k,   '-', 'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 1_000],
-      // ['AddSource', 'Delta', '8bit', score100,  '-', 'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 100],
-      // ['AddSource', 'Delta', '8bit', score10,   '-', 'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*', 'Value', '', 10],
-      // ['AddSource', 'Delta', '8bit', score1,    '-', 'Value', '', tileIndexStart],
-      // ['',          'Value', '',     0,         '<', 'Value', '', 50_000],
-      //
-      // ['AddSource', 'Mem',   '8bit', score100k, '-',  'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*',  'Value', '', 100_000],
-      // ['AddSource', 'Mem',   '8bit', score10k,  '-',  'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*',  'Value', '', 10_000],
-      // ['AddSource', 'Mem',   '8bit', score1k,   '-',  'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*',  'Value', '', 1_000],
-      // ['AddSource', 'Mem',   '8bit', score100,  '-',  'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*',  'Value', '', 100],
-      // ['AddSource', 'Mem',   '8bit', score10,   '-',  'Value', '', tileIndexStart],
-      // ['AddSource', 'Value', '',     0,         '*',  'Value', '', 10],
-      // ['AddSource', 'Mem',   '8bit', score1,    '-',  'Value', '', tileIndexStart],
-      // ['',          'Value', '',     0,         '>=', 'Value', '', 50_000],
 
       ...infiniteLivesCheatProtection(),
       ...continueCheatProtection(),

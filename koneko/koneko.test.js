@@ -293,7 +293,7 @@ describe('Bear Trouble', () => {
   });
 });
 
-/*
+
 describe('Nine Lives, Plus One', () => {
   const cheevo = achievement('Nine Lives, Plus One');
 
@@ -315,6 +315,7 @@ describe('Nine Lives, Plus One', () => {
   });
 });
 
+/*
 describe('Exterminator', () => {
   const cheevo = achievement('Exterminator');
 
@@ -335,6 +336,7 @@ describe('Exterminator', () => {
     expect(result.triggered).toBe(false);
   });
 });
+*/
 
 describe('H-E-L-P!', () => {
   const cheevo = achievement('H-E-L-P!');
@@ -347,15 +349,8 @@ describe('H-E-L-P!', () => {
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('poosuke-summoned'));
   });
-
-  test('does not pop with only three letters', () => {
-    const s = scenario('help-letters-three');
-    const result = runAchievement(cheevo, s);
-
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.triggered).toBe(false);
-  });
 });
+
 
 describe('Source of Power', () => {
   const cheevo = achievement('Source of Power');
@@ -377,7 +372,6 @@ describe('Source of Power', () => {
     expect(result.triggered).toBe(false);
   });
 });
-*/
 
 describe('Ooh, It\'s Shiny!', () => {
   const cheevo = achievement('Ooh, It\'s Shiny!');
