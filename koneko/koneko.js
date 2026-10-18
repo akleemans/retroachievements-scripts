@@ -220,14 +220,30 @@ set.addAchievement({
   },
 });
 
+const goalReached = 0x0724;
+
+const bearHitCountsDay = 0xb2fb;
+const bearHitCountsNight = 0xb305;
+
 set.addAchievement({
   title: 'Bear Trouble',
-  description: 'Get past Blacky the bear without defeating him completely',
+  description: 'Get past Blacky the bear while his head is still fully visible before Scene 23',
   points: 5,
   conditions: {
     core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      // Month >= 4 (bear first appears) and before last 2 scenes (<= month 11)
+      ['', 'Mem', '8bit', month, '>=', 'Value', '', 4],
+      ['', 'Mem', '8bit', month, '<=', 'Value', '', 11],
+
+      // Bear hits (day + night combined) no greater than 4. Uses Delta because it's reset on current frame when goal is reached
+      ['AddSource', 'Delta',   '8bit', bearHitCountsDay],
+      ['',   'Delta',   '8bit', bearHitCountsNight,  '<=', 'Value', '',     4],
+
+      // Goal reached
+      // ['', 'Delta', '8bit', timeOfDay, '!=', 'Mem', '8bit', timeOfDay],
+      ['', 'Mem', '8bit', goalReached, '=', 'Value', '', 0],
+      ['', 'Delta', '8bit', goalReached, '=', 'Value', '', 1],
+
     ),
   },
 });

@@ -251,6 +251,7 @@ describe('Good Boy', () => {
     expect(result.triggered).toBe(false);
   });
 });
+*/
 
 describe('Bear Trouble', () => {
   const cheevo = achievement('Bear Trouble');
@@ -261,11 +262,11 @@ describe('Bear Trouble', () => {
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('bear-passed'));
+    expect(result.triggeredFrame).toBe(s.marker('goal-reached'));
   });
 
   test('does not pop when Blacky is defeated', () => {
-    const s = scenario('bear-defeated');
+    const s = scenario('bear-completely-defeated');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
@@ -273,6 +274,7 @@ describe('Bear Trouble', () => {
   });
 });
 
+/*
 describe('Nine Lives, Plus One', () => {
   const cheevo = achievement('Nine Lives, Plus One');
 
