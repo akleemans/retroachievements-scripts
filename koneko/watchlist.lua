@@ -55,4 +55,6 @@ return {
     { address = 0xb2f4, size = "u8", label = "Timer (hundreds)" },
     { address = 0xb2f5, size = "u8", label = "Timer (tens)" },
     { address = 0xb2f6, size = "u8", label = "Timer (ones)" },
+    { address = 0xb2fb, size = "u8", label = "Bear hit count, day scenes" },
+    { address = 0xb305, size = "u8", label = "Bear hit count, night scenes" },
 }
