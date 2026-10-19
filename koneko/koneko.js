@@ -41,10 +41,12 @@ const progression = (sceneId) => {
   const expectedMonth = Math.floor(sceneId / 2) + 1;
   if (sceneId % 2 === 1) {
     // For odd scenes, check time of day increase
+    // goalReachedFlag is required to protect against save/load exploits
     return [
       ['', 'Mem',   '8bit', month,     '=', 'Value', '', expectedMonth],
       ['', 'Delta', '8bit', timeOfDay, '=', 'Value', '', 1],
       ['', 'Mem',   '8bit', timeOfDay, '=', 'Value', '', 2],
+      ['', 'Delta', '8bit', goalReachedFlag, '=', 'Value', '', 1],
     ];
   } else {
     // For even scenes, check month increase
@@ -52,6 +54,7 @@ const progression = (sceneId) => {
       ['', 'Mem',   '8bit', timeOfDay, '=', 'Value', '', 1],
       ['', 'Delta', '8bit', month,     '=', 'Value', '', expectedMonth - 1],
       ['', 'Mem',   '8bit', month,     '=', 'Value', '', expectedMonth],
+      ['', 'Delta', '8bit', goalReachedFlag, '=', 'Value', '', 1],
     ];
   }
 };
@@ -91,7 +94,7 @@ const deathReset = () => {
 
 const levelChangedReset = () => {
   return [
-    // Reset on death
+    // Reset on level change
     ['ResetIf', 'Delta', '8bit', timeOfDay, '!=', 'Mem', '8bit', timeOfDay],
   ];
 };
@@ -270,11 +273,12 @@ set.addAchievement({
       // Add hits on enemy kills with
       ...enemyKills(10),
       ...infiniteLivesCheatProtection(),
-    ),
-    alt1: $(
+
       // Reset on death
       ...deathReset(),
       ...levelChangedReset(),
+    ),
+    alt1: $(
       ...startGameReset(),
     ),
   },
@@ -292,10 +296,11 @@ set.addAchievement({
       ['Measured%', 'Mem', '8bit', pooSukeSlot, '=', 'Value', '', 2, 20 * 60],
 
       ...infiniteLivesCheatProtection(),
-    ),
-    alt1: $(
+
       // Reset if poo-suke despawns
       ['ResetIf', 'Mem', '8bit', pooSukeSlot, '=', 'Value', '', 0],
+    ),
+    alt1: $(
       ...startGameReset(),
     ),
   },
@@ -334,14 +339,14 @@ set.addAchievement({
   conditions: {
     core: $(
       // Lives increment
-      ['', 'Delta', '8bit', lives, '=', 'Value', '', 49],
-      ['', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
+      ['', 'Mem',   '8bit', lives,    '>', 'Delta', '8bit', lives],
 
-      // Apples reset to 0
-      ['', 'Delta', '8bit', apples1,  '!=', 'Value', '', tileIndexStart],
-      ['', 'Delta', '8bit', apples10, '!=', 'Value', '', tileIndexStart],
-      ['', 'Mem',   '8bit', apples1,  '=',  'Value', '', tileIndexStart],
-      ['', 'Mem',   '8bit', apples10, '=',  'Value', '', tileIndexStart],
+      // Apples were 49 in the last frame
+      ['', 'Delta', '8bit', apples10, '=', 'Value', '', tileIndexStart + 4],
+      ['', 'Delta', '8bit', apples1,  '=', 'Value', '', tileIndexStart + 9],
+      // Apples are 0 now
+      ['', 'Mem', '8bit', apples10, '=', 'Value', '', tileIndexStart],
+      ['', 'Mem', '8bit', apples1,  '=', 'Value', '', tileIndexStart],
 
       ...infiniteLivesCheatProtection(),
     ),
@@ -359,6 +364,11 @@ set.addAchievement({
     core: $(
       ['', 'Delta', '8bit', lettersCollected, '=', 'Value', '', 3],
       ['', 'Mem',   '8bit', lettersCollected, '=', 'Value', '', 0],
+
+      // Poo-suke spawned in same frame
+      ['', 'Delta', '8bit', pooSukeSlot, '=', 'Value', '', 0],
+      ['', 'Mem',   '8bit', pooSukeSlot, '=', 'Value', '', 2],
+
       ...infiniteLivesCheatProtection(),
     ),
     alt1: $(
@@ -459,10 +469,11 @@ set.addAchievement({
       // Add hits on enemy kills with
       ...enemyKills(5),
       ...infiniteLivesCheatProtection(),
-    ),
-    alt1: $(
+
       // Reset if milk runs out
       ['ResetIf', 'Mem', '8bit', milkTimer, '=', 'Value', '', 0],
+    ),
+    alt1: $(
       ...startGameReset(),
     ),
   },

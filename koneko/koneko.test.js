@@ -527,6 +527,50 @@ describe('Eggcellently Prepared', () => {
   });
 });
 
+/* ========= SEASON START / LOAD GAME ========= */
+
+describe('Starting in a later season', () => {
+  test('does not pop the previous progression when jumping to scene 7', () => {
+    const s = scenario('start-in-scene7');
+    const result = runAchievement(achievement('Summer Is Over'), s);
+
+    expect(result.stateAt(s.marker('season-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+
+  test('does not pause later progression after starting in scene 7', () => {
+    const s = scenario('start-in-scene7');
+    const result = runAchievement(achievement('Falling Leaves'), s);
+
+    expect(result.stateAt(s.marker('season-start'))).toBe('active');
+    expect(result.wasEver('paused')).toBe(false);
+  });
+
+  test('does not pause later progression after loading a game', () => {
+    const s = scenario('load-game-on-start');
+    const result = runAchievement(achievement('Falling Leaves'), s);
+
+    expect(result.stateAt(s.marker('season-start'))).toBe('active');
+    expect(result.wasEver('paused')).toBe(false);
+  });
+
+  test('does not pop the previous progression when loading a night scene', () => {
+    const s = scenario('load-scene4');
+    const result = runAchievement(achievement('Sunny Start'), s);
+
+    expect(result.stateAt(s.marker('scene-loaded'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+
+  test('does not pause Purr-fect Score after loading a game', () => {
+    const s = scenario('load-game-on-start');
+    const result = runAchievement(achievement('Purr-fect Score'), s);
+
+    expect(result.stateAt(s.marker('season-start'))).toBe('active');
+    expect(result.wasEver('paused')).toBe(false);
+  });
+});
+
 /* ========= LEADERBOARDS ========= */
 
 const leaderboard = (title) => Object.values(set.leaderboards).find((l) => l.title === title);
@@ -593,6 +637,15 @@ describe('Leaderboard: High Score', () => {
     const result = runAchievement(lbTrigger(lb, 'start'), s);
 
     expect(result.stateAt(s.marker('first-scene-init'))).toBe('reset');
+    expect(result.triggered).toBe(false);
+  });
+
+  test('is not paused when starting in a later season', () => {
+    const s = scenario('start-in-scene7');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.stateAt(s.marker('season-start'))).toBe('active');
+    expect(result.wasEver('paused')).toBe(false);
     expect(result.triggered).toBe(false);
   });
 

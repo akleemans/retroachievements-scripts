@@ -4,7 +4,7 @@
   "game": "Koneko Monogatari: The Adventures of Chatran",
   "console": "FDS",
   "firstFrame": 7639,
-  "markers": {},
+  "markers": { "new-game": 8436, "season-start": 9538 },
   "addresses": [
     { "address": "0x0400", "size": "u8", "label": "[688 bytes] Object table (16 bytes per slot) - Slot 0 ID: Rideable box, (Scene 3, 4, ...)" },
     { "address": "0x0410", "size": "u8", "label": "Object 1 ID: Chatran (player)" },

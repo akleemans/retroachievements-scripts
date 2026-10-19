@@ -2,7 +2,7 @@
 -- `description`) before each recording session; the rest is per-game.
 return {
     -- this recording session
-    name = "load-game-on-start",
+    name = "my-recording",
     description = "",
 
     -- this game
