@@ -17,12 +17,12 @@ const enemyIds = [0x0470, 0x0480, 0x0490, 0x04a0, 0x04b0, 0x04c0, 0x04d0, 0x04e0
 const enemyKillFlags = [0x0478, 0x0488, 0x0498, 0x04a8, 0x04b8, 0x04c8, 0x04d8, 0x04e8, 0x04f8, 0x0508];
 
 const tileIndexStart = 0xd9;
-// const score1 = 0xb2db;
-// const score10 = 0xb2da;
-// const score100 = 0xb2d9;
-// const score1k = 0xb2d8;
+const score1 = 0xb2db;
+const score10 = 0xb2da;
+const score100 = 0xb2d9;
+const score1k = 0xb2d8;
 const score10k = 0xb2d7;
-// const score100k = 0xb2d6;
+const score100k = 0xb2d6;
 
 const goalReachedFlag = 0x0724;
 const apples1 = 0xb2e8;
@@ -547,6 +547,37 @@ set.addAchievement({
     ),
     alt1: $(
       ...levelSelectReset(),
+    ),
+  },
+});
+
+/* ========= LEADERBOARDS ========= */
+
+set.addLeaderboard({
+  title: 'High Score',
+  description: 'Score the most points',
+  lowerIsBetter: false,
+  type: 'SCORE',
+  conditions: {
+    start: $(
+      // Month must be between 1 and 13
+      ['', 'Mem',   '8bit', month, '>=', 'Value', '', 1],
+      ['', 'Mem',   '8bit', month, '<=', 'Value', '', 13],
+
+      // Trigger on game over (no more lives)
+      ['', 'Delta', '8bit', lives, '=', 'Value', '', 1],
+      ['', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
+    ),
+    cancel: '0=1',
+    submit: '0=0',
+    value: $(
+      // TODO: How to calculate score if each digit starts with tileIndexStart = 0xd9?
+      ['AddSource', 'Mem', 'Lower4', score100k, '*', 'Value', '', 100_000],
+      ['AddSource', 'Mem', 'Lower4', score10k,  '*', 'Value', '', 10000],
+      ['AddSource', 'Mem', 'Lower4', score1k,   '*', 'Value', '', 1000],
+      ['AddSource', 'Mem', 'Lower4', score100,  '*', 'Value', '', 100],
+      ['AddSource', 'Mem', 'Lower4', score10,   '*', 'Value', '', 10],
+      ['Measured',  'Mem', 'Lower4', score1],
     ),
   },
 });
