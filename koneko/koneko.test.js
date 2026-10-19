@@ -568,6 +568,20 @@ describe('Leaderboard: High Score', () => {
     expect(result.triggered).toBe(false);
   });
 
+  test('is paused after infinite lives cheat', () => {
+    const s = scenario('enter-lives-cheat');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.triggered).toBe(false);
+  });
+
+  test('is paused after continue cheat', () => {
+    const s = scenario('scene3-continue-cheat');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.stateAt(s.marker('cheat-entered'))).toBe('inactive');
+  });
+
   test('submits the score on game over', () => {
     const s = scenario('scene3-continue-cheat');
     const result = runAchievement(lbValue(lb), s);

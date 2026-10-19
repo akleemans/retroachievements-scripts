@@ -564,6 +564,9 @@ set.addLeaderboard({
         // Month must be between 1 and 13
         ['', 'Mem', '8bit', month, '>=', 'Value', '', 1],
         ['', 'Mem', '8bit', month, '<=', 'Value', '', 13],
+
+        ...infiniteLivesCheatProtection(),
+        ...continueCheatProtection(),
       ),
       alt1: $(
         // Trigger on game over (no more lives)
