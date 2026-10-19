@@ -559,19 +559,27 @@ set.addLeaderboard({
   lowerIsBetter: false,
   type: 'SCORE',
   conditions: {
-    start: $(
-      // Month must be between 1 and 13
-      ['', 'Mem',   '8bit', month, '>=', 'Value', '', 1],
-      ['', 'Mem',   '8bit', month, '<=', 'Value', '', 13],
-
-      // Trigger on game over (no more lives)
-      ['', 'Delta', '8bit', lives, '=', 'Value', '', 1],
-      ['', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
-    ),
+    start: {
+      core: $(
+        // Month must be between 1 and 13
+        ['', 'Mem', '8bit', month, '>=', 'Value', '', 1],
+        ['', 'Mem', '8bit', month, '<=', 'Value', '', 13],
+      ),
+      alt1: $(
+        // Trigger on game over (no more lives)
+        ['', 'Delta', '8bit', lives, '=', 'Value', '', 1],
+        ['', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
+      ),
+      alt2: $(
+        // Trigger on finishing the game (scene 24 cleared)
+        ...progression(24),
+      ),
+    },
     cancel: '0=1',
     submit: '0=0',
     value: $(
-      // TODO: How to calculate score if each digit starts with tileIndexStart = 0xd9?
+      // Each digit is offset by tileIndexStart, so subtract 0xd9 * 111111 once for all six digits
+      ['SubSource', 'Value', '', tileIndexStart * 111_111],
       ['AddSource', 'Mem', '8bit', score100k, '*', 'Value', '', 100_000],
       ['AddSource', 'Mem', '8bit', score10k,  '*', 'Value', '', 10000],
       ['AddSource', 'Mem', '8bit', score1k,   '*', 'Value', '', 1000],

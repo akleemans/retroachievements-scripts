@@ -6,6 +6,7 @@
   "firstFrame": 52586,
   "markers": {
     "scenario-start": 52608,
+    "game-over": 52831,
     "cheat-entered": 53166
   },
   "addresses": [

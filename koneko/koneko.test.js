@@ -526,3 +526,59 @@ describe('Eggcellently Prepared', () => {
     expect(result.triggeredFrame).toBe(s.marker('20-eggs'));
   });
 });
+
+/* ========= LEADERBOARDS ========= */
+
+const leaderboard = (title) => Object.values(set.leaderboards).find((l) => l.title === title);
+
+// Use LB start/cancel/submit as conditions like achievement
+const lbTrigger = (lb, part) => ({conditions: lb.conditions[part]});
+
+// Make value expression parseable as a trigger while measuredAt() still reports the value
+const lbValue = (lb) => {
+  const groups = lb.conditions.value;
+  if (groups.length > 1) throw new Error(`leaderboard "${lb.title}": max-of ($) values are not supported`);
+  const conditions = groups[0].map((condition) => `${condition}`);
+  const measured = conditions.pop();
+  conditions.push(/[<>=!]/.test(measured) ? `${measured}.4294967295.` : `${measured}>=4294967295`);
+  return conditions.join('_');
+};
+
+describe('Leaderboard: High Score', () => {
+  const lb = leaderboard('High Score');
+
+  test('starts/submits on game over', () => {
+    const s = scenario('scene3-continue-cheat');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.triggeredFrame).toBe(s.marker('game-over'));
+  });
+
+  test('starts/submits when the game is finished', () => {
+    const s = scenario('scene24-finish');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.triggeredFrame).toBe(s.marker('scene-increase'));
+  });
+
+  test('does not start when a scene is finished before the end', () => {
+    const s = scenario('scene21-finish');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.triggered).toBe(false);
+  });
+
+  test('submits the score on game over', () => {
+    const s = scenario('scene3-continue-cheat');
+    const result = runAchievement(lbValue(lb), s);
+
+    expect(result.measuredAt(s.marker('game-over'))).toBe(11960);
+  });
+
+  test('submits the score when the game is finished', () => {
+    const s = scenario('scene24-finish');
+    const result = runAchievement(lbValue(lb), s);
+
+    expect(result.measuredAt(s.marker('scene-increase'))).toBe(115510);
+  });
+});
