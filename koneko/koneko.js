@@ -27,6 +27,7 @@ const score100k = 0xb2d6;
 const goalReachedFlag = 0x0724;
 const apples1 = 0xb2e8;
 const apples10 = 0xb2e9;
+// const eggs1 = 0xb2e2;
 const eggs10 = 0xb2e1;
 
 const lettersCollected = 0x072d;

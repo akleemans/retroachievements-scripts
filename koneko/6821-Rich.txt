@@ -1,0 +1,5 @@
+Display:
+?0xH0706=0?Starting up
+?0xH0706=13?Chatran is reunited with Shiro • Final Score @Score(A:0xHb2d6*100000_A:0xHb2d7*10000_A:0xHb2d8*1000_A:0xHb2d9*100_A:0xHb2da*10_B:24111087_M:0xHb2db)
+?0xH0706<13?Chatran is in Scene @Number(A:0xH0706*2_B:2_M:0xH0707) • @Number(0xH0704) Lives • @Number(A:0xHb2e1*10_B:2387_M:0xHb2e2) Eggs • Score @Score(A:0xHb2d6*100000_A:0xHb2d7*10000_A:0xHb2d8*1000_A:0xHb2d9*100_A:0xHb2da*10_B:24111087_M:0xHb2db)
+Playing Koneko Monogatari: The Adventures of Chatran
