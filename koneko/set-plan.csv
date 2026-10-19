@@ -6,20 +6,17 @@ Order	Feature	Missable	Achievement Name	Achievement Description	Notes	Type	Point
 5		FALSE	First Snow	Clear scene 15		Progression	10
 6		FALSE	Winter Is Over	Clear scene 18		Progression	10
 7		FALSE	Spring Kitten	Clear scene 21		Progression	10
-8		FALSE	Reunited with Shiro	Clear scene 24 and see the ending		Win	25
-9	Measured	FALSE	Pest Control	Defeat 10(?) enemies in one scene without dying		Challenge	5
-10		TRUE	Good Boy	Defeat 5 enemies with a single Poo-suke summoning		Fun	5
-11		FALSE	Bear Trouble	Get past Blacky the bear without defeating him completely		Challenge	5
+8		FALSE	Reunited with Shiro	Clear scene 24 and beat the game		Win	25
+9	Measured	FALSE	Pest Control	Defeat 10 enemies in one scene without dying		Challenge	5
+10	Measured%	FALSE	Good Boy	Keep Poo-suke alive for 20 seconds		Fun	5
+11		FALSE	Bear Trouble	Get past Blacky the bear while his head is still fully visible before Scene 23		Challenge	5
 12		FALSE	Nine Lives, Plus One	Earn an Extra life from collecting 50 apples		Collection	5
-13		TRUE	Dog for All Seasons	Summon Poo-suke in spring, summer, autumn and winter		Challenge	10
-14		FALSE	Exterminator	Defeat a bird, a turtle, a mouse and a beetle	TODO enemy type IDs - accessed from kill enemy slot?	Challenge	5
-15		FALSE	H-E-L-P!	Collect all four letters and summon Poo-suke		Collection	2
-16		FALSE	Source of Power	Get invincibility from milk	TODO where? Memory: Milk timer	Collection	3
-17		FALSE	Ooh, It's Shiny!	Collect a golden egg		Collection	5
-18		FALSE	Egg Drop	Defeat an enemy with a white egg	1. Projectile slot = egg (0x2a), 2. Egg active (last object in array), 3. Enemy kill flag	Challenge	2
-19		FALSE	TODO High Score	Get a total score of 50,000		Challenge	5
-20		FALSE	Milk Run	Defeat 5(?) enemies while being invincible by Milk		Challenge	5
-26	Trigger	FALSE	Gentle Paws	Clear a scene without defeating any enemy	(except for bear?)	Challenge	10
-22		FALSE	Catch of the Day	Defeat a fish enemy		Fun	2
-23	Trigger	FALSE	Nothing goes to waste	Do not let any fruit go to waste for a whole scene		Challenge	3
-24		FALSE	Eggcellently Prepared	Have a total of 20 eggs available		Collection	2
+13		FALSE	H-E-L-P!	Collect all four letters and summon Poo-suke the dog		Collection	2
+14		FALSE	Source of Power	Get invincibility from milk		Collection	3
+15		FALSE	Ooh, It's Shiny!	Collect a golden egg		Collection	5
+16		FALSE	Egg Drop	Defeat an enemy by dropping an egg on them		Challenge	1
+17		FALSE	Purr-fect Score	Get a total score of 50,000		Challenge	10
+18	Measured	FALSE	Milk Run	Defeat 5 enemies while being invincible by Milk		Challenge	5
+22	Trigger	FALSE	Gentle Paws	Clear a scene without defeating any enemy		Challenge	10
+20		FALSE	Catch of the Day	Defeat a fish enemy		Fun	2
+21		FALSE	Eggcellently Prepared	Have a total of 20 eggs available		Collection	2

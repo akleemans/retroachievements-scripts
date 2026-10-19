@@ -252,7 +252,7 @@ const enemyKills = (amount) => {
 
 set.addAchievement({
   title: 'Pest Control',
-  description: 'Defeat 10(?) enemies in one scene without dying',
+  description: 'Defeat 10 enemies in one scene without dying',
   points: 5,
   conditions: {
     core: $(
@@ -378,7 +378,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Egg Drop',
-  description: 'Defeat an enemy with a white egg',
+  description: 'Defeat an enemy by dropping an egg on them',
   points: 2,
   conditions: {
     // 1. Projectile slot = egg (0x2a), 2. Egg active (last object in array), 3. Enemy kill flag
@@ -410,7 +410,7 @@ set.addAchievement({
 set.addAchievement({
   title: 'Purr-fect Score',
   description: 'Get a total score of 50,000',
-  points: 5,
+  points: 10,
   conditions: {
     core: $(
       // Score was below 50k in last frame, and is now higher
