@@ -568,18 +568,24 @@ describe('Leaderboard: High Score', () => {
     expect(result.triggered).toBe(false);
   });
 
-  test('is paused after infinite lives cheat', () => {
+  test('is paused after infinite lives cheat, even after death', () => {
     const s = scenario('enter-lives-cheat');
     const result = runAchievement(lbTrigger(lb, 'start'), s);
 
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('cheat-entered'))).toBe('paused');
+    expect(result.stateAt(s.marker('died-on-enemy'))).toBe('paused');
     expect(result.triggered).toBe(false);
   });
 
   test('is paused after continue cheat', () => {
+    // Scenario has a legit game over right before the cheat, so leave out the game over alt
+    const [core, , gameFinished] = lb.conditions.start.map((group) => group.map((c) => `${c}`).join('_'));
     const s = scenario('scene3-continue-cheat');
-    const result = runAchievement(lbTrigger(lb, 'start'), s);
+    const result = runAchievement(`${core}S${gameFinished}`, s);
 
-    expect(result.stateAt(s.marker('cheat-entered'))).toBe('inactive');
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('cheat-entered'))).toBe('paused');
   });
 
   test('submits the score on game over', () => {
