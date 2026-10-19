@@ -588,6 +588,14 @@ describe('Leaderboard: High Score', () => {
     expect(result.stateAt(s.marker('cheat-entered'))).toBe('paused');
   });
 
+  test('resets cheat protection on new game', () => {
+    const s = scenario('game-startup');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.stateAt(s.marker('first-scene-init'))).toBe('reset');
+    expect(result.triggered).toBe(false);
+  });
+
   test('submits the score on game over', () => {
     const s = scenario('scene3-continue-cheat');
     const result = runAchievement(lbValue(lb), s);

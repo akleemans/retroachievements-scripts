@@ -577,6 +577,13 @@ set.addLeaderboard({
         // Trigger on finishing the game (scene 24 cleared)
         ...progression(24),
       ),
+      alt3: $(
+        // Reset cheat protection on new game, but not on the game over frame itself
+        ['AndNext', 'Delta', '8bit', lives, '=', 'Value', '', 0],
+        ...levelSelectReset(),
+        // Only reset alt
+        ['', 'Value', '', 0, '=', 'Value', '', 1],
+      ),
     },
     cancel: '0=1',
     submit: '0=0',
