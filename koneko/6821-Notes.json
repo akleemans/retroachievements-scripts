@@ -32,7 +32,7 @@
   {
     "User": "adrianusk",
     "Address": "0x000470",
-    "Note": "[8-bit] Enemy 0 ID\r\n0x03 = Chicken\r\n0x04 = Owl\r\n0x05 = Beetle\r\n0x06 = Boar\r\n0x07 = Squirrel\r\n0x09 = Pingu\r\n0x0a = Frog\r\n0x0b = Rabbit\r\n0x0c = Blue penguin\r\n0x0e = Bat \/ green bird\r\n0x0d = Crab\r\n0x0f = Mouse\r\n0x10 = Mole\r\n0x11 = Turtle (black?)\r\n0x12 = Blue turtle\r\n0x13 = Red fish\r\n0x15 = Green fish\r\n0x16 = Snake\r\n0x18 = Red bird\r\n0x1a = Bear arm\r\n0x26 = Falling water drop"
+    "Note": "[8-bit] Enemy 0 ID\r\n0x03 = Chicken\r\n0x04 = Owl\r\n0x05 = Beetle\r\n0x06 = Boar\r\n0x07 = Squirrel\r\n0x08 = Bee\r\n0x09 = Pingu\r\n0x0a = Frog\r\n0x0b = Rabbit\r\n0x0c = Blue penguin\r\n0x0d = Crab\r\n0x0e = Bat \/ green bird\r\n0x0f = Mouse\r\n0x10 = Mole\r\n0x11 = Black turtle\r\n0x12 = Blue turtle\r\n0x13 = Red fish\r\n0x15 = Green fish\r\n0x16 = Snake\r\n0x18 = Red bird\r\n0x1a = Bear arm\r\n0x26 = Falling water drop\r\n0x2e = Falling snowball"
   },
   {
     "User": "adrianusk",

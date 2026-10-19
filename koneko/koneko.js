@@ -25,8 +25,8 @@ const score10k = 0xb2d7;
 const score100k = 0xb2d6;
 
 const goalReachedFlag = 0x0724;
-const apples1 = 0xb2e8;
-const apples10 = 0xb2e9;
+const apples10 = 0xb2e8;
+const apples1 = 0xb2e9;
 // const eggs1 = 0xb2e2;
 const eggs10 = 0xb2e1;
 
@@ -73,7 +73,7 @@ const continueCheatProtection = () => {
   ];
 };
 
-const levelSelectReset = () => {
+const startGameReset = () => {
   return [
     // Reset on game start (init will be 0 lives at month 1 and time of day 1)
     ['AndNext', 'Mem', '8bit', month,     '=', 'Value', '', 1],
@@ -89,13 +89,20 @@ const deathReset = () => {
   ];
 };
 
+const levelChangedReset = () => {
+  return [
+    // Reset on death
+    ['ResetIf', 'Delta', '8bit', timeOfDay, '!=', 'Mem', '8bit', timeOfDay],
+  ];
+};
+
 // Alternative, early way to recognize finish of a level
 const goalReached = (trigger) => {
   return [
     ['',                     'Delta', '8bit', goalReachedFlag, '=', 'Value', '', 0],
-    [trigger ? 'Trigger':'', 'Mem',   '8bit', goalReachedFlag, '=', 'Value', '', 1],
-  ]
-}
+    [trigger ? 'Trigger' : '', 'Mem',   '8bit', goalReachedFlag, '=', 'Value', '', 1],
+  ];
+};
 
 /* ========= PROGRESSION ========= */
 
@@ -111,7 +118,7 @@ set.addAchievement({
       ...continueCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -128,7 +135,7 @@ set.addAchievement({
       ...continueCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -145,7 +152,7 @@ set.addAchievement({
       ...continueCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -162,7 +169,7 @@ set.addAchievement({
       ...continueCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -179,7 +186,7 @@ set.addAchievement({
       ...continueCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -196,7 +203,7 @@ set.addAchievement({
       ...continueCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -213,7 +220,7 @@ set.addAchievement({
       ...continueCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -230,7 +237,7 @@ set.addAchievement({
       ...continueCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -247,12 +254,13 @@ const enemyKills = (amount) => {
       ['AndNext', 'Mem',   'Bit2', enemyKillFlag, '=', 'Value', '', 1],
       ['AndNext', 'Delta', 'Bit1', enemyKillFlag, '=', 'Value', '', 0],
       ['AddHits', 'Delta', 'Bit2', enemyKillFlag, '=', 'Value', '', 0],
-    ])
+    ]);
   }
   arr.push(['Measured', 'Value', '', 0, '=', 'Value', '', 1, amount]);
   return arr;
 };
 
+// TODO increase number?
 set.addAchievement({
   title: 'Pest Control',
   description: 'Defeat 10 enemies in one scene without dying',
@@ -266,7 +274,8 @@ set.addAchievement({
     alt1: $(
       // Reset on death
       ...deathReset(),
-      ...levelSelectReset(),
+      ...levelChangedReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -280,21 +289,21 @@ set.addAchievement({
   conditions: {
     core: $(
       // Add hits on poo-suke alive
-      ['Measured%', 'Mem', '8bit', pooSukeSlot, '=', 'Value', '', 2, 20*60],
+      ['Measured%', 'Mem', '8bit', pooSukeSlot, '=', 'Value', '', 2, 20 * 60],
 
       ...infiniteLivesCheatProtection(),
     ),
     alt1: $(
       // Reset if poo-suke despawns
       ['ResetIf', 'Mem', '8bit', pooSukeSlot, '=', 'Value', '', 0],
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
 
 set.addAchievement({
   title: 'Bear Trouble',
-  description: 'Get past Blacky the bear while his head is still fully visible before Scene 23',
+  description: 'Get past Blacky the bear while his head is still fully visible before scene 23',
   points: 5,
   conditions: {
     core: $(
@@ -302,11 +311,18 @@ set.addAchievement({
       ['', 'Mem', '8bit', month, '>=', 'Value', '', 4],
       ['', 'Mem', '8bit', month, '<=', 'Value', '', 11],
 
-      // Bear hits (day + night combined) no greater than 4. Uses Delta because it's reset on current frame when goal is reached
-      ['AddSource', 'Delta', '8bit', bearHitCountsDay],
-      ['',          'Delta', '8bit', bearHitCountsNight, '<=', 'Value', '', 4],
+      // Bear hits (day + night combined) no greater than 4
+      ['AddSource', 'Mem', '8bit', bearHitCountsDay],
+      ['',          'Mem', '8bit', bearHitCountsNight, '<=', 'Value', '', 4],
+      ['AddSource', 'Mem', '8bit', bearHitCountsDay],
+      ['',          'Mem', '8bit', bearHitCountsNight, '>=', 'Value', '', 1],
 
       ...goalReached(),
+
+      ...infiniteLivesCheatProtection(),
+    ),
+    alt1: $(
+      ...startGameReset(),
     ),
   },
 });
@@ -318,13 +334,19 @@ set.addAchievement({
   conditions: {
     core: $(
       // Lives increment
-      ['', 'Mem',   '8bit', lives, '>', 'Delta', '8bit', lives],
+      ['', 'Delta', '8bit', lives, '=', 'Value', '', 49],
+      ['', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
 
       // Apples reset to 0
       ['', 'Delta', '8bit', apples1,  '!=', 'Value', '', tileIndexStart],
       ['', 'Delta', '8bit', apples10, '!=', 'Value', '', tileIndexStart],
       ['', 'Mem',   '8bit', apples1,  '=',  'Value', '', tileIndexStart],
       ['', 'Mem',   '8bit', apples10, '=',  'Value', '', tileIndexStart],
+
+      ...infiniteLivesCheatProtection(),
+    ),
+    alt1: $(
+      ...startGameReset(),
     ),
   },
 });
@@ -340,7 +362,7 @@ set.addAchievement({
       ...infiniteLivesCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -357,7 +379,7 @@ set.addAchievement({
       ...infiniteLivesCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -373,7 +395,7 @@ set.addAchievement({
       ...infiniteLivesCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -404,7 +426,7 @@ set.addAchievement({
       ...infiniteLivesCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -423,15 +445,15 @@ set.addAchievement({
       ...continueCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
 
 set.addAchievement({
   title: 'Milk Run',
-  description: 'Defeat 5 enemies while being invincible by Milk',
-  points: 5,
+  description: 'Defeat 5 enemies while being invincible by milk',
+  points: 10,
   conditions: {
     core: $(
       // Add hits on enemy kills with
@@ -441,7 +463,7 @@ set.addAchievement({
     alt1: $(
       // Reset if milk runs out
       ['ResetIf', 'Mem', '8bit', milkTimer, '=', 'Value', '', 0],
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -454,7 +476,7 @@ const timer100 = 0xb2f4;
 const resetOnAnyEnemyDeath = () => {
   const arr = [];
   for (let enemyKillFlag of enemyKillFlags) {
-    // We have to detect the moment of enemy kill, some 0x04
+    // Detect moment of enemy kill
     arr.push(...[
       ['AndNext', 'Delta', 'Bit1', enemyKillFlag, '=', 'Value', '', 0],
       ['ResetIf', 'Mem',   'Bit1', enemyKillFlag, '=', 'Value', '', 1],
@@ -490,7 +512,7 @@ set.addAchievement({
       ...infiniteLivesCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -502,8 +524,8 @@ const catchOfTheDay = () => {
     ),
     alt1: $(
       ['', 'Value', '', 0, '=', 'Value', '', 1],
-      ...levelSelectReset(),
-    )
+      ...startGameReset(),
+    ),
   };
 
   let count = 2;
@@ -534,7 +556,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Eggcellently Prepared',
-  description: 'Have a total of 20 eggs available',
+  description: 'Hold 20 eggs at once',
   points: 2,
   conditions: {
     core: $(
@@ -546,7 +568,7 @@ set.addAchievement({
       ...continueCheatProtection(),
     ),
     alt1: $(
-      ...levelSelectReset(),
+      ...startGameReset(),
     ),
   },
 });
@@ -580,7 +602,7 @@ set.addLeaderboard({
       alt3: $(
         // Reset cheat protection on new game, but not on the game over frame itself
         ['AndNext', 'Delta', '8bit', lives, '=', 'Value', '', 0],
-        ...levelSelectReset(),
+        ...startGameReset(),
         // Only reset alt
         ['', 'Value', '', 0, '=', 'Value', '', 1],
       ),
@@ -589,13 +611,13 @@ set.addLeaderboard({
     submit: '0=0',
     value: $(
       // Each digit is offset by tileIndexStart, so subtract 0xd9 * 111111 once for all six digits
-      ['SubSource', 'Value', '', tileIndexStart * 111_111],
-      ['AddSource', 'Mem', '8bit', score100k, '*', 'Value', '', 100_000],
-      ['AddSource', 'Mem', '8bit', score10k,  '*', 'Value', '', 10000],
-      ['AddSource', 'Mem', '8bit', score1k,   '*', 'Value', '', 1000],
-      ['AddSource', 'Mem', '8bit', score100,  '*', 'Value', '', 100],
-      ['AddSource', 'Mem', '8bit', score10,   '*', 'Value', '', 10],
-      ['Measured',  'Mem', '8bit', score1],
+      ['SubSource', 'Value', '',     tileIndexStart * 111_111],
+      ['AddSource', 'Mem',   '8bit', score100k,                '*', 'Value', '', 100_000],
+      ['AddSource', 'Mem',   '8bit', score10k,                 '*', 'Value', '', 10000],
+      ['AddSource', 'Mem',   '8bit', score1k,                  '*', 'Value', '', 1000],
+      ['AddSource', 'Mem',   '8bit', score100,                 '*', 'Value', '', 100],
+      ['AddSource', 'Mem',   '8bit', score10,                  '*', 'Value', '', 10],
+      ['Measured',  'Mem',   '8bit', score1],
     ),
   },
 });

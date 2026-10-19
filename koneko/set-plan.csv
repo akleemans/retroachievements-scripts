@@ -9,14 +9,14 @@ Order	Feature	Missable	Achievement Name	Achievement Description	Notes	Type	Point
 8		FALSE	Reunited with Shiro	Clear scene 24 and beat the game		Win	25
 9	Measured	FALSE	Pest Control	Defeat 10 enemies in one scene without dying		Challenge	5
 10	Measured%	FALSE	Good Boy	Keep Poo-suke alive for 20 seconds		Fun	5
-11		FALSE	Bear Trouble	Get past Blacky the bear while his head is still fully visible before Scene 23		Challenge	5
+11		FALSE	Bear Trouble	Get past Blacky the bear while his head is still fully visible before scene 23		Challenge	5
 12		FALSE	Nine Lives, Plus One	Earn an Extra life from collecting 50 apples		Collection	5
-13		FALSE	H-E-L-P!	Collect all four letters and summon Poo-suke the dog		Collection	2
+13		FALSE	H-E-L-P!	Collect all four letters and summon Poo-suke, the dog		Collection	2
 14		FALSE	Source of Power	Get invincibility from milk		Collection	3
 15		FALSE	Ooh, It's Shiny!	Collect a golden egg		Collection	5
 16		FALSE	Egg Drop	Defeat an enemy by dropping an egg on them		Challenge	1
 17		FALSE	Purr-fect Score	Get a total score of 50,000		Challenge	10
-18	Measured	FALSE	Milk Run	Defeat 5 enemies while being invincible by Milk		Challenge	10
+18	Measured	FALSE	Milk Run	Defeat 5 enemies while being invincible by milk		Challenge	10
 22	Trigger	FALSE	Gentle Paws	Clear a scene without defeating any enemy		Challenge	5
 20		FALSE	Catch of the Day	Defeat a fish enemy		Fun	2
-21		FALSE	Eggcellently Prepared	Have a total of 20 eggs available		Collection	2
+21		FALSE	Eggcellently Prepared	Hold 20 eggs at once		Collection	2
