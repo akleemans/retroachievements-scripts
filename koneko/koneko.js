@@ -572,12 +572,12 @@ set.addLeaderboard({
     submit: '0=0',
     value: $(
       // TODO: How to calculate score if each digit starts with tileIndexStart = 0xd9?
-      ['AddSource', 'Mem', 'Lower4', score100k, '*', 'Value', '', 100_000],
-      ['AddSource', 'Mem', 'Lower4', score10k,  '*', 'Value', '', 10000],
-      ['AddSource', 'Mem', 'Lower4', score1k,   '*', 'Value', '', 1000],
-      ['AddSource', 'Mem', 'Lower4', score100,  '*', 'Value', '', 100],
-      ['AddSource', 'Mem', 'Lower4', score10,   '*', 'Value', '', 10],
-      ['Measured',  'Mem', 'Lower4', score1],
+      ['AddSource', 'Mem', '8bit', score100k, '*', 'Value', '', 100_000],
+      ['AddSource', 'Mem', '8bit', score10k,  '*', 'Value', '', 10000],
+      ['AddSource', 'Mem', '8bit', score1k,   '*', 'Value', '', 1000],
+      ['AddSource', 'Mem', '8bit', score100,  '*', 'Value', '', 100],
+      ['AddSource', 'Mem', '8bit', score10,   '*', 'Value', '', 10],
+      ['Measured',  'Mem', '8bit', score1],
     ),
   },
 });
