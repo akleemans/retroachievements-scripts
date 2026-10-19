@@ -24,7 +24,7 @@ const tileIndexStart = 0xd9;
 const score10k = 0xb2d7;
 // const score100k = 0xb2d6;
 
-const goalReached = 0x0724;
+const goalReachedFlag = 0x0724;
 const apples1 = 0xb2e8;
 const apples10 = 0xb2e9;
 const eggs10 = 0xb2e1;
@@ -85,6 +85,14 @@ const deathReset = () => {
     ['ResetIf', 'Delta', '8bit', lives, '>', 'Mem', '8bit', lives],
   ];
 };
+
+// Alternative, early way to recognize finish of a level
+const goalReached = (trigger) => {
+  return [
+    ['', 'Delta',   '8bit', goalReachedFlag, '=', 'Value', '', 0],
+    [trigger ? 'Trigger':'', 'Mem', '8bit', goalReachedFlag, '=', 'Value', '', 1],
+  ]
+}
 
 /* ========= PROGRESSION ========= */
 
@@ -296,11 +304,7 @@ set.addAchievement({
       ['AddSource', 'Delta', '8bit', bearHitCountsDay],
       ['',          'Delta', '8bit', bearHitCountsNight, '<=', 'Value', '', 4],
 
-      // Goal reached
-      // ['', 'Delta', '8bit', timeOfDay, '!=', 'Mem', '8bit', timeOfDay],
-      ['', 'Mem',   '8bit', goalReached, '=', 'Value', '', 0],
-      ['', 'Delta', '8bit', goalReached, '=', 'Value', '', 1],
-
+      ...goalReached(),
     ),
   },
 });
@@ -319,20 +323,6 @@ set.addAchievement({
       ['', 'Delta', '8bit', apples10, '!=', 'Value', '', tileIndexStart],
       ['', 'Mem',   '8bit', apples1, '=', 'Value', '', tileIndexStart],
       ['', 'Mem',   '8bit', apples10, '=', 'Value', '', tileIndexStart],
-    ),
-  },
-});
-
-
-set.addAchievement({
-  title: 'Exterminator',
-  description: 'Defeat a bird, a turtle, a mouse and a beetle',
-  points: 5,
-  conditions: {
-    // TODO: enemy type IDs - accessed from kill enemy slot?
-    core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
     ),
   },
 });
@@ -454,15 +444,50 @@ set.addAchievement({
   },
 });
 
+const timer1 = 0xb2f6;
+const timer10 = 0xb2f5;
+const timer100 = 0xb2f4;
+
+
+const resetOnAnyEnemyDeath = () => {
+  const arr = [];
+  for (let enemyKillFlag of enemyKillFlags) {
+    // We have to detect the moment of enemy kill, some 0x04
+    arr.push(...[
+      ['AndNext', 'Delta', 'Bit1', enemyKillFlag, '=', 'Value', '', 0],
+      ['ResetIf', 'Mem', 'Bit1', enemyKillFlag, '=', 'Value', '', 1],
+
+      ['AndNext', 'Delta', 'Bit2', enemyKillFlag, '=', 'Value', '', 0],
+      ['ResetIf', 'Mem', 'Bit2', enemyKillFlag, '=', 'Value', '', 1],
+    ]);
+  }
+
+  return arr;
+};
+
 set.addAchievement({
   title: 'Gentle Paws',
   description: 'Clear a scene without defeating any enemy',
   points: 10,
   conditions: {
-    // TODO: Trigger (except for bear?)
     core: $(
-      // TODO: logic
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
+      // Checkpoint hit on level start, if time switches from 350 to 349
+      // This is after init & cheat protection
+      ['AndNext', 'Mem', '8bit', timer100, '=', 'Value', '', 0xdc],
+      ['AndNext', 'Delta', '8bit', timer10, '=', 'Value', '', 0xde],
+      ['AndNext', 'Delta', '8bit', timer1, '=', 'Value', '', 0xd9],
+      ['', 'Mem', '8bit', timer1, '=', 'Value', '', 0xe2, 1],
+
+      // Any enemy killed resets the checkpoint hit
+      ...resetOnAnyEnemyDeath(),
+
+      // Pop on goal reached
+      ...goalReached(true),
+
+      ...infiniteLivesCheatProtection(),
+    ),
+    alt1: $(
+      ...levelSelectReset(),
     ),
   },
 });
@@ -509,9 +534,8 @@ set.addAchievement({
   description: 'Do not let any fruit go to waste for a whole scene',
   points: 3,
   conditions: {
-    // TODO: Trigger
     core: $(
-      // TODO: logic
+      // TODO logic, trigger
       ['', 'Value', '', 0, '=', 'Value', '', 1],
     ),
   },

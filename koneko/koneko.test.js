@@ -315,28 +315,6 @@ describe('Nine Lives, Plus One', () => {
   });
 });
 
-/*
-describe('Exterminator', () => {
-  const cheevo = achievement('Exterminator');
-
-  test('pops when bird, turtle, mouse and beetle are defeated', () => {
-    const s = scenario('exterminator-all-types');
-    const result = runAchievement(cheevo, s);
-
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('last-type-defeated'));
-  });
-
-  test('does not pop when only three enemy types are defeated', () => {
-    const s = scenario('exterminator-three-types');
-    const result = runAchievement(cheevo, s);
-
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.triggered).toBe(false);
-  });
-});
-*/
 
 describe('H-E-L-P!', () => {
   const cheevo = achievement('H-E-L-P!');
@@ -453,30 +431,52 @@ describe('Milk Run', () => {
   });
 });
 
-/*
+
 describe('Gentle Paws', () => {
   const cheevo = achievement('Gentle Paws');
 
   test('pops when clearing a scene without defeating an enemy', () => {
-    const s = scenario('scene-no-kills');
+    const s = scenario('gentle-paws-finish-scene');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('add-checkpoint-hit'))).toBe('primed');
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('scene-increase'));
+    expect(result.triggeredFrame).toBe(s.marker('goal-reached'));
   });
 
   test('does not pop when an enemy was defeated', () => {
-    const s = scenario('scene-with-kill');
+    const s = scenario('gentle-paws-start-level');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('add-checkpoint-hit'))).toBe('primed');
+    expect(result.triggered).toBe(false);
+
+    expect(result.stateAt(s.marker('enemy-kill'))).toBe('reset');
+  });
+
+  test('pauses on lives cheat', () => {
+    const s = scenario('enter-lives-cheat');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(false);
+    expect(result.stateAt(s.marker('cheat-entered'))).toBe('paused');
   });
-});
-*/
 
-// TODO
+  test('primes also on first level', () => {
+    const s = scenario('gentle-paws-start-of-game');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('add-checkpoint-hit'))).toBe('primed');
+    expect(result.triggered).toBe(false);
+  });
+
+  // TODO behaviour on starting from mid-level checkpoint?
+});
+
 describe('Catch of the Day', () => {
   const cheevo = achievement('Catch of the Day');
 
@@ -489,15 +489,14 @@ describe('Catch of the Day', () => {
     expect(result.triggeredFrame).toBe(s.marker('fish-defeated'));
   });
 
-  // TODO
-  // test('pops when defeating a blue fish', () => {
-  //   const s = scenario('kill-blue-fish');
-  //   const result = runAchievement(cheevo, s);
-  //
-  //   expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-  //   expect(result.triggered).toBe(true);
-  //   expect(result.triggeredFrame).toBe(s.marker('fish-defeated'));
-  // });
+  test('pops when defeating a green fish', () => {
+    const s = scenario('kill-green-fish');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('fish-defeated'));
+  });
 
   test('does not pop when defeating another enemy', () => {
     const s = scenario('pest-control-10-kills');
