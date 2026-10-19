@@ -16,7 +16,7 @@ Order	Feature	Missable	Achievement Name	Achievement Description	Notes	Type	Point
 15		FALSE	Ooh, It's Shiny!	Collect a golden egg		Collection	5
 16		FALSE	Egg Drop	Defeat an enemy by dropping an egg on them		Challenge	1
 17		FALSE	Purr-fect Score	Get a total score of 50,000		Challenge	10
-18	Measured	FALSE	Milk Run	Defeat 5 enemies while being invincible by Milk		Challenge	5
-22	Trigger	FALSE	Gentle Paws	Clear a scene without defeating any enemy		Challenge	10
+18	Measured	FALSE	Milk Run	Defeat 5 enemies while being invincible by Milk		Challenge	10
+22	Trigger	FALSE	Gentle Paws	Clear a scene without defeating any enemy		Challenge	5
 20		FALSE	Catch of the Day	Defeat a fish enemy		Fun	2
 21		FALSE	Eggcellently Prepared	Have a total of 20 eggs available		Collection	2

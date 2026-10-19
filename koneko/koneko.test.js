@@ -474,7 +474,14 @@ describe('Gentle Paws', () => {
     expect(result.triggered).toBe(false);
   });
 
-  // TODO behaviour on starting from mid-level checkpoint?
+  test('does not prime on mid-level-checkpoint', () => {
+    const s = scenario('gentle-paws-start-from-checkpoint');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('start-from-checkpoint'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
 });
 
 describe('Catch of the Day', () => {
@@ -506,29 +513,6 @@ describe('Catch of the Day', () => {
     expect(result.triggered).toBe(false);
   });
 });
-
-/*
-describe('Nothing goes to waste', () => {
-  const cheevo = achievement('Nothing goes to waste');
-
-  test('pops when clearing a scene without wasting fruit', () => {
-    const s = scenario('scene-no-fruit-wasted');
-    const result = runAchievement(cheevo, s);
-
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('scene-increase'));
-  });
-
-  test('does not pop when fruit was wasted', () => {
-    const s = scenario('scene-fruit-wasted');
-    const result = runAchievement(cheevo, s);
-
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.triggered).toBe(false);
-  });
-});
-*/
 
 describe('Eggcellently Prepared', () => {
   const cheevo = achievement('Eggcellently Prepared');

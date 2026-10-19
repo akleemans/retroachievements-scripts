@@ -32,6 +32,8 @@ const eggs10 = 0xb2e1;
 const lettersCollected = 0x072d;
 const milkTimer = 0x072c;
 
+const startedFromMidLevelCheckpoint = 0x0708;
+
 /* ------------------------------------------ */
 
 const progression = (sceneId) => {
@@ -89,8 +91,8 @@ const deathReset = () => {
 // Alternative, early way to recognize finish of a level
 const goalReached = (trigger) => {
   return [
-    ['', 'Delta',   '8bit', goalReachedFlag, '=', 'Value', '', 0],
-    [trigger ? 'Trigger':'', 'Mem', '8bit', goalReachedFlag, '=', 'Value', '', 1],
+    ['',                     'Delta', '8bit', goalReachedFlag, '=', 'Value', '', 0],
+    [trigger ? 'Trigger':'', 'Mem',   '8bit', goalReachedFlag, '=', 'Value', '', 1],
   ]
 }
 
@@ -319,10 +321,10 @@ set.addAchievement({
       ['', 'Mem',   '8bit', lives, '>', 'Delta', '8bit', lives],
 
       // Apples reset to 0
-      ['', 'Delta', '8bit', apples1, '!=', 'Value', '', tileIndexStart],
+      ['', 'Delta', '8bit', apples1,  '!=', 'Value', '', tileIndexStart],
       ['', 'Delta', '8bit', apples10, '!=', 'Value', '', tileIndexStart],
-      ['', 'Mem',   '8bit', apples1, '=', 'Value', '', tileIndexStart],
-      ['', 'Mem',   '8bit', apples10, '=', 'Value', '', tileIndexStart],
+      ['', 'Mem',   '8bit', apples1,  '=',  'Value', '', tileIndexStart],
+      ['', 'Mem',   '8bit', apples10, '=',  'Value', '', tileIndexStart],
     ),
   },
 });
@@ -455,10 +457,10 @@ const resetOnAnyEnemyDeath = () => {
     // We have to detect the moment of enemy kill, some 0x04
     arr.push(...[
       ['AndNext', 'Delta', 'Bit1', enemyKillFlag, '=', 'Value', '', 0],
-      ['ResetIf', 'Mem', 'Bit1', enemyKillFlag, '=', 'Value', '', 1],
+      ['ResetIf', 'Mem',   'Bit1', enemyKillFlag, '=', 'Value', '', 1],
 
       ['AndNext', 'Delta', 'Bit2', enemyKillFlag, '=', 'Value', '', 0],
-      ['ResetIf', 'Mem', 'Bit2', enemyKillFlag, '=', 'Value', '', 1],
+      ['ResetIf', 'Mem',   'Bit2', enemyKillFlag, '=', 'Value', '', 1],
     ]);
   }
 
@@ -468,15 +470,16 @@ const resetOnAnyEnemyDeath = () => {
 set.addAchievement({
   title: 'Gentle Paws',
   description: 'Clear a scene without defeating any enemy',
-  points: 10,
+  points: 5,
   conditions: {
     core: $(
       // Checkpoint hit on level start, if time switches from 350 to 349
       // This is after init & cheat protection
-      ['AndNext', 'Mem', '8bit', timer100, '=', 'Value', '', 0xdc],
-      ['AndNext', 'Delta', '8bit', timer10, '=', 'Value', '', 0xde],
-      ['AndNext', 'Delta', '8bit', timer1, '=', 'Value', '', 0xd9],
-      ['', 'Mem', '8bit', timer1, '=', 'Value', '', 0xe2, 1],
+      ['AndNext', 'Mem',   '8bit', startedFromMidLevelCheckpoint, '=', 'Value', '', 0],
+      ['AndNext', 'Mem',   '8bit', timer100,                      '=', 'Value', '', 0xdc],
+      ['AndNext', 'Delta', '8bit', timer10,                       '=', 'Value', '', 0xde],
+      ['AndNext', 'Delta', '8bit', timer1,                        '=', 'Value', '', 0xd9],
+      ['',        'Mem',   '8bit', timer1,                        '=', 'Value', '', 0xe2, 1],
 
       // Any enemy killed resets the checkpoint hit
       ...resetOnAnyEnemyDeath(),
@@ -527,18 +530,6 @@ set.addAchievement({
   description: 'Defeat a fish enemy',
   points: 2,
   conditions: catchOfTheDay(),
-});
-
-set.addAchievement({
-  title: 'Nothing goes to waste',
-  description: 'Do not let any fruit go to waste for a whole scene',
-  points: 3,
-  conditions: {
-    core: $(
-      // TODO logic, trigger
-      ['', 'Value', '', 0, '=', 'Value', '', 1],
-    ),
-  },
 });
 
 set.addAchievement({
