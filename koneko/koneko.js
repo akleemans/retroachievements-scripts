@@ -275,9 +275,8 @@ const pooSukeSlot = 0x0420;
 
 set.addAchievement({
   title: 'Good Boy',
-  description: 'Keep Poo-suke the dog alive for 20 seconds',
+  description: 'Keep Poo-suke alive for 20 seconds',
   points: 5,
-  type: 'missable',
   conditions: {
     core: $(
       // Add hits on poo-suke alive
@@ -332,7 +331,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'H-E-L-P!',
-  description: 'Collect all four letters and summon Poo-suke',
+  description: 'Collect all four letters and summon Poo-suke, the dog',
   points: 2,
   conditions: {
     core: $(
@@ -382,7 +381,7 @@ set.addAchievement({
 set.addAchievement({
   title: 'Egg Drop',
   description: 'Defeat an enemy by dropping an egg on them',
-  points: 2,
+  points: 1,
   conditions: {
     // 1. Projectile slot = egg (0x2a), 2. Egg active (last object in array), 3. Enemy kill flag
     core: $(
