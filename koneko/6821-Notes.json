@@ -1,6 +1,11 @@
 [
   {
     "User": "adrianusk",
+    "Address": "0x000000",
+    "Note": "[General game notes]\r\nCruncheevos script: https:\/\/github.com\/akleemans\/retroachievements-scripts"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x000400",
     "Note": "[688 bytes] Object table (16 bytes per slot) - Slot 0 ID: Rideable box, (Scene 3, 4, ...)"
   },
@@ -32,7 +37,7 @@
   {
     "User": "adrianusk",
     "Address": "0x000478",
-    "Note": "[8-bit] Enemy 0 kill flag\r\n0x02 = Killed by contact with milk-powered Chatran or Poo-suke\r\n0x04 = Killed by falling item"
+    "Note": "[8-bit][Bitflags] Enemy 0 kill flag\r\nBit1 = Killed by contact with milk-powered Chatran or Poo-suke\r\nBit2 = Killed by falling item (egg or fruit)"
   },
   {
     "User": "adrianusk",
