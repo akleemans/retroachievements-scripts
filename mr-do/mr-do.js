@@ -347,11 +347,11 @@ set.addAchievement({
 
 const checkAll3MapsTimesBelow30s = () => {
   const timeSecondsMap1 = 0xd0e2;
-  const time256SecondsMap1 = 0xd0e3;
+  // const time256SecondsMap1 = 0xd0e3;
   const timeSecondsMap2 = 0xd0eb;
-  const time256SecondsMap2 = 0xd0ec;
+  // const time256SecondsMap2 = 0xd0ec;
   const timeSecondsMap3 = 0xd0f4;
-  const time256SecondsMap3 = 0xd0f5;
+  // const time256SecondsMap3 = 0xd0f5;
   return [
     // We have to check Prior here, values will be already 0 at the point where the levelId increases
     ['', 'Prior', '16bit', timeSecondsMap1, '<=', 'Value', '', 30],
