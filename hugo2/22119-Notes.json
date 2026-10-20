@@ -1,0 +1,72 @@
+[
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00c1a0",
+    "Note": "[8-bit] Score tens of thousands place"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00c1a1",
+    "Note": "[8-bit] Score thousands place"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00c1a2",
+    "Note": "[8-bit] Score hundreds place"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00c1a3",
+    "Note": "[8-bit] Score tens place"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00c1a4",
+    "Note": "[8-bit] Score ones place"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00c1a7",
+    "Note": "[8-bit] Win condition flag during the end game. Used for other things on other screens.\r\n0x0=Normally\r\n0x1=Win"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00c2fa",
+    "Note": "[8-bit] Cheat indicator\r\n0=no cheat\r\n1=infinite lives\r\n2=harmless logs in forest"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00cb17",
+    "Note": "[8-bit] Screen id 1\r\n0x00=loading main menu\r\n0x40=menu\r\n0xff=intro\r\n0x4b=forest\r\n0x19=snowboard\r\n0x21=snowboard snowman\r\n0x8f=swimmer\r\n0xff=ice cave\r\n0xc0=ice cave door\r\n0xfe=endgame\r\n0xff=endgame door & key & win"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00cb18",
+    "Note": "[8-bit] Screen id 2\r\n0x00=loading screen\r\n0x0f=level loading screen\r\n0x58=menu\r\n0x4c=forest\r\n0x19=snowboard\r\n0x90=swimmer\r\n0x00=ice cave"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00cb19",
+    "Note": "[8-bit] Screen id 3\r\n0x00=start up\r\n0xe0=main menu\r\n0xff=cutscene\r\n0x61=forest\r\n0x19=snowboard\r\n0x21=snowboard shooter section\r\n0x00=snowboard dying\r\n0x91=swimmer\r\n0x78=swimmer dying\r\n0xff=ice cave\r\n0x00=ice cave lock\r\n0xff=endgame\r\n0xff=endgame key selection"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00cb1a",
+    "Note": "[8-bit] Screen id 4\r\n0xe0=menu\r\n0x81=forest\r\n0x19=snowboard\r\n0x21=snowboard shooter\r\n0x92=swimmer\r\n0xff=ice cave\r\n0x7f=ice cave lock\r\n0xff=end game\r\n0x00=end game door \/ win"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00deaf",
+    "Note": "[8-bit] Difficulty\r\n0x0=light\r\n0x1=normal\r\n0x2=heavy"
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00df52",
+    "Note": "[8-bit] Lives\r\n0x0=0 lives\r\n0x1=1 life\r\n0x2=2 lives etc."
+  },
+  {
+    "User": "Bubblegum777",
+    "Address": "0x00df84",
+    "Note": "[8-bit] Coin bags collected (stage)"
+  }
+]

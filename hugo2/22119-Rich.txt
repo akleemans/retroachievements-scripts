@@ -1,0 +1,47 @@
+Lookup:Stage
+//Startup = 00 + 00 + 00
+0x0=Playing Hugo 2
+//Intro = ff + ff + 0f
+0x20d=Hugo is being kidnapped by Scylla
+//Menu = 40 + e0 + e0
+0x200=Hugo is preparing for an adventure in the main menu
+//Forest = 4b + 61 + 81
+0x12d=Hugo is traversing through the forest
+//Snowboard = 19 + 19 + 19
+0x4b=Hugo is traversing through the snowy mountain on his snowboard
+//Snowboard snowman sections = 21 + 21 + 21
+0x63=Hugo is currently shooting a snowman with snowballs
+//Swimmer = 8f + 91 + 92
+0x1b2=Hugo is traversing through the water
+//Ice Cave = ff + ff + ff 
+0x2fd=Hugo is traversing through the icy cave
+//Ice cave end = c0 + 00 + 7f 
+0x13f=Hugo is trying to remember the three symbols he picked up in the icy cave
+//Endgame = fe + ff + ff 
+0x2fc=Hugo is avoiding electrified tiles in a fight with Scylla
+//Key, door, ending text, and win image = ff + ff + 00 
+0x1fe=Hugo is currently escaping
+
+Lookup:Lives
+0xff=
+0=0
+1=1
+2=2
+3=3
+4=4
+5=5
+6=6
+7=7
+8=8
+9=9
+10=10
+
+Lookup:Cheat
+1=Hugo is being a dirty cheater by having infinite lives!
+2=Hugo is being a dirty cheater by phasing through logs in the woods!
+
+Display:
+?0xH0cb19=0_0xH0cb1a=0?Playing Hugo 2
+?0xH0cb19=224_0xH0cb1a=224?Hugo is preparing for an adventure in the main menu
+?0xH0df52>-1?@Stage(0xH0cb17_0xH0cb19_0xH0cb1a) 🧡 = @Lives(0xH0df52) 💰 = @Score(0xH0c1a4_0xH0c1a3*10_0xH0c1a2*100_0xH0c1a1*1000_0xH0c1a0*10000) @Cheat(0xH0c2fa)
+Playing Hugo 2
