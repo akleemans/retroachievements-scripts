@@ -10,7 +10,7 @@ Order	Feature	Missable	Achievement Name	Achievement Description	Notes	Type	Point
 9	Measured	FALSE	Pest Control	Defeat 10 enemies in one scene without dying		Challenge	5
 10	Measured%	FALSE	Good Boy	Keep Poo-suke alive for 20 seconds		Fun	5
 11		FALSE	Bear Trouble	Get past Blacky the bear while his head is still fully visible before scene 23		Challenge	5
-12		FALSE	Nine Lives, Plus One	Earn an Extra life from collecting 50 apples		Collection	5
+12		FALSE	Nine Lives, Plus One	Earn an Extra life from collecting 50 apples or cherries		Collection	5
 13		FALSE	H-E-L-P!	Collect all four letters and summon Poo-suke, the dog		Collection	2
 14		FALSE	Source of Power	Get invincibility from milk		Collection	3
 15		FALSE	Ooh, It's Shiny!	Collect a golden egg		Collection	5

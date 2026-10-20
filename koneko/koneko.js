@@ -110,6 +110,8 @@ const goalReached = (trigger) => {
 /* ========= PROGRESSION ========= */
 
 set.addAchievement({
+  id: 645541,
+  badge: '737356',
   title: 'Sunny Start',
   description: 'Clear scene 3',
   points: 3,
@@ -127,6 +129,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645542,
+  badge: '737357',
   title: 'Summer Is Over',
   description: 'Clear scene 6',
   points: 5,
@@ -144,6 +148,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645543,
+  badge: '737358',
   title: 'Falling Leaves',
   description: 'Clear scene 9',
   points: 5,
@@ -161,6 +167,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645544,
+  badge: '737359',
   title: 'Autumn Is Over',
   description: 'Clear scene 12',
   points: 5,
@@ -178,6 +186,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645545,
+  badge: '737360',
   title: 'First Snow',
   description: 'Clear scene 15',
   points: 10,
@@ -195,6 +205,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645546,
+  badge: '737361',
   title: 'Winter Is Over',
   description: 'Clear scene 18',
   points: 10,
@@ -212,6 +224,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645547,
+  badge: '737362',
   title: 'Spring Kitten',
   description: 'Clear scene 21',
   points: 10,
@@ -229,6 +243,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645548,
+  badge: '737363',
   title: 'Reunited with Shiro',
   description: 'Clear scene 24 and beat the game',
   points: 25,
@@ -265,6 +281,8 @@ const enemyKills = (amount) => {
 
 // TODO increase number?
 set.addAchievement({
+  id: 645549,
+  badge: '737375',
   title: 'Pest Control',
   description: 'Defeat 10 enemies in one scene without dying',
   points: 5,
@@ -287,6 +305,8 @@ set.addAchievement({
 const pooSukeSlot = 0x0420;
 
 set.addAchievement({
+  id: 645550,
+  badge: '737371',
   title: 'Good Boy',
   description: 'Keep Poo-suke alive for 20 seconds',
   points: 5,
@@ -307,6 +327,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645551,
+  badge: '737372',
   title: 'Bear Trouble',
   description: 'Get past Blacky the bear while his head is still fully visible before scene 23',
   points: 5,
@@ -333,8 +355,10 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645552,
+  badge: '737370',
   title: 'Nine Lives, Plus One',
-  description: 'Earn an Extra life from collecting 50 apples',
+  description: 'Earn an Extra life from collecting 50 apples or cherries',
   points: 5,
   conditions: {
     core: $(
@@ -357,6 +381,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645553,
+  badge: '737366',
   title: 'H-E-L-P!',
   description: 'Collect all four letters and summon Poo-suke, the dog',
   points: 2,
@@ -379,6 +405,8 @@ set.addAchievement({
 
 
 set.addAchievement({
+  id: 645554,
+  badge: '737365',
   title: 'Source of Power',
   description: 'Get invincibility from milk',
   points: 3,
@@ -395,6 +423,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645555,
+  badge: '737367',
   title: 'Ooh, It\'s Shiny!',
   description: 'Collect a golden egg',
   points: 5,
@@ -411,6 +441,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645556,
+  badge: '737364',
   title: 'Egg Drop',
   description: 'Defeat an enemy by dropping an egg on them',
   points: 1,
@@ -442,6 +474,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645557,
+  badge: '737376',
   title: 'Purr-fect Score',
   description: 'Get a total score of 50,000',
   points: 10,
@@ -461,6 +495,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645558,
+  badge: '737373',
   title: 'Milk Run',
   description: 'Defeat 5 enemies while being invincible by milk',
   points: 10,
@@ -501,6 +537,8 @@ const resetOnAnyEnemyDeath = () => {
 };
 
 set.addAchievement({
+  id: 645559,
+  badge: '737374',
   title: 'Gentle Paws',
   description: 'Clear a scene without defeating any enemy',
   points: 5,
@@ -559,6 +597,8 @@ const catchOfTheDay = () => {
 };
 
 set.addAchievement({
+  id: 645560,
+  badge: '737368',
   title: 'Catch of the Day',
   description: 'Defeat a fish enemy',
   points: 2,
@@ -566,6 +606,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 645561,
+  badge: '737369',
   title: 'Eggcellently Prepared',
   description: 'Hold 20 eggs at once',
   points: 2,
