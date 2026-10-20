@@ -279,7 +279,6 @@ const enemyKills = (amount) => {
   return arr;
 };
 
-// TODO increase number?
 set.addAchievement({
   id: 645549,
   badge: '737375',
