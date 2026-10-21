@@ -43,17 +43,17 @@ const progression = (sceneId) => {
     // For odd scenes, check time of day increase
     // goalReachedFlag is required to protect against save/load exploits
     return [
-      ['', 'Mem',   '8bit', month,     '=', 'Value', '', expectedMonth],
-      ['', 'Delta', '8bit', timeOfDay, '=', 'Value', '', 1],
-      ['', 'Mem',   '8bit', timeOfDay, '=', 'Value', '', 2],
+      ['', 'Mem',   '8bit', month,           '=', 'Value', '', expectedMonth],
+      ['', 'Delta', '8bit', timeOfDay,       '=', 'Value', '', 1],
+      ['', 'Mem',   '8bit', timeOfDay,       '=', 'Value', '', 2],
       ['', 'Delta', '8bit', goalReachedFlag, '=', 'Value', '', 1],
     ];
   } else {
     // For even scenes, check month increase
     return [
-      ['', 'Mem',   '8bit', timeOfDay, '=', 'Value', '', 1],
-      ['', 'Delta', '8bit', month,     '=', 'Value', '', expectedMonth - 1],
-      ['', 'Mem',   '8bit', month,     '=', 'Value', '', expectedMonth],
+      ['', 'Mem',   '8bit', timeOfDay,       '=', 'Value', '', 1],
+      ['', 'Delta', '8bit', month,           '=', 'Value', '', expectedMonth - 1],
+      ['', 'Mem',   '8bit', month,           '=', 'Value', '', expectedMonth],
       ['', 'Delta', '8bit', goalReachedFlag, '=', 'Value', '', 1],
     ];
   }
@@ -102,7 +102,7 @@ const levelChangedReset = () => {
 // Alternative, early way to recognize finish of a level
 const goalReached = (trigger) => {
   return [
-    ['',                     'Delta', '8bit', goalReachedFlag, '=', 'Value', '', 0],
+    ['',                       'Delta', '8bit', goalReachedFlag, '=', 'Value', '', 0],
     [trigger ? 'Trigger' : '', 'Mem',   '8bit', goalReachedFlag, '=', 'Value', '', 1],
   ];
 };
@@ -312,12 +312,11 @@ set.addAchievement({
   conditions: {
     core: $(
       // Add hits on poo-suke alive
-      ['Measured%', 'Mem', '8bit', pooSukeSlot, '=', 'Value', '', 2, 20 * 60],
+      ['Measured%', 'Mem', '8bit', pooSukeSlot, '=',  'Value', '', 2, 20 * 60],
+      // Reset if poo-suke despawns
+      ['ResetIf',   'Mem', '8bit', pooSukeSlot, '!=', 'Value', '', 2],
 
       ...infiniteLivesCheatProtection(),
-
-      // Reset if poo-suke despawns
-      ['ResetIf', 'Mem', '8bit', pooSukeSlot, '=', 'Value', '', 0],
     ),
     alt1: $(
       ...startGameReset(),
@@ -368,8 +367,8 @@ set.addAchievement({
       ['', 'Delta', '8bit', apples10, '=', 'Value', '', tileIndexStart + 4],
       ['', 'Delta', '8bit', apples1,  '=', 'Value', '', tileIndexStart + 9],
       // Apples are 0 now
-      ['', 'Mem', '8bit', apples10, '=', 'Value', '', tileIndexStart],
-      ['', 'Mem', '8bit', apples1,  '=', 'Value', '', tileIndexStart],
+      ['', 'Mem',   '8bit', apples10, '=', 'Value', '', tileIndexStart],
+      ['', 'Mem',   '8bit', apples1,  '=', 'Value', '', tileIndexStart],
 
       ...infiniteLivesCheatProtection(),
     ),
