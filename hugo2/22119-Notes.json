@@ -1,5 +1,10 @@
 [
   {
+    "User": "adrianusk",
+    "Address": "0x0024c5",
+    "Note": "[64 bytes] Table with possible level orders (8x8 bytes)"
+  },
+  {
     "User": "Bubblegum777",
     "Address": "0x00c1a0",
     "Note": "[8-bit] Score tens of thousands place"
@@ -25,14 +30,24 @@
     "Note": "[8-bit] Score ones place"
   },
   {
-    "User": "Bubblegum777",
-    "Address": "0x00c1a7",
-    "Note": "[8-bit] Win condition flag during the end game. Used for other things on other screens.\r\n0x0=Normally\r\n0x1=Win"
+    "User": "adrianusk",
+    "Address": "0x00c2d3",
+    "Note": "[8-bit] TODO  a per-scene ID, one value for each minigame, the intro card and the menus - could be used for \"actually in gameplay\""
   },
   {
     "User": "Bubblegum777",
     "Address": "0x00c2fa",
     "Note": "[8-bit] Cheat indicator\r\n0=no cheat\r\n1=infinite lives\r\n2=harmless logs in forest"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c3eb",
+    "Note": "[8-bit] Gold bags collected this attempt (TODO check) - the minimum required per difficulty (light\/normal\/heavy) is Forest 17\/25\/30, Snowboard 5\/9\/14, Swimmer 5\/7\/9"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c3ec",
+    "Note": "[8-bit] Total gold bags collected across stages (TODO check)"
   },
   {
     "User": "Bubblegum777",
@@ -55,18 +70,53 @@
     "Note": "[8-bit] Screen id 4\r\n0xe0=menu\r\n0x81=forest\r\n0x19=snowboard\r\n0x21=snowboard shooter\r\n0x92=swimmer\r\n0xff=ice cave\r\n0x7f=ice cave lock\r\n0xff=end game\r\n0x00=end game door \/ win"
   },
   {
-    "User": "Bubblegum777",
+    "User": "adrianusk",
+    "Address": "0x00ddfd",
+    "Note": "[16-bit] Pointer to current level randomization entry"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00deae",
+    "Note": "[8-bit] Music\r\n0x0 = Enabled\r\n0x1 = Disabled"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00deaf",
-    "Note": "[8-bit] Difficulty\r\n0x0=light\r\n0x1=normal\r\n0x2=heavy"
+    "Note": "[8-bit] Difficulty\r\n0x0 = Easy\r\n0x1 = Normal\r\n0x2 = Difficult"
   },
   {
-    "User": "Bubblegum777",
+    "User": "adrianusk",
+    "Address": "0x00debe",
+    "Note": "[8-bit] TODO - set when the player dies or fails the attempt"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00df42",
+    "Note": "[8-bit] Last completed stage (TODO check)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00df4f",
+    "Note": "[8-bit] TODO -  0xff while a stage is being played, and stage+1 when it's finished"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00df51",
+    "Note": "[8-bit] Energy (4, or 3 on heavy; 0xFF = dead) TODO - lives?"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00df52",
-    "Note": "[8-bit] Lives\r\n0x0=0 lives\r\n0x1=1 life\r\n0x2=2 lives etc."
+    "Note": "[8-bit] Lives"
   },
   {
-    "User": "Bubblegum777",
+    "User": "adrianusk",
     "Address": "0x00df84",
-    "Note": "[8-bit] Coin bags collected (stage)"
+    "Note": "[8-bit] Gold bags collected (stage) - TODO duplicate or echo? Use other addresses if possible"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00ffed",
+    "Note": "[8-bit] Stage (will be also 0x00 on Main menu)\r\n0x00 = Forest\r\n0x01 = Snowboard\r\n0x02 = Swimmer\r\n0x03 = Cave\r\n0x04 = Witch's endgame\r\n0x05 = Endgame part 2\r\n0x06 = Ending"
   }
 ]

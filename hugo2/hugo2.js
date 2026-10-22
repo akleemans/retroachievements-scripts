@@ -1,258 +1,218 @@
 import { AchievementSet, define as $ } from '@cruncheevos/core'
 const set = new AchievementSet({ gameId: 22119, title: 'Hugo 2' })
 
+const cheatIndicator = 0xc2fa; // 0 = no cheat, 1 = infinite lives, 2 = logs deal no damage in forest
+const lives = 0xdf52;
+
+const lastCompletedStage = 0xdf42;
+const stage = 0xffed;
+
+const StageEnum = {
+  Forest: 0x00,
+  Snowboard: 0x01,
+  Swimmer: 0x02,
+  IceCave: 0x03,
+  WitchEndgame: 0x04,
+  EndgamePart2: 0x05,
+  Ending: 0x06,
+}
+
+const scene = 0xc2d3;
+const SceneEnum = {
+  StageIntroCardAndTransition: 0x00,
+  ForestAndStageStart: 0x01,
+  Snowboard: 0x02,
+  Swimmer: 0x03,
+  IceCave: 0x0a,
+  IceCaveSymbolDoor: 0x0b,
+  EndgamePart2: 0x0c,
+  WitchEndgame: 0x0d,
+  Ending: 0x0e,
+}
+
+const score10k = 0xc1a0;
+const score1k = 0xc1a1;
+const score100 = 0xc1a2;
+const score10 = 0xc1a3;
+const score1 = 0xc1a4;
+
+const difficulty = 0xdeaf; // 0 = Easy, 1 = Normal, 2 = Difficult
+
+const progression = (levelId) => {
+  return [
+    ['', 'Delta', '8bit', lastCompletedStage, '!=', 'Value', '', levelId],
+    ['', 'Mem',   '8bit', lastCompletedStage, '=',  'Value', '', levelId],
+    ['', 'Mem',   '8bit', stage, '=',  'Value', '', levelId],
+    // No cheats allowed
+    ['', 'Mem',   '8bit', cheatIndicator, '=',  'Value', '', 0],
+  ];
+};
+
+const deathlessProgression = (levelId) => {
+  return [
+    // Checkpoint: title screen -> intro card (new game) or a stage was completed, but not the ice cave itself
+    ['AndNext', 'Delta', '8bit', scene,              '=',  'Value', '',     levelId],
+    ['OrNext',  'Mem',   '8bit', scene,              '=',  'Value', '',     SceneEnum.StageIntroCardAndTransition],
+    ['AndNext', 'Mem',   '8bit', lastCompletedStage, '!=', 'Delta', '8bit', lastCompletedStage],
+    ['',        'Mem',   '8bit', lastCompletedStage, '!=', 'Value', '',     levelId, 1],
+    // Lost a life (skip the new-game write 0xFF -> 3)
+    ['AndNext', 'Delta', '8bit', lives, '!=', 'Value', '',     0xFF],
+    ['ResetIf', 'Mem',   '8bit', lives, '<',  'Delta', '8bit', lives],
+    // Game over (0 -> 0xFF isn't caught above)
+    ['ResetIf', 'Mem',   '8bit', lives, '=',  'Value', '',     0xFF],
+    ...progression(levelId)
+  ];
+};
+
+const scoreReached = (score) => {
+  return [
+    // Score was below "score" in last frame, and is now "score" or higher
+    ['AddSource', 'Delta', '8bit', score10k,  '*', 'Value', '', 10000],
+    ['AddSource', 'Delta', '8bit', score1k,   '*', 'Value', '', 1000],
+    ['AddSource', 'Delta', '8bit', score100,  '*', 'Value', '', 100],
+    ['AddSource', 'Delta', '8bit', score10,   '*', 'Value', '', 10],
+    ['',          'Delta', '8bit', score1,    '<', 'Value', '', score],
+
+    ['AddSource', 'Mem', '8bit', score10k,  '*',  'Value', '', 10000],
+    ['AddSource', 'Mem', '8bit', score1k,   '*',  'Value', '', 1000],
+    ['AddSource', 'Mem', '8bit', score100,  '*',  'Value', '', 100],
+    ['AddSource', 'Mem', '8bit', score10,   '*',  'Value', '', 10],
+    ['',          'Mem', '8bit', score1,    '>=', 'Value', '', score],
+  ];
+};
+
+/* ----------------------------- */
+
 set.addAchievement({
-  id: 571283,
-  badge: '648996',
-  title: `I Think I'll Hang Around!`,
-  description: 'Complete the Forest minigame.',
+  title: 'Now, What Were Those Symbols Again?',
+  description: 'Complete the Ice Cave minigame',
   points: 5,
   type: 'progression',
   conditions: $(
-    ['', 'Delta', '8bit', 0xcb19, '=',  'Value', '', 97],
-    ['', 'Mem',   '8bit', 0xcb19, '!=', 'Value', '', 224],
-    ['', 'Mem',   '8bit', 0xcb19, '!=', 'Value', '', 97],
-    ['', 'Mem',   '8bit', 0xc2fa, '=',  'Value', '', 0],
+    ...progression(StageEnum.IceCave)
+  ),
+})
+
+// TODO
+/*
+TODO hard titles?
+Just Keep Swimming
+Snow Worries / Board to Perfection
+The Forest Doesn't Scare Me
+Cool Under Pressure
+*/
+set.addAchievement({
+  title: 'Cool Under Pressure',
+  description: 'Complete the Ice Cave minigame on Hard',
+  points: 5,
+  conditions: $(
+    // difficulty
+    ['', 'Mem', '8bit', difficulty, '=', 'Value', '', 2],
+    ...progression(StageEnum.IceCave)
   ),
 })
 
 set.addAchievement({
-  id: 571284,
-  badge: '648997',
-  title: `I'm Gonna Be the Coolest Troll in the World, All Thanks to You!`,
-  description: 'Complete the Snowboard minigame.',
-  points: 5,
-  type: 'progression',
-  conditions: $(
-    ['', 'Delta', '8bit', 0xcb19, '=',  'Value', '', 25],
-    ['', 'Mem',   '8bit', 0xcb19, '!=', 'Value', '', 0],
-    ['', 'Mem',   '8bit', 0xcb19, '!=', 'Value', '', 224],
-    ['', 'Mem',   '8bit', 0xcb19, '!=', 'Value', '', 25],
-    ['', 'Mem',   '8bit', 0xcb19, '!=', 'Value', '', 33],
-    ['', 'Mem',   '8bit', 0xc2fa, '=',  'Value', '', 0],
-  ),
-})
-
-set.addAchievement({
-  id: 571285,
-  badge: '648998',
-  title: `Do You Think I'm A Sand Worm?!`,
-  description: 'Complete the Swimmer minigame.',
-  points: 5,
-  type: 'progression',
-  conditions: $(
-    ['', 'Delta', '8bit', 0xcb19, '=',  'Value', '', 145],
-    ['', 'Mem',   '8bit', 0xcb19, '!=', 'Value', '', 224],
-    ['', 'Mem',   '8bit', 0xcb19, '!=', 'Value', '', 145],
-    ['', 'Mem',   '8bit', 0xcb19, '!=', 'Value', '', 120],
-    ['', 'Mem',   '8bit', 0xc2fa, '=',  'Value', '', 0],
-  ),
-})
-
-set.addAchievement({
-  id: 571286,
-  badge: '648999',
-  title: 'Now, What Were the Symbols I Got Again?',
-  description: 'Complete the Ice Cave minigame.',
-  points: 5,
-  type: 'progression',
-  conditions: $(
-    ['',       'Delta', '8bit', 0xcb17, '=',  'Value', '', 192],
-    ['',       'Delta', '8bit', 0xcb19, '=',  'Value', '', 0],
-    ['',       'Delta', '8bit', 0xcb1a, '=',  'Value', '', 127],
-    ['OrNext', 'Mem',   '8bit', 0xcb19, '=',  'Value', '', 97],
-    ['OrNext', 'Mem',   '8bit', 0xcb19, '=',  'Value', '', 25],
-    ['OrNext', 'Mem',   '8bit', 0xcb19, '=',  'Value', '', 145],
-    ['',       'Mem',   '8bit', 0xcb17, '=',  'Value', '', 254],
-    ['',       'Mem',   '8bit', 0xcb1a, '!=', 'Value', '', 127],
-    ['',       'Mem',   '8bit', 0xc2fa, '=',  'Value', '', 0],
-  ),
-})
-
-set.addAchievement({
-  id: 571287,
-  badge: '649000',
-  title: 'Trollerit, Trollerat, Trollerut, This Game Is Kaput!',
-  description: `Complete the Witch's Endgame minigame and beat the game.`,
+  title: 'Walking on Thin Ice',
+  description: 'Complete the Ice Cave minigame without dying',
   points: 10,
+  conditions: $(
+    ...deathlessProgression(StageEnum.IceCave)
+  ),
+});
+
+set.addAchievement({
+  title: `I Think I'll Hang Around!`,
+  description: 'Complete the Forest minigame',
+  points: 5,
+  type: 'progression',
+  conditions: $(
+    ...progression(StageEnum.Forest)
+  ),
+});
+
+set.addAchievement({
+  title: 'Out of the Woods',
+  description: 'Complete the Forest minigame without dying',
+  points: 10,
+  conditions: $(
+    ...deathlessProgression(StageEnum.Forest)
+  ),
+});
+
+set.addAchievement({
+  title: `I'm Gonna Be the Coolest Troll in the World, All Thanks to You!`,
+  description: 'Complete the Snowboard minigame',
+  points: 5,
+  type: 'progression',
+  conditions: $(
+    ...progression(StageEnum.Snowboard)
+  ),
+});
+
+set.addAchievement({
+  title: 'Smooth Riding',
+  description: 'Complete the Snowboard minigame without dying',
+  points: 25,
+  conditions: $(
+    ...deathlessProgression(StageEnum.Snowboard)
+  ),
+})
+
+set.addAchievement({
+  title: `Do You Think I'm A Sand Worm?!`,
+  description: 'Complete the Swimmer minigame',
+  points: 5,
+  type: 'progression',
+  conditions: $(
+    ...progression(StageEnum.Swimmer)
+  ),
+});
+
+set.addAchievement({
+  title: 'Swimming with the Fishes',
+  description: 'Complete the Swimmer minigame without dying',
+  points: 10,
+  conditions: $(
+    ...deathlessProgression(StageEnum.Swimmer)
+  ),
+});
+
+set.addAchievement({
+  title: 'Trollerit, Trollerat, Trollerut, This Game Is Kaput!',
+  description: `Complete the Witch's Endgame minigame and beat the game`,
+  points: 25,
   type: 'win_condition',
   conditions: $(
-    ['', 'Delta', '8bit', 0xc1a7, '=', 'Value', '', 0],
-    ['', 'Mem',   '8bit', 0xcb19, '=', 'Value', '', 255],
-    ['', 'Mem',   '8bit', 0xcb1a, '=', 'Value', '', 0],
-    ['', 'Mem',   '8bit', 0xc1a7, '=', 'Value', '', 1],
-    ['', 'Mem',   '8bit', 0xc2fa, '=', 'Value', '', 0],
+    ...progression(StageEnum.EndgamePart2)
   ),
-})
+});
 
 set.addAchievement({
-  id: 571281,
-  badge: '648994',
   title: `Hugo's Point Cruise`,
-  description: 'Reach 500 points.',
-  points: 1,
+  description: 'Reach 1,000 points',
+  points: 3,
   conditions: $(
-    ['OrNext', 'Delta', '8bit', 0xc1a3, '=',  'Value', '', 5],
-    ['',       'Delta', '8bit', 0xc1a3, '=',  'Value', '', 7],
-    ['',       'Delta', '8bit', 0xc1a2, '=',  'Value', '', 4],
-    ['',       'Mem',   '8bit', 0xc1a2, '>=', 'Value', '', 5],
+    ...scoreReached(1000)
   ),
-})
+});
 
 set.addAchievement({
-  id: 571282,
-  badge: '648995',
   title: `Hugo's Point Adventure`,
-  description: 'Reach 1,000 points.',
+  description: 'Reach 2,000 points',
   points: 5,
   conditions: $(
-    ['', 'Delta', '8bit', 0xc1a1, '=', 'Value', '', 0],
-    ['', 'Delta', '8bit', 0xc1a2, '=', 'Value', '', 9],
-    ['', 'Mem',   '8bit', 0xc1a1, '=', 'Value', '', 1],
+    ...scoreReached(2000)
   ),
-})
+});
 
 set.addAchievement({
-  id: 571280,
-  badge: '648993',
-  title: '5-Up',
-  description: 'Reach 5 lives.',
+  title: `Hugo's Point Extravaganza`,
+  description: 'Reach 3,000 points',
   points: 10,
   conditions: $(
-    ['',         'Delta', '8bit', 0xdf52, '=',  'Value', '', 4],
-    ['Measured', 'Mem',   '8bit', 0xdf52, '>=', 'Value', '', 5],
-    ['',         'Mem',   '8bit', 0xc2fa, '=',  'Value', '', 0],
+    ...scoreReached(3000)
   ),
-})
-
-set.addAchievement({
-  id: 571289,
-  badge: '649002',
-  title: 'Perfectionist of the Forest',
-  description: 'Complete the Forest minigame without dying.',
-  points: 10,
-  conditions: $(
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     255],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     97],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     25],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     97],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     145],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     97],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     0],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     97],
-    ['',        'Value', '',     0,      '=',  'Value', '',     1,      1],
-    ['ResetIf', 'Mem',   '8bit', 0xdf52, '<',  'Delta', '8bit', 0xdf52],
-    ['',        'Delta', '8bit', 0xcb19, '=',  'Value', '',     97],
-    ['',        'Mem',   '8bit', 0xcb19, '!=', 'Value', '',     224],
-    ['',        'Mem',   '8bit', 0xcb19, '!=', 'Value', '',     97],
-    ['',        'Mem',   '8bit', 0xc2fa, '=',  'Value', '',     0],
-  ),
-})
-
-set.addAchievement({
-  id: 571290,
-  badge: '649003',
-  title: 'Perfectionist of the Mountain',
-  description: 'Complete the Snowboard minigame without dying.',
-  points: 25,
-  conditions: $(
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     255],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     0],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     97],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     0],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     145],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     0],
-    ['AndNext', 'Delta', '8bit', 0xcb1a, '=',  'Value', '',     127],
-    ['AddHits', 'Mem',   '8bit', 0xcb1a, '=',  'Value', '',     25],
-    ['',        'Value', '',     0,      '=',  'Value', '',     1,      1],
-    ['ResetIf', 'Mem',   '8bit', 0xdf52, '<',  'Delta', '8bit', 0xdf52],
-    ['',        'Delta', '8bit', 0xcb19, '=',  'Value', '',     25],
-    ['',        'Mem',   '8bit', 0xcb19, '!=', 'Value', '',     0],
-    ['',        'Mem',   '8bit', 0xcb19, '!=', 'Value', '',     224],
-    ['',        'Mem',   '8bit', 0xcb19, '!=', 'Value', '',     25],
-    ['',        'Mem',   '8bit', 0xcb19, '!=', 'Value', '',     33],
-    ['',        'Mem',   '8bit', 0xc2fa, '=',  'Value', '',     0],
-  ),
-})
-
-set.addAchievement({
-  id: 571291,
-  badge: '649004',
-  title: 'Perfectionist of the Water',
-  description: 'Complete the Swimmer minigame without dying.',
-  points: 10,
-  conditions: $(
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     255],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     120],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     97],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     120],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     25],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     120],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     0],
-    ['AddHits', 'Mem',   '8bit', 0xcb19, '=',  'Value', '',     120],
-    ['',        'Value', '',     0,      '=',  'Value', '',     1,      1],
-    ['ResetIf', 'Mem',   '8bit', 0xdf52, '<',  'Delta', '8bit', 0xdf52],
-    ['',        'Delta', '8bit', 0xcb19, '=',  'Value', '',     145],
-    ['',        'Mem',   '8bit', 0xcb19, '!=', 'Value', '',     224],
-    ['',        'Mem',   '8bit', 0xcb19, '!=', 'Value', '',     145],
-    ['',        'Mem',   '8bit', 0xcb19, '!=', 'Value', '',     120],
-    ['',        'Mem',   '8bit', 0xc2fa, '=',  'Value', '',     0],
-  ),
-})
-
-set.addAchievement({
-  id: 571292,
-  badge: '649005',
-  title: 'Perfectionist of the Ice Cave',
-  description: 'Complete the Ice Cave minigame without dying.',
-  points: 10,
-  conditions: $(
-    ['AndNext', 'Delta', '8bit', 0xcb17, '=',  'Value', '',     255],
-    ['AndNext', 'Delta', '8bit', 0xcb18, '=',  'Value', '',     15],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     255],
-    ['AddHits', 'Mem',   '8bit', 0xcb18, '=',  'Value', '',     255],
-    ['AndNext', 'Delta', '8bit', 0xcb17, '=',  'Value', '',     75],
-    ['AndNext', 'Delta', '8bit', 0xcb18, '=',  'Value', '',     76],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     97],
-    ['AddHits', 'Mem',   '8bit', 0xcb18, '=',  'Value', '',     255],
-    ['AndNext', 'Delta', '8bit', 0xcb17, '=',  'Value', '',     25],
-    ['AndNext', 'Delta', '8bit', 0xcb18, '=',  'Value', '',     25],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     25],
-    ['AddHits', 'Mem',   '8bit', 0xcb18, '=',  'Value', '',     255],
-    ['AndNext', 'Delta', '8bit', 0xcb17, '=',  'Value', '',     143],
-    ['AndNext', 'Delta', '8bit', 0xcb18, '=',  'Value', '',     144],
-    ['AndNext', 'Delta', '8bit', 0xcb19, '=',  'Value', '',     145],
-    ['AddHits', 'Mem',   '8bit', 0xcb18, '=',  'Value', '',     255],
-    ['',        'Value', '',     0,      '=',  'Value', '',     1,      1],
-    ['ResetIf', 'Mem',   '8bit', 0xdf52, '<',  'Delta', '8bit', 0xdf52],
-    ['',        'Delta', '8bit', 0xcb17, '=',  'Value', '',     192],
-    ['',        'Delta', '8bit', 0xcb19, '=',  'Value', '',     0],
-    ['',        'Delta', '8bit', 0xcb1a, '=',  'Value', '',     127],
-    ['OrNext',  'Mem',   '8bit', 0xcb19, '=',  'Value', '',     97],
-    ['OrNext',  'Mem',   '8bit', 0xcb19, '=',  'Value', '',     25],
-    ['OrNext',  'Mem',   '8bit', 0xcb19, '=',  'Value', '',     145],
-    ['',        'Mem',   '8bit', 0xcb17, '=',  'Value', '',     254],
-    ['',        'Mem',   '8bit', 0xcb1a, '!=', 'Value', '',     127],
-    ['',        'Mem',   '8bit', 0xc2fa, '=',  'Value', '',     0],
-  ),
-})
-
-set.addAchievement({
-  id: 571288,
-  badge: '649001',
-  title: `Hugo's Point Extravanagza`,
-  description: 'Beat the game with 3,000 points or more',
-  points: 25,
-  conditions: $(
-    ['',          'Delta', '8bit', 0xc1a7, '=',  'Value', '', 0],
-    ['',          'Mem',   '8bit', 0xcb19, '=',  'Value', '', 255],
-    ['',          'Mem',   '8bit', 0xcb1a, '=',  'Value', '', 0],
-    ['',          'Mem',   '8bit', 0xc1a7, '=',  'Value', '', 1],
-    ['AddSource', 'Mem',   '8bit', 0xdf52, '*',  'Value', '', 100],
-    ['AddSource', 'Mem',   '8bit', 0xc1a2, '*',  'Value', '', 100],
-    ['AddSource', 'Mem',   '8bit', 0xc1a1, '*',  'Value', '', 1000],
-    ['',          'Value', '',     0,      '>=', 'Value', '', 3000],
-  ),
-})
+});
 
 export default set;
