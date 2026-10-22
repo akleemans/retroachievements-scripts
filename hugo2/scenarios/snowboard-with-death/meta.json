@@ -4,7 +4,7 @@
   "game": "Hugo 2",
   "console": "GB",
   "firstFrame": 33472,
-  "markers": {},
+  "markers": { "scenario-start": 33500, "stage-finished": 41913 },
   "addresses": [
     { "address": "0x24c5", "size": "u8", "label": "[64 bytes] Table with possible level orders (8x8 bytes)" },
     { "address": "0xc1a0", "size": "u8", "label": "Score tens of thousands place" },
