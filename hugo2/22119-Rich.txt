@@ -1,47 +1,26 @@
-Lookup:Stage
-//Startup = 00 + 00 + 00
-0x0=Playing Hugo 2
-//Intro = ff + ff + 0f
-0x20d=Hugo is being kidnapped by Scylla
-//Menu = 40 + e0 + e0
-0x200=Hugo is preparing for an adventure in the main menu
-//Forest = 4b + 61 + 81
-0x12d=Hugo is traversing through the forest
-//Snowboard = 19 + 19 + 19
-0x4b=Hugo is traversing through the snowy mountain on his snowboard
-//Snowboard snowman sections = 21 + 21 + 21
-0x63=Hugo is currently shooting a snowman with snowballs
-//Swimmer = 8f + 91 + 92
-0x1b2=Hugo is traversing through the water
-//Ice Cave = ff + ff + ff 
-0x2fd=Hugo is traversing through the icy cave
-//Ice cave end = c0 + 00 + 7f 
-0x13f=Hugo is trying to remember the three symbols he picked up in the icy cave
-//Endgame = fe + ff + ff 
-0x2fc=Hugo is avoiding electrified tiles in a fight with Scylla
-//Key, door, ending text, and win image = ff + ff + 00 
-0x1fe=Hugo is currently escaping
+Lookup:Scene
+0x01=Running through the forest
+0x02=Snowboarding down the mountain
+0x03=Swimming through the river
+0x0a=Hopping across the ice cave
+0x0b=Remembering the symbols at the ice cave door
+0x0c=Escaping from Scylla
+0x0d=Grabbing the key in Scylla's lair
+0x0e=Enjoying a happy ending
+*=Playing Hugo 2
 
-Lookup:Lives
-0xff=
-0=0
-1=1
-2=2
-3=3
-4=4
-5=5
-6=6
-7=7
-8=8
-9=9
-10=10
+Lookup:Difficulty
+0x0=Easy
+0x1=Normal
+0x2=Hard
 
 Lookup:Cheat
-1=Hugo is being a dirty cheater by having infinite lives!
-2=Hugo is being a dirty cheater by phasing through logs in the woods!
+0x0=
+0x1= • Code used: Infinite Lives
+0x2= • Code used: Logs Deal No Damage
 
 Display:
-?0xH0cb19=0_0xH0cb1a=0?Playing Hugo 2
-?0xH0cb19=224_0xH0cb1a=224?Hugo is preparing for an adventure in the main menu
-?0xH0df52>-1?@Stage(0xH0cb17_0xH0cb19_0xH0cb1a) 🧡 = @Lives(0xH0df52) 💰 = @Score(0xH0c1a4_0xH0c1a3*10_0xH0c1a2*100_0xH0c1a1*1000_0xH0c1a0*10000) @Cheat(0xH0c2fa)
+?0xH00c2d3=4?In the Menu
+?0xH00c2d3=5?In the Menu
+?0xH00c2d3!=0?@Scene(0xH00c2d3) on @Difficulty(0xH00deaf) • @Number(0xH00df52) lives • @Score(0xH00c1a4_0xH00c1a3*10_0xH00c1a2*100_0xH00c1a1*1000_0xH00c1a0*10000) points@Cheat(0xH00c2fa)
 Playing Hugo 2
