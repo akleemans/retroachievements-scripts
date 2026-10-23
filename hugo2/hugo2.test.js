@@ -223,6 +223,27 @@ describe('Snowboard hard', () => {
   });
 });
 
+describe('Snowman single shot', () => {
+  const cheevo = achievement('Cold Shot');
+
+  test('pops when snowman is defeated with the first shot', () => {
+    const s = scenario('snowboard-defeat-snowman');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('snowman-hit'));
+  });
+
+  test('does not pop if more than one shot was needed', () => {
+    const s = scenario('snowboard-defeat-snowman-multiple-shots');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
 describe('Progression: Swimmer', () => {
   const cheevo = achievement('Do You Think I\'m A Sand Worm?!');
 
