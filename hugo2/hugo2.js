@@ -37,15 +37,24 @@ const score10 = 0xc1a3;
 const score1 = 0xc1a4;
 
 const difficulty = 0xdeaf; // 0 = Easy, 1 = Normal, 2 = Difficult
+const heroVerticalState = 0xffce; // 0x00 = on ground, 0x10 = rising, 0x20 = falling
 
-const progression = (levelId) => {
-  return [
+
+const progression = (levelId, hard) => {
+  const arr = [
     ['', 'Delta', '8bit', lastCompletedStage, '!=', 'Value', '', levelId],
     ['', 'Mem',   '8bit', lastCompletedStage, '=',  'Value', '', levelId],
     ['', 'Mem',   '8bit', stage, '=',  'Value', '', levelId],
     // No cheats allowed
     ['', 'Mem',   '8bit', cheatIndicator, '=',  'Value', '', 0],
   ];
+  if (hard) {
+    arr.push(
+      // Difficulty = hard
+      ['', 'Mem', '8bit', difficulty, '=', 'Value', '', 2],
+    )
+  }
+  return arr;
 };
 
 const deathlessProgression = (levelId) => {
@@ -93,22 +102,12 @@ set.addAchievement({
   ),
 })
 
-// TODO
-/*
-TODO hard titles?
-Just Keep Swimming
-Snow Worries / Board to Perfection
-The Forest Doesn't Scare Me
-Cool Under Pressure
-*/
 set.addAchievement({
   title: 'Cool Under Pressure',
   description: 'Complete the Ice Cave minigame on Hard',
   points: 5,
   conditions: $(
-    // difficulty
-    ['', 'Mem', '8bit', difficulty, '=', 'Value', '', 2],
-    ...progression(StageEnum.IceCave)
+    ...progression(StageEnum.IceCave, true)
   ),
 })
 
@@ -120,6 +119,36 @@ set.addAchievement({
     ...deathlessProgression(StageEnum.IceCave)
   ),
 });
+
+
+const IceCaveJumpLimit = 32;
+
+set.addAchievement({
+  title: 'Jump Scary',
+  description: 'Complete the Ice Cave minigame by jumping no more than 32 times',
+  points: 5,
+  conditions: $(
+    // Checkpoint: entering the Ice Cave from the intro card
+    ['AndNext', 'Delta', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
+    ['AndNext', 'Mem',   '8bit', scene, '=', 'Value', '', SceneEnum.ForestAndStageStart],
+    ['',        'Mem',   '8bit', stage, '=', 'Value', '', StageEnum.IceCave, 1],
+
+    // Count jumps (ground -> rising) in the pillar section; reset on jump X+1
+    ['AndNext', 'Mem',   '8bit', scene,             '=', 'Value', '', SceneEnum.IceCave],
+    ['AndNext', 'Delta', '8bit', heroVerticalState, '=', 'Value', '', 0x00],
+    ['ResetIf', 'Mem',   '8bit', heroVerticalState, '=', 'Value', '', 0x10, IceCaveJumpLimit + 1],
+
+    // Game over
+    ['ResetIf', 'Mem',   '8bit', lives, '=', 'Value', '', 0xFF],
+
+    // Still in the Ice Cave, no cheats -> challenge icon is shown while these hold
+    ['', 'Mem', '8bit', stage,          '=', 'Value', '', StageEnum.IceCave],
+    ['', 'Mem', '8bit', cheatIndicator, '=', 'Value', '', 0],
+    // Completion
+    ['Trigger', 'Delta', '8bit', lastCompletedStage, '!=', 'Value', '', StageEnum.IceCave],
+    ['Trigger', 'Mem',   '8bit', lastCompletedStage, '=',  'Value', '', StageEnum.IceCave],
+  ),
+})
 
 set.addAchievement({
   title: `I Think I'll Hang Around!`,
@@ -141,6 +170,16 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  title: 'The Forest Doesn\'t Scare Me',
+  description: 'Complete the Forest minigame on Hard',
+  points: 5,
+  conditions: $(
+    ...progression(StageEnum.Forest, true)
+  ),
+})
+
+
+set.addAchievement({
   title: `I'm Gonna Be the Coolest Troll in the World, All Thanks to You!`,
   description: 'Complete the Snowboard minigame',
   points: 5,
@@ -156,6 +195,15 @@ set.addAchievement({
   points: 25,
   conditions: $(
     ...deathlessProgression(StageEnum.Snowboard)
+  ),
+})
+
+set.addAchievement({
+  title: 'Board to Perfection',
+  description: 'Complete the Snowboard minigame on Hard',
+  points: 5,
+  conditions: $(
+    ...progression(StageEnum.Snowboard, true)
   ),
 })
 
@@ -177,6 +225,15 @@ set.addAchievement({
     ...deathlessProgression(StageEnum.Swimmer)
   ),
 });
+
+set.addAchievement({
+  title: 'Just Keep Swimming',
+  description: 'Complete the Swimmer minigame on Hard',
+  points: 5,
+  conditions: $(
+    ...progression(StageEnum.Swimmer, true)
+  ),
+})
 
 set.addAchievement({
   title: 'Trollerit, Trollerat, Trollerut, This Game Is Kaput!',

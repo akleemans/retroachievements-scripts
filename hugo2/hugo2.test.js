@@ -27,15 +27,6 @@ describe('Progression: Ice cave', () => {
   //   expect(result.triggeredFrame).toBe(s.marker('level-increase'));
   // });
 
-  // TODO
-  // test('does not pop if cheated', () => {
-  //   const s = scenario('level02-finish');
-  //   const result = runAchievement(cheevo, s);
-  //
-  //   expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-  //   expect(result.triggered).toBe(false);
-  // });
-
   test('does not pop on different level', () => {
     const s = scenario('swimmer-with-death');
     const result = runAchievement(cheevo, s);
@@ -50,7 +41,7 @@ describe('Ice cave deathless', () => {
   const cheevo = achievement('Walking on Thin Ice');
 
   test('pops when ice cave level is finished', () => {
-    const s = scenario('ice-cave-no-death');
+    const s = scenario('ice-cave-deathless');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
@@ -63,6 +54,52 @@ describe('Ice cave deathless', () => {
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
+describe('Ice cave hard', () => {
+  const cheevo = achievement('Cool Under Pressure');
+
+  test('pops when ice cave level is finished', () => {
+    const s = scenario('ice-cave-hard');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
+  });
+
+  test('does not pop on easy', () => {
+    const s = scenario('ice-cave-deathless');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
+describe('Ice cave jumps', () => {
+  const cheevo = achievement('Jump Scary');
+
+  test('pops when ice cave level is finished with 31 jumps', () => {
+    const s = scenario('ice-cave-jumps3');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('first-jump'))).toBe('primed');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
+  });
+
+  test('does not pop if jumped more than 32 times', () => {
+    const s = scenario('ice-cave-jumps');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    // Challenge indicator is shown from the level start until the jump limit is exceeded
+    expect(result.stateAt(s.marker('first-jump'))).toBe('primed');
+    expect(result.stateAt(s.marker('jump-33'))).toBe('active');
     expect(result.triggered).toBe(false);
   });
 });
@@ -104,6 +141,27 @@ describe('Forest deathless', () => {
 
   test('does not pop if died', () => {
     const s = scenario('forest-with-death');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
+describe('Forest hard', () => {
+  const cheevo = achievement('The Forest Doesn\'t Scare Me');
+
+  test('pops when Forest level is finished', () => {
+    const s = scenario('forest-hard');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
+  });
+
+  test('does not pop on easy', () => {
+    const s = scenario('forest-deathless');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
@@ -154,6 +212,27 @@ describe('Snowboard deathless', () => {
   });
 });
 
+describe('Snowboard hard', () => {
+  const cheevo = achievement('Board to Perfection');
+
+  test('pops when Snowboard level is finished on hard', () => {
+    const s = scenario('snowboard-hard');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
+  });
+
+  test('does not pop on easy', () => {
+    const s = scenario('snowboard-with-death');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
 describe('Progression: Swimmer', () => {
   const cheevo = achievement('Do You Think I\'m A Sand Worm?!');
 
@@ -174,6 +253,15 @@ describe('Progression: Swimmer', () => {
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
   });
+
+  test('does not pop if cheated', () => {
+    const s = scenario('cheated-swimmer');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('stage-finished'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
 });
 
 describe('Swimmer deathless', () => {
@@ -190,6 +278,27 @@ describe('Swimmer deathless', () => {
 
   test('does not pop if died', () => {
     const s = scenario('swimmer-with-death');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
+describe('Swimmer hard', () => {
+  const cheevo = achievement('Just Keep Swimming');
+
+  test('pops when Swimmer level is finished on hard', () => {
+    const s = scenario('swimmer-hard');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
+  });
+
+  test('does not pop on easy', () => {
+    const s = scenario('swimmer-deathless');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');

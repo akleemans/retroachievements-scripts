@@ -1,5 +1,5 @@
 {
-  "name": "ice-cave-no-death",
+  "name": "ice-cave-deathless",
   "description": "",
   "game": "Hugo 2",
   "console": "GB",
@@ -43,7 +43,7 @@
     {
       "address": "0xc2d3",
       "size": "u8",
-      "label": "TODO  a per-scene ID, one value for each minigame, the intro card and the menus - could be used for \"actually in gameplay\""
+      "label": "Per-scene ID, one value for each minigame, the intro card and the menus (used for \"actually in gameplay\")"
     },
     {
       "address": "0xc2fa",
@@ -108,7 +108,7 @@
     {
       "address": "0xdf4f",
       "size": "u8",
-      "label": "TODO -  0xff while a stage is being played, and stage+1 when it's finished"
+      "label": "TODO -  0xff while a stage is being played, and 0 when it's finished"
     },
     {
       "address": "0xdf51",

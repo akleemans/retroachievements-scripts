@@ -32,7 +32,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00c2d3",
-    "Note": "[8-bit] TODO  a per-scene ID, one value for each minigame, the intro card and the menus - could be used for \"actually in gameplay\""
+    "Note": "[8-bit] Per-scene ID, one value for each minigame, the intro card and the menus (used for \"actually in gameplay\")\r\n0x00 = Stage intro card and transitions\r\n0x01 = Forest, and briefly at every stage start\r\n0x02 = Snowboard \r\n0x03 = Swimmer\r\n0x04 \/ 0x05 = Title \/ menu\r\n0x0a = Ice cave\r\n0x0b = Ice cave symbol door\r\n0x0c = Endgame part 2\r\n0x0d = Witch endgame\r\n0x0e = Ending"
   },
   {
     "User": "Bubblegum777",
@@ -71,6 +71,21 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x00dcb1",
+    "Note": "[8-bit] Swimmer segment count"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dcb2",
+    "Note": "[8-bit] Swimmer step count within segment"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dcb8",
+    "Note": "[8-bit] Snowman fight hits"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00ddfd",
     "Note": "[16-bit] Pointer to current level randomization entry"
   },
@@ -97,7 +112,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00df4f",
-    "Note": "[8-bit] TODO -  0xff while a stage is being played, and stage+1 when it's finished"
+    "Note": "[8-bit] TODO -  0xff while a stage is being played, and 0 when it's finished"
   },
   {
     "User": "adrianusk",
@@ -111,8 +126,28 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x00df7d",
+    "Note": "[8-bit] Snowman shot fired"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00df84",
     "Note": "[8-bit] Gold bags collected (stage) - TODO duplicate or echo? Use other addresses if possible"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00ffce",
+    "Note": "[8-bit] Vertical state in Ice Cave"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00ffcf",
+    "Note": "[8-bit] Vertical speed (jumping in Ice cave)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00ffd5",
+    "Note": "[8-bit] Swimmer Air meter (surface = 0x58)"
   },
   {
     "User": "adrianusk",
