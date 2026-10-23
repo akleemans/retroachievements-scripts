@@ -6,7 +6,9 @@
   "firstFrame": 1730,
   "markers": {
     "scenario-start": 1776,
-    "stage-finished": 9183
+    "stage-finished": 9183,
+    "first-surfacing": 2708,
+    "refill-7": 5248
   },
   "addresses": [
     {

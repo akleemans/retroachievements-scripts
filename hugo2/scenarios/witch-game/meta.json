@@ -6,7 +6,8 @@
   "firstFrame": 48800,
   "markers": {
     "scenario-start": 48834,
-    "game-finished": 51659
+    "game-finished": 51659,
+    "score-tally-finished": 52034
   },
   "addresses": [
     {

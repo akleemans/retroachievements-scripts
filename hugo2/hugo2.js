@@ -94,7 +94,7 @@ const scoreReached = (score) => {
 
 set.addAchievement({
   title: 'Now, What Were Those Symbols Again?',
-  description: 'Complete the Ice Cave minigame',
+  description: 'Beat the Ice Cave minigame',
   points: 5,
   type: 'progression',
   conditions: $(
@@ -104,7 +104,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Cool Under Pressure',
-  description: 'Complete the Ice Cave minigame on Hard',
+  description: 'Beat the Ice Cave minigame on Hard',
   points: 5,
   conditions: $(
     ...progression(StageEnum.IceCave, true)
@@ -113,7 +113,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Walking on Thin Ice',
-  description: 'Complete the Ice Cave minigame without dying',
+  description: 'Beat the Ice Cave minigame without dying',
   points: 10,
   conditions: $(
     ...deathlessProgression(StageEnum.IceCave)
@@ -125,7 +125,7 @@ const IceCaveJumpLimit = 32;
 
 set.addAchievement({
   title: 'Jump Scary',
-  description: 'Complete the Ice Cave minigame by jumping no more than 32 times',
+  description: 'Beat the Ice Cave minigame by jumping no more than 32 times',
   points: 5,
   conditions: $(
     // Checkpoint: entering the Ice Cave from the intro card
@@ -152,7 +152,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: `I Think I'll Hang Around!`,
-  description: 'Complete the Forest minigame',
+  description: 'Beat the Forest minigame',
   points: 5,
   type: 'progression',
   conditions: $(
@@ -162,7 +162,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Out of the Woods',
-  description: 'Complete the Forest minigame without dying',
+  description: 'Beat the Forest minigame without dying',
   points: 10,
   conditions: $(
     ...deathlessProgression(StageEnum.Forest)
@@ -171,7 +171,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'The Forest Doesn\'t Scare Me',
-  description: 'Complete the Forest minigame on Hard',
+  description: 'Beat the Forest minigame on Hard',
   points: 5,
   conditions: $(
     ...progression(StageEnum.Forest, true)
@@ -181,7 +181,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: `I'm Gonna Be the Coolest Troll in the World, All Thanks to You!`,
-  description: 'Complete the Snowboard minigame',
+  description: 'Beat the Snowboard minigame',
   points: 5,
   type: 'progression',
   conditions: $(
@@ -191,7 +191,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Smooth Riding',
-  description: 'Complete the Snowboard minigame without dying',
+  description: 'Beat the Snowboard minigame without dying',
   points: 25,
   conditions: $(
     ...deathlessProgression(StageEnum.Snowboard)
@@ -200,7 +200,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Board to Perfection',
-  description: 'Complete the Snowboard minigame on Hard',
+  description: 'Beat the Snowboard minigame on Hard',
   points: 5,
   conditions: $(
     ...progression(StageEnum.Snowboard, true)
@@ -209,7 +209,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: `Do You Think I'm A Sand Worm?!`,
-  description: 'Complete the Swimmer minigame',
+  description: 'Beat the Swimmer minigame',
   points: 5,
   type: 'progression',
   conditions: $(
@@ -219,7 +219,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Swimming with the Fishes',
-  description: 'Complete the Swimmer minigame without dying',
+  description: 'Beat the Swimmer minigame without dying',
   points: 10,
   conditions: $(
     ...deathlessProgression(StageEnum.Swimmer)
@@ -228,16 +228,48 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Just Keep Swimming',
-  description: 'Complete the Swimmer minigame on Hard',
+  description: 'Beat the Swimmer minigame on Hard',
   points: 5,
   conditions: $(
     ...progression(StageEnum.Swimmer, true)
+  ),
+});
+
+const swimmerHeroY = 0xffd5; // 0x58 = at the surface
+
+const SwimmerRefillLimit = 6;
+
+set.addAchievement({
+  title: 'Hold Your Breath',
+  description: `Beat the Swimmer minigame while refilling your air no more than ${SwimmerRefillLimit} times - deaths count as refill`,
+  points: 5,
+  conditions: $(
+    // Checkpoint: entering the Swimmer from the intro card
+    ['AndNext', 'Delta', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
+    ['AndNext', 'Mem',   '8bit', scene, '=', 'Value', '', SceneEnum.Swimmer],
+    ['',        'Mem',   '8bit', stage, '=', 'Value', '', StageEnum.Swimmer, 1],
+
+    // Count refills: surfacing or losing a life (respawn refills the meter); reset on refill X+1
+    ['AndNext', 'Delta', '8bit', swimmerHeroY, '!=', 'Value', '',     0x58],
+    ['OrNext',  'Mem',   '8bit', swimmerHeroY, '=',  'Value', '',     0x58],
+    ['AndNext', 'Mem',   '8bit', lives,        '<',  'Delta', '8bit', lives],
+    ['ResetIf', 'Mem',   '8bit', scene,        '=',  'Value', '',     SceneEnum.Swimmer, SwimmerRefillLimit + 1],
+
+    // Game over
+    ['ResetIf', 'Mem',   '8bit', lives, '=', 'Value', '', 0xFF],
+
+    // Still in the Swimmer, no cheats -> challenge icon is shown while these hold
+    ['', 'Mem', '8bit', stage,          '=', 'Value', '', StageEnum.Swimmer],
+    ['', 'Mem', '8bit', cheatIndicator, '=', 'Value', '', 0],
+    // Completion
+    ['Trigger', 'Delta', '8bit', lastCompletedStage, '!=', 'Value', '', StageEnum.Swimmer],
+    ['Trigger', 'Mem',   '8bit', lastCompletedStage, '=',  'Value', '', StageEnum.Swimmer],
   ),
 })
 
 set.addAchievement({
   title: 'Trollerit, Trollerat, Trollerut, This Game Is Kaput!',
-  description: `Complete the Witch's Endgame minigame and beat the game`,
+  description: `Beat the Witch's Endgame minigame and beat the game`,
   points: 25,
   type: 'win_condition',
   conditions: $(
@@ -270,6 +302,49 @@ set.addAchievement({
   conditions: $(
     ...scoreReached(3000)
   ),
+});
+
+/* ----------------------------- */
+
+set.addLeaderboard({
+  title: 'High Score',
+  description: 'Score the most points',
+  lowerIsBetter: false,
+  type: 'SCORE',
+  conditions: {
+    start: {
+      core: $(
+        // No cheats allowed
+        ['', 'Mem', '8bit', cheatIndicator, '=', 'Value', '', 0],
+      ),
+      // Game over (lives 0 -> 0xFF)
+      alt1: $(
+        ['', 'Delta', '8bit', lives, '=', 'Value', '', 0],
+        ['', 'Mem',   '8bit', lives, '=', 'Value', '', 0xFF],
+      ),
+      // Game beaten: ending converted the last remaining life into points
+      alt2: $(
+        ['', 'Mem',   '8bit', stage, '=', 'Value', '', StageEnum.Ending],
+        ['', 'Delta', '8bit', lives, '=', 'Value', '', 1],
+        ['', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
+      ),
+      // Game beaten with 0 lives left: the ending has no lives to convert
+      alt3: $(
+        ['', 'Delta', '8bit', stage, '=', 'Value', '', StageEnum.EndgamePart2],
+        ['', 'Mem',   '8bit', stage, '=', 'Value', '', StageEnum.Ending],
+        ['', 'Mem',   '8bit', lives, '=', 'Value', '', 0],
+      ),
+    },
+    cancel: '0=1',
+    submit: '0=0',
+    value: $(
+      ['AddSource', 'Mem', '8bit', score10k, '*', 'Value', '', 10000],
+      ['AddSource', 'Mem', '8bit', score1k,  '*', 'Value', '', 1000],
+      ['AddSource', 'Mem', '8bit', score100, '*', 'Value', '', 100],
+      ['AddSource', 'Mem', '8bit', score10,  '*', 'Value', '', 10],
+      ['Measured',  'Mem', '8bit', score1],
+    ),
+  },
 });
 
 export default set;

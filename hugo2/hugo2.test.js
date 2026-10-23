@@ -17,16 +17,6 @@ describe('Progression: Ice cave', () => {
     expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
   });
 
-  // TODO
-  // test('pops on patched ROM', () => {
-  //   const s = scenario('EUR-ROM-level01-finish');
-  //   const result = runAchievement(cheevo, s);
-  //
-  //   expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-  //   expect(result.triggered).toBe(true);
-  //   expect(result.triggeredFrame).toBe(s.marker('level-increase'));
-  // });
-
   test('does not pop on different level', () => {
     const s = scenario('swimmer-with-death');
     const result = runAchievement(cheevo, s);
@@ -254,6 +244,15 @@ describe('Progression: Swimmer', () => {
     expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
   });
 
+  test('pops on patched ROM', () => {
+    const s = scenario('patched-swimmer');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
+  });
+
   test('does not pop if cheated', () => {
     const s = scenario('cheated-swimmer');
     const result = runAchievement(cheevo, s);
@@ -306,6 +305,31 @@ describe('Swimmer hard', () => {
   });
 });
 
+describe('Swimmer refills', () => {
+  const cheevo = achievement('Hold Your Breath');
+
+  test('pops when Swimmer level is finished with 5 surfacings and 1 death', () => {
+    const s = scenario('swimmer-surface1');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('first-surfacing'))).toBe('primed');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
+  });
+
+  test('does not pop if refilled more than 6 times', () => {
+    const s = scenario('patched-swimmer');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    // Challenge indicator is shown from the level start until the refill limit is exceeded
+    expect(result.stateAt(s.marker('first-surfacing'))).toBe('primed');
+    expect(result.stateAt(s.marker('refill-7'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
 describe('Progression: Witch Endgame', () => {
   const cheevo = achievement('Trollerit, Trollerat, Trollerut, This Game Is Kaput!');
 
@@ -345,15 +369,64 @@ describe('2000 points', () => {
   });
 });
 
-// describe('3000 points', () => {
-//   const cheevo = achievement(`Hugo's Point Extravaganza`);
-//
-//   test('pops 3000 points reached', () => {
-//     const s = scenario('TODO');
-//     const result = runAchievement(cheevo, s);
-//
-//     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-//     expect(result.triggered).toBe(true);
-//     expect(result.triggeredFrame).toBe(s.marker('3000-points-reached'));
-//   });
-// });
+describe('3000 points', () => {
+  const cheevo = achievement(`Hugo's Point Extravaganza`);
+
+  test('pops 3000 points reached', () => {
+    const s = scenario('score-3000-points');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('score-3000-points'));
+  });
+});
+
+/* ========= LEADERBOARDS ========= */
+
+const leaderboard = (title) => Object.values(set.leaderboards).find((l) => l.title === title);
+
+// Use LB start/cancel/submit as conditions like achievement
+const lbTrigger = (lb, part) => ({conditions: lb.conditions[part]});
+
+// Make value expression parseable as a trigger while measuredAt() still reports the value
+const lbValue = (lb) => {
+  const groups = lb.conditions.value;
+  if (groups.length > 1) throw new Error(`leaderboard "${lb.title}": max-of ($) values are not supported`);
+  const conditions = groups[0].map((condition) => `${condition}`);
+  const measured = conditions.pop();
+  conditions.push(/[<>=!]/.test(measured) ? `${measured}.4294967295.` : `${measured}>=4294967295`);
+  return conditions.join('_');
+};
+
+describe('Leaderboard: High Score', () => {
+  const lb = leaderboard('High Score');
+
+  test('starts/submits when the ending converted all lives into points', () => {
+    const s = scenario('witch-game');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.triggeredFrame).toBe(s.marker('score-tally-finished'));
+  });
+
+  test('submits the score', () => {
+    const s = scenario('witch-game');
+    const result = runAchievement(lbValue(lb), s);
+
+    expect(result.measuredAt(s.marker('score-tally-finished'))).toBe(2450);
+  });
+
+  test('starts/submits when the ending is reached without remaining lives', () => {
+    const s = scenario('finish-without-remaining-life');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.triggeredFrame).toBe(s.marker('ending-reached'));
+  });
+
+  test('submits the score without remaining lives', () => {
+    const s = scenario('finish-without-remaining-life');
+    const result = runAchievement(lbValue(lb), s);
+
+    expect(result.measuredAt(s.marker('ending-reached'))).toBe(2150);
+  });
+});
