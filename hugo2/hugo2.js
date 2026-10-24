@@ -158,6 +158,9 @@ set.addAchievement({
   conditions: $(
     ...stageEntered(StageEnum.IceCave),
 
+    // Failed attempt (wrong symbols): the retry starts over from the intro card
+    ['ResetIf', 'Mem', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
+
     // Count jumps (ground -> rising) in the pillar section; reset on jump X+1
     ['AndNext', 'Mem',   '8bit', scene,             '=', 'Value', '', SceneEnum.IceCave],
     ['AndNext', 'Delta', '8bit', hugoVerticalState, '=', 'Value', '', 0x00],
@@ -221,6 +224,9 @@ set.addAchievement({
   type: 'missable',
   conditions: $(
     ...stageEntered(StageEnum.Forest),
+
+    // Failed attempt (not enough gold bags): the retry starts over from the intro card
+    ['ResetIf', 'Mem', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
 
     // Count jumps (JumpPer 1 -> 0); reset on jump X+1
     ['AndNext', 'Mem',   '8bit', scene,     '=', 'Value', '', SceneEnum.ForestAndStageStart],
@@ -358,6 +364,9 @@ set.addAchievement({
   type: 'missable',
   conditions: $(
     ...stageEntered(StageEnum.Swimmer),
+
+    // Failed attempt (not enough gold bags): the retry starts over from the intro card
+    ['ResetIf', 'Mem', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
 
     // Count refills: surfacing or losing a life (respawn refills the meter); reset on refill X+1
     ['AndNext', 'Delta', '8bit', swimmerHugoY, '!=', 'Value', '',     0x58],
