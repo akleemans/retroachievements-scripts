@@ -107,7 +107,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00df52",
-    "Note": "[8-bit] Lives"
+    "Note": "[8-bit] Lives (0xff = Game over)"
   },
   {
     "User": "adrianusk",
