@@ -37,8 +37,10 @@ const score10 = 0xc1a3;
 const score1 = 0xc1a4;
 
 const difficulty = 0xdeaf; // 0 = Easy, 1 = Normal, 2 = Difficult
-const heroVerticalState = 0xffce; // 0x00 = on ground, 0x10 = rising, 0x20 = falling
+const hugoVerticalState = 0xffce; // 0x00 = on ground, 0x10 = rising, 0x20 = falling
+const jumpReady = 0xddfa; // Jump detection: 1 once A was released, set to 0 on every jump start
 
+const swimmerHugoY = 0xffd5; // 0x58 = at the surface
 
 const progression = (levelId, hard) => {
   const arr = [
@@ -135,8 +137,8 @@ set.addAchievement({
 
     // Count jumps (ground -> rising) in the pillar section; reset on jump X+1
     ['AndNext', 'Mem',   '8bit', scene,             '=', 'Value', '', SceneEnum.IceCave],
-    ['AndNext', 'Delta', '8bit', heroVerticalState, '=', 'Value', '', 0x00],
-    ['ResetIf', 'Mem',   '8bit', heroVerticalState, '=', 'Value', '', 0x10,              IceCaveJumpLimit + 1],
+    ['AndNext', 'Delta', '8bit', hugoVerticalState, '=', 'Value', '', 0x00],
+    ['ResetIf', 'Mem',   '8bit', hugoVerticalState, '=', 'Value', '', 0x10,              IceCaveJumpLimit + 1],
 
     // Game over
     ['ResetIf', 'Mem',   '8bit', lives, '=', 'Value', '', 0xFF],
@@ -178,6 +180,35 @@ set.addAchievement({
   ),
 });
 
+const ForestJumpLimit = 40;
+
+set.addAchievement({
+  title: 'Energy Saver',
+  description: 'Beat the Forest minigame by jumping no more than 40 times',
+  points: 5,
+  conditions: $(
+    // Checkpoint: entering the Forest from the intro card
+    ['AndNext', 'Delta', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
+    ['AndNext', 'Mem',   '8bit', scene, '=', 'Value', '', SceneEnum.ForestAndStageStart],
+    ['',        'Mem',   '8bit', stage, '=', 'Value', '', StageEnum.Forest,                      1],
+
+    // Count jumps (JumpPer 1 -> 0); reset on jump X+1
+    ['AndNext', 'Mem',   '8bit', scene,     '=', 'Value', '', SceneEnum.ForestAndStageStart],
+    ['AndNext', 'Mem',   '8bit', stage,     '=', 'Value', '', StageEnum.Forest],
+    ['AndNext', 'Delta', '8bit', jumpReady, '=', 'Value', '', 1],
+    ['ResetIf', 'Mem',   '8bit', jumpReady, '=', 'Value', '', 0,                             ForestJumpLimit + 1],
+
+    // Game over
+    ['ResetIf', 'Mem',   '8bit', lives, '=', 'Value', '', 0xFF],
+
+    // Still in the Forest, no cheats -> challenge icon is shown while these hold
+    ['',        'Mem',   '8bit', stage,              '=',  'Value', '', StageEnum.Forest],
+    ['',        'Mem',   '8bit', cheatIndicator,     '=',  'Value', '', 0],
+    // Completion
+    ['Trigger', 'Delta', '8bit', lastCompletedStage, '!=', 'Value', '', StageEnum.Forest],
+    ['Trigger', 'Mem',   '8bit', lastCompletedStage, '=',  'Value', '', StageEnum.Forest],
+  ),
+});
 
 set.addAchievement({
   title: 'I\'m Gonna Be the Coolest Troll in the World, All Thanks to You!',
@@ -269,8 +300,6 @@ set.addAchievement({
   ),
 });
 
-const swimmerHeroY = 0xffd5; // 0x58 = at the surface
-
 const SwimmerRefillLimit = 6;
 
 set.addAchievement({
@@ -284,8 +313,8 @@ set.addAchievement({
     ['',        'Mem',   '8bit', stage, '=', 'Value', '', StageEnum.Swimmer,                     1],
 
     // Count refills: surfacing or losing a life (respawn refills the meter); reset on refill X+1
-    ['AndNext', 'Delta', '8bit', swimmerHeroY, '!=', 'Value', '',     0x58],
-    ['OrNext',  'Mem',   '8bit', swimmerHeroY, '=',  'Value', '',     0x58],
+    ['AndNext', 'Delta', '8bit', swimmerHugoY, '!=', 'Value', '',     0x58],
+    ['OrNext',  'Mem',   '8bit', swimmerHugoY, '=',  'Value', '',     0x58],
     ['AndNext', 'Mem',   '8bit', lives,        '<',  'Delta', '8bit', lives],
     ['ResetIf', 'Mem',   '8bit', scene,        '=',  'Value', '',     SceneEnum.Swimmer, SwimmerRefillLimit + 1],
 

@@ -159,6 +159,31 @@ describe('Forest hard', () => {
   });
 });
 
+describe('Forest jumps', () => {
+  const cheevo = achievement('Energy Saver');
+
+  test('pops when forest level is finished with 40 jumps', () => {
+    const s = scenario('forest-jumps-optimal');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('first-jump'))).toBe('primed');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
+  });
+
+  test('does not pop if finished with 43 jumps', () => {
+    const s = scenario('forest-jumps-too-much');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    // Challenge indicator is shown from the level start until the jump limit is exceeded
+    expect(result.stateAt(s.marker('first-jump'))).toBe('primed');
+    expect(result.stateAt(s.marker('jump-41'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
 describe('Progression: Snowboard', () => {
   const cheevo = achievement('I\'m Gonna Be the Coolest Troll in the World, All Thanks to You!');
 

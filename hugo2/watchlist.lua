@@ -17,6 +17,8 @@ return {
     { address = 0xdcb1, size = "u8", label = "Swimmer segment count" },
     { address = 0xdcb2, size = "u8", label = "Swimmer step count within segment" },
     { address = 0xdcb8, size = "u8", label = "Snowman fight hits" },
+    { address = 0xdcc4, size = "u8", label = "Ice cave Trophy counter (0-3)" },
+    { address = 0xddfa, size = "u8", label = "Hugo jump state" },
     { address = 0xddfd, size = "u16", label = "Pointer to current level randomization entry" },
     { address = 0xdeae, size = "u8", label = "Music" },
     { address = 0xdeaf, size = "u8", label = "Difficulty" },

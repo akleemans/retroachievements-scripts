@@ -86,6 +86,16 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x00dcc4",
+    "Note": "[8-bit] Ice cave Trophy counter (0-3)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00ddfa",
+    "Note": "[8-bit] Hugo jump state"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00ddfd",
     "Note": "[16-bit] Pointer to current level randomization entry"
   },
