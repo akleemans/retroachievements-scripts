@@ -114,6 +114,15 @@ describe('Progression: Forest', () => {
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
   });
+
+  test('does not pop on the soft reset after beating the game', () => {
+    // The reset zeroes all RAM: last completed stage 5 -> 0 with stage 0 looks like "Forest completed"
+    const s = scenario('beat-game-reset');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
 });
 
 
@@ -131,6 +140,23 @@ describe('Forest deathless', () => {
 
   test('does not pop if died', () => {
     const s = scenario('forest-with-death');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+
+  test('pops if died in an earlier stage', () => {
+    const s = scenario('die-before-forest-then-forest-deathless');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('forest-finished'));
+  });
+
+  test('does not pop on the soft reset after beating the game', () => {
+    const s = scenario('beat-game-reset');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
@@ -225,6 +251,14 @@ describe('Snowboard deathless', () => {
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(false);
   });
+
+  test('does not pop if died in the Snowboard after a deathless Forest', () => {
+    const s = scenario('die-before-forest-then-forest-deathless');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
 });
 
 describe('Snowboard hard', () => {
@@ -266,6 +300,16 @@ describe('Snowman single shot', () => {
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(false);
+  });
+
+  test('pops on a single-shot fight after fights with multiple shots', () => {
+    // The 3-shot fight must not leave a shot counted for the next fight
+    const s = scenario('die-before-forest-then-forest-deathless');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('snowman-hit-3'));
   });
 });
 
@@ -386,6 +430,15 @@ describe('Progression: Witch Endgame', () => {
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('game-finished'));
+  });
+
+  test('pops once when the game is beaten, not again on the soft reset', () => {
+    const s = scenario('beat-game-reset');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('game-beaten'));
   });
 });
 

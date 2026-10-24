@@ -42,11 +42,28 @@ const jumpReady = 0xddfa; // Jump detection: 1 once A was released, set to 0 on 
 
 const swimmerHugoY = 0xffd5; // 0x58 = at the surface
 
+// Scene shown when a stage is entered from the intro card (the Ice Cave passes through 0x01 before 0x0a)
+const stageStartScene = {
+  [StageEnum.Forest]: SceneEnum.ForestAndStageStart,
+  [StageEnum.Snowboard]: SceneEnum.Snowboard,
+  [StageEnum.Swimmer]: SceneEnum.Swimmer,
+  [StageEnum.IceCave]: SceneEnum.ForestAndStageStart,
+};
+
+// Checkpoint: entering the stage from the intro card (retries after a death skip the intro card)
+const stageEntered = (levelId) => [
+  ['AndNext', 'Delta', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
+  ['AndNext', 'Mem',   '8bit', scene, '=', 'Value', '', stageStartScene[levelId]],
+  ['',        'Mem',   '8bit', stage, '=', 'Value', '', levelId,                    1],
+];
+
 const progression = (levelId, hard) => {
   const arr = [
     ['', 'Delta', '8bit', lastCompletedStage, '!=', 'Value', '', levelId],
     ['', 'Mem',   '8bit', lastCompletedStage, '=',  'Value', '', levelId],
     ['', 'Mem',   '8bit', stage,              '=',  'Value', '', levelId],
+    // Not on the intro card: the soft reset after beating the game would look like "Forest completed"
+    ['', 'Mem',   '8bit', scene,              '!=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
     // No cheats allowed
     ['', 'Mem',   '8bit', cheatIndicator,     '=',  'Value', '', 0],
   ];
@@ -61,16 +78,12 @@ const progression = (levelId, hard) => {
 
 const deathlessProgression = (levelId) => {
   return [
-    // Checkpoint: title screen -> intro card (new game) or a stage was completed, but not the ice cave itself
-    ['AndNext', 'Delta', '8bit', scene,              '=',  'Value', '',     levelId],
-    ['OrNext',  'Mem',   '8bit', scene,              '=',  'Value', '',     SceneEnum.StageIntroCardAndTransition],
-    ['AndNext', 'Mem',   '8bit', lastCompletedStage, '!=', 'Delta', '8bit', lastCompletedStage],
-    ['',        'Mem',   '8bit', lastCompletedStage, '!=', 'Value', '',     levelId,                               1],
+    ...stageEntered(levelId),
     // Lost a life (skip the new-game write 0xFF -> 3)
-    ['AndNext', 'Delta', '8bit', lives,              '!=', 'Value', '',     0xFF],
-    ['ResetIf', 'Mem',   '8bit', lives,              '<',  'Delta', '8bit', lives],
+    ['AndNext', 'Delta', '8bit', lives, '!=', 'Value', '',     0xFF],
+    ['ResetIf', 'Mem',   '8bit', lives, '<',  'Delta', '8bit', lives],
     // Game over (0 -> 0xFF isn't caught above)
-    ['ResetIf', 'Mem',   '8bit', lives,              '=',  'Value', '',     0xFF],
+    ['ResetIf', 'Mem',   '8bit', lives, '=',  'Value', '',     0xFF],
     ...progression(levelId),
   ];
 };
@@ -143,10 +156,7 @@ set.addAchievement({
   points: 5,
   type: 'missable',
   conditions: $(
-    // Checkpoint: entering the Ice Cave from the intro card
-    ['AndNext', 'Delta', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
-    ['AndNext', 'Mem',   '8bit', scene, '=', 'Value', '', SceneEnum.ForestAndStageStart],
-    ['',        'Mem',   '8bit', stage, '=', 'Value', '', StageEnum.IceCave,                     1],
+    ...stageEntered(StageEnum.IceCave),
 
     // Count jumps (ground -> rising) in the pillar section; reset on jump X+1
     ['AndNext', 'Mem',   '8bit', scene,             '=', 'Value', '', SceneEnum.IceCave],
@@ -210,10 +220,7 @@ set.addAchievement({
   points: 5,
   type: 'missable',
   conditions: $(
-    // Checkpoint: entering the Forest from the intro card
-    ['AndNext', 'Delta', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
-    ['AndNext', 'Mem',   '8bit', scene, '=', 'Value', '', SceneEnum.ForestAndStageStart],
-    ['',        'Mem',   '8bit', stage, '=', 'Value', '', StageEnum.Forest,                      1],
+    ...stageEntered(StageEnum.Forest),
 
     // Count jumps (JumpPer 1 -> 0); reset on jump X+1
     ['AndNext', 'Mem',   '8bit', scene,     '=', 'Value', '', SceneEnum.ForestAndStageStart],
@@ -290,10 +297,10 @@ set.addAchievement({
     ['AndNext', 'Delta', '8bit', snowmanShotCooldown, '!=', 'Value', '', 0x23],
     ['ResetIf', 'Mem',   '8bit', snowmanShotCooldown, '=',  'Value', '', 0x23,                2],
 
-    // Fight ended without hitting the Snowman (clears the shot count for the next fight)
-    ['AndNext', 'Delta', '8bit', snowboardState, '=',  'Value', '', 3],
-    ['AndNext', 'Mem',   '8bit', snowboardState, '!=', 'Value', '', 3],
-    ['ResetIf', 'Mem',   '8bit', snowboardState, '!=', 'Value', '', 4],
+    // Not fighting or just hit: clear the shot count, otherwise an odd number of shots (3+)
+    // in one fight would carry over and make the first shot of the next fight count as the second
+    ['AndNext', 'Mem', '8bit', snowboardState, '!=', 'Value', '', 3],
+    ['ResetIf', 'Mem', '8bit', snowboardState, '!=', 'Value', '', 4],
 
     // No cheats allowed
     ['', 'Mem', '8bit', cheatIndicator, '=', 'Value', '', 0],
@@ -350,10 +357,7 @@ set.addAchievement({
   points: 5,
   type: 'missable',
   conditions: $(
-    // Checkpoint: entering the Swimmer from the intro card
-    ['AndNext', 'Delta', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
-    ['AndNext', 'Mem',   '8bit', scene, '=', 'Value', '', SceneEnum.Swimmer],
-    ['',        'Mem',   '8bit', stage, '=', 'Value', '', StageEnum.Swimmer,                     1],
+    ...stageEntered(StageEnum.Swimmer),
 
     // Count refills: surfacing or losing a life (respawn refills the meter); reset on refill X+1
     ['AndNext', 'Delta', '8bit', swimmerHugoY, '!=', 'Value', '',     0x58],
