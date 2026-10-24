@@ -12,6 +12,7 @@ Sets:
 * [Mr. Do! (GB)](/mr-do) | [RA](https://retroachievements.org/game/4746)
 * [Mortal Coil (GB)](/mortal-coil) | [RA](https://retroachievements.org/game/45174) - Homebrew game which I made myself, see [itch.io](https://adrianusk.itch.io/mortal-coil)
 * [Koneko Monogatari (FDS)](/koneko) | [RA](https://retroachievements.org/game/6821) - FDS game for the DevJam
+* [Hugo 2 (GB)](/hugo2) | [RA](https://retroachievements.org/game/22119)
 * [Last Action Hero (GB)](/last-action-hero) | [RA](https://retroachievements.org/game/2459)
 
 ## Setup
