@@ -282,7 +282,7 @@ set.addAchievement({
   id: '646250',
   badge: '738368',
   title: 'Cold Shot',
-  description: 'Defeat a snowman with a single shot',
+  description: 'Defeat a snowman with your first shot',
   points: 3,
   type: 'missable',
   conditions: $(
@@ -353,7 +353,7 @@ set.addAchievement({
   id: '646254',
   badge: '738372',
   title: 'Hold Your Breath',
-  description: `Beat the Swimmer minigame while refilling your air no more than ${SwimmerRefillLimit} times - deaths count as refill`,
+  description: 'Beat the Swimmer minigame while surfacing no more than 6 times - deaths count as surfacing',
   points: 5,
   type: 'missable',
   conditions: $(

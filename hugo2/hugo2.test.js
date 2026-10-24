@@ -563,4 +563,11 @@ describe('Leaderboard: High Score', () => {
 
     expect(result.measuredAt(s.marker('ending-reached'))).toBe(2150);
   });
+
+  test('starts/submits on game over', () => {
+    const s = scenario('test-game-over');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.triggeredFrame).toBe(s.marker('game-over'));
+  });
 });
