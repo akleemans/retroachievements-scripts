@@ -77,6 +77,9 @@ const deathlessProgression = (levelId) => {
 
 const scoreReached = (score) => {
   return [
+    // No cheats allowed
+    ['', 'Mem', '8bit', cheatIndicator, '=', 'Value', '', 0],
+
     // Score was below "score" in last frame, and is now "score" or higher
     ['AddSource', 'Delta', '8bit', score10k, '*', 'Value', '', 10000],
     ['AddSource', 'Delta', '8bit', score1k,  '*', 'Value', '', 1000],
