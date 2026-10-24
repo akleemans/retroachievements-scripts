@@ -95,6 +95,7 @@ const scoreReached = (score) => {
 /* ----------------------------- */
 
 set.addAchievement({
+  id: '646239',
   title: 'Now, What Were Those Symbols Again?',
   description: 'Beat the Ice Cave minigame',
   points: 5,
@@ -105,6 +106,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646240',
   title: 'Cool Under Pressure',
   description: 'Beat the Ice Cave minigame on Hard',
   points: 5,
@@ -114,6 +116,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646241',
   title: 'Walking on Thin Ice',
   description: 'Beat the Ice Cave minigame without dying',
   points: 10,
@@ -126,6 +129,7 @@ set.addAchievement({
 const IceCaveJumpLimit = 32;
 
 set.addAchievement({
+  id: '646242',
   title: 'Jump Scary',
   description: 'Beat the Ice Cave minigame by jumping no more than 32 times',
   points: 5,
@@ -153,6 +157,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646243',
   title: 'I Think I\'ll Hang Around!',
   description: 'Beat the Forest minigame',
   points: 5,
@@ -163,6 +168,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646244',
   title: 'Out of the Woods',
   description: 'Beat the Forest minigame without dying',
   points: 10,
@@ -172,6 +178,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646245',
   title: 'The Forest Doesn\'t Scare Me',
   description: 'Beat the Forest minigame on Hard',
   points: 5,
@@ -183,6 +190,7 @@ set.addAchievement({
 const ForestJumpLimit = 40;
 
 set.addAchievement({
+  id: '646246',
   title: 'Energy Saver',
   description: 'Beat the Forest minigame by jumping no more than 40 times',
   points: 5,
@@ -211,6 +219,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646247',
   title: 'I\'m Gonna Be the Coolest Troll in the World, All Thanks to You!',
   description: 'Beat the Snowboard minigame',
   points: 5,
@@ -221,6 +230,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646248',
   title: 'Smooth Riding',
   description: 'Beat the Snowboard minigame without dying',
   points: 25,
@@ -230,6 +240,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646249',
   title: 'Board to Perfection',
   description: 'Beat the Snowboard minigame on Hard',
   points: 5,
@@ -242,6 +253,7 @@ const snowboardState = 0xdf7d; // 3 = snowman fight, 4 = snowman hit
 const snowmanShotCooldown = 0xdcb8; // set to 0x23 on every shot, then counts down
 
 set.addAchievement({
+  id: '646250',
   title: 'Cold Shot',
   description: 'Defeat a snowman with a single shot',
   points: 3,
@@ -273,6 +285,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646251',
   title: 'Do You Think I\'m A Sand Worm?!',
   description: 'Beat the Swimmer minigame',
   points: 5,
@@ -283,6 +296,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646252',
   title: 'Swimming with the Fishes',
   description: 'Beat the Swimmer minigame without dying',
   points: 10,
@@ -292,6 +306,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646253',
   title: 'Just Keep Swimming',
   description: 'Beat the Swimmer minigame on Hard',
   points: 5,
@@ -303,6 +318,7 @@ set.addAchievement({
 const SwimmerRefillLimit = 6;
 
 set.addAchievement({
+  id: '646254',
   title: 'Hold Your Breath',
   description: `Beat the Swimmer minigame while refilling your air no more than ${SwimmerRefillLimit} times - deaths count as refill`,
   points: 5,
@@ -331,6 +347,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646255',
   title: 'Trollerit, Trollerat, Trollerut, This Game Is Kaput!',
   description: 'Beat the Witch\'s Endgame minigame and beat the game',
   points: 25,
@@ -341,6 +358,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646256',
   title: 'Hugo\'s Point Cruise',
   description: 'Reach 1,000 points',
   points: 3,
@@ -350,6 +368,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646257',
   title: 'Hugo\'s Point Adventure',
   description: 'Reach 2,000 points',
   points: 5,
@@ -359,6 +378,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646258',
   title: 'Hugo\'s Point Extravaganza',
   description: 'Reach 3,000 points',
   points: 10,

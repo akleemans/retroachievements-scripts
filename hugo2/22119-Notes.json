@@ -1,6 +1,11 @@
 [
   {
     "User": "adrianusk",
+    "Address": "0x000000",
+    "Note": "[General game notes]\r\nCruncheevos script: https:\/\/github.com\/akleemans\/retroachievements-scripts"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x0024c5",
     "Note": "[64 bytes] Table with possible level orders (8x8 bytes)"
   },
