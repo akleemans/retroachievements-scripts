@@ -6,36 +6,160 @@
   "firstFrame": 22650,
   "markers": {},
   "addresses": [
-    { "address": "0x24c5", "size": "u8", "label": "[64 bytes] Table with possible level orders (8x8 bytes)" },
-    { "address": "0xc1a0", "size": "u8", "label": "Score tens of thousands place" },
-    { "address": "0xc1a1", "size": "u8", "label": "Score thousands place" },
-    { "address": "0xc1a2", "size": "u8", "label": "Score hundreds place" },
-    { "address": "0xc1a3", "size": "u8", "label": "Score tens place" },
-    { "address": "0xc1a4", "size": "u8", "label": "Score ones place" },
-    { "address": "0xc2d3", "size": "u8", "label": "Per-scene ID, one value for each minigame, the intro card and the menus (used for \"actually in gameplay\")" },
-    { "address": "0xc2fa", "size": "u8", "label": "Cheat indicator" },
-    { "address": "0xc3eb", "size": "u8", "label": "Gold bags collected this attempt (TODO check) - the minimum required per difficulty (light/normal/heavy) is Forest 17/25/30, Snowboard 5/9/14, Swimmer 5/7/9" },
-    { "address": "0xc3ec", "size": "u8", "label": "Total gold bags collected across stages (TODO check)" },
-    { "address": "0xcb17", "size": "u8", "label": "Screen id 1" },
-    { "address": "0xcb18", "size": "u8", "label": "Screen id 2" },
-    { "address": "0xcb19", "size": "u8", "label": "Screen id 3" },
-    { "address": "0xcb1a", "size": "u8", "label": "Screen id 4" },
-    { "address": "0xdcb1", "size": "u8", "label": "Swimmer segment count" },
-    { "address": "0xdcb2", "size": "u8", "label": "Swimmer step count within segment" },
-    { "address": "0xdcb8", "size": "u8", "label": "Snowman fight hits" },
-    { "address": "0xddfd", "size": "u16", "label": "Pointer to current level randomization entry" },
-    { "address": "0xdeae", "size": "u8", "label": "Music" },
-    { "address": "0xdeaf", "size": "u8", "label": "Difficulty" },
-    { "address": "0xdebe", "size": "u8", "label": "TODO - set when the player dies or fails the attempt" },
-    { "address": "0xdf42", "size": "u8", "label": "Last completed stage (TODO check)" },
-    { "address": "0xdf4f", "size": "u8", "label": "TODO -  0xff while a stage is being played, and 0 when it's finished" },
-    { "address": "0xdf51", "size": "u8", "label": "Energy (4, or 3 on heavy; 0xFF = dead) TODO - lives?" },
-    { "address": "0xdf52", "size": "u8", "label": "Lives" },
-    { "address": "0xdf7d", "size": "u8", "label": "Snowman shot fired" },
-    { "address": "0xdf84", "size": "u8", "label": "Gold bags collected (stage) - TODO duplicate or echo? Use other addresses if possible" },
-    { "address": "0xffce", "size": "u8", "label": "Vertical state in Ice Cave" },
-    { "address": "0xffcf", "size": "u8", "label": "Vertical speed (jumping in Ice cave)" },
-    { "address": "0xffd5", "size": "u8", "label": "Swimmer Air meter (surface = 0x58)" },
-    { "address": "0xffed", "size": "u8", "label": "Stage (will be also 0x00 on Main menu)" }
+    {
+      "address": "0x24c5",
+      "size": "u8",
+      "label": "[64 bytes] Table with possible level orders (8x8 bytes)"
+    },
+    {
+      "address": "0xc1a0",
+      "size": "u8",
+      "label": "Score tens of thousands place"
+    },
+    {
+      "address": "0xc1a1",
+      "size": "u8",
+      "label": "Score thousands place"
+    },
+    {
+      "address": "0xc1a2",
+      "size": "u8",
+      "label": "Score hundreds place"
+    },
+    {
+      "address": "0xc1a3",
+      "size": "u8",
+      "label": "Score tens place"
+    },
+    {
+      "address": "0xc1a4",
+      "size": "u8",
+      "label": "Score ones place"
+    },
+    {
+      "address": "0xc2d3",
+      "size": "u8",
+      "label": "Per-scene ID, one value for each minigame, the intro card and the menus (used for \"actually in gameplay\")"
+    },
+    {
+      "address": "0xc2fa",
+      "size": "u8",
+      "label": "Cheat indicator"
+    },
+    {
+      "address": "0xc3eb",
+      "size": "u8",
+      "label": "Gold bags collected in current stage (shown on HUD). On death, some bags are dropped. Minimum required per difficulty (light/normal/heavy) is Forest 17/25/30, Snowboard 5/9/14, Swimmer 5/7/9"
+    },
+    {
+      "address": "0xc3ec",
+      "size": "u8",
+      "label": "Total gold bags banked across completed stages"
+    },
+    {
+      "address": "0xcb17",
+      "size": "u8",
+      "label": "Screen id 1"
+    },
+    {
+      "address": "0xcb18",
+      "size": "u8",
+      "label": "Screen id 2"
+    },
+    {
+      "address": "0xcb19",
+      "size": "u8",
+      "label": "Screen id 3"
+    },
+    {
+      "address": "0xcb1a",
+      "size": "u8",
+      "label": "Screen id 4"
+    },
+    {
+      "address": "0xdcb1",
+      "size": "u8",
+      "label": "Swimmer segment count"
+    },
+    {
+      "address": "0xdcb2",
+      "size": "u8",
+      "label": "Swimmer step count within segment"
+    },
+    {
+      "address": "0xdcb8",
+      "size": "u8",
+      "label": "Snowman fight hits"
+    },
+    {
+      "address": "0xddfd",
+      "size": "u16",
+      "label": "Pointer to current level randomization entry"
+    },
+    {
+      "address": "0xdeae",
+      "size": "u8",
+      "label": "Music"
+    },
+    {
+      "address": "0xdeaf",
+      "size": "u8",
+      "label": "Difficulty"
+    },
+    {
+      "address": "0xdebe",
+      "size": "u8",
+      "label": "Death sequence flag (set on death)"
+    },
+    {
+      "address": "0xdf42",
+      "size": "u8",
+      "label": "Last completed stage (stage ID, see 0xffed), set on the completion frame"
+    },
+    {
+      "address": "0xdf4f",
+      "size": "u8",
+      "label": "Stage-in-progress marker (0xff = stage being played. On completion: Index of next stage, wrapping among the 4 minigames  (Forest: 1, Snowboard: 2, Swimmer: 3, Ice Cave: 0, Witch endgame: 5, Endgame pt. 2: 6)"
+    },
+    {
+      "address": "0xdf51",
+      "size": "u8",
+      "label": "Energy (4, or 3 on heavy; 0xFF = dead) TODO - lives?"
+    },
+    {
+      "address": "0xdf52",
+      "size": "u8",
+      "label": "Lives"
+    },
+    {
+      "address": "0xdf7d",
+      "size": "u8",
+      "label": "Snowman shot fired"
+    },
+    {
+      "address": "0xdf84",
+      "size": "u8",
+      "label": "Gold bags collected in current life (Snowboard/Swimmer only) - prefer 0xc3eb over this"
+    },
+    {
+      "address": "0xffce",
+      "size": "u8",
+      "label": "Hugo vertical state (Ice Cave only)"
+    },
+    {
+      "address": "0xffcf",
+      "size": "u8",
+      "label": "Vertical speed (jumping in Ice cave)"
+    },
+    {
+      "address": "0xffd5",
+      "size": "u8",
+      "label": "Swimmer Air meter (surface = 0x58)"
+    },
+    {
+      "address": "0xffed",
+      "size": "u8",
+      "label": "Stage (will be also 0x00 on Main menu)"
+    }
   ]
 }

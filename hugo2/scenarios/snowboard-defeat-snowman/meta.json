@@ -52,12 +52,12 @@
     {
       "address": "0xc3eb",
       "size": "u8",
-      "label": "Gold bags collected this attempt (TODO check) - the minimum required per difficulty (light/normal/heavy) is Forest 17/25/30, Snowboard 5/9/14, Swimmer 5/7/9"
+      "label": "Gold bags collected in current stage (shown on HUD). On death, some bags are dropped. Minimum required per difficulty (light/normal/heavy) is Forest 17/25/30, Snowboard 5/9/14, Swimmer 5/7/9"
     },
     {
       "address": "0xc3ec",
       "size": "u8",
-      "label": "Total gold bags collected across stages (TODO check)"
+      "label": "Total gold bags banked across completed stages"
     },
     {
       "address": "0xcb17",
@@ -112,17 +112,17 @@
     {
       "address": "0xdebe",
       "size": "u8",
-      "label": "TODO - set when the player dies or fails the attempt"
+      "label": "Death sequence flag (set on death)"
     },
     {
       "address": "0xdf42",
       "size": "u8",
-      "label": "Last completed stage (TODO check)"
+      "label": "Last completed stage (stage ID, see 0xffed), set on the completion frame"
     },
     {
       "address": "0xdf4f",
       "size": "u8",
-      "label": "TODO -  0xff while a stage is being played, and 0 when it's finished"
+      "label": "Stage-in-progress marker (0xff = stage being played. On completion: Index of next stage, wrapping among the 4 minigames  (Forest: 1, Snowboard: 2, Swimmer: 3, Ice Cave: 0, Witch endgame: 5, Endgame pt. 2: 6)"
     },
     {
       "address": "0xdf51",
@@ -142,12 +142,12 @@
     {
       "address": "0xdf84",
       "size": "u8",
-      "label": "Gold bags collected (stage) - TODO duplicate or echo? Use other addresses if possible"
+      "label": "Gold bags collected in current life (Snowboard/Swimmer only) - prefer 0xc3eb over this"
     },
     {
       "address": "0xffce",
       "size": "u8",
-      "label": "Vertical state in Ice Cave"
+      "label": "Hugo vertical state (Ice Cave only)"
     },
     {
       "address": "0xffcf",

@@ -2,12 +2,7 @@
   {
     "User": "adrianusk",
     "Address": "0x000000",
-    "Note": "[General game notes]\r\nCruncheevos script: https:\/\/github.com\/akleemans\/retroachievements-scripts"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x0024c5",
-    "Note": "[64 bytes] Table with possible level orders (8x8 bytes)"
+    "Note": "[General game notes]\r\nCruncheevos script: https:\/\/github.com\/akleemans\/retroachievements-scripts\r\nThe game has a randomization table with 8 possible level orders at 0x24c5 - 0x2504"
   },
   {
     "User": "Bubblegum777",
@@ -37,7 +32,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00c2d3",
-    "Note": "[8-bit] Per-scene ID, one value for each minigame, the intro card and the menus (used for \"actually in gameplay\")\r\n0x00 = Stage intro card and transitions\r\n0x01 = Forest, and briefly at every stage start\r\n0x02 = Snowboard \r\n0x03 = Swimmer\r\n0x04 \/ 0x05 = Title \/ menu\r\n0x0a = Ice cave\r\n0x0b = Ice cave symbol door\r\n0x0c = Endgame part 2\r\n0x0d = Witch endgame\r\n0x0e = Ending"
+    "Note": "[8-bit] Per-scene ID, one value for each minigame, the intro card and the menus (used for \"actually in gameplay\")\r\n0x00 = Stage intro card and transitions\r\n0x01 = Forest, and briefly at every stage start\r\n0x02 = Snowboard \r\n0x03 = Swimmer\r\n0x04 = Title \/ menu\r\n0x05 = Title \/ menu\r\n0x09 = Seen after Ending\r\n0x0a = Ice cave\r\n0x0b = Ice cave symbol door\r\n0x0c = Endgame part 2\r\n0x0d = Witch endgame\r\n0x0e = Ending"
   },
   {
     "User": "Bubblegum777",
@@ -47,32 +42,12 @@
   {
     "User": "adrianusk",
     "Address": "0x00c3eb",
-    "Note": "[8-bit] Gold bags collected this attempt (TODO check) - the minimum required per difficulty (light\/normal\/heavy) is Forest 17\/25\/30, Snowboard 5\/9\/14, Swimmer 5\/7\/9"
+    "Note": "[8-bit] Gold bags collected in current stage (shown on HUD). On death, some bags are dropped. Minimum required per difficulty (light\/normal\/heavy) is Forest 17\/25\/30, Snowboard 5\/9\/14, Swimmer 5\/7\/9"
   },
   {
     "User": "adrianusk",
     "Address": "0x00c3ec",
-    "Note": "[8-bit] Total gold bags collected across stages (TODO check)"
-  },
-  {
-    "User": "Bubblegum777",
-    "Address": "0x00cb17",
-    "Note": "[8-bit] Screen id 1\r\n0x00=loading main menu\r\n0x40=menu\r\n0xff=intro\r\n0x4b=forest\r\n0x19=snowboard\r\n0x21=snowboard snowman\r\n0x8f=swimmer\r\n0xff=ice cave\r\n0xc0=ice cave door\r\n0xfe=endgame\r\n0xff=endgame door & key & win"
-  },
-  {
-    "User": "Bubblegum777",
-    "Address": "0x00cb18",
-    "Note": "[8-bit] Screen id 2\r\n0x00=loading screen\r\n0x0f=level loading screen\r\n0x58=menu\r\n0x4c=forest\r\n0x19=snowboard\r\n0x90=swimmer\r\n0x00=ice cave"
-  },
-  {
-    "User": "Bubblegum777",
-    "Address": "0x00cb19",
-    "Note": "[8-bit] Screen id 3\r\n0x00=start up\r\n0xe0=main menu\r\n0xff=cutscene\r\n0x61=forest\r\n0x19=snowboard\r\n0x21=snowboard shooter section\r\n0x00=snowboard dying\r\n0x91=swimmer\r\n0x78=swimmer dying\r\n0xff=ice cave\r\n0x00=ice cave lock\r\n0xff=endgame\r\n0xff=endgame key selection"
-  },
-  {
-    "User": "Bubblegum777",
-    "Address": "0x00cb1a",
-    "Note": "[8-bit] Screen id 4\r\n0xe0=menu\r\n0x81=forest\r\n0x19=snowboard\r\n0x21=snowboard shooter\r\n0x92=swimmer\r\n0xff=ice cave\r\n0x7f=ice cave lock\r\n0xff=end game\r\n0x00=end game door \/ win"
+    "Note": "[8-bit] Total gold bags banked across completed stages"
   },
   {
     "User": "adrianusk",
@@ -97,7 +72,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00ddfa",
-    "Note": "[8-bit] Hugo jump state"
+    "Note": "[8-bit] Hugo jump state (Forest)\r\n0x00 = Jump started\r\n0x01 = Ready (A released)"
   },
   {
     "User": "adrianusk",
@@ -117,22 +92,17 @@
   {
     "User": "adrianusk",
     "Address": "0x00debe",
-    "Note": "[8-bit] TODO - set when the player dies or fails the attempt"
+    "Note": "[8-bit] Death sequence flag (set on death)\r\n0x00 = Alive\r\n0x01 = Dying"
   },
   {
     "User": "adrianusk",
     "Address": "0x00df42",
-    "Note": "[8-bit] Last completed stage (TODO check)"
+    "Note": "[8-bit] Last completed stage (stage ID, see 0xffed), set on the completion frame"
   },
   {
     "User": "adrianusk",
     "Address": "0x00df4f",
-    "Note": "[8-bit] TODO -  0xff while a stage is being played, and 0 when it's finished"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00df51",
-    "Note": "[8-bit] Energy (4, or 3 on heavy; 0xFF = dead) TODO - lives?"
+    "Note": "[8-bit] Stage-in-progress marker (0xff = stage being played. On completion: Index of next stage, wrapping among the 4 minigames  (Forest: 1, Snowboard: 2, Swimmer: 3, Ice Cave: 0, Witch endgame: 5, Endgame pt. 2: 6)"
   },
   {
     "User": "adrianusk",
@@ -147,12 +117,12 @@
   {
     "User": "adrianusk",
     "Address": "0x00df84",
-    "Note": "[8-bit] Gold bags collected (stage) - TODO duplicate or echo? Use other addresses if possible"
+    "Note": "[8-bit] Gold bags collected in current life (Snowboard\/Swimmer only) - prefer 0xc3eb over this"
   },
   {
     "User": "adrianusk",
     "Address": "0x00ffce",
-    "Note": "[8-bit] Vertical state in Ice Cave"
+    "Note": "[8-bit] Hugo vertical state (Ice Cave only)\r\n0x00 = On ground\r\n0x10 = Rising\r\n0x20 = Falling"
   },
   {
     "User": "adrianusk",
