@@ -46,6 +46,7 @@ const resetOnLifeLost = () => {
 
 
 set.addAchievement({
+  id: '644884',
   title: 'Fire Extinguisher',
   description: 'Extinguish a flame',
   points: 1,
@@ -80,6 +81,7 @@ const roundhouseKickDefeat = () => {
 };
 
 set.addAchievement({
+  id: '644885',
   title: 'Jack Norris',
   description: 'Defeat an enemy with a roundhouse kick in Scene 1',
   points: 2,
@@ -89,6 +91,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644886',
   title: 'Inside the School',
   description: 'Finish Scene 1',
   points: 5,
@@ -101,6 +104,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644887',
   title: 'Faster than the Hollywood Police',
   description: 'Finish Scene 1 with 50 or more seconds left',
   points: 5,
@@ -114,6 +118,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644888',
   title: 'On the Roof',
   description: 'Finish Scene 2 by beating the Ripper',
   points: 5,
@@ -126,6 +131,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644889',
   title: 'Rip Swings a Mean Axe',
   description: 'Beat the Ripper in Scene 2 without taking damage',
   points: 10,
@@ -145,6 +151,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644890',
   title: 'Bonneville Car Chase',
   description: 'Finish Scene 3',
   points: 5,
@@ -157,6 +164,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644891',
   title: 'Full Throttle, Full Health',
   description: 'Get the big heart at the end of Scene 3',
   points: 2,
@@ -171,6 +179,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644892',
   title: 'Motion-Picture Style',
   description: 'Finish Scene 3 with 20 or more seconds left',
   points: 5,
@@ -184,6 +193,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644893',
   title: 'Outside the Subway',
   description: 'Finish Scene 4',
   points: 5,
@@ -196,6 +206,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644894',
   title: 'Subway Sprint',
   description: 'Finish Scene 4 with 15 or more seconds left',
   points: 5,
@@ -209,6 +220,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644895',
   title: 'Crane Climbing',
   description: 'Reach the crane hook at the far left of Scene 5 without using the elevator',
   points: 3,
@@ -230,6 +242,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644896',
   title: 'Leo\'s Funeral',
   description: 'Finish Scene 5',
   points: 5,
@@ -242,6 +255,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644897',
   title: 'Elevator Action',
   description: 'Finish Scene 5 with 100 or more seconds left',
   points: 5,
@@ -255,6 +269,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644898',
   title: 'The Car Chase',
   description: 'Finish Scene 6',
   points: 5,
@@ -267,6 +282,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644899',
   title: 'Mobster Motorcade',
   description: 'Achieve the ticket goal in Scene 6 with at least 40 seconds left on the timer',
   points: 10,
@@ -284,6 +300,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644900',
   title: 'Premiere Night',
   description: 'Finish Scene 7',
   points: 5,
@@ -296,6 +313,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644901',
   title: 'Jack Slater IV',
   description: 'Finish Scene 7 with 15 or more seconds left',
   points: 5,
@@ -309,6 +327,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644902',
   title: 'Déjà-Vu Experience',
   description: 'Finish Scene 8 by beating the Ripper a second time',
   points: 5,
@@ -321,6 +340,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644903',
   title: 'Just You, Him and a 40-Story Drop',
   description: 'Finish Scene 8 with at least 20 seconds left on the timer',
   points: 5,
@@ -334,6 +354,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644904',
   title: 'Last of the Action Heroes',
   description: 'Beat Benedict in Scene 9 and finish the game',
   points: 25,
@@ -346,6 +367,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644905',
   title: 'No Jump Cuts',
   description: 'Beat Benedict without jumping with at least 6 hearts of remaining health',
   points: 10,
@@ -369,6 +391,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644906',
   title: 'To Be or Not to Be',
   description: 'Fill up your health bar to the maximum by collecting hearts',
   points: 10,
@@ -387,6 +410,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644907',
   title: 'Exceptionally Well Trained',
   description: 'Beat the game without using a continue',
   points: 10,
@@ -399,6 +423,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '644908',
   title: 'Big-Screen Bandit',
   description: 'Reach a total score of 120,000',
   points: 10,
