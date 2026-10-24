@@ -230,6 +230,15 @@ describe('Progression: Snowboard', () => {
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('stage-finished'));
   });
+
+  test('pops when the Snowboard is the first stage after power-on', () => {
+    const s = scenario('beat-snowboard-first');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('snowboard-finished'));
+  });
 });
 
 describe('Snowboard deathless', () => {
@@ -258,6 +267,23 @@ describe('Snowboard deathless', () => {
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(false);
+  });
+
+  test('does not pop if died when the Snowboard is the first stage after power-on', () => {
+    const s = scenario('beat-snowboard-first');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+
+  test('pops when the Snowboard is the first stage after power-on', () => {
+    const s = scenario('beat-snowboard-first-no-life-loss');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('snowboard-finished'));
   });
 });
 
@@ -310,6 +336,15 @@ describe('Snowman single shot', () => {
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('snowman-hit-3'));
+  });
+
+  test('does not pop if every fight needed several shots', () => {
+    // Fights with 3, 2 and 4 shots
+    const s = scenario('beat-snowboard-first');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
   });
 });
 
