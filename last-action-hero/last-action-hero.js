@@ -309,7 +309,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
-  title: 'Déjà-vu Experience',
+  title: 'Déjà-Vu Experience',
   description: 'Finish Scene 8 by beating the Ripper a second time',
   points: 5,
   type: 'progression',
@@ -335,7 +335,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Last of the Action Heroes',
-  description: 'Beat Benedict in Scene 9 and beat the game',
+  description: 'Beat Benedict in Scene 9 and finish the game',
   points: 25,
   type: 'win_condition',
   conditions: {

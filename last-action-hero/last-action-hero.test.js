@@ -215,7 +215,7 @@ describe('Motion-Picture Style', () => {
 });
 
 describe('Progression: Finish Scene 4', () => {
-  const cheevo = achievement('Outside The Subway');
+  const cheevo = achievement('Outside the Subway');
 
   test('pops when Scene 4 is finished', () => {
     const s = scenario('scene4-finish-fast');
@@ -378,7 +378,7 @@ describe('Jack Slater IV', () => {
 });
 
 describe('Progression: Finish Scene 8', () => {
-  const cheevo = achievement('Déjà-vu Experience');
+  const cheevo = achievement('Déjà-Vu Experience');
 
   test('pops when Scene 8 is finished', () => {
     const s = scenario('scene8-finish');
