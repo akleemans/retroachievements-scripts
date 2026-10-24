@@ -62,7 +62,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00dcb8",
-    "Note": "[8-bit] Snowman fight hits"
+    "Note": "[8-bit] Snowman shot cooldown"
   },
   {
     "User": "adrianusk",
@@ -112,7 +112,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00df7d",
-    "Note": "[8-bit] Snowman shot fired"
+    "Note": "[8-bit] Snowman stage\r\n0x03 = Fight\r\n0x04 = Snowman hit"
   },
   {
     "User": "adrianusk",
@@ -132,7 +132,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00ffd5",
-    "Note": "[8-bit] Swimmer Air meter (surface = 0x58)"
+    "Note": "[8-bit] Hugo's depth in Swimmer level (surface = 0x58)"
   },
   {
     "User": "adrianusk",

@@ -13,14 +13,16 @@ Lookup:Difficulty
 0x0=Easy
 0x1=Normal
 0x2=Hard
+*=
 
 Lookup:Cheat
 0x0=
 0x1= • Code used: Infinite Lives
 0x2= • Code used: Logs Deal No Damage
+*=
 
 Display:
 ?0xH00c2d3=4?In the Menu
 ?0xH00c2d3=5?In the Menu
-?0xH00c2d3!=0?@Scene(0xH00c2d3) on @Difficulty(0xH00deaf) • @Number(0xH00df52) lives • @Score(0xH00c1a4_0xH00c1a3*10_0xH00c1a2*100_0xH00c1a1*1000_0xH00c1a0*10000) points@Cheat(0xH00c2fa)
+?0xH00c2d3!=0?@Scene(0xH00c2d3) on @Difficulty(0xH00deaf) • @Number(0xH00df52) lives • Score @Score(0xH00c1a4_0xH00c1a3*10_0xH00c1a2*100_0xH00c1a1*1000_0xH00c1a0*10000)@Cheat(0xH00c2fa)
 Playing Hugo 2
