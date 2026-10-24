@@ -106,22 +106,23 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: '646241',
+  title: 'Walking on Thin Ice',
+  description: 'Beat the Ice Cave minigame without dying',
+  points: 10,
+  type: 'missable',
+  conditions: $(
+    ...deathlessProgression(StageEnum.IceCave),
+  ),
+});
+
+set.addAchievement({
   id: '646240',
   title: 'Cool Under Pressure',
   description: 'Beat the Ice Cave minigame on Hard',
   points: 5,
   conditions: $(
     ...progression(StageEnum.IceCave, true),
-  ),
-});
-
-set.addAchievement({
-  id: '646241',
-  title: 'Walking on Thin Ice',
-  description: 'Beat the Ice Cave minigame without dying',
-  points: 10,
-  conditions: $(
-    ...deathlessProgression(StageEnum.IceCave),
   ),
 });
 
@@ -133,6 +134,7 @@ set.addAchievement({
   title: 'Jump Scary',
   description: 'Beat the Ice Cave minigame by jumping no more than 32 times',
   points: 5,
+  type: 'missable',
   conditions: $(
     // Checkpoint: entering the Ice Cave from the intro card
     ['AndNext', 'Delta', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
@@ -172,6 +174,7 @@ set.addAchievement({
   title: 'Out of the Woods',
   description: 'Beat the Forest minigame without dying',
   points: 10,
+  type: 'missable',
   conditions: $(
     ...deathlessProgression(StageEnum.Forest),
   ),
@@ -194,6 +197,7 @@ set.addAchievement({
   title: 'Energy Saver',
   description: 'Beat the Forest minigame by jumping no more than 40 times',
   points: 5,
+  type: 'missable',
   conditions: $(
     // Checkpoint: entering the Forest from the intro card
     ['AndNext', 'Delta', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
@@ -234,6 +238,7 @@ set.addAchievement({
   title: 'Smooth Riding',
   description: 'Beat the Snowboard minigame without dying',
   points: 25,
+  type: 'missable',
   conditions: $(
     ...deathlessProgression(StageEnum.Snowboard),
   ),
@@ -257,6 +262,7 @@ set.addAchievement({
   title: 'Cold Shot',
   description: 'Defeat a snowman with a single shot',
   points: 3,
+  type: 'missable',
   conditions: $(
     // Checkpoint: Snowman fight started
     ['AndNext', 'Mem',   '8bit', stage,          '=',  'Value', '', StageEnum.Snowboard],
@@ -300,6 +306,7 @@ set.addAchievement({
   title: 'Swimming with the Fishes',
   description: 'Beat the Swimmer minigame without dying',
   points: 10,
+  type: 'missable',
   conditions: $(
     ...deathlessProgression(StageEnum.Swimmer),
   ),
@@ -322,6 +329,7 @@ set.addAchievement({
   title: 'Hold Your Breath',
   description: `Beat the Swimmer minigame while refilling your air no more than ${SwimmerRefillLimit} times - deaths count as refill`,
   points: 5,
+  type: 'missable',
   conditions: $(
     // Checkpoint: entering the Swimmer from the intro card
     ['AndNext', 'Delta', '8bit', scene, '=', 'Value', '', SceneEnum.StageIntroCardAndTransition],
