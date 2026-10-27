@@ -1,5 +1,18 @@
-import { AchievementSet, define as $ } from '@cruncheevos/core'
-const set = new AchievementSet({ gameId: 3669, title: 'RoboCop 2' })
+import {AchievementSet, define as $} from '@cruncheevos/core';
+const set = new AchievementSet({gameId: 3669, title: 'RoboCop 2'});
+
+const stage = 0xc084;
+const stageClearedFlag = 0xd2b9; // 0x00 during gameplay, 0xff on finish
+
+const progression = (stageId) => {
+  return [
+    ['', 'Mem',   '8bit', stage,            '=', 'Value', '', stageId - 1],
+    ['', 'Delta', '8bit', stageClearedFlag, '=', 'Value', '', 0x00],
+    ['', 'Mem',   '8bit', stageClearedFlag, '=', 'Value', '', 0xff],
+  ];
+};
+
+/* ------------------------- */
 
 set.addAchievement({
   id: 7057,
@@ -9,10 +22,9 @@ set.addAchievement({
   points: 5,
   type: 'progression',
   conditions: $(
-    ['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 0],
-    ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
+    ...progression(1),
   ),
-})
+});
 
 set.addAchievement({
   id: 7058,
@@ -21,8 +33,10 @@ set.addAchievement({
   description: 'Beat Stage 2',
   points: 5,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 2]),
-})
+  conditions: $(
+    ...progression(2),
+  ),
+});
 
 set.addAchievement({
   id: 7059,
@@ -31,8 +45,10 @@ set.addAchievement({
   description: 'Beat Stage 3',
   points: 5,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 3]),
-})
+  conditions: $(
+    ...progression(3),
+  ),
+});
 
 set.addAchievement({
   id: 7060,
@@ -41,8 +57,10 @@ set.addAchievement({
   description: 'Beat Stage 4',
   points: 5,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 4]),
-})
+  conditions: $(
+    ...progression(4),
+  ),
+});
 
 set.addAchievement({
   id: 7061,
@@ -51,8 +69,10 @@ set.addAchievement({
   description: 'Beat Stage 5',
   points: 5,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 5]),
-})
+  conditions: $(
+    ...progression(5),
+  ),
+});
 
 set.addAchievement({
   id: 7062,
@@ -61,8 +81,10 @@ set.addAchievement({
   description: 'Beat Stage 6',
   points: 5,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 6]),
-})
+  conditions: $(
+    ...progression(6),
+  ),
+});
 
 set.addAchievement({
   id: 7063,
@@ -71,8 +93,10 @@ set.addAchievement({
   description: 'Beat Stage 7',
   points: 5,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 7]),
-})
+  conditions: $(
+    ...progression(7),
+  ),
+});
 
 set.addAchievement({
   id: 7064,
@@ -81,18 +105,22 @@ set.addAchievement({
   description: 'Beat Stage 8',
   points: 5,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 8]),
-})
+  conditions: $(
+    ...progression(8),
+  ),
+});
 
 set.addAchievement({
   id: 7065,
   badge: '10639',
-  title: 'Laboratory under Siege',
+  title: 'Laboratory Under Siege',
   description: 'Beat Stage 9',
   points: 5,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 9]),
-})
+  conditions: $(
+    ...progression(9),
+  ),
+});
 
 set.addAchievement({
   id: 7066,
@@ -101,8 +129,10 @@ set.addAchievement({
   description: 'Beat Stage 10',
   points: 10,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 10]),
-})
+  conditions: $(
+    ...progression(10),
+  ),
+});
 
 set.addAchievement({
   id: 7067,
@@ -111,8 +141,10 @@ set.addAchievement({
   description: 'Beat Stage 11',
   points: 10,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 11]),
-})
+  conditions: $(
+    ...progression(11),
+  ),
+});
 
 set.addAchievement({
   id: 7068,
@@ -121,8 +153,10 @@ set.addAchievement({
   description: 'Beat Stage 12',
   points: 10,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 12]),
-})
+  conditions: $(
+    ...progression(12),
+  ),
+});
 
 set.addAchievement({
   id: 7069,
@@ -131,8 +165,10 @@ set.addAchievement({
   description: 'Beat Stage 13',
   points: 10,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 13]),
-})
+  conditions: $(
+    ...progression(13),
+  ),
+});
 
 set.addAchievement({
   id: 7070,
@@ -141,18 +177,22 @@ set.addAchievement({
   description: 'Beat Stage 14',
   points: 10,
   type: 'progression',
-  conditions: $(['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 14]),
-})
+  conditions: $(
+    ...progression(14),
+  ),
+});
 
 set.addAchievement({
   id: 7071,
   badge: '10649',
-  title: `"This will be your Ultimate Battle!"`,
+  title: '"This Will Be Your Ultimate Battle!"',
   description: 'Beat the game',
   points: 25,
   type: 'win_condition',
-  conditions: $(['', 'Mem', '8bit', 0x890f, '=', 'Value', '', 64]),
-})
+  conditions: $(
+    ...progression(15),
+  ),
+});
 
 set.addAchievement({
   id: 10837,
@@ -165,7 +205,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xc082, '=', 'Value', '', 149],
     ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
   ),
-})
+});
 
 set.addAchievement({
   id: 10838,
@@ -180,7 +220,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xd2f7, '=', 'Value', '', 0],
     ['', 'Mem', '8bit', 0xd2f8, '=', 'Value', '', 0],
   ),
-})
+});
 
 set.addAchievement({
   id: 10839,
@@ -189,13 +229,13 @@ set.addAchievement({
   description: 'Finish the Slide Puzzle 1 in 30 Seconds',
   points: 5,
   conditions: $(
-    ['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 2],
-    ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
-    ['', 'Mem', '8bit', 0xd2f6, '>=', 'Value', '', 3],
-    ['ResetIf', 'Mem', '8bit', 0xd2f6, '<', 'Value', '', 3],
-    ['ResetIf', 'Mem', '8bit', 0xd2f6, '>', 'Value', '', 6],
+    ['',        'Mem', '8bit', 0xc084, '=',  'Value', '', 2],
+    ['',        'Mem', '8bit', 0xd2b9, '=',  'Value', '', 255],
+    ['',        'Mem', '8bit', 0xd2f6, '>=', 'Value', '', 3],
+    ['ResetIf', 'Mem', '8bit', 0xd2f6, '<',  'Value', '', 3],
+    ['ResetIf', 'Mem', '8bit', 0xd2f6, '>',  'Value', '', 6],
   ),
-})
+});
 
 set.addAchievement({
   id: 10840,
@@ -208,7 +248,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xc082, '=', 'Value', '', 150],
     ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
   ),
-})
+});
 
 set.addAchievement({
   id: 10841,
@@ -221,7 +261,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xc082, '=', 'Value', '', 150],
     ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
   ),
-})
+});
 
 set.addAchievement({
   id: 10842,
@@ -236,7 +276,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xd2f7, '=', 'Value', '', 0],
     ['', 'Mem', '8bit', 0xd2f8, '=', 'Value', '', 0],
   ),
-})
+});
 
 set.addAchievement({
   id: 10843,
@@ -249,7 +289,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
     ['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 6],
   ),
-})
+});
 
 set.addAchievement({
   id: 10844,
@@ -258,13 +298,13 @@ set.addAchievement({
   description: 'Finish the Slide Puzzle 2 in 30 Seconds',
   points: 5,
   conditions: $(
-    ['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 7],
-    ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
-    ['', 'Mem', '8bit', 0xd2f6, '>=', 'Value', '', 3],
-    ['ResetIf', 'Mem', '8bit', 0xd2f6, '<', 'Value', '', 3],
-    ['ResetIf', 'Mem', '8bit', 0xd2f6, '>', 'Value', '', 6],
+    ['',        'Mem', '8bit', 0xc084, '=',  'Value', '', 7],
+    ['',        'Mem', '8bit', 0xd2b9, '=',  'Value', '', 255],
+    ['',        'Mem', '8bit', 0xd2f6, '>=', 'Value', '', 3],
+    ['ResetIf', 'Mem', '8bit', 0xd2f6, '<',  'Value', '', 3],
+    ['ResetIf', 'Mem', '8bit', 0xd2f6, '>',  'Value', '', 6],
   ),
-})
+});
 
 set.addAchievement({
   id: 10845,
@@ -277,7 +317,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
     ['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 9],
   ),
-})
+});
 
 set.addAchievement({
   id: 10846,
@@ -290,7 +330,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
     ['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 10],
   ),
-})
+});
 
 set.addAchievement({
   id: 10847,
@@ -303,7 +343,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
     ['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 11],
   ),
-})
+});
 
 set.addAchievement({
   id: 10848,
@@ -318,7 +358,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xd2f7, '=', 'Value', '', 0],
     ['', 'Mem', '8bit', 0xd2f8, '=', 'Value', '', 0],
   ),
-})
+});
 
 set.addAchievement({
   id: 10849,
@@ -331,7 +371,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xd2b9, '=', 'Value', '', 255],
     ['', 'Mem', '8bit', 0xc084, '=', 'Value', '', 13],
   ),
-})
+});
 
 set.addAchievement({
   id: 10850,
@@ -346,7 +386,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xd2f7, '=', 'Value', '', 0],
     ['', 'Mem', '8bit', 0xd2f8, '=', 'Value', '', 0],
   ),
-})
+});
 
 set.addAchievement({
   id: 10851,
@@ -355,7 +395,7 @@ set.addAchievement({
   description: 'Be 3rd or higher in the HI-Score table',
   points: 25,
   conditions: $(
-    ['', 'Mem', '8bit', 0xc08b, '=', 'Value', '', 1],
+    ['', 'Mem', '8bit', 0xc08b, '=',  'Value', '', 1],
     ['', 'Mem', '8bit', 0xc08a, '>=', 'Value', '', 5],
     ['', 'Mem', '8bit', 0xc089, '>=', 'Value', '', 5],
     ['', 'Mem', '8bit', 0xc088, '>=', 'Value', '', 2],
@@ -363,6 +403,6 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xc086, '>=', 'Value', '', 0],
     ['', 'Mem', '8bit', 0xc085, '>=', 'Value', '', 0],
   ),
-})
+});
 
-export default set
+export default set;

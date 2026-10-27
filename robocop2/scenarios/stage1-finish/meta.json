@@ -1,0 +1,128 @@
+{
+  "name": "stage1-finish",
+  "description": "",
+  "game": "RoboCop 2",
+  "console": "GB",
+  "firstFrame": 9295,
+  "markers": {
+    "scenario-start": 9305,
+    "stage-finished": 9395
+  },
+  "addresses": [
+    {
+      "address": "0x890f",
+      "size": "u8",
+      "label": "End screen flag (0x40 = End screen)"
+    },
+    {
+      "address": "0xc080",
+      "size": "u8",
+      "label": "Health x 1"
+    },
+    {
+      "address": "0xc081",
+      "size": "u8",
+      "label": "Health x 10"
+    },
+    {
+      "address": "0xc082",
+      "size": "u8",
+      "label": "Percent arrested"
+    },
+    {
+      "address": "0xc083",
+      "size": "u8",
+      "label": "Lives"
+    },
+    {
+      "address": "0xc084",
+      "size": "u8",
+      "label": "Stage"
+    },
+    {
+      "address": "0xc085",
+      "size": "u8",
+      "label": "Points x 1"
+    },
+    {
+      "address": "0xc086",
+      "size": "u8",
+      "label": "Points x 10"
+    },
+    {
+      "address": "0xc087",
+      "size": "u8",
+      "label": "Points x 100"
+    },
+    {
+      "address": "0xc088",
+      "size": "u8",
+      "label": "Points x 1,000"
+    },
+    {
+      "address": "0xc089",
+      "size": "u8",
+      "label": "Points x 10,000"
+    },
+    {
+      "address": "0xc08a",
+      "size": "u8",
+      "label": "Points x 100,000"
+    },
+    {
+      "address": "0xc08b",
+      "size": "u8",
+      "label": "Points x 1,000,000"
+    },
+    {
+      "address": "0xc08c",
+      "size": "u8",
+      "label": "Points x 10,000,000"
+    },
+    {
+      "address": "0xd2b9",
+      "size": "u8",
+      "label": "Stage Cleared flag"
+    },
+    {
+      "address": "0xd2c4",
+      "size": "u8",
+      "label": "In game seconds x 1"
+    },
+    {
+      "address": "0xd2c5",
+      "size": "u8",
+      "label": "In game seconds x 10"
+    },
+    {
+      "address": "0xd2f5",
+      "size": "u8",
+      "label": "Seconds remaining on slider puzzle x 1"
+    },
+    {
+      "address": "0xd2f6",
+      "size": "u8",
+      "label": "Seconds remaining on slider puzzle x 10"
+    },
+    {
+      "address": "0xd2f7",
+      "size": "u8",
+      "label": "1 on 1 enemy health x 1"
+    },
+    {
+      "address": "0xd2f8",
+      "size": "u8",
+      "label": "1 on 1 enemy health x 10"
+    },
+    {
+      "address": "0xd2f9",
+      "size": "u8",
+      "label": "1 on 1 robocop health x 1"
+    },
+    {
+      "address": "0xd2fa",
+      "size": "u8",
+      "label": "1 on 1 robocop health x 10"
+    }
+  ]
+}
