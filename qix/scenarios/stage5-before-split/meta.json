@@ -1,0 +1,48 @@
+{
+  "name": "stage5-before-split",
+  "description": "",
+  "game": "QIX",
+  "console": "GB",
+  "firstFrame": 20936,
+  "markers": {
+    "scenario-start": 20939,
+    "multiplier2": 21187
+  },
+  "addresses": [
+    {
+      "address": "0xc63b",
+      "size": "u8",
+      "label": "Stage number minus one"
+    },
+    {
+      "address": "0xc63f",
+      "size": "u8",
+      "label": "Multiplier"
+    },
+    {
+      "address": "0xc640",
+      "size": "u8",
+      "label": "Percentage covered"
+    },
+    {
+      "address": "0xc642",
+      "size": "u8",
+      "label": "Lives remaining (plus one than what's displayed"
+    },
+    {
+      "address": "0xc65f",
+      "size": "u8",
+      "label": "Demo flag (likely)"
+    },
+    {
+      "address": "0xdfc0",
+      "size": "u32",
+      "label": "Score"
+    },
+    {
+      "address": "0xdfc2",
+      "size": "u8",
+      "label": "Score tier"
+    }
+  ]
+}

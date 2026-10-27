@@ -1,6 +1,81 @@
 import {AchievementSet, define as $} from '@cruncheevos/core';
 const set = new AchievementSet({gameId: 4967, title: 'QIX'});
 
+const percentageCovered = 0xc640;
+const multiplier = 0xc63f;
+const stageNumber = 0xc63b; // 0 - ?
+
+set.addAchievement({
+  id: 13018,
+  badge: '12902',
+  title: 'Master Coverer',
+  description: 'Clear a stage with 99% of the area covered.',
+  points: 10,
+  conditions: $(
+    ['', 'Mem',   '8bit', stageNumber,       '>=', 'Value', '', 0],
+    ['', 'Mem',   '8bit', stageNumber,       '<=', 'Value', '', 100],
+    ['', 'Delta', '8bit', percentageCovered, '<',  'Value', '', 99],
+    ['', 'Mem',   '8bit', percentageCovered, '>=', 'Value', '', 99],
+  ),
+});
+
+const achieveMultiplier = (multiplierNr) => {
+  return [
+    ['', 'Mem',   '8bit', stageNumber, '>=', 'Value', '', 0],
+    ['', 'Mem',   '8bit', stageNumber, '<=', 'Value', '', 100],
+    ['', 'Delta', '8bit', multiplier,  '<',  'Value', '', multiplierNr],
+    ['', 'Mem',   '8bit', multiplier,  '>=', 'Value', '', multiplierNr],
+  ];
+};
+
+set.addAchievement({
+  id: 13022,
+  badge: '12910',
+  title: 'Qix Splitter',
+  description: 'Split two Qix.',
+  points: 5,
+  conditions: $(
+    ...achieveMultiplier(2),
+  ),
+});
+
+set.addAchievement({
+  id: 13023,
+  badge: '12911',
+  title: 'Double Qix Splitter',
+  description: 'Split two Qix two stages in a row.',
+  points: 5,
+  conditions: $(
+    ...achieveMultiplier(3),
+  ),
+});
+
+set.addAchievement({
+  id: 13024,
+  badge: '12912',
+  title: 'Triple Qix Splitter',
+  description: 'Split two Qix three stages in a row.',
+  points: 10,
+  conditions: $(
+    ...achieveMultiplier(4),
+  ),
+});
+
+set.addAchievement({
+  id: 13025,
+  badge: '12913',
+  title: 'Quadruple Qix Splitter',
+  description: 'Split two Qix four stages in a row.',
+  points: 10,
+  conditions: $(
+    ...achieveMultiplier(5),
+  ),
+});
+
+
+/* ------------------------------ */
+
+
 set.addAchievement({
   id: 13017,
   badge: '12903',
@@ -11,15 +86,6 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xc640, '>=', 'Value', '', 90],
     ['', 'Mem', '8bit', 0xc640, '<=', 'Value', '', 99],
   ),
-});
-
-set.addAchievement({
-  id: 13018,
-  badge: '12902',
-  title: 'Master Coverer',
-  description: 'Clear a stage with 99% of the area covered.',
-  points: 10,
-  conditions: $(['', 'Mem', '8bit', 0xc640, '=', 'Value', '', 99]),
 });
 
 set.addAchievement({
@@ -80,42 +146,6 @@ set.addAchievement({
     ['',        'Mem',   '8bit',  0xc640, '>', 'Value', '', 0],
     ['ResetIf', 'Mem',   '32bit', 0xdfc0, '=', 'Value', '', 0],
   ),
-});
-
-set.addAchievement({
-  id: 13022,
-  badge: '12910',
-  title: 'Qix Splitter',
-  description: 'Split two Qix.',
-  points: 5,
-  conditions: $(['', 'Mem', '8bit', 0xc63f, '=', 'Value', '', 2]),
-});
-
-set.addAchievement({
-  id: 13023,
-  badge: '12911',
-  title: 'Double Qix Splitter',
-  description: 'Split two Qix two stages in a row.',
-  points: 5,
-  conditions: $(['', 'Mem', '8bit', 0xc63f, '=', 'Value', '', 3]),
-});
-
-set.addAchievement({
-  id: 13024,
-  badge: '12912',
-  title: 'Triple Qix Splitter',
-  description: 'Split two Qix three stages in a row.',
-  points: 10,
-  conditions: $(['', 'Mem', '8bit', 0xc63f, '=', 'Value', '', 4]),
-});
-
-set.addAchievement({
-  id: 13025,
-  badge: '12913',
-  title: 'Quadruple Qix Splitter',
-  description: 'Split two Qix four stages in a row.',
-  points: 10,
-  conditions: $(['', 'Mem', '8bit', 0xc63f, '=', 'Value', '', 5]),
 });
 
 set.addAchievement({

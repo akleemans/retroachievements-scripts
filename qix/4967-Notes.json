@@ -1,32 +1,37 @@
 [
   {
-    "User": "fsvgm777",
+    "User": "adrianusk",
     "Address": "0x00c63b",
-    "Note": "Stage number minus one"
+    "Note": "[8-bit] Stage number minus one"
   },
   {
-    "User": "fsvgm777",
+    "User": "adrianusk",
     "Address": "0x00c63f",
-    "Note": "Multiplier (8-bit value)"
+    "Note": "[8-bit] Multiplier"
   },
   {
-    "User": "fsvgm777",
+    "User": "adrianusk",
     "Address": "0x00c640",
-    "Note": "Percentage covered (8-bit value)"
+    "Note": "[8-bit] Percentage covered"
   },
   {
-    "User": "fsvgm777",
+    "User": "adrianusk",
     "Address": "0x00c642",
-    "Note": "Lives remaining (plus one than what's displayed\r\nin-game) (8-bit value)"
+    "Note": "[8-bit] Lives remaining (plus one than what's displayed\r\nin-game)"
   },
   {
-    "User": "fsvgm777",
+    "User": "adrianusk",
     "Address": "0x00c65f",
-    "Note": "Demo flag (likely)"
+    "Note": "[8-bit] Demo flag (likely)"
   },
   {
-    "User": "fsvgm777",
+    "User": "adrianusk",
     "Address": "0x00dfc0",
-    "Note": "Score (32-bit value)"
+    "Note": "[32-bit] Score"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dfc2",
+    "Note": "[8-bit] Score tier"
   }
 ]
