@@ -1,117 +1,117 @@
 [
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00890f",
-    "Note": "end screen = 40?"
+    "Note": "[8-bit] End screen flag (0x40 = End screen)"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c080",
-    "Note": "health x 1"
+    "Note": "[8-bit] Health x 1"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c081",
-    "Note": "health x 10"
+    "Note": "[8-bit] Health x 10"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c082",
-    "Note": "percent arrested"
+    "Note": "[8-bit] Percent arrested"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c083",
-    "Note": "lives"
+    "Note": "[8-bit] Lives"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c084",
-    "Note": "stage"
+    "Note": "[8-bit] Stage"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c085",
-    "Note": "points x 1"
+    "Note": "[8-bit] Points x 1"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c086",
-    "Note": "points x 10"
+    "Note": "[8-bit] Points x 10"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c087",
-    "Note": "points x 100"
+    "Note": "[8-bit] Points x 100"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c088",
-    "Note": "points x 1,000"
+    "Note": "[8-bit] Points x 1,000"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c089",
-    "Note": "points x 10,000"
+    "Note": "[8-bit] Points x 10,000"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c08a",
-    "Note": "points x 100,000"
+    "Note": "[8-bit] Points x 100,000"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c08b",
-    "Note": "points x 1,000,000"
+    "Note": "[8-bit] Points x 1,000,000"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00c08c",
-    "Note": "points x 10,000,000"
+    "Note": "[8-bit] Points x 10,000,000"
   },
   {
-    "User": "Scootaloo",
+    "User": "adrianusk",
     "Address": "0x00d2b9",
-    "Note": "Stage Cleared-ff"
+    "Note": "[8-bit] Stage Cleared flag\r\n0x00 = During stage\r\n0xff = Stage cleared"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00d2c4",
-    "Note": "in game seconds x 1"
+    "Note": "[8-bit] In game seconds x 1"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00d2c5",
-    "Note": "in game seconds x 10"
+    "Note": "[8-bit] In game seconds x 10"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00d2f5",
-    "Note": "seconds ramaining on slider puzzle x 1"
+    "Note": "[8-bit] Seconds remaining on slider puzzle x 1"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00d2f6",
-    "Note": "seconds ramaining on slider puzzle x 10"
+    "Note": "[8-bit] Seconds remaining on slider puzzle x 10"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00d2f7",
-    "Note": "1 on 1 enemy health x 1"
+    "Note": "[8-bit] 1 on 1 enemy health x 1"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00d2f8",
-    "Note": "1 on 1 enemy health x 10"
+    "Note": "[8-bit] 1 on 1 enemy health x 10"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00d2f9",
-    "Note": "1 on 1 robocop health x 1"
+    "Note": "[8-bit] 1 on 1 robocop health x 1"
   },
   {
-    "User": "jackolantern",
+    "User": "adrianusk",
     "Address": "0x00d2fa",
-    "Note": "1 on 1 robocop health x 10"
+    "Note": "[8-bit] 1 on 1 robocop health x 10"
   }
 ]
