@@ -1,0 +1,148 @@
+{
+  "name": "hall34-50k-new",
+  "description": "",
+  "game": "Bubble Ghost",
+  "console": "GB",
+  "firstFrame": 7287,
+  "markers": {
+    "scenario-start": 7292,
+    "50k-reached": 7481
+  },
+  "addresses": [
+    {
+      "address": "0x99ed",
+      "size": "u8",
+      "label": "Score Display Tile [Lower4 BCD]: X00000"
+    },
+    {
+      "address": "0x99ee",
+      "size": "u8",
+      "label": "Score Display Tile [Lower4 BCD]: 0X0000"
+    },
+    {
+      "address": "0x99ef",
+      "size": "u8",
+      "label": "Score Dispaly Tile [Lower4 BCD]: 00X000"
+    },
+    {
+      "address": "0x99f0",
+      "size": "u8",
+      "label": "Score Display Tile [Lower4 BCD]: 000X00"
+    },
+    {
+      "address": "0x99f1",
+      "size": "u8",
+      "label": "Score Display Tile [Lower4 BCD]: 0000X0"
+    },
+    {
+      "address": "0x99f2",
+      "size": "u8",
+      "label": "Score Display Tile [Lower4 BCD]: 00000X {not used}"
+    },
+    {
+      "address": "0x9a02",
+      "size": "u8",
+      "label": "Number of Lives (Tile): Game Over =1e"
+    },
+    {
+      "address": "0xc0ac",
+      "size": "u8",
+      "label": "Next hall number to load (add 1)"
+    },
+    {
+      "address": "0xc0ad",
+      "size": "u8",
+      "label": "Hall number (add 1)"
+    },
+    {
+      "address": "0xc0af",
+      "size": "u8",
+      "label": "Number of lives"
+    },
+    {
+      "address": "0xc0b2",
+      "size": "u8",
+      "label": "Continues left (initial value: 2)"
+    },
+    {
+      "address": "0xc0d9",
+      "size": "u8",
+      "label": "Game over screen (value is 1 when you're GO)"
+    },
+    {
+      "address": "0xc0de",
+      "size": "u8",
+      "label": "Score 100k digit"
+    },
+    {
+      "address": "0xc0df",
+      "size": "u8",
+      "label": "Score 10k digit"
+    },
+    {
+      "address": "0xc0e0",
+      "size": "u8",
+      "label": "Score 1k digit"
+    },
+    {
+      "address": "0xc0e1",
+      "size": "u8",
+      "label": "Score 100 digit"
+    },
+    {
+      "address": "0xc0e2",
+      "size": "u8",
+      "label": "Score 10 digit"
+    },
+    {
+      "address": "0xc0eb",
+      "size": "u8",
+      "label": "Game over screen (3): value is 1e"
+    },
+    {
+      "address": "0xc0fb",
+      "size": "u16",
+      "label": "Score (internal) x 10"
+    },
+    {
+      "address": "0xc0fd",
+      "size": "u16",
+      "label": "High Score x 10"
+    },
+    {
+      "address": "0xc129",
+      "size": "u8",
+      "label": "Bonus Timer [8-bit]"
+    },
+    {
+      "address": "0xe0ac",
+      "size": "u8",
+      "label": "Related to level number (useful to trigger the end of the game)"
+    },
+    {
+      "address": "0xe0b2",
+      "size": "u8",
+      "label": "Number of continues"
+    },
+    {
+      "address": "0xe0de",
+      "size": "u8",
+      "label": "TODO Score?"
+    },
+    {
+      "address": "0xe0df",
+      "size": "u8",
+      "label": "TODO Score?"
+    },
+    {
+      "address": "0xffe6",
+      "size": "u8",
+      "label": "Interfere with animals etc (2)"
+    },
+    {
+      "address": "0xffe7",
+      "size": "u8",
+      "label": "Interfere with animals / trumpet / candles..."
+    }
+  ]
+}

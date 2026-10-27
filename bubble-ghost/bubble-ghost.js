@@ -1,6 +1,113 @@
-import { AchievementSet, define as $ } from '@cruncheevos/core'
-const set = new AchievementSet({ gameId: 6127, title: 'Bubble Ghost' })
+import {AchievementSet, define as $} from '@cruncheevos/core';
+const set = new AchievementSet({gameId: 6127, title: 'Bubble Ghost'});
 
+const currentHall = 0xc0ad;
+const nextHallToLoad = 0xc0ac;
+const lives = 0xc0af;
+// const scoreInternal = 0xc0fb;
+
+set.addAchievement({
+  id: 88082,
+  badge: '96164',
+  title: 'Free as a Bubble',
+  description: 'Beat the game',
+  points: 25,
+  type: 'win_condition',
+  conditions: $(
+    ['', 'Mem',   '8bit', currentHall,    '=', 'Value', '', 36],
+    ['', 'Delta', '8bit', nextHallToLoad, '=', 'Value', '', 36],
+    ['', 'Mem',   '8bit', nextHallToLoad, '=', 'Value', '', 37],
+  ),
+});
+
+const getLives = (amountOfLives) => {
+  return [
+    ['', 'Mem',   '8bit', currentHall, '>=', 'Value', '', 2],
+    ['', 'Mem',   '8bit', currentHall, '<=', 'Value', '', 36],
+    ['', 'Delta', '8bit', lives,       '=',  'Value', '', amountOfLives - 1],
+    ['', 'Mem',   '8bit', lives,       '=',  'Value', '', amountOfLives],
+  ];
+};
+
+set.addAchievement({
+  id: 88083,
+  badge: '96187',
+  title: '6 Lives',
+  description: 'Get 6 Lives',
+  points: 5,
+  conditions: $(
+    ...getLives(6),
+  ),
+});
+
+set.addAchievement({
+  id: 88084,
+  badge: '96188',
+  title: '7 Lives',
+  description: 'Get 7 Lives',
+  points: 10,
+  conditions: $(
+    ...getLives(7),
+  ),
+});
+
+set.addAchievement({
+  id: 88085,
+  badge: '96189',
+  title: '8 Lives',
+  description: 'Get 8 Lives',
+  points: 10,
+  conditions: $(
+    ...getLives(8),
+  ),
+});
+
+set.addAchievement({
+  id: 88086,
+  badge: '96195',
+  title: 'Am I a Cat?',
+  description: 'Get 9 Lives',
+  points: 25,
+  conditions: $(
+    ...getLives(9),
+  ),
+});
+
+// Below are unofficial cheevos
+
+// const getScore10x = (score10x) => {
+//   return [
+//     ['', 'Mem',   '8bit',  currentHall,   '>=', 'Value', '', 2],
+//     ['', 'Mem',   '8bit',  currentHall,   '<=', 'Value', '', 36],
+//     ['', 'Delta', '16bit', scoreInternal, '<',  'Value', '', score10x],
+//     ['', 'Mem',   '16bit', scoreInternal, '>=', 'Value', '', score10x],
+//   ];
+// };
+//
+// set.addAchievement({
+//   id: 88087,
+//   badge: '96169',
+//   title: '50K',
+//   description: 'Get more than 50,000 points',
+//   points: 5,
+//   conditions: $(
+//     ...getScore10x(5_000),
+//   ),
+// });
+//
+// set.addAchievement({
+//   id: 88088,
+//   badge: '96170',
+//   title: '100K',
+//   description: 'Score more than 100,000 points',
+//   points: 5,
+//   conditions: $(
+//     ...getScore10x(10_000),
+//   ),
+// });
+
+
+/* ------------------------------- */
 
 set.addAchievement({
   id: 88076,
@@ -11,9 +118,9 @@ set.addAchievement({
   type: 'progression',
   conditions: $(
     ['', 'Delta', '8bit', 0xc0ad, '=', 'Value', '', 6],
-    ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 7],
+    ['', 'Mem',   '8bit', 0xc0ad, '=', 'Value', '', 7],
   ),
-})
+});
 
 set.addAchievement({
   id: 88077,
@@ -24,9 +131,9 @@ set.addAchievement({
   type: 'progression',
   conditions: $(
     ['', 'Delta', '8bit', 0xc0ad, '=', 'Value', '', 11],
-    ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 12],
+    ['', 'Mem',   '8bit', 0xc0ad, '=', 'Value', '', 12],
   ),
-})
+});
 
 set.addAchievement({
   id: 88078,
@@ -37,9 +144,9 @@ set.addAchievement({
   type: 'progression',
   conditions: $(
     ['', 'Delta', '8bit', 0xc0ad, '=', 'Value', '', 16],
-    ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 17],
+    ['', 'Mem',   '8bit', 0xc0ad, '=', 'Value', '', 17],
   ),
-})
+});
 
 set.addAchievement({
   id: 88079,
@@ -50,9 +157,9 @@ set.addAchievement({
   type: 'progression',
   conditions: $(
     ['', 'Delta', '8bit', 0xc0ad, '=', 'Value', '', 21],
-    ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 22],
+    ['', 'Mem',   '8bit', 0xc0ad, '=', 'Value', '', 22],
   ),
-})
+});
 
 set.addAchievement({
   id: 88080,
@@ -63,9 +170,9 @@ set.addAchievement({
   type: 'progression',
   conditions: $(
     ['', 'Delta', '8bit', 0xc0ad, '=', 'Value', '', 26],
-    ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 27],
+    ['', 'Mem',   '8bit', 0xc0ad, '=', 'Value', '', 27],
   ),
-})
+});
 
 set.addAchievement({
   id: 88081,
@@ -76,73 +183,9 @@ set.addAchievement({
   type: 'progression',
   conditions: $(
     ['', 'Delta', '8bit', 0xc0ad, '=', 'Value', '', 31],
-    ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 32],
+    ['', 'Mem',   '8bit', 0xc0ad, '=', 'Value', '', 32],
   ),
-})
-
-set.addAchievement({
-  id: 88082,
-  badge: '96164',
-  title: 'Free as a bubble',
-  description: 'Beat the game',
-  points: 25,
-  type: 'win_condition',
-  conditions: $(['', 'Mem', '8bit', 0xc0ac, '=', 'Value', '', 37]),
-})
-
-set.addAchievement({
-  id: 88083,
-  badge: '96187',
-  title: '6 lives',
-  description: 'Get 6 lives',
-  points: 5,
-  conditions: $(['', 'Mem', '8bit', 0xc0af, '=', 'Value', '', 6]),
-})
-
-set.addAchievement({
-  id: 88084,
-  badge: '96188',
-  title: '7 lives',
-  description: 'Get 7 lives',
-  points: 10,
-  conditions: $(['', 'Mem', '8bit', 0xc0af, '=', 'Value', '', 7]),
-})
-
-set.addAchievement({
-  id: 88085,
-  badge: '96189',
-  title: '8 lives',
-  description: 'Get 8 lives',
-  points: 10,
-  conditions: $(['', 'Mem', '8bit', 0xc0af, '=', 'Value', '', 8]),
-})
-
-set.addAchievement({
-  id: 88086,
-  badge: '96195',
-  title: 'Am I a cat?',
-  description: 'Get nine lives',
-  points: 25,
-  conditions: $(['', 'Mem', '8bit', 0xc0af, '=', 'Value', '', 9]),
-})
-
-set.addAchievement({
-  id: 88087,
-  badge: '96169',
-  title: '50K',
-  description: 'Get more than 50.000 points',
-  points: 5,
-  conditions: $(['', 'Mem', '8bit', 0xe0df, '=', 'Value', '', 5]),
-})
-
-set.addAchievement({
-  id: 88088,
-  badge: '96170',
-  title: '100K',
-  description: 'Score more than 100.000 points',
-  points: 5,
-  conditions: $(['', 'Mem', '8bit', 0xe0de, '=', 'Value', '', 1]),
-})
+});
 
 set.addAchievement({
   id: 88089,
@@ -154,7 +197,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xe0de, '=', 'Value', '', 1],
     ['', 'Mem', '8bit', 0xe0df, '>', 'Value', '', 4],
   ),
-})
+});
 
 set.addAchievement({
   id: 88090,
@@ -163,7 +206,7 @@ set.addAchievement({
   description: 'Score more than 200.000 points',
   points: 10,
   conditions: $(['', 'Mem', '8bit', 0xe0de, '=', 'Value', '', 2]),
-})
+});
 
 set.addAchievement({
   id: 88091,
@@ -175,7 +218,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xe0df, '>', 'Value', '', 4],
     ['', 'Mem', '8bit', 0xe0de, '=', 'Value', '', 2],
   ),
-})
+});
 
 set.addAchievement({
   id: 88092,
@@ -184,10 +227,10 @@ set.addAchievement({
   description: 'Find the first shortcut',
   points: 5,
   conditions: $(
-    ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 22],
+    ['', 'Mem',   '8bit', 0xc0ad, '=', 'Value', '', 22],
     ['', 'Delta', '8bit', 0xc0ad, '=', 'Value', '', 15],
   ),
-})
+});
 
 set.addAchievement({
   id: 88093,
@@ -197,21 +240,21 @@ set.addAchievement({
   points: 10,
   conditions: $(
     ['', 'Delta', '8bit', 0xc0ad, '=', 'Value', '', 28],
-    ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 33],
+    ['', 'Mem',   '8bit', 0xc0ad, '=', 'Value', '', 33],
   ),
-})
+});
 
 set.addAchievement({
   id: 88094,
   badge: '96192',
-  title: `You don't need it, do you...?`,
+  title: 'You don\'t need it, do you...?',
   description: 'Beat the game without using a continue.',
   points: 10,
   conditions: $(
     ['', 'Mem', '8bit', 0xe0b2, '=', 'Value', '', 2],
     ['', 'Mem', '8bit', 0xc0ac, '=', 'Value', '', 37],
   ),
-})
+});
 
 set.addAchievement({
   id: 88095,
@@ -224,7 +267,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xffe7, '=', 'Value', '', 33],
     ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 4],
   ),
-})
+});
 
 set.addAchievement({
   id: 88096,
@@ -237,12 +280,12 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xffe6, '=', 'Value', '', 112],
     ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 5],
   ),
-})
+});
 
 set.addAchievement({
   id: 88097,
   badge: '96183',
-  title: `I'm a fan of rabbits.`,
+  title: 'I\'m a fan of rabbits.',
   description: 'Pun intended.',
   points: 1,
   conditions: $(
@@ -250,12 +293,12 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xffe6, '=', 'Value', '', 112],
     ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 6],
   ),
-})
+});
 
 set.addAchievement({
   id: 88098,
   badge: '96176',
-  title: `I'm not a fan.`,
+  title: 'I\'m not a fan.',
   description: 'Sorry.',
   points: 1,
   conditions: $(
@@ -263,7 +306,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xffe7, '=', 'Value', '', 195],
     ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 9],
   ),
-})
+});
 
 set.addAchievement({
   id: 88099,
@@ -276,7 +319,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xffe7, '=', 'Value', '', 195],
     ['', 'Mem', '8bit', 0xffe6, '=', 'Value', '', 112],
   ),
-})
+});
 
 set.addAchievement({
   id: 88100,
@@ -289,7 +332,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xffe7, '=', 'Value', '', 0],
     ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 10],
   ),
-})
+});
 
 set.addAchievement({
   id: 88101,
@@ -302,7 +345,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xffe7, '=', 'Value', '', 195],
     ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 17],
   ),
-})
+});
 
 set.addAchievement({
   id: 88102,
@@ -315,7 +358,7 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xffe6, '=', 'Value', '', 58],
     ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 24],
   ),
-})
+});
 
 set.addAchievement({
   id: 88103,
@@ -329,19 +372,19 @@ set.addAchievement({
     ['', 'Mem', '8bit', 0xffe6, '=', 'Value', '', 112],
     ['', 'Mem', '8bit', 0xffe6, '=', 'Value', '', 112],
   ),
-})
+});
 
 set.addAchievement({
   id: 88518,
   badge: '96192',
-  title: `You don't need it, do you...?`,
+  title: 'You don\'t need it, do you...?',
   description: 'Beat the game without using a continue.',
   points: 10,
   conditions: $(
     ['', 'Mem', '8bit', 0xc0b2, '=', 'Value', '', 2],
     ['', 'Mem', '8bit', 0xc0ac, '=', 'Value', '', 37],
   ),
-})
+});
 
 set.addAchievement({
   id: 88615,
@@ -350,7 +393,7 @@ set.addAchievement({
   description: 'void',
   points: 5,
   conditions: $(undefined),
-})
+});
 
 set.addAchievement({
   id: 88632,
@@ -359,13 +402,13 @@ set.addAchievement({
   description: 'Get more than 6540pts at the first hall.',
   points: 5,
   conditions: $(
-    ['', 'Delta', '8bit', 0xc0ad, '=', 'Value', '', 2],
-    ['', 'Mem', '8bit', 0xc0ad, '=', 'Value', '', 3],
-    ['AddSource', 'Mem', '8bit', 0xc0e0, '*', 'Value', '', 100],
-    ['AddSource', 'Mem', '8bit', 0xc0e1, '*', 'Value', '', 10],
-    ['', 'Mem', '8bit', 0xc0e2, '>', 'Value', '', 654],
+    ['',          'Delta', '8bit', 0xc0ad, '=', 'Value', '', 2],
+    ['',          'Mem',   '8bit', 0xc0ad, '=', 'Value', '', 3],
+    ['AddSource', 'Mem',   '8bit', 0xc0e0, '*', 'Value', '', 100],
+    ['AddSource', 'Mem',   '8bit', 0xc0e1, '*', 'Value', '', 10],
+    ['',          'Mem',   '8bit', 0xc0e2, '>', 'Value', '', 654],
   ),
-})
+});
 
 set.addAchievement({
   id: 88526,
@@ -374,10 +417,10 @@ set.addAchievement({
   description: 'Get more than 50.000 points',
   points: 5,
   conditions: $(
-    ['', 'Mem', '8bit', 0xc0df, '=', 'Value', '', 5],
+    ['', 'Mem',   '8bit', 0xc0df, '=', 'Value', '', 5],
     ['', 'Delta', '8bit', 0xc0df, '=', 'Value', '', 4],
   ),
-})
+});
 
 set.addAchievement({
   id: 88525,
@@ -386,10 +429,10 @@ set.addAchievement({
   description: 'Score more than 100.000 points',
   points: 5,
   conditions: $(
-    ['', 'Mem', '8bit', 0xc0de, '=', 'Value', '', 1],
+    ['', 'Mem',   '8bit', 0xc0de, '=', 'Value', '', 1],
     ['', 'Delta', '8bit', 0xc0df, '=', 'Value', '', 9],
   ),
-})
+});
 
 set.addAchievement({
   id: 88523,
@@ -398,11 +441,11 @@ set.addAchievement({
   description: 'Score more than 150.000 points',
   points: 10,
   conditions: $(
-    ['', 'Mem', '8bit', 0xc0de, '=', 'Value', '', 1],
-    ['', 'Mem', '8bit', 0xc0df, '=', 'Value', '', 5],
+    ['', 'Mem',   '8bit', 0xc0de, '=', 'Value', '', 1],
+    ['', 'Mem',   '8bit', 0xc0df, '=', 'Value', '', 5],
     ['', 'Delta', '8bit', 0xc0df, '=', 'Value', '', 4],
   ),
-})
+});
 
 set.addAchievement({
   id: 88521,
@@ -411,10 +454,10 @@ set.addAchievement({
   description: 'Score more than 200.000 points',
   points: 10,
   conditions: $(
-    ['', 'Mem', '8bit', 0xc0de, '=', 'Value', '', 2],
+    ['', 'Mem',   '8bit', 0xc0de, '=', 'Value', '', 2],
     ['', 'Delta', '8bit', 0xc0de, '=', 'Value', '', 1],
   ),
-})
+});
 
 set.addAchievement({
   id: 88520,
@@ -423,11 +466,11 @@ set.addAchievement({
   description: 'Get more than 250.000 points.',
   points: 25,
   conditions: $(
-    ['', 'Mem', '8bit', 0xc0de, '=', 'Value', '', 2],
-    ['', 'Mem', '8bit', 0xc0df, '=', 'Value', '', 5],
+    ['', 'Mem',   '8bit', 0xc0de, '=', 'Value', '', 2],
+    ['', 'Mem',   '8bit', 0xc0df, '=', 'Value', '', 5],
     ['', 'Delta', '8bit', 0xc0df, '=', 'Value', '', 4],
   ),
-})
+});
 
 set.addLeaderboard({
   id: 6388,
@@ -437,7 +480,7 @@ set.addLeaderboard({
   type: 'SCORE',
   conditions: {
     start: $(
-      ['', 'Mem', '8bit', 0xc0af, '=', 'Value', '', 5],
+      ['', 'Mem', '8bit',  0xc0af, '=', 'Value', '', 5],
       ['', 'Mem', '16bit', 0xc0fb, '=', 'Value', '', 0],
     ),
     cancel: '0=1',
@@ -445,8 +488,10 @@ set.addLeaderboard({
       ['', 'Mem', '8bit', 0xc0af, '=', 'Value', '', 0],
       ['', 'Mem', '8bit', 0x9a02, '=', 'Value', '', 30],
     ),
-    value: $(['Measured', 'Mem', '16bit', 0xc0fb, '*', 'Value', '', 10]),
+    value: $(
+      ['Measured', 'Mem', '16bit', 0xc0fb, '*', 'Value', '', 10],
+    ),
   },
-})
+});
 
-export default set
+export default set;

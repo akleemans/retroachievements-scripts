@@ -35,14 +35,24 @@
     "Note": "Number of Lives (Tile): Game Over =1e"
   },
   {
-    "User": "hardt",
-    "Address": "0x00c0ad",
-    "Note": "Level number (add 1)"
+    "User": "adrianusk",
+    "Address": "0x00c0ac",
+    "Note": "[8-bit] Next hall number to load (add 1)"
   },
   {
-    "User": "hardt",
+    "User": "adrianusk",
+    "Address": "0x00c0ad",
+    "Note": "[8-bit] Hall number (add 1)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00c0af",
-    "Note": "Number of lives"
+    "Note": "[8-bit] Number of lives"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00c0b2",
+    "Note": "[8-bit] Continues left (initial value: 2)"
   },
   {
     "User": "hardt",
@@ -50,29 +60,29 @@
     "Note": "Game over screen (value is 1 when you're GO)"
   },
   {
-    "User": "hardt",
+    "User": "adrianusk",
     "Address": "0x00c0de",
-    "Note": "Digit = hundred of thousands"
+    "Note": "[8-bit] Score 100k digit"
   },
   {
-    "User": "hardt",
+    "User": "adrianusk",
     "Address": "0x00c0df",
-    "Note": "Digit = Dozens of thousands"
+    "Note": "[8-bit] Score 10k digit"
   },
   {
-    "User": "Bl4h8L4hBl4h",
+    "User": "adrianusk",
     "Address": "0x00c0e0",
-    "Note": "another possible score locarion thousands, not as jumpy as the other one"
+    "Note": "[8-bit] Score 1k digit"
   },
   {
-    "User": "hardt",
+    "User": "adrianusk",
     "Address": "0x00c0e1",
-    "Note": "Digit = hundreds"
+    "Note": "[8-bit] Score 100 digit"
   },
   {
-    "User": "hardt",
+    "User": "adrianusk",
     "Address": "0x00c0e2",
-    "Note": "Digit = tens"
+    "Note": "[8-bit] Score 10 digit"
   },
   {
     "User": "hardt",
@@ -80,14 +90,14 @@
     "Note": "Game over screen (3): value is 1e"
   },
   {
-    "User": "Keltron3030",
+    "User": "adrianusk",
     "Address": "0x00c0fb",
-    "Note": "Score [16-bit hex] x 10"
+    "Note": "[16-bit] Score (internal) x 10"
   },
   {
-    "User": "Keltron3030",
+    "User": "adrianusk",
     "Address": "0x00c0fd",
-    "Note": "Hi-Score [16-bit hex] x 10"
+    "Note": "[16-bit] High Score x 10"
   },
   {
     "User": "lonegraywolf2000",
@@ -103,6 +113,16 @@
     "User": "hardt",
     "Address": "0x00e0b2",
     "Note": "Number of continues"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00e0de",
+    "Note": "[8-bit] TODO Score?"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00e0df",
+    "Note": "[8-bit] TODO Score?"
   },
   {
     "User": "hardt",

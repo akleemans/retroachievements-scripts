@@ -2,7 +2,7 @@
 -- `description`) before each recording session; the rest is per-game.
 return {
     -- this recording session
-    name = "beat-game",
+    name = "hall34-100k-new",
     description = "",
 
     -- this game
