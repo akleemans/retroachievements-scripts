@@ -1,0 +1,337 @@
+[
+  {
+    "User": "oktpm",
+    "Address": "0x008132",
+    "Note": "[8-Bit]\r\nLevel 1 boss status\r\n0x3f=spawned\r\n0x04=despawned"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x008352",
+    "Note": "[8-Bit]\r\nFinal boss status\r\n0x9f=transform to liquid metal\r\n0x31=dead\r\n0xf3=falling"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x0085c5",
+    "Note": "[8-Bit]\r\nEaster egg Kyle Reese\r\n0xbb=Kyle Reese sprite for entering door"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x009801",
+    "Note": "[8-Bit]\r\nValues for level 3 reprogramming maps. Player must reprogram three maps to finish level 3. Map is random based on when scrolling text screen is advanced before each stage. Six total maps, two available at each stage, with three stages.\r\n0x61=1st stage map #1 \r\n0x79=1st stage map #2\r\n0x36=2nd stage map #1\r\n0x71=2nd stage map #2\r\n0x66=3rd stage map #1 \r\n0x75=3rd stage map #2"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00c010",
+    "Note": "[8-Bit]\r\nLevel 5 player y-coordinates"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00c011",
+    "Note": "[8-Bit]\r\nLevel 5 player x-coordinates"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00c092",
+    "Note": "[8-Bit]\r\nlevel 5 player bullet presence (can count # of bullets fired)"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d000",
+    "Note": "[8-Bit]\r\nPause state\r\n0x00=game is paused by player OR scrolling text screen is displayed"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d004",
+    "Note": "[8-Bit]\r\nTitle screen, opening idents, and game over screen\r\n0x24=opening idents and title screen\r\n0x1e=game over"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d006",
+    "Note": "[8-Bit]\r\ngame engine for timer"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d007",
+    "Note": "[8-Bit]\r\ngame engine for time"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d008",
+    "Note": "[8-Bit]\r\ngame engine for timer"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d009",
+    "Note": "[8-Bit]\r\ngame engine for timer"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d093",
+    "Note": "[8-Bit]\r\nPlayer controller input\r\n0x80=down\r\n0x40=up \r\n0x20=left \r\n0x10=right\r\n0x08=Start \r\n0x04=Select\r\n0x02=B \r\n0x01=A"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d099",
+    "Note": "[8-Bit]\r\nLevel 5 screen x-coordinates"
+  },
+  {
+    "User": "tele",
+    "Address": "0x00d0a5",
+    "Note": "Lower 4 Score\r\nx0000"
+  },
+  {
+    "User": "tele",
+    "Address": "0x00d0a6",
+    "Note": "Lower 4 Score\r\n0x000"
+  },
+  {
+    "User": "tele",
+    "Address": "0x00d0a7",
+    "Note": "Lower 4 Score\r\n00x00"
+  },
+  {
+    "User": "tele",
+    "Address": "0x00d0a8",
+    "Note": "Lower 4 Score\r\n000x0"
+  },
+  {
+    "User": "tele",
+    "Address": "0x00d0a9",
+    "Note": "Lower 4 Score\r\n0000x"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0bc",
+    "Note": "[8-Bit]\r\nLevel flag\r\n0x01=Level 1\r\n0x02=Level 2\r\n0x03=Level 3\r\n0x04=Level 4\r\n0x05=Level 5\r\n0x06=Level 6"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0d8",
+    "Note": "[8-bit]\r\nGamma\r\n0xe4=neutral gamma"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0d9",
+    "Note": "[8-bit]\r\nGamma\r\n0xe4=neutral gamma"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0dc",
+    "Note": "[8-Bit]\r\nlevel 4 player y-axis"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0eb",
+    "Note": "[8-Bit]\r\nScrolling text screens\r\n0x87=Level 1 hint screen\r\n0x46=Level 3 retry screen"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0f0",
+    "Note": "[8-Bit]\r\nLevel 3 node #1\r\n0x01=display 1\r\n0x00=display 0"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0f1",
+    "Note": "[8-Bit]\r\nLevel 3 node #2\r\n0x01=display 1\r\n0x00=display 0"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0f2",
+    "Note": "[8-Bit]\r\nLevel 3 node #3\r\n0x01=display 1\r\n0x00=display 0"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0f3",
+    "Note": "[8-Bit]\r\nLevel 3 node #4\r\n0x01=display 1\r\n0x00=display 0"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0fa",
+    "Note": "[8-Bit]\r\nLevel 3 timer 0:x0"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d0fb",
+    "Note": "[8-Bit]\r\nLevel 3 timer 0:0x"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d10a",
+    "Note": "[8-Bit]\r\nKeycard flag"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d10e",
+    "Note": "[8-Bit]\r\nLevel 4 boss x-axis"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d11b",
+    "Note": "[8-Bit]\r\nLevel 4 boss status\r\n0x03=defeated"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00d12f",
+    "Note": "[8-Bit]\r\nLevel 5 player ammo\r\n0xe0=out of rile ammo, using shotgun"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dbb8",
+    "Note": "[8-Bit]\r\nplayer presence"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dbbc",
+    "Note": "[8-Bit]\r\nplayer sprite for entering door\r\n0x86=player sprite entering door"
+  },
+  {
+    "User": "tele",
+    "Address": "0x00dbbd",
+    "Note": "Health"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dbc9",
+    "Note": "[8-Bit]\r\nPlayer door timer"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dbcb",
+    "Note": "[8-Bit]\r\npunching animation"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dbce",
+    "Note": "[8-Bit]\r\nplayer and screen y-coordinates"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dbcf",
+    "Note": "[8-Bit]\r\nlevel 1 player x-coordinates\r\nlevel 2 player x-coordinates"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dc3f",
+    "Note": "[8-Bit]\r\nLevel 1 tower health\r\nLevel 1 boss health\r\nLevel 5 barrier health"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dc73",
+    "Note": "[8-Bit]\r\nlevel 5 turret health (#1 ceiling)"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dc8d",
+    "Note": "[8-Bit]\r\nlevel 5 turret health (turret before destructable barrier)"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dc9f",
+    "Note": "[8-Bit]\r\nsecret guy"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dca7",
+    "Note": "[8-Bit]\r\nlevel 5 turret health (#2 ceiling)"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dcc1",
+    "Note": "[8-Bit]\r\nlevel 5 turret (#3 ceiling)"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dcdb",
+    "Note": "[8-Bit]\r\nlevel 5 turret health"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00ddae",
+    "Note": "[8-Bit]\r\nlevel 1 mine #1\r\n0x04=present\r\n0x00=gone"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00ddb2",
+    "Note": "[8-Bit]\r\nlevel 1 mine #2\r\n0x24=present\r\n0x00=gone"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00ddb6",
+    "Note": "[8-Bit]\r\nlevel 1 mine #3\r\n0x28=present\r\n0x00=gone"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00ddba",
+    "Note": "[8-Bit]\r\nlevel 1 mine #4\r\n0x4b=present\r\n0x00=gone"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00ddbe",
+    "Note": "[8-Bit]\r\nlevel 1 mine #5\r\n0x5a=present\r\n0x00=gone"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00ddc2",
+    "Note": "[8-Bit]\r\nlevel 1 mine #6\r\n0x5f=present\r\n0x00=gone"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00ddc6",
+    "Note": "[8-Bit]\r\nlevel 1 mine #7\r\n0x64=present\r\n0x00=gone"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00ddca",
+    "Note": "[8-Bit]\r\nlevel 1 mine #8\r\n0x82=present\r\n0x00=gone"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00ddce",
+    "Note": "[8-Bit]\r\nlevel 1 mine #9\r\n0x94=present\r\n0x00=gone"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00de9e",
+    "Note": "[8-Bit]\r\nLevel 5 keycard bottom middle\r\n0x37=present\r\n0x00=collected"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00dea6",
+    "Note": "[8-Bit]\r\nLevel 5 keycard bottom left\r\n0x1a=present\r\n0x00=collected"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00deaa",
+    "Note": "[8-Bit]\r\nLevel 5 Terminator arm\r\n0x4f=present\r\n0x00=collected"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00fbcb",
+    "Note": "[8-Bit]\r\npunches"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00fc84",
+    "Note": "[8-Bit]\r\nLevel 1 hint presence\r\n0x30=present"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00fc85",
+    "Note": "[8-Bit]\r\nlevel 1 player x-coordinates"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00fc87",
+    "Note": "[8-Bit]\r\nLevel 1 flashing hint item\r\n0x00=dull\r\n0x10=bright"
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00fe14",
+    "Note": "[8-Bit]\r\nLevel 2 hint timer visibility flag\r\n0x90=not visible\r\n0x80=visible\r\nThe hint timer begins counting down as soon as the level starts, not when the hint item is picked up. However, the timer will not appear on screen until the hint item is picked up. The timer appears as an arrow that slowly scrolls from left to right as 0x00fe15 changes value, and will appear along its track according to that value (the longer you wait to pick up the hint, the further along the track the arrow will appear)."
+  },
+  {
+    "User": "oktpm",
+    "Address": "0x00fe15",
+    "Note": "[8-Bit]\r\nLevel 2 hint timer\r\n0xa3=timer stops\r\nThis value begins counting down as soon as the level starts, not when the hint item is picked up. The timer stops running once it hits value 0x3a. See address 0x00fe14 for more information."
+  }
+]
