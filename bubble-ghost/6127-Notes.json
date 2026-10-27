@@ -1,0 +1,117 @@
+[
+  {
+    "User": "Keltron3030",
+    "Address": "0x0099ed",
+    "Note": "Score Display Tile [Lower4 BCD]: X00000"
+  },
+  {
+    "User": "Keltron3030",
+    "Address": "0x0099ee",
+    "Note": "Score Display Tile [Lower4 BCD]: 0X0000"
+  },
+  {
+    "User": "Keltron3030",
+    "Address": "0x0099ef",
+    "Note": "Score Dispaly Tile [Lower4 BCD]: 00X000"
+  },
+  {
+    "User": "Keltron3030",
+    "Address": "0x0099f0",
+    "Note": "Score Display Tile [Lower4 BCD]: 000X00"
+  },
+  {
+    "User": "Keltron3030",
+    "Address": "0x0099f1",
+    "Note": "Score Display Tile [Lower4 BCD]: 0000X0"
+  },
+  {
+    "User": "Keltron3030",
+    "Address": "0x0099f2",
+    "Note": "Score Display Tile [Lower4 BCD]: 00000X {not used}"
+  },
+  {
+    "User": "Keltron3030",
+    "Address": "0x009a02",
+    "Note": "Number of Lives (Tile): Game Over =1e"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00c0ad",
+    "Note": "Level number (add 1)"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00c0af",
+    "Note": "Number of lives"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00c0d9",
+    "Note": "Game over screen (value is 1 when you're GO)"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00c0de",
+    "Note": "Digit = hundred of thousands"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00c0df",
+    "Note": "Digit = Dozens of thousands"
+  },
+  {
+    "User": "Bl4h8L4hBl4h",
+    "Address": "0x00c0e0",
+    "Note": "another possible score locarion thousands, not as jumpy as the other one"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00c0e1",
+    "Note": "Digit = hundreds"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00c0e2",
+    "Note": "Digit = tens"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00c0eb",
+    "Note": "Game over screen (3): value is 1e"
+  },
+  {
+    "User": "Keltron3030",
+    "Address": "0x00c0fb",
+    "Note": "Score [16-bit hex] x 10"
+  },
+  {
+    "User": "Keltron3030",
+    "Address": "0x00c0fd",
+    "Note": "Hi-Score [16-bit hex] x 10"
+  },
+  {
+    "User": "lonegraywolf2000",
+    "Address": "0x00c129",
+    "Note": "Bonus Timer [8-bit] \r\nComplete the stage to earn bonus points."
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00e0ac",
+    "Note": "Related to level number (useful to trigger the end of the game)"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00e0b2",
+    "Note": "Number of continues"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00ffe6",
+    "Note": "Interfere with animals etc (2)"
+  },
+  {
+    "User": "hardt",
+    "Address": "0x00ffe7",
+    "Note": "Interfere with animals \/ trumpet \/ candles..."
+  }
+]
