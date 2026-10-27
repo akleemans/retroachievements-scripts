@@ -1,0 +1,22 @@
+Lookup:LevelName
+0x0=Mission 1
+0x1=Mission 2
+0x2=Mission 3
+0x3=Mission 4
+0x4=Mission 5
+0x5=Mission 6
+0x6=Mission 7
+0x7=Mission 8
+0x8=Mission 9
+0x9=Mission 10
+0xa=Mission 11
+0xb=Mission 12
+0xc=Mission 13
+0xd=Mission 14
+0xe=Mission 15
+
+Format:Lives
+FormatType=VALUE
+
+Display:
+@LevelName(0xhc084),  @Lives(0xhc083) Lives,
