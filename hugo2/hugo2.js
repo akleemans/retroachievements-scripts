@@ -263,7 +263,7 @@ set.addAchievement({
   badge: '738366',
   title: 'Smooth Riding',
   description: 'Beat the Snowboard minigame without dying',
-  points: 25,
+  points: 10,
   type: 'missable',
   conditions: $(
     ...deathlessProgression(StageEnum.Snowboard),
