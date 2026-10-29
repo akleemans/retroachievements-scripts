@@ -7,18 +7,20 @@ const LevelEndCodeEnum = {
   GameOver: 0x01, // Value after any game over text screen, until the next level init
   Level1Complete: 0x06,
   Level2Complete: 0x07,
+  Level3BoardComplete: 0x10, // Set when a board is reprogrammed, turns into Level3Complete after the 3rd board
   Level3Complete: 0x08,
   Level4Complete: 0x0c,
   Level5Complete: 0x0e,
   Level6Complete: 0x0f,
 };
-const score = 0xd0aa; // 16-bit, binary
+const score = 0xd0aa; // 16-bit
 const loopFrameCounter = 0xd0d7; // Increments during game, frozen while paused and during text screens
 const playerX = 0xdbcf;
 
+// Level 3 doesn't go from 0 to its complete code, the 3rd board sets Level3BoardComplete first
 const progression = (levelId, code, trigger) => [
-  ['AndNext',                'Mem',   '8bit', level,        '=', 'Value', '', levelId],
-  ['AndNext',                'Delta', '8bit', levelEndCode, '=', 'Value', '', 0],
+  ['',                'Mem',   '8bit', level,        '=', 'Value', '', levelId],
+  ['',                'Delta', '8bit', levelEndCode, '=', 'Value', '', levelId === 3 ? LevelEndCodeEnum.Level3BoardComplete : 0],
   [trigger ? 'Trigger' : '', 'Mem',   '8bit', levelEndCode, '=', 'Value', '', code],
 ];
 
@@ -40,7 +42,7 @@ const level1HintColumn = 0xd100; // 0x6c, set to 0 when the hint is picked up
 
 set.addAchievement({
   title: 'Thanks for the Tip, Mom!',
-  description: 'Get the flashing hint in Los Angeles 2029 A.D. in level 1',
+  description: 'Pick up the flashing hint in Los Angeles 2029 A.D. in level 1',
   points: 1,
   type: 'missable',
   conditions: $(
@@ -135,7 +137,7 @@ set.addAchievement({
   conditions: {
     core: $(
       ['', 'Mem', '8bit', level3ChancesLeft, '=', 'Value', '', 2],
-      ...progression(3, LevelEndCodeEnum.Level3Complete, true),
+      ...progression(3, LevelEndCodeEnum.Level3Complete),
     ),
   },
 });
@@ -150,7 +152,7 @@ set.addAchievement({
   ),
 });
 
-const level4RightSideX = 0x80; // TODO verify "right side of the screen" threshold
+const level4RightSideX = 0x80;
 
 set.addAchievement({
   title: 'We Have to Get Out of the City Immediately',
@@ -159,7 +161,8 @@ set.addAchievement({
   type: 'missable',
   conditions: {
     core: $(
-      // Checkpoint: level 4 started
+      // Checkpoint hit: level 4 started
+      ['AndNext', 'Delta', '8bit', level,        '!=', 'Value', '', 4],
       ['',        'Mem', '8bit', level,        '=',  'Value', '', 4,                1],
       ['ResetIf', 'Mem', '8bit', level,        '!=', 'Value', '', 4],
       // Only during play, not during the end animation / text screen
@@ -265,6 +268,86 @@ set.addAchievement({
       // 10 minutes at 60 main loop frames per second
       ['ResetIf', 'Mem', '8bit', loopFrameCounter, '!=', 'Delta', '8bit', loopFrameCounter,          60 * 60 * 10],
       ...progression(6, LevelEndCodeEnum.Level6Complete),
+    ),
+  },
+});
+
+
+/* ========= LEADERBOARDS ========= */
+
+const playerType = 0xdbb8; // 0x0a in levels 1-2, 0 on the title screen after a game over
+const level1ScrollColumn = 0xd0d3; // 0 at level 1 start, only increases during level 1
+
+set.addLeaderboard({
+  title: 'High Score',
+  description: 'Score the most points before the game ends (game over or beating the game)',
+  lowerIsBetter: false,
+  type: 'SCORE',
+  conditions: {
+    start: {
+      core: $(
+        ['', 'Mem',   '16bit', score,        '>', 'Value', '', 0],
+        ['', 'Delta', '8bit',  levelEndCode, '=', 'Value', '', 0],
+      ),
+      // Game over: wrong generator order, died in levels 1-3, level 3 timeout, died in levels 4-6
+      alt1: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x02]),
+      alt2: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x03]),
+      alt3: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x0a]),
+      alt4: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x0b]),
+      // Game beaten
+      alt5: $(
+        ['', 'Mem', '8bit', level,        '=', 'Value', '', 6],
+        ['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', LevelEndCodeEnum.Level6Complete],
+      ),
+    },
+    cancel: '0=1',
+    submit: '0=0',
+    value: $(
+      ['Measured', 'Mem', '16bit', score],
+    ),
+  },
+});
+
+set.addLeaderboard({
+  title: 'Speedrun',
+  description: 'Beat the game as fast as possible',
+  lowerIsBetter: true,
+  type: 'FRAMES',
+  conditions: {
+    // First gameplay frame of a new game: the loop frame counter runs and nothing happened yet
+    start: $(
+      ['', 'Mem', '8bit',  level,              '=',  'Value', '',     1],
+      ['', 'Mem', '8bit',  levelEndCode,       '=',  'Value', '',     0],
+      ['', 'Mem', '8bit',  playerType,         '=',  'Value', '',     0x0a],
+      ['', 'Mem', '16bit', score,              '=',  'Value', '',     0],
+      ['', 'Mem', '8bit',  level1ScrollColumn, '=',  'Value', '',     0],
+      ['', 'Mem', '8bit',  loopFrameCounter,   '!=', 'Delta', '8bit', loopFrameCounter],
+    ),
+    cancel: {
+      core: '0=0',
+      // Game over
+      alt1: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x02]),
+      alt2: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x03]),
+      alt3: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x0a]),
+      alt4: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x0b]),
+      // Soft reset in levels 2-6: back to level 1
+      alt5: $(
+        ['', 'Delta', '8bit', level, '>', 'Value', '', 1],
+        ['', 'Mem',   '8bit', level, '=', 'Value', '', 1],
+      ),
+      // Soft reset in level 1: the scroll column is reset when the new game starts
+      alt6: $(
+        ['', 'Mem', '8bit', level,              '=', 'Value', '',     1],
+        ['', 'Mem', '8bit', level1ScrollColumn, '<', 'Delta', '8bit', level1ScrollColumn],
+      ),
+    },
+    submit: $(
+      ...progression(6, LevelEndCodeEnum.Level6Complete),
+    ),
+    // Count every frame since the start. Pauses count too, they can only make the time worse.
+    // (Counting frames in which 0xd0d7 moved undercounts: it sometimes moves by 2 in one frame and not in the next)
+    value: $(
+      ['Measured', 'Value', '', 0, '=', 'Value', '', 0],
     ),
   },
 });
