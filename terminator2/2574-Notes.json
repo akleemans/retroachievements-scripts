@@ -6,78 +6,13 @@
   },
   {
     "User": "adrianusk",
-    "Address": "0x008132",
-    "Note": "[8-bit] Level 1 boss status TODO graphics region, replace\r\n0x3f = Spawned\r\n0x04 = Despawned"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x008352",
-    "Note": "[8-bit] Final boss status  TODO graphics region, replace\r\n0x9f = Transform to liquid metal\r\n0x31 = Dead\r\n0xf3 = Falling"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x0085c5",
-    "Note": "[8-bit] Easter egg Kyle Reese TODO graphics region, replace\r\n0xbb = Kyle Reese sprite for entering door"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x009801",
-    "Note": "[8-bit]  TODO graphics region, replace - Values for level 3 reprogramming maps. Player must reprogram three maps to finish level 3. Map is random based on when scrolling text screen is advanced before each stage. Six total maps, two available at each stage, with three stages.\r\n0x61 = 1st stage map #1 \r\n0x79 = 1st stage map #2\r\n0x36 = 2nd stage map #1\r\n0x71 = 2nd stage map #2\r\n0x66 = 3rd stage map #1 \r\n0x75 = 3rd stage map #2"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00c010",
-    "Note": "[8-bit] Level 5 player y-coordinates"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00c011",
-    "Note": "[8-bit] Level 5 player x-coordinates"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00c092",
-    "Note": "[8-bit] Level 5 player bullet presence (can count # of bullets fired)"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00d000",
-    "Note": "[8-bit] Pause state\r\n0x00 = Game is paused by player OR scrolling text screen is displayed"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00d004",
-    "Note": "[8-bit] Title screen, opening idents, and game over screen\r\n0x24 = Opening idents and title screen\r\n0x1e = Game over"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00d006",
-    "Note": "[8-bit] Game engine for timer TODO?"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00d007",
-    "Note": "[8-bit] Game engine for time TODO?"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00d008",
-    "Note": "[8-bit] Game engine for timer TODO?"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00d009",
-    "Note": "[8-bit] Game engine for timer TODO?"
-  },
-  {
-    "User": "adrianusk",
     "Address": "0x00d093",
     "Note": "[8-bit] Player controller input\r\nBit0 = A\r\nBit1 = B\r\nBit2 = Select\r\nBit3 = Start\r\nBit4 = Right\r\nBit5 = Left\r\nBit6 = Up\r\nBit7 = Down"
   },
   {
     "User": "adrianusk",
     "Address": "0x00d099",
-    "Note": "[8-bit] Level 5 screen x-coordinates"
+    "Note": "[8-bit] Background scroll X (screen X shadow, all levels)"
   },
   {
     "User": "adrianusk",
@@ -106,13 +41,18 @@
   },
   {
     "User": "adrianusk",
-    "Address": "0x00d0ab",
-    "Note": "[8-bit] Stage ID (1-? TODO)\r\n0x00 = Level 1, part 1\r\n0x01 = Level 1, part 2, after shooting 4th generator\r\n0x02 = Level 2 (Skynet)\r\n0x03 = Level 3, circuit 1\r\n0x04 = Level 3, circuit 2\r\n0x05 = Level 3, circuit 3\r\n0x06 = Level 4 (Motorcycle)"
+    "Address": "0x00d0aa",
+    "Note": "[16-bit] Score"
   },
   {
     "User": "adrianusk",
-    "Address": "0x00d0bc",
-    "Note": "[8-bit] Level (1-6)"
+    "Address": "0x00d0ac",
+    "Note": "[16-bit] High score"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0d3",
+    "Note": "[8-bit] Level 1: scroll column, 0 at level start"
   },
   {
     "User": "adrianusk",
@@ -121,28 +61,48 @@
   },
   {
     "User": "adrianusk",
-    "Address": "0x00d0d8",
-    "Note": "[8-bit] Gamma TODO vs. 0xd0d9?\r\n0xe4 = Neutral gamma"
+    "Address": "0x00d0d7",
+    "Note": "[8-bit] Loop frame counter (+1 per frame, wraps at 0x95), frozen while paused and on text screens"
   },
   {
     "User": "adrianusk",
-    "Address": "0x00d0d9",
-    "Note": "[8-bit] Gamma\r\n0xe4 = Neutral gamma"
+    "Address": "0x00d0df",
+    "Note": "[8-bit] Level (1-6)"
   },
   {
     "User": "adrianusk",
-    "Address": "0x00d0dc",
-    "Note": "[8-bit] Level 4 player y-axis"
+    "Address": "0x00d0e6",
+    "Note": "[8-bit] Level 2: final room reached (doors only work once this is 1)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0e7",
+    "Note": "[8-bit] Level 2: door the player is standing at (0 = none, 1-5, door 4 is always correct)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0e8",
+    "Note": "[8-bit] Level 2: mysterious person spawned (0 -> 1)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0e9",
+    "Note": "[8-bit] Level 2: timer (x of the timer arrow), starts at 0x04, stops at 0xa3; runs from the level start, only visible after the hint is picked up"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0ea",
+    "Note": "[8-bit] Level end \/ event code (0 during play, set once, stays until the text screen ends)\r\n0x01 = After a game over screen\r\n0x02 = L1 generators wrong order (game over)\r\n0x03 = Died in levels 1-3\r\n0x06 = L1 complete\r\n0x07 = L2 complete\r\n0x08 = L3 complete\r\n0x09 = L3 timeout, retry\r\n0x0a = L3 timeout, game over\r\n0x0b = Died in levels 4-6\r\n0x0c = L4 complete\r\n0x0e = L5 complete\r\n0x0f = L6 complete\r\n0x10 = L3 circuit done"
   },
   {
     "User": "adrianusk",
     "Address": "0x00d0eb",
-    "Note": "[8-bit] Scrolling text screens\r\n0x87 = Level 1 hint screen\r\n0x46 = Level 3 retry screen"
+    "Note": "[16-bit] Text pointer"
   },
   {
     "User": "adrianusk",
     "Address": "0x00d0f0",
-    "Note": "[8-bit] Level 3 node #1\r\n0x01=display 1\r\n0x00=display 0"
+    "Note": "[8-bit] Level 3 node #1\r\n0x01 = Display 1\r\n0x00 = Display 0"
   },
   {
     "User": "adrianusk",
@@ -157,7 +117,12 @@
   {
     "User": "adrianusk",
     "Address": "0x00d0f3",
-    "Note": "[8-bit] Level 3 node #4\r\n0x01=display 1\r\n0x00=display 0"
+    "Note": "[8-bit] Level 3 node #4\r\n0x01 = Display 1\r\n0x00 = Display 0"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0f9",
+    "Note": "[8-bit] Level 3 timer x:00 (minutes)"
   },
   {
     "User": "adrianusk",
@@ -171,8 +136,18 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x00d0fd",
+    "Note": "[8-bit] Level 3: chances left (2 on new game, -1 per timeout)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d100",
+    "Note": "[8-bit] Level 1: hint item column\r\n0x6c = Not picked up\r\n0x00 = Picked up"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00d10a",
-    "Note": "[8-bit] Keycard flag"
+    "Note": "[8-bit] Level 5: item picked up flag\r\n0x00 = No item picked up yet\r\n0xff = Any keycard\/arm picked up (reset at level start)"
   },
   {
     "User": "adrianusk",
@@ -182,102 +157,137 @@
   {
     "User": "adrianusk",
     "Address": "0x00d10e",
-    "Note": "[8-bit] Level 4 boss x-axis"
+    "Note": "[8-bit] Level 4: scroll X of the lower screen split (truck layer)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00d11b",
-    "Note": "[8-bit] Level 4 boss status\r\n0x03 = Defeated"
+    "Note": "[8-bit] Level 4: truck state\r\n0x00 = Approaching\r\n0x01, 0x02, 0x05 = Attack phases\r\n0x03 = Destroyed (exploding)\r\n0x04 = End animation done"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d11c",
+    "Note": "[8-bit] Level 4: truck health (starts at 5, 0xff = destroyed)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d11d",
+    "Note": "[8-bit] Level 4: hits left until the next truck health step (0x14 per step)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d12e",
+    "Note": "[8-bit] Weapon; Level 5: 0x00 = Rifle, 0x01 = Shotgun; Level 6: 0x00 = Fists only"
   },
   {
     "User": "adrianusk",
     "Address": "0x00d12f",
-    "Note": "[8-bit] Level 5 player ammo\r\n0xe0 = Out of rile ammo, using shotgun"
+    "Note": "[8-bit] Levels 5-6: ammo bar (0x00-0xe0, full = 0xe0) - refilled to 0xe0 when switching from rifle to shotgun (see 0xd12e)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d136",
+    "Note": "[8-bit] Level 6: T-1000 true form (0 -> 1 when its HP runs out)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d139",
+    "Note": "[8-bit] Level 2: hint picked up (0 -> 1)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d13e",
+    "Note": "[8-bit] Level 3: circuits completed (0-3)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dbb8",
-    "Note": "[8-bit] Player presence TODO where?"
+    "Note": "[8-bit] Object table start (17 slots x 0x1a bytes, slot 0 = player) \/ Player object type\r\n0x0a = Levels 1-2\r\n0x2a = Level 4\r\n0x22 = Level 5\r\n0x3c = Level 6\r\n0x09 = Dying"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dbbc",
-    "Note": "[8-bit] Player sprite for entering door\r\n0x86 = Player sprite entering door"
+    "Note": "[8-bit] Player state\r\n0x85 = Punching\r\n0x86 = Entering a door (level 2) \/ being hit (level 6)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dbbd",
-    "Note": "[8-bit] Health (Full health: 0xe8)"
+    "Note": "[8-bit] Health (Full health: 0xe0)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dbc9",
-    "Note": "[8-bit] Player door timer TODO where?"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00dbcb",
-    "Note": "[8-bit] Punching animation \/ count TODO from player?"
+    "Note": "[8-bit] Player timer. Level 2: door entry countdown (starts at 0x3c, door opens at 0); Level 6: punch animation frame (punch deals damage at 0x03)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dbce",
-    "Note": "[8-bit] Player and screen y-coordinates TODO really both?"
+    "Note": "[8-bit] Player y-coordinate (all levels)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dbcf",
-    "Note": "[8-bit] Level 1and 2 player x-coordinates"
+    "Note": "[8-bit] Player x-coordinate (all levels). On foot the screen scrolls, so it mostly stays around 0x50"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dc3a",
+    "Note": "[8-bit] Object slot 5 type (boss slot)\r\n0x02 = L1 generator\r\n0x07 = L1 HK tank\r\n0x12 = L1 HK tank destroyed\r\n0x31 = L5 barrier\/turret\r\n0x3d = L6 T-1000"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dc3e",
+    "Note": "[8-bit] Object slot 5 state (used in Level 6)\r\n0x07 = T-1000 true form\r\n0x08 = Falling into the melt pool"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dc3f",
-    "Note": "[8-bit] Level 1 tower health, level 1 boss health (full health: 0x28), level 5 barrier health"
+    "Note": "[8-bit] Object slot 5 HP (boss slot). Level 1: generator (10) \/ HK tank (0x28); Level 5: barrier\/turret (0x14); Level 6: T-1000 (0xdc)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dc54",
+    "Note": "[8-bit] Object slot 6 type; Level 5: 0x32 = Keycard\/arm on screen"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dc62",
+    "Note": "[8-bit] Object slot 6: level 5 item list index (0-3)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dc65",
+    "Note": "[8-bit] Object slot 6: level 5 item is the arm (0 = keycard, 1 = arm)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dc73",
-    "Note": "[8-bit] Level 5 turret health (#1 ceiling)"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00dc84",
-    "Note": "[8-bit] Level 1 hint presence\r\n0x30 = Present"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00dc85",
-    "Note": "[8-bit] Level 1 player x-coordinates"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00dc87",
-    "Note": "[8-bit] Level 1 flashing hint item\r\n0x00 = Dull\r\n0x10 = Bright"
+    "Note": "[8-bit] Object slot 7 HP (slot assigned on spawn; level 5: usually the 1st ceiling turret)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dc8d",
-    "Note": "[8-bit] Level 5 turret health (turret before destructable barrier)"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00dc9f",
-    "Note": "[8-bit] Secret guy TODO where?"
+    "Note": "[8-bit] Object slot 8 HP (slot assigned on spawn; level 5: usually the turret before the barrier)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dca7",
-    "Note": "[8-bit] Level 5 turret health (#2 ceiling)"
+    "Note": "[8-bit] Object slot 9 HP (slot assigned on spawn; level 5: usually the 2nd ceiling turret)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dcc1",
-    "Note": "[8-bit] Level 5 turret (#3 ceiling)"
+    "Note": "[8-bit] Object slot 10 HP (slot assigned on spawn; level 5: usually the 3rd ceiling turret)"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dcdb",
-    "Note": "[8-bit] Level 5 turret health"
+    "Note": "[8-bit] Object slot 11 HP (slot assigned on spawn)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dd9a",
+    "Note": "[8-bit] Level 1 generator list (5 x 4 bytes: column, height, order, 0); column = 0x00 once destroyed"
   },
   {
     "User": "adrianusk",
@@ -326,47 +336,37 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x00ddfe",
+    "Note": "[8-bit] Level 5 item list: keycard #1 column (4 x 4 bytes); 0x00 = On screen or collected"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00de02",
+    "Note": "[8-bit] Level 5 keycard #2 column (TODO - assumed to be the exit keycard, not verified); 0x00 = On screen or collected"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00de06",
+    "Note": "[8-bit] Level 5 keycard #3 column; 0x00 = On screen or collected"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00de0a",
+    "Note": "[8-bit] Level 5 T-800 arm column; 0x00 = On screen or collected"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00de9e",
-    "Note": "[8-Bit] Level 5 keycard bottom middle\r\n0x37 = Present\r\n0x00 = Collected"
+    "Note": "[8-bit] Level 5 barrier #1 column (list of 4 x 4 bytes)\r\n0x37 = Not spawned yet\r\n0x00 = On screen or destroyed"
   },
   {
     "User": "adrianusk",
     "Address": "0x00dea6",
-    "Note": "[8-bit] Level 5 keycard bottom left\r\n0x1a = Present\r\n0x00 = Collected"
+    "Note": "[8-bit] Level 5 barrier #3 column\r\n0x1a = Not spawned yet\r\n0x00 = On screen or destroyed"
   },
   {
     "User": "adrianusk",
     "Address": "0x00deaa",
-    "Note": "[8-bit] Level 5 Terminator arm\r\n0x4f = Present\r\n0x00 = Collected"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00fbcb",
-    "Note": "[8-Bit] Punches TODO count?"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00fc84",
-    "Note": "[8-bit] Level 1 hint presence ECHO\r\n0x30 = Present"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00fc85",
-    "Note": "[8-bit] Level 1 player x-coordinates ECHO"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00fc87",
-    "Note": "[8-bit] Level 1 flashing hint item ECHO\r\n0x00 = Dull\r\n0x10 = Bright"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00fe14",
-    "Note": "[8-bit] Level 2 hint timer visibility flag - The hint timer begins counting down as soon as the level starts, not when the hint item is picked up. However, the timer will not appear on screen until the hint item is picked up. The timer appears as an arrow that slowly scrolls from left to right as 0x00fe15 changes value, and will appear along its track according to that value (the longer you wait to pick up the hint, the further along the track the arrow will appear).\r\n0x90 = Not visible\r\n0x80 = Visible"
-  },
-  {
-    "User": "adrianusk",
-    "Address": "0x00fe15",
-    "Note": "[8-Bit] Level 2 hint timer - This value begins counting down as soon as the level starts, not when the hint item is picked up. The timer stops running once it hits value 0x3a. See address 0x00fe14 for more information.\r\n0xa3 = Timer stops"
+    "Note": "[8-bit] Level 5 barrier #4 column\r\n0x4f = Not spawned yet\r\n0x00 = On screen, destroyed, or the arm was picked up"
   }
 ]
