@@ -1,337 +1,372 @@
 [
   {
-    "User": "oktpm",
+    "User": "adrianusk",
+    "Address": "0x000000",
+    "Note": "[General game notes]\r\nCruncheevos script: https:\/\/github.com\/akleemans\/retroachievements-scripts"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x008132",
-    "Note": "[8-Bit]\r\nLevel 1 boss status\r\n0x3f=spawned\r\n0x04=despawned"
+    "Note": "[8-bit] Level 1 boss status TODO graphics region, replace\r\n0x3f = Spawned\r\n0x04 = Despawned"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x008352",
-    "Note": "[8-Bit]\r\nFinal boss status\r\n0x9f=transform to liquid metal\r\n0x31=dead\r\n0xf3=falling"
+    "Note": "[8-bit] Final boss status  TODO graphics region, replace\r\n0x9f = Transform to liquid metal\r\n0x31 = Dead\r\n0xf3 = Falling"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x0085c5",
-    "Note": "[8-Bit]\r\nEaster egg Kyle Reese\r\n0xbb=Kyle Reese sprite for entering door"
+    "Note": "[8-bit] Easter egg Kyle Reese TODO graphics region, replace\r\n0xbb = Kyle Reese sprite for entering door"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x009801",
-    "Note": "[8-Bit]\r\nValues for level 3 reprogramming maps. Player must reprogram three maps to finish level 3. Map is random based on when scrolling text screen is advanced before each stage. Six total maps, two available at each stage, with three stages.\r\n0x61=1st stage map #1 \r\n0x79=1st stage map #2\r\n0x36=2nd stage map #1\r\n0x71=2nd stage map #2\r\n0x66=3rd stage map #1 \r\n0x75=3rd stage map #2"
+    "Note": "[8-bit]  TODO graphics region, replace - Values for level 3 reprogramming maps. Player must reprogram three maps to finish level 3. Map is random based on when scrolling text screen is advanced before each stage. Six total maps, two available at each stage, with three stages.\r\n0x61 = 1st stage map #1 \r\n0x79 = 1st stage map #2\r\n0x36 = 2nd stage map #1\r\n0x71 = 2nd stage map #2\r\n0x66 = 3rd stage map #1 \r\n0x75 = 3rd stage map #2"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00c010",
-    "Note": "[8-Bit]\r\nLevel 5 player y-coordinates"
+    "Note": "[8-bit] Level 5 player y-coordinates"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00c011",
-    "Note": "[8-Bit]\r\nLevel 5 player x-coordinates"
+    "Note": "[8-bit] Level 5 player x-coordinates"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00c092",
-    "Note": "[8-Bit]\r\nlevel 5 player bullet presence (can count # of bullets fired)"
+    "Note": "[8-bit] Level 5 player bullet presence (can count # of bullets fired)"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d000",
-    "Note": "[8-Bit]\r\nPause state\r\n0x00=game is paused by player OR scrolling text screen is displayed"
+    "Note": "[8-bit] Pause state\r\n0x00 = Game is paused by player OR scrolling text screen is displayed"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d004",
-    "Note": "[8-Bit]\r\nTitle screen, opening idents, and game over screen\r\n0x24=opening idents and title screen\r\n0x1e=game over"
+    "Note": "[8-bit] Title screen, opening idents, and game over screen\r\n0x24 = Opening idents and title screen\r\n0x1e = Game over"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d006",
-    "Note": "[8-Bit]\r\ngame engine for timer"
+    "Note": "[8-bit] Game engine for timer TODO?"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d007",
-    "Note": "[8-Bit]\r\ngame engine for time"
+    "Note": "[8-bit] Game engine for time TODO?"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d008",
-    "Note": "[8-Bit]\r\ngame engine for timer"
+    "Note": "[8-bit] Game engine for timer TODO?"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d009",
-    "Note": "[8-Bit]\r\ngame engine for timer"
+    "Note": "[8-bit] Game engine for timer TODO?"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d093",
-    "Note": "[8-Bit]\r\nPlayer controller input\r\n0x80=down\r\n0x40=up \r\n0x20=left \r\n0x10=right\r\n0x08=Start \r\n0x04=Select\r\n0x02=B \r\n0x01=A"
+    "Note": "[8-bit] Player controller input\r\nBit0 = A\r\nBit1 = B\r\nBit2 = Select\r\nBit3 = Start\r\nBit4 = Right\r\nBit5 = Left\r\nBit6 = Up\r\nBit7 = Down"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d099",
-    "Note": "[8-Bit]\r\nLevel 5 screen x-coordinates"
+    "Note": "[8-bit] Level 5 screen x-coordinates"
   },
   {
-    "User": "tele",
+    "User": "adrianusk",
     "Address": "0x00d0a5",
-    "Note": "Lower 4 Score\r\nx0000"
+    "Note": "[Lower4] Score x0000"
   },
   {
-    "User": "tele",
+    "User": "adrianusk",
     "Address": "0x00d0a6",
-    "Note": "Lower 4 Score\r\n0x000"
+    "Note": "[Lower4] Score 0x000"
   },
   {
-    "User": "tele",
+    "User": "adrianusk",
     "Address": "0x00d0a7",
-    "Note": "Lower 4 Score\r\n00x00"
+    "Note": "[Lower4] Score 00x00"
   },
   {
-    "User": "tele",
+    "User": "adrianusk",
     "Address": "0x00d0a8",
-    "Note": "Lower 4 Score\r\n000x0"
+    "Note": "[Lower4] Score 000x0"
   },
   {
-    "User": "tele",
+    "User": "adrianusk",
     "Address": "0x00d0a9",
-    "Note": "Lower 4 Score\r\n0000x"
+    "Note": "[Lower4] Score 0000x"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
+    "Address": "0x00d0ab",
+    "Note": "[8-bit] Stage ID (1-? TODO)\r\n0x00 = Level 1, part 1\r\n0x01 = Level 1, part 2, after shooting 4th generator\r\n0x02 = Level 2 (Skynet)\r\n0x03 = Level 3, circuit 1\r\n0x04 = Level 3, circuit 2\r\n0x05 = Level 3, circuit 3\r\n0x06 = Level 4 (Motorcycle)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00d0bc",
-    "Note": "[8-Bit]\r\nLevel flag\r\n0x01=Level 1\r\n0x02=Level 2\r\n0x03=Level 3\r\n0x04=Level 4\r\n0x05=Level 5\r\n0x06=Level 6"
+    "Note": "[8-bit] Level (1-6)"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
+    "Address": "0x00d0d5",
+    "Note": "[8-bit] Level 1: Number of correct power generators shot"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00d0d8",
-    "Note": "[8-bit]\r\nGamma\r\n0xe4=neutral gamma"
+    "Note": "[8-bit] Gamma TODO vs. 0xd0d9?\r\n0xe4 = Neutral gamma"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d0d9",
-    "Note": "[8-bit]\r\nGamma\r\n0xe4=neutral gamma"
+    "Note": "[8-bit] Gamma\r\n0xe4 = Neutral gamma"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d0dc",
-    "Note": "[8-Bit]\r\nlevel 4 player y-axis"
+    "Note": "[8-bit] Level 4 player y-axis"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d0eb",
-    "Note": "[8-Bit]\r\nScrolling text screens\r\n0x87=Level 1 hint screen\r\n0x46=Level 3 retry screen"
+    "Note": "[8-bit] Scrolling text screens\r\n0x87 = Level 1 hint screen\r\n0x46 = Level 3 retry screen"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d0f0",
-    "Note": "[8-Bit]\r\nLevel 3 node #1\r\n0x01=display 1\r\n0x00=display 0"
+    "Note": "[8-bit] Level 3 node #1\r\n0x01=display 1\r\n0x00=display 0"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d0f1",
-    "Note": "[8-Bit]\r\nLevel 3 node #2\r\n0x01=display 1\r\n0x00=display 0"
+    "Note": "[8-bit] Level 3 node #2\r\n0x01 = Display 1\r\n0x00 = Display 0"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d0f2",
-    "Note": "[8-Bit]\r\nLevel 3 node #3\r\n0x01=display 1\r\n0x00=display 0"
+    "Note": "[8-bit] Level 3 node #3\r\n0x01 = Display 1\r\n0x00 = Display 0"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d0f3",
-    "Note": "[8-Bit]\r\nLevel 3 node #4\r\n0x01=display 1\r\n0x00=display 0"
+    "Note": "[8-bit] Level 3 node #4\r\n0x01=display 1\r\n0x00=display 0"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d0fa",
-    "Note": "[8-Bit]\r\nLevel 3 timer 0:x0"
+    "Note": "[8-bit] Level 3 timer 0:x0"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d0fb",
-    "Note": "[8-Bit]\r\nLevel 3 timer 0:0x"
+    "Note": "[8-bit] Level 3 timer 0:0x"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d10a",
-    "Note": "[8-Bit]\r\nKeycard flag"
+    "Note": "[8-bit] Keycard flag"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
+    "Address": "0x00d10c",
+    "Note": "[8-bit] Level 1: Number of total power generators shot"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00d10e",
-    "Note": "[8-Bit]\r\nLevel 4 boss x-axis"
+    "Note": "[8-bit] Level 4 boss x-axis"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d11b",
-    "Note": "[8-Bit]\r\nLevel 4 boss status\r\n0x03=defeated"
+    "Note": "[8-bit] Level 4 boss status\r\n0x03 = Defeated"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00d12f",
-    "Note": "[8-Bit]\r\nLevel 5 player ammo\r\n0xe0=out of rile ammo, using shotgun"
+    "Note": "[8-bit] Level 5 player ammo\r\n0xe0 = Out of rile ammo, using shotgun"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dbb8",
-    "Note": "[8-Bit]\r\nplayer presence"
+    "Note": "[8-bit] Player presence TODO where?"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dbbc",
-    "Note": "[8-Bit]\r\nplayer sprite for entering door\r\n0x86=player sprite entering door"
+    "Note": "[8-bit] Player sprite for entering door\r\n0x86 = Player sprite entering door"
   },
   {
-    "User": "tele",
+    "User": "adrianusk",
     "Address": "0x00dbbd",
-    "Note": "Health"
+    "Note": "[8-bit] Health (Full health: 0xe8)"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dbc9",
-    "Note": "[8-Bit]\r\nPlayer door timer"
+    "Note": "[8-bit] Player door timer TODO where?"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dbcb",
-    "Note": "[8-Bit]\r\npunching animation"
+    "Note": "[8-bit] Punching animation \/ count TODO from player?"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dbce",
-    "Note": "[8-Bit]\r\nplayer and screen y-coordinates"
+    "Note": "[8-bit] Player and screen y-coordinates TODO really both?"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dbcf",
-    "Note": "[8-Bit]\r\nlevel 1 player x-coordinates\r\nlevel 2 player x-coordinates"
+    "Note": "[8-bit] Level 1and 2 player x-coordinates"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dc3f",
-    "Note": "[8-Bit]\r\nLevel 1 tower health\r\nLevel 1 boss health\r\nLevel 5 barrier health"
+    "Note": "[8-bit] Level 1 tower health, level 1 boss health (full health: 0x28), level 5 barrier health"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dc73",
-    "Note": "[8-Bit]\r\nlevel 5 turret health (#1 ceiling)"
+    "Note": "[8-bit] Level 5 turret health (#1 ceiling)"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
+    "Address": "0x00dc84",
+    "Note": "[8-bit] Level 1 hint presence\r\n0x30 = Present"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dc85",
+    "Note": "[8-bit] Level 1 player x-coordinates"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00dc87",
+    "Note": "[8-bit] Level 1 flashing hint item\r\n0x00 = Dull\r\n0x10 = Bright"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00dc8d",
-    "Note": "[8-Bit]\r\nlevel 5 turret health (turret before destructable barrier)"
+    "Note": "[8-bit] Level 5 turret health (turret before destructable barrier)"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dc9f",
-    "Note": "[8-Bit]\r\nsecret guy"
+    "Note": "[8-bit] Secret guy TODO where?"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dca7",
-    "Note": "[8-Bit]\r\nlevel 5 turret health (#2 ceiling)"
+    "Note": "[8-bit] Level 5 turret health (#2 ceiling)"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dcc1",
-    "Note": "[8-Bit]\r\nlevel 5 turret (#3 ceiling)"
+    "Note": "[8-bit] Level 5 turret (#3 ceiling)"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dcdb",
-    "Note": "[8-Bit]\r\nlevel 5 turret health"
+    "Note": "[8-bit] Level 5 turret health"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00ddae",
-    "Note": "[8-Bit]\r\nlevel 1 mine #1\r\n0x04=present\r\n0x00=gone"
+    "Note": "[8-bit] Level 1 mine #1\r\n0x04 = Present\r\n0x00 = Gone"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00ddb2",
-    "Note": "[8-Bit]\r\nlevel 1 mine #2\r\n0x24=present\r\n0x00=gone"
+    "Note": "[8-bit] Level 1 mine #2\r\n0x24 = Present\r\n0x00 = Gone"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00ddb6",
-    "Note": "[8-Bit]\r\nlevel 1 mine #3\r\n0x28=present\r\n0x00=gone"
+    "Note": "[8-bit] Level 1 mine #3\r\n0x28 = Present\r\n0x00 = Gone"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00ddba",
-    "Note": "[8-Bit]\r\nlevel 1 mine #4\r\n0x4b=present\r\n0x00=gone"
+    "Note": "[8-bit] Level 1 mine #4\r\n0x4b = Present\r\n0x00 = Gone"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00ddbe",
-    "Note": "[8-Bit]\r\nlevel 1 mine #5\r\n0x5a=present\r\n0x00=gone"
+    "Note": "[8-bit] Level 1 mine #5\r\n0x5a = Present\r\n0x00 = Gone"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00ddc2",
-    "Note": "[8-Bit]\r\nlevel 1 mine #6\r\n0x5f=present\r\n0x00=gone"
+    "Note": "[8-bit] Level 1 mine #6\r\n0x5f = Present\r\n0x00 = Gone"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00ddc6",
-    "Note": "[8-Bit]\r\nlevel 1 mine #7\r\n0x64=present\r\n0x00=gone"
+    "Note": "[8-bit] Level 1 mine #7\r\n0x64 = Present\r\n0x00 = Gone"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00ddca",
-    "Note": "[8-Bit]\r\nlevel 1 mine #8\r\n0x82=present\r\n0x00=gone"
+    "Note": "[8-bit] Level 1 mine #8\r\n0x82 = Present\r\n0x00 = Gone"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00ddce",
-    "Note": "[8-Bit]\r\nlevel 1 mine #9\r\n0x94=present\r\n0x00=gone"
+    "Note": "[8-bit] Level 1 mine #9\r\n0x94 = Present\r\n0x00 = Gone"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00de9e",
-    "Note": "[8-Bit]\r\nLevel 5 keycard bottom middle\r\n0x37=present\r\n0x00=collected"
+    "Note": "[8-Bit] Level 5 keycard bottom middle\r\n0x37 = Present\r\n0x00 = Collected"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00dea6",
-    "Note": "[8-Bit]\r\nLevel 5 keycard bottom left\r\n0x1a=present\r\n0x00=collected"
+    "Note": "[8-bit] Level 5 keycard bottom left\r\n0x1a = Present\r\n0x00 = Collected"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00deaa",
-    "Note": "[8-Bit]\r\nLevel 5 Terminator arm\r\n0x4f=present\r\n0x00=collected"
+    "Note": "[8-bit] Level 5 Terminator arm\r\n0x4f = Present\r\n0x00 = Collected"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00fbcb",
-    "Note": "[8-Bit]\r\npunches"
+    "Note": "[8-Bit] Punches TODO count?"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00fc84",
-    "Note": "[8-Bit]\r\nLevel 1 hint presence\r\n0x30=present"
+    "Note": "[8-bit] Level 1 hint presence ECHO\r\n0x30 = Present"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00fc85",
-    "Note": "[8-Bit]\r\nlevel 1 player x-coordinates"
+    "Note": "[8-bit] Level 1 player x-coordinates ECHO"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00fc87",
-    "Note": "[8-Bit]\r\nLevel 1 flashing hint item\r\n0x00=dull\r\n0x10=bright"
+    "Note": "[8-bit] Level 1 flashing hint item ECHO\r\n0x00 = Dull\r\n0x10 = Bright"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00fe14",
-    "Note": "[8-Bit]\r\nLevel 2 hint timer visibility flag\r\n0x90=not visible\r\n0x80=visible\r\nThe hint timer begins counting down as soon as the level starts, not when the hint item is picked up. However, the timer will not appear on screen until the hint item is picked up. The timer appears as an arrow that slowly scrolls from left to right as 0x00fe15 changes value, and will appear along its track according to that value (the longer you wait to pick up the hint, the further along the track the arrow will appear)."
+    "Note": "[8-bit] Level 2 hint timer visibility flag - The hint timer begins counting down as soon as the level starts, not when the hint item is picked up. However, the timer will not appear on screen until the hint item is picked up. The timer appears as an arrow that slowly scrolls from left to right as 0x00fe15 changes value, and will appear along its track according to that value (the longer you wait to pick up the hint, the further along the track the arrow will appear).\r\n0x90 = Not visible\r\n0x80 = Visible"
   },
   {
-    "User": "oktpm",
+    "User": "adrianusk",
     "Address": "0x00fe15",
-    "Note": "[8-Bit]\r\nLevel 2 hint timer\r\n0xa3=timer stops\r\nThis value begins counting down as soon as the level starts, not when the hint item is picked up. The timer stops running once it hits value 0x3a. See address 0x00fe14 for more information."
+    "Note": "[8-Bit] Level 2 hint timer - This value begins counting down as soon as the level starts, not when the hint item is picked up. The timer stops running once it hits value 0x3a. See address 0x00fe14 for more information.\r\n0xa3 = Timer stops"
   }
 ]
