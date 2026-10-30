@@ -131,7 +131,7 @@ set.addAchievement({
   id: 648121,
   badge: '740477',
   title: 'After You, Savior of Humanity',
-  description: 'Wait for a mysterious person to appear and enter the correct room at the end of Skynet (Level 2)',
+  description: 'Wait for a mysterious person to appear and enter the correct room at the end of Skynet in level 2',
   points: 3,
   type: 'missable',
   conditions: $(
@@ -162,7 +162,7 @@ set.addAchievement({
   badge: '740479',
   title: 'Who Sent You?',
   description: 'Reprogram all 3 boards of the T-800 without failing once in level 3',
-  points: 2,
+  points: 10,
   type: 'missable',
   conditions: {
     core: $(
@@ -191,7 +191,7 @@ set.addAchievement({
   badge: '740481',
   title: 'We Have to Get Out of the City Immediately',
   description: 'Destroy the T-1000\'s Freightliner without touching the right side of the screen in level 4',
-  points: 3,
+  points: 5,
   type: 'missable',
   conditions: {
     core: $(
@@ -290,7 +290,7 @@ set.addAchievement({
   badge: '740486',
   title: 'Hey Bro, I\'m Gonna Get Some Quarters',
   description: 'Beat the game with at least 2500 points as your high score',
-  points: 5,
+  points: 10,
   type: 'missable',
   conditions: $(
     ['', 'Mem', '16bit', score, '>=', 'Value', '', 2500],
