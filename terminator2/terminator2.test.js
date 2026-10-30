@@ -308,8 +308,9 @@ describe('Beat the game in under 10 minutes', () => {
     const s = scenario('full-playthrough-under-10-min');
     const result = runAchievement(cheevo, s);
 
-    // The timer is reset to 0 on the start frame
-    expect(result.stateAt(s.marker('run-start'))).toBe('reset');
+    // The timer counts from the start like the leaderboard, standing at the start doesn't restart it
+    expect(result.stateAt(s.marker('run-start'))).toBe('active');
+    expect(result.stateAt(s.marker('run-start') + 1)).toBe('active');
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('game-beaten'));
   });
@@ -319,8 +320,9 @@ describe('Beat the game in under 10 minutes', () => {
     const s = scenario('full-playthrough');
     const result = runAchievement(cheevo, s);
 
-    // The timer is reset to 0 on the start frame
-    expect(result.stateAt(s.marker('run-start'))).toBe('reset');
+    // The timer counts from the start like the leaderboard, standing at the start doesn't restart it
+    expect(result.stateAt(s.marker('run-start'))).toBe('active');
+    expect(result.stateAt(s.marker('run-start') + 1)).toBe('active');
     expect(result.triggered).toBe(false);
   });
 });

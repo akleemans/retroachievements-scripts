@@ -289,7 +289,7 @@ set.addAchievement({
   id: 648130,
   badge: '740486',
   title: 'Hey Bro, I\'m Gonna Get Some Quarters',
-  description: 'Beat the game with a score of at least 2500 points',
+  description: 'Beat the game with a score of at least 2,500 points',
   points: 10,
   type: 'missable',
   conditions: $(
@@ -311,10 +311,12 @@ set.addAchievement({
       ...newGameStart(true),
       ['',        'Mem', '8bit', loopFrameCounter, '!=', 'Delta', '8bit', loopFrameCounter,          1],
       ['ResetIf', 'Mem', '8bit', levelEndCode,     '=',  'Value', '',     LevelEndCodeEnum.GameOver],
-      // 10 minutes at 60 frames per second
+      // 10 minutes at 60 frames per second, counting every frame since the start like the LB.
+      // The timer restarts at 0 before the first gameplay frame.
       ...newGameStart(true),
-      ['ResetNextIf', 'Mem',   '8bit', loopFrameCounter, '!=', 'Delta', '8bit', loopFrameCounter],
-      ['ResetIf',     'Value', '',     0,                '=',  'Value', '',     0,                60 * 60 * 10],
+      ['AndNext',     'Delta', '8bit', loopFrameCounter, '=', 'Value', '', 0],
+      ['ResetNextIf', 'Mem',   '8bit', loopFrameCounter, '=', 'Value', '', 0],
+      ['ResetIf',     'Value', '',     0,                '=', 'Value', '', 0, 60 * 60 * 10],
       ...progression(6, LevelEndCodeEnum.Level6Complete, true),
     ),
   },
