@@ -335,7 +335,7 @@ const gameOverCode = () => [
 
 set.addLeaderboard({
   title: 'High Score',
-  description: 'Score the most points before the game ends (game over or beating the game)',
+  description: 'Score the most points',
   lowerIsBetter: false,
   type: 'SCORE',
   conditions: {
