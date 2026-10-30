@@ -16,6 +16,7 @@ npx vitest run terminator2
 * Lint:
 ```bash
 npx eslint terminator2/terminator2.js --fix
+npx eslint terminator2/terminator2.test.js --fix
 ```
 * Format:
 ```bash

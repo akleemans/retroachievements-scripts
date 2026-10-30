@@ -4,7 +4,10 @@
   "game": "Terminator 2: Judgment Day",
   "console": "GB",
   "firstFrame": 217,
-  "markers": {},
+  "markers": {
+    "run-start": 1059,
+    "game-beaten": 37414
+  },
   "addresses": [
     { "address": "0x0000", "size": "u8", "label": "[General game notes]" },
     { "address": "0xd093", "size": "u8", "label": "Player controller input" },

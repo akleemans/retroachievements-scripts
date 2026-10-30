@@ -165,7 +165,7 @@ describe('Level 3 without failing', () => {
 });
 
 describe('Progression: Level 4', () => {
-  const cheevo = achievement( 'My Mission Is to Protect You');
+  const cheevo = achievement('My Mission Is to Protect You');
 
   test('pops when level 4 is finished', () => {
     const s = scenario('level4-finished');
@@ -178,7 +178,7 @@ describe('Progression: Level 4', () => {
 });
 
 describe('Level 4 without right part', () => {
-  const cheevo = achievement( 'We Have to Get Out of the City Immediately');
+  const cheevo = achievement('We Have to Get Out of the City Immediately');
 
   test('pops when level 4 is finished without touching right part', () => {
     const s = scenario('level4-finished');
@@ -200,7 +200,7 @@ describe('Level 4 without right part', () => {
 });
 
 describe('Progression: Level 5', () => {
-  const cheevo = achievement( 'I Was Wondering if You Know Where It Came From?');
+  const cheevo = achievement('I Was Wondering if You Know Where It Came From?');
 
   test('pops when level 5 is finished', () => {
     const s = scenario('level5-finished');
@@ -213,7 +213,7 @@ describe('Progression: Level 5', () => {
 });
 
 describe('Level 5 with collecting arm before key', () => {
-  const cheevo = achievement( 'It Gave Us Ideas, Took Us in New Directions');
+  const cheevo = achievement('It Gave Us Ideas, Took Us in New Directions');
 
   test('pops when level 5 is finished with collecting arm before key', () => {
     const s = scenario('level5-finished');
@@ -234,7 +234,7 @@ describe('Level 5 with collecting arm before key', () => {
 });
 
 describe('Progression: Level 6', () => {
-  const cheevo = achievement( 'Terminated');
+  const cheevo = achievement('Terminated');
 
   test('pops when level 6 is finished', () => {
     const s = scenario('level6-finished');
@@ -255,7 +255,7 @@ describe('Progression: Level 6', () => {
 });
 
 describe('Level 6: Punches', () => {
-  const cheevo = achievement( 'Advanced Prototype');
+  const cheevo = achievement('Advanced Prototype');
 
   test('pops when T-1000 is transformed using punches', () => {
     const s = scenario('level6-t1000-mutated');
@@ -277,7 +277,7 @@ describe('Level 6: Punches', () => {
 
 
 describe('High Score', () => {
-  const cheevo = achievement( 'Hey Bro, I\'m Gonna Get Some Quarters');
+  const cheevo = achievement('Hey Bro, I\'m Gonna Get Some Quarters');
 
   test('pops when score is reached', () => {
     const s = scenario('level6-score');
@@ -298,8 +298,30 @@ describe('High Score', () => {
 });
 
 
-// TODO
-// 'Drive Faster'
+describe('Beat the game in under 10 minutes', () => {
+  const cheevo = achievement('Drive Faster');
+
+  test('pops when the game is beaten in under 10 minutes', () => {
+    // Copy of full-playthrough with 400 frames of level 3 cut out: 35956 frames from the start to the T-1000's defeat
+    const s = scenario('full-playthrough-under-10-min');
+    const result = runAchievement(cheevo, s);
+
+    // The timer is reset to 0 on the start frame
+    expect(result.stateAt(s.marker('run-start'))).toBe('reset');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('game-beaten'));
+  });
+
+  test('does not pop when the game takes over 10 minutes', () => {
+    // 36356 frames from the start to the T-1000's defeat
+    const s = scenario('full-playthrough');
+    const result = runAchievement(cheevo, s);
+
+    // The timer is reset to 0 on the start frame
+    expect(result.stateAt(s.marker('run-start'))).toBe('reset');
+    expect(result.triggered).toBe(false);
+  });
+});
 
 
 /* ========= LEADERBOARDS ========= */
@@ -402,10 +424,13 @@ describe('Leaderboard: Speedrun', () => {
     expect(runLeaderboard(lb, s)).toEqual([{event: 'started', frame: 1425}]);
   });
 
-  test('submits when the T-1000 is beaten', () => {
-    const s = scenario('level6-finished');
+  test('submits the frames from the start until the T-1000 is beaten', () => {
+    const s = scenario('full-playthrough');
 
-    expect(runAchievement(lbTrigger(lb, 'submit'), s).triggeredFrame).toBe(s.marker('level-finished'));
+    expect(runLeaderboard(lb, s)).toEqual([
+      {event: 'started', frame: s.marker('run-start')},
+      {event: 'submitted', frame: s.marker('game-beaten'), value: s.marker('game-beaten') - s.marker('run-start') + 1},
+    ]);
   });
 
   test('counts every frame, pauses included', () => {
