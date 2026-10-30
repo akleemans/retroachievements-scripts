@@ -2,7 +2,7 @@
 -- `description`) before each recording session; the rest is per-game.
 return {
     -- this recording session
-    name = "level1-finished",
+    name = "my-recording",
     description = "",
 
     -- this game

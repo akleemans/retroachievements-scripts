@@ -16,13 +16,27 @@ const LevelEndCodeEnum = {
 const score = 0xd0aa; // 16-bit
 const loopFrameCounter = 0xd0d7; // Increments during game, frozen while paused and during text screens
 const playerX = 0xdbcf;
+const playerType = 0xdbb8; // 0x0a in levels 1-2, 0 on the title screen after a game over
+const level1ScrollColumn = 0xd0d3; // 0 at level 1 start, goes up walking right and down walking left
 
 // Level 3 doesn't go from 0 to its complete code, the 3rd board sets Level3BoardComplete first
 const progression = (levelId, code, trigger) => [
-  ['',                'Mem',   '8bit', level,        '=', 'Value', '', levelId],
-  ['',                'Delta', '8bit', levelEndCode, '=', 'Value', '', levelId === 3 ? LevelEndCodeEnum.Level3BoardComplete : 0],
+  ['',                       'Mem',   '8bit', level,        '=', 'Value', '', levelId],
+  ['',                       'Delta', '8bit', levelEndCode, '=', 'Value', '', levelId === 3 ? LevelEndCodeEnum.Level3BoardComplete : 0],
   [trigger ? 'Trigger' : '', 'Mem',   '8bit', levelEndCode, '=', 'Value', '', code],
 ];
+
+// First gameplay frames of a new game: level 1 runs and nothing happened yet. Followed by a loopFrameCounter change
+const newGameStart = (andNextFlag) => {
+  const flag = andNextFlag ? 'AndNext' : '';
+  return [
+    [flag, 'Mem', '8bit',  level,              '=', 'Value', '', 1],
+    [flag, 'Mem', '8bit',  levelEndCode,       '=', 'Value', '', 0],
+    [flag, 'Mem', '8bit',  playerType,         '=', 'Value', '', 0x0a],
+    [flag, 'Mem', '16bit', score,              '=', 'Value', '', 0],
+    [flag, 'Mem', '8bit',  level1ScrollColumn, '=', 'Value', '', 0],
+  ];
+}
 
 /* -------------------------------- */
 
@@ -163,11 +177,11 @@ set.addAchievement({
     core: $(
       // Checkpoint hit: level 4 started
       ['AndNext', 'Delta', '8bit', level,        '!=', 'Value', '', 4],
-      ['',        'Mem', '8bit', level,        '=',  'Value', '', 4,                1],
-      ['ResetIf', 'Mem', '8bit', level,        '!=', 'Value', '', 4],
+      ['',        'Mem',   '8bit', level,        '=',  'Value', '', 4,                1],
+      ['ResetIf', 'Mem',   '8bit', level,        '!=', 'Value', '', 4],
       // Only during play, not during the end animation / text screen
-      ['AndNext', 'Mem', '8bit', levelEndCode, '=',  'Value', '', 0],
-      ['ResetIf', 'Mem', '8bit', playerX,      '>=', 'Value', '', level4RightSideX],
+      ['AndNext', 'Mem',   '8bit', levelEndCode, '=',  'Value', '', 0],
+      ['ResetIf', 'Mem',   '8bit', playerX,      '>=', 'Value', '', level4RightSideX],
       ...progression(4, LevelEndCodeEnum.Level4Complete, true),
     ),
   },
@@ -262,12 +276,15 @@ set.addAchievement({
   type: 'missable',
   conditions: {
     core: $(
-      // Checkpoint: new game started (level 1)
-      ['',        'Mem', '8bit', level,            '=',  'Value', '',     1,                         1],
+      // Checkpoint hit: first gameplay frame of a new game (same as the Speedrun leaderboard start)
+      ...newGameStart(true),
+      ['',        'Mem', '8bit', loopFrameCounter, '!=', 'Delta', '8bit', loopFrameCounter,          1],
       ['ResetIf', 'Mem', '8bit', levelEndCode,     '=',  'Value', '',     LevelEndCodeEnum.GameOver],
-      // 10 minutes at 60 main loop frames per second
-      ['ResetIf', 'Mem', '8bit', loopFrameCounter, '!=', 'Delta', '8bit', loopFrameCounter,          60 * 60 * 10],
-      ...progression(6, LevelEndCodeEnum.Level6Complete),
+      // 10 minutes at 60 frames per second, counting every frame since the start like the LB
+      ...newGameStart(true),
+      ['ResetNextIf', 'Mem',   '8bit', loopFrameCounter, '!=', 'Delta', '8bit', loopFrameCounter],
+      ['ResetIf',     'Value', '',     0,                '=',  'Value', '',     0,                60 * 60 * 10],
+      ...progression(6, LevelEndCodeEnum.Level6Complete, true),
     ),
   },
 });
@@ -275,8 +292,6 @@ set.addAchievement({
 
 /* ========= LEADERBOARDS ========= */
 
-const playerType = 0xdbb8; // 0x0a in levels 1-2, 0 on the title screen after a game over
-const level1ScrollColumn = 0xd0d3; // 0 at level 1 start, only increases during level 1
 
 set.addLeaderboard({
   title: 'High Score',
@@ -316,12 +331,8 @@ set.addLeaderboard({
   conditions: {
     // First gameplay frame of a new game: the loop frame counter runs and nothing happened yet
     start: $(
-      ['', 'Mem', '8bit',  level,              '=',  'Value', '',     1],
-      ['', 'Mem', '8bit',  levelEndCode,       '=',  'Value', '',     0],
-      ['', 'Mem', '8bit',  playerType,         '=',  'Value', '',     0x0a],
-      ['', 'Mem', '16bit', score,              '=',  'Value', '',     0],
-      ['', 'Mem', '8bit',  level1ScrollColumn, '=',  'Value', '',     0],
-      ['', 'Mem', '8bit',  loopFrameCounter,   '!=', 'Delta', '8bit', loopFrameCounter],
+      ...newGameStart(),
+      ['', 'Mem', '8bit', loopFrameCounter, '!=', 'Delta', '8bit', loopFrameCounter],
     ),
     cancel: {
       core: '0=0',
@@ -335,17 +346,18 @@ set.addLeaderboard({
         ['', 'Delta', '8bit', level, '>', 'Value', '', 1],
         ['', 'Mem',   '8bit', level, '=', 'Value', '', 1],
       ),
-      // Soft reset in level 1: the scroll column is reset when the new game starts
+      // Soft reset in level 1: the scroll column jumps back to 0 when the new game starts
+      // (walking left only lowers it by 1 per frame, a soft reset at column 0-1 doesn't cancel but only adds time)
       alt6: $(
-        ['', 'Mem', '8bit', level,              '=', 'Value', '',     1],
-        ['', 'Mem', '8bit', level1ScrollColumn, '<', 'Delta', '8bit', level1ScrollColumn],
+        ['', 'Mem',   '8bit', level,              '=', 'Value', '', 1],
+        ['', 'Delta', '8bit', level1ScrollColumn, '>', 'Value', '', 1],
+        ['', 'Mem',   '8bit', level1ScrollColumn, '=', 'Value', '', 0],
       ),
     },
     submit: $(
       ...progression(6, LevelEndCodeEnum.Level6Complete),
     ),
-    // Count every frame since the start. Pauses count too, they can only make the time worse.
-    // (Counting frames in which 0xd0d7 moved undercounts: it sometimes moves by 2 in one frame and not in the next)
+    // Hit count frame timer
     value: $(
       ['Measured', 'Value', '', 0, '=', 'Value', '', 0],
     ),

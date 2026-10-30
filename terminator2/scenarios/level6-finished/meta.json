@@ -1,0 +1,383 @@
+{
+  "name": "level6-finished",
+  "description": "",
+  "game": "Terminator 2: Judgment Day",
+  "console": "GB",
+  "firstFrame": 39795,
+  "markers": {
+    "scenario-start": 39863,
+    "level-finished": 47123
+  },
+  "addresses": [
+    {
+      "address": "0x0000",
+      "size": "u8",
+      "label": "[General game notes]"
+    },
+    {
+      "address": "0xd093",
+      "size": "u8",
+      "label": "Player controller input"
+    },
+    {
+      "address": "0xd099",
+      "size": "u8",
+      "label": "Background scroll X (screen X shadow, all levels)"
+    },
+    {
+      "address": "0xd0a5",
+      "size": "u8",
+      "label": "[Lower4] Score x0000"
+    },
+    {
+      "address": "0xd0a6",
+      "size": "u8",
+      "label": "[Lower4] Score 0x000"
+    },
+    {
+      "address": "0xd0a7",
+      "size": "u8",
+      "label": "[Lower4] Score 00x00"
+    },
+    {
+      "address": "0xd0a8",
+      "size": "u8",
+      "label": "[Lower4] Score 000x0"
+    },
+    {
+      "address": "0xd0a9",
+      "size": "u8",
+      "label": "[Lower4] Score 0000x"
+    },
+    {
+      "address": "0xd0aa",
+      "size": "u16",
+      "label": "Score"
+    },
+    {
+      "address": "0xd0ac",
+      "size": "u16",
+      "label": "High score"
+    },
+    {
+      "address": "0xd0d3",
+      "size": "u8",
+      "label": "Level 1: scroll column, 0 at level start"
+    },
+    {
+      "address": "0xd0d5",
+      "size": "u8",
+      "label": "Level 1: Number of correct power generators shot"
+    },
+    {
+      "address": "0xd0d7",
+      "size": "u8",
+      "label": "Loop frame counter (+1 per frame, wraps at 0x95), frozen while paused and on text screens"
+    },
+    {
+      "address": "0xd0df",
+      "size": "u8",
+      "label": "Level (1-6)"
+    },
+    {
+      "address": "0xd0e6",
+      "size": "u8",
+      "label": "Level 2: final room reached (doors only work once this is 1)"
+    },
+    {
+      "address": "0xd0e7",
+      "size": "u8",
+      "label": "Level 2: door the player is standing at (0 = none, 1-5, door 4 is always correct)"
+    },
+    {
+      "address": "0xd0e8",
+      "size": "u8",
+      "label": "Level 2: mysterious person spawned (0 -> 1)"
+    },
+    {
+      "address": "0xd0e9",
+      "size": "u8",
+      "label": "Level 2: timer (x of the timer arrow), starts at 0x04, stops at 0xa3; runs from the level start, only visible after the hint is picked up"
+    },
+    {
+      "address": "0xd0ea",
+      "size": "u8",
+      "label": "Level end / event code (0 during play, set once, stays until the text screen ends)"
+    },
+    {
+      "address": "0xd0eb",
+      "size": "u16",
+      "label": "Text pointer"
+    },
+    {
+      "address": "0xd0f0",
+      "size": "u8",
+      "label": "Level 3 node #1"
+    },
+    {
+      "address": "0xd0f1",
+      "size": "u8",
+      "label": "Level 3 node #2"
+    },
+    {
+      "address": "0xd0f2",
+      "size": "u8",
+      "label": "Level 3 node #3"
+    },
+    {
+      "address": "0xd0f3",
+      "size": "u8",
+      "label": "Level 3 node #4"
+    },
+    {
+      "address": "0xd0f9",
+      "size": "u8",
+      "label": "Level 3 timer x:00 (minutes)"
+    },
+    {
+      "address": "0xd0fa",
+      "size": "u8",
+      "label": "Level 3 timer 0:x0"
+    },
+    {
+      "address": "0xd0fb",
+      "size": "u8",
+      "label": "Level 3 timer 0:0x"
+    },
+    {
+      "address": "0xd0fd",
+      "size": "u8",
+      "label": "Level 3: chances left (2 on new game, -1 per timeout)"
+    },
+    {
+      "address": "0xd100",
+      "size": "u8",
+      "label": "Level 1: hint item column"
+    },
+    {
+      "address": "0xd10a",
+      "size": "u8",
+      "label": "Level 5: item picked up flag"
+    },
+    {
+      "address": "0xd10c",
+      "size": "u8",
+      "label": "Level 1: Number of total power generators shot"
+    },
+    {
+      "address": "0xd10e",
+      "size": "u8",
+      "label": "Level 4: scroll X of the lower screen split (truck layer)"
+    },
+    {
+      "address": "0xd11b",
+      "size": "u8",
+      "label": "Level 4: truck state"
+    },
+    {
+      "address": "0xd11c",
+      "size": "u8",
+      "label": "Level 4: truck health (starts at 5, 0xff = destroyed)"
+    },
+    {
+      "address": "0xd11d",
+      "size": "u8",
+      "label": "Level 4: hits left until the next truck health step (0x14 per step)"
+    },
+    {
+      "address": "0xd12e",
+      "size": "u8",
+      "label": "Weapon; Level 5: 0x00 = Rifle, 0x01 = Shotgun; Level 6: 0x00 = Fists only"
+    },
+    {
+      "address": "0xd12f",
+      "size": "u8",
+      "label": "Levels 5-6: ammo bar (0x00-0xe0, full = 0xe0) - refilled to 0xe0 when switching from rifle to shotgun (see 0xd12e)"
+    },
+    {
+      "address": "0xd136",
+      "size": "u8",
+      "label": "Level 6: T-1000 true form (0 -> 1 when its HP runs out)"
+    },
+    {
+      "address": "0xd139",
+      "size": "u8",
+      "label": "Level 2: hint picked up (0 -> 1)"
+    },
+    {
+      "address": "0xd13e",
+      "size": "u8",
+      "label": "Level 3: circuits completed (0-3)"
+    },
+    {
+      "address": "0xdbb8",
+      "size": "u8",
+      "label": "Object table start (17 slots x 0x1a bytes, slot 0 = player) / Player object type"
+    },
+    {
+      "address": "0xdbbc",
+      "size": "u8",
+      "label": "Player state"
+    },
+    {
+      "address": "0xdbbd",
+      "size": "u8",
+      "label": "Health (Full health: 0xe0)"
+    },
+    {
+      "address": "0xdbc9",
+      "size": "u8",
+      "label": "Player timer. Level 2: door entry countdown (starts at 0x3c, door opens at 0); Level 6: punch animation frame (punch deals damage at 0x03)"
+    },
+    {
+      "address": "0xdbce",
+      "size": "u8",
+      "label": "Player y-coordinate (all levels)"
+    },
+    {
+      "address": "0xdbcf",
+      "size": "u8",
+      "label": "Player x-coordinate (all levels). On foot the screen scrolls, so it mostly stays around 0x50"
+    },
+    {
+      "address": "0xdc3a",
+      "size": "u8",
+      "label": "Object slot 5 type (boss slot)"
+    },
+    {
+      "address": "0xdc3e",
+      "size": "u8",
+      "label": "Object slot 5 state (used in Level 6)"
+    },
+    {
+      "address": "0xdc3f",
+      "size": "u8",
+      "label": "Object slot 5 HP (boss slot). Level 1: generator (10) / HK tank (0x28); Level 5: barrier/turret (0x14); Level 6: T-1000 (0xdc)"
+    },
+    {
+      "address": "0xdc54",
+      "size": "u8",
+      "label": "Object slot 6 type; Level 5: 0x32 = Keycard/arm on screen"
+    },
+    {
+      "address": "0xdc62",
+      "size": "u8",
+      "label": "Object slot 6: level 5 item list index (0-3)"
+    },
+    {
+      "address": "0xdc65",
+      "size": "u8",
+      "label": "Object slot 6: level 5 item is the arm (0 = keycard, 1 = arm)"
+    },
+    {
+      "address": "0xdc73",
+      "size": "u8",
+      "label": "Object slot 7 HP (slot assigned on spawn; level 5: usually the 1st ceiling turret)"
+    },
+    {
+      "address": "0xdc8d",
+      "size": "u8",
+      "label": "Object slot 8 HP (slot assigned on spawn; level 5: usually the turret before the barrier)"
+    },
+    {
+      "address": "0xdca7",
+      "size": "u8",
+      "label": "Object slot 9 HP (slot assigned on spawn; level 5: usually the 2nd ceiling turret)"
+    },
+    {
+      "address": "0xdcc1",
+      "size": "u8",
+      "label": "Object slot 10 HP (slot assigned on spawn; level 5: usually the 3rd ceiling turret)"
+    },
+    {
+      "address": "0xdcdb",
+      "size": "u8",
+      "label": "Object slot 11 HP (slot assigned on spawn)"
+    },
+    {
+      "address": "0xdd9a",
+      "size": "u8",
+      "label": "Level 1 generator list (5 x 4 bytes: column, height, order, 0); column = 0x00 once destroyed"
+    },
+    {
+      "address": "0xddae",
+      "size": "u8",
+      "label": "Level 1 mine #1"
+    },
+    {
+      "address": "0xddb2",
+      "size": "u8",
+      "label": "Level 1 mine #2"
+    },
+    {
+      "address": "0xddb6",
+      "size": "u8",
+      "label": "Level 1 mine #3"
+    },
+    {
+      "address": "0xddba",
+      "size": "u8",
+      "label": "Level 1 mine #4"
+    },
+    {
+      "address": "0xddbe",
+      "size": "u8",
+      "label": "Level 1 mine #5"
+    },
+    {
+      "address": "0xddc2",
+      "size": "u8",
+      "label": "Level 1 mine #6"
+    },
+    {
+      "address": "0xddc6",
+      "size": "u8",
+      "label": "Level 1 mine #7"
+    },
+    {
+      "address": "0xddca",
+      "size": "u8",
+      "label": "Level 1 mine #8"
+    },
+    {
+      "address": "0xddce",
+      "size": "u8",
+      "label": "Level 1 mine #9"
+    },
+    {
+      "address": "0xddfe",
+      "size": "u8",
+      "label": "Level 5 item list: keycard #1 column (4 x 4 bytes); 0x00 = On screen or collected"
+    },
+    {
+      "address": "0xde02",
+      "size": "u8",
+      "label": "Level 5 keycard #2 column (TODO - assumed to be the exit keycard, not verified); 0x00 = On screen or collected"
+    },
+    {
+      "address": "0xde06",
+      "size": "u8",
+      "label": "Level 5 keycard #3 column; 0x00 = On screen or collected"
+    },
+    {
+      "address": "0xde0a",
+      "size": "u8",
+      "label": "Level 5 T-800 arm column; 0x00 = On screen or collected"
+    },
+    {
+      "address": "0xde9e",
+      "size": "u8",
+      "label": "Level 5 barrier #1 column (list of 4 x 4 bytes)"
+    },
+    {
+      "address": "0xdea6",
+      "size": "u8",
+      "label": "Level 5 barrier #3 column"
+    },
+    {
+      "address": "0xdeaa",
+      "size": "u8",
+      "label": "Level 5 barrier #4 column"
+    }
+  ]
+}

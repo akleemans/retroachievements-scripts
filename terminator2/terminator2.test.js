@@ -244,21 +244,51 @@ describe('Progression: Level 6', () => {
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('level-finished'));
   });
+
+  test('does not pop if not finished', () => {
+    const s = scenario('level6-t1000-mutated');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
 });
 
 describe('Level 6: Punches', () => {
   const cheevo = achievement( 'Advanced Prototype');
 
   test('pops when T-1000 is transformed using punches', () => {
-    const s = scenario('level6-punches');
+    const s = scenario('level6-t1000-mutated');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('arm-picked-up'));
+    expect(result.triggeredFrame).toBe(s.marker('t1000-mutated'));
   });
 
-  test('does not pop if not transformed', () => {
+  test('does not pop if transformed with gun shots', () => {
+    const s = scenario('level6-transform-gun-shots');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
+
+describe('High Score', () => {
+  const cheevo = achievement( 'Hey Bro, I\'m Gonna Get Some Quarters');
+
+  test('pops when score is reached', () => {
+    const s = scenario('level6-score');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('level-finished'));
+  });
+
+  test('does not pop if score too low', () => {
     const s = scenario('level6-finished');
     const result = runAchievement(cheevo, s);
 
@@ -269,7 +299,6 @@ describe('Level 6: Punches', () => {
 
 
 // TODO
-//  'Hey Bro, I\'m Gonna Get Some Quarters',
 // 'Drive Faster'
 
 
