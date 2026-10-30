@@ -41,6 +41,8 @@ const newGameStart = (andNextFlag) => {
 /* -------------------------------- */
 
 set.addAchievement({
+  id: 648116,
+  badge: '740472',
   title: 'Kill the Hunter Killer',
   description: 'Destroy the HK-Tank in Los Angeles 2029 A.D. and complete level 1',
   points: 5,
@@ -55,6 +57,8 @@ set.addAchievement({
 const level1HintColumn = 0xd100; // 0x6c, set to 0 when the hint is picked up
 
 set.addAchievement({
+  id: 648117,
+  badge: '740473',
   title: 'Thanks for the Tip, Mom!',
   description: 'Pick up the flashing hint in Los Angeles 2029 A.D. in level 1',
   points: 1,
@@ -69,6 +73,8 @@ set.addAchievement({
 const mines = [0xddae, 0xddb2, 0xddb6, 0xddba, 0xddbe, 0xddc2, 0xddc6, 0xddca, 0xddce];
 
 set.addAchievement({
+  id: 648118,
+  badge: '740474',
   title: 'Mines and Mines Alone',
   description: 'Complete level 1 while not stepping on any mines',
   points: 3,
@@ -90,6 +96,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 648119,
+  badge: '740475',
   title: 'We Got Skynet by the Balls Now, Don\'t We?',
   description: 'Enter the correct room in Skynet and complete level 2',
   points: 5,
@@ -104,6 +112,8 @@ const level2Timer = 0xd0e9; // Timer arrow x, stops at 0xa3
 const level2TimerEnd = 0xa3;
 
 set.addAchievement({
+  id: 648120,
+  badge: '740476',
   title: 'Thanks for the Hustle, Mom!',
   description: 'Get the flashing hint in Skynet and enter the correct room before the timer expires in level 2',
   points: 3,
@@ -118,6 +128,8 @@ set.addAchievement({
 const mysteriousPersonSpawned = 0xd0e8; // 0 -> 1
 
 set.addAchievement({
+  id: 648121,
+  badge: '740477',
   title: 'After You, Savior of Humanity',
   description: 'Wait for a mysterious person to appear and enter the correct room at the end of Skynet (Level 2)',
   points: 3,
@@ -130,6 +142,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 648122,
+  badge: '740478',
   title: 'You Reprogrammed Me to Be Your Protector',
   description: 'Reprogram all 3 boards of the T-800 and complete level 3',
   points: 5,
@@ -144,6 +158,8 @@ set.addAchievement({
 const level3ChancesLeft = 0xd0fd; // 2 on new game, -1 per timeout
 
 set.addAchievement({
+  id: 648123,
+  badge: '740479',
   title: 'Who Sent You?',
   description: 'Reprogram all 3 boards of the T-800 without failing once in level 3',
   points: 2,
@@ -157,6 +173,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 648124,
+  badge: '740480',
   title: 'My Mission Is to Protect You',
   description: 'Survive and blast apart the T-1000\'s Freightliner and complete level 4',
   points: 5,
@@ -169,6 +187,8 @@ set.addAchievement({
 const level4RightSideX = 0x80;
 
 set.addAchievement({
+  id: 648125,
+  badge: '740481',
   title: 'We Have to Get Out of the City Immediately',
   description: 'Destroy the T-1000\'s Freightliner without touching the right side of the screen in level 4',
   points: 3,
@@ -188,6 +208,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 648126,
+  badge: '740482',
   title: 'I Was Wondering if You Know Where It Came From?',
   description: 'Collect the T-800 arm and escape Cyberdyne anc complete level 5',
   points: 5,
@@ -208,6 +230,8 @@ const level5ItemType = 0x32; // Object type of keycard / arm on screen (slot 6)
 const level5ExitKeycardEntry = 0xde02; // 2nd entry of the item list
 
 set.addAchievement({
+  id: 648127,
+  badge: '740483',
   title: 'It Gave Us Ideas, Took Us in New Directions',
   description: 'Collect the T-800 arm before collecting the key at the exit of Cyberdyne in level 5',
   points: 2,
@@ -232,6 +256,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 648128,
+  badge: '740484',
   title: 'Terminated',
   description: 'Defeat the T-1000 by blasting him into the foundry melt pool and beat the game',
   points: 25,
@@ -245,6 +271,8 @@ const playerState = 0xdbbc;
 const t1000TrueForm = 0xd136; // 0 -> 1 when the T-1000 runs out of HP
 
 set.addAchievement({
+  id: 648129,
+  badge: '740485',
   title: 'Advanced Prototype',
   description: 'Use punches to turn the T-1000 into its true form before defeating it - using guns first is allowed',
   points: 3,
@@ -258,6 +286,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 648130,
+  badge: '740486',
   title: 'Hey Bro, I\'m Gonna Get Some Quarters',
   description: 'Beat the game with at least 2500 points as your high score',
   points: 5,
@@ -269,6 +299,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 648131,
+  badge: '740487',
   title: 'Drive Faster',
   description: 'Beat the game in fewer than ten minutes',
   points: 10,
