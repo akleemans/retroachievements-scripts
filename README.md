@@ -12,9 +12,9 @@ Sets:
 * [Mr. Do! (GB)](/mr-do) | 2026-10-13 | [RA](https://retroachievements.org/game/4746)
 * [Mortal Coil (GB)](/mortal-coil) | 2026-10-15 | [RA](https://retroachievements.org/game/45174) - Homebrew game which I made myself, see [itch.io](https://adrianusk.itch.io/mortal-coil)
 * [Hugo 2 (GB)](/hugo2) | 2026-10-24 | [RA](https://retroachievements.org/game/22119)
+* [Terminator 2: Judgment Day (GB)](/terminator2) | 2026-10-30 | [RA](https://retroachievements.org/game/2574)
 * [Koneko Monogatari (FDS)](/koneko) | 2026-10-31 | [RA](https://retroachievements.org/game/6821) - FDS game for the DevJam
 * [Last Action Hero (GB)](/last-action-hero) | unreleased | [RA](https://retroachievements.org/game/2459)
-* [Terminator 2: Judgment Day (GB)](/terminator2) | unreleased | [RA](https://retroachievements.org/game/2574)
 
 ## Setup
 
