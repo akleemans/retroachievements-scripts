@@ -201,7 +201,7 @@ const slot6Type = 0xdc54;
 const slot6EntryIndex = 0xdc62; // Index into the level 5 item list
 const slot6IsArm = 0xdc65; // 1 = arm, 0 = keycard
 
-// TODO verify which keycard is the one at the exit (column 0x4d, last in the level)
+// Index 1 is the exit keycard: highest column (0x4d)
 const level5ExitKeycardIndex = 1;
 const level5ArmEntry = 0xde0a; // 4th entry of the item list
 const level5ItemType = 0x32; // Object type of keycard / arm on screen (slot 6)

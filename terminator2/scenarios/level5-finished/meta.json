@@ -6,8 +6,8 @@
   "firstFrame": 35700,
   "markers": {
     "scenario-start": 35766,
-    "arm-picked-up": 39156,
-    "level-finished": 39221
+    "level-finished": 39221,
+    "key-card-collected": 39156
   },
   "addresses": [
     {

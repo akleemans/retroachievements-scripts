@@ -221,7 +221,7 @@ describe('Level 5 with collecting arm before key', () => {
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('arm-picked-up'));
+    expect(result.triggeredFrame).toBe(s.marker('key-card-collected'));
   });
 
   test('does not pop if wrong order', () => {
