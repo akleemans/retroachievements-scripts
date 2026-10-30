@@ -211,7 +211,7 @@ set.addAchievement({
   id: 648126,
   badge: '740482',
   title: 'I Was Wondering if You Know Where It Came From?',
-  description: 'Collect the T-800 arm and escape Cyberdyne anc complete level 5',
+  description: 'Collect the T-800 arm and escape Cyberdyne and complete level 5',
   points: 5,
   type: 'progression',
   conditions: $(
@@ -247,11 +247,11 @@ set.addAchievement({
     ['',        'Mem',   '8bit', level5ArmEntry, '=', 'Value', '', 0,              1],
 
     // Exit keycard picked up. It can only be picked up once, so picking it up before the arm skips the trigger for good
-    ['', 'Delta', '8bit', slot6Type,              '=', 'Value', '', level5ItemType],
-    ['', 'Delta', '8bit', slot6IsArm,             '=', 'Value', '', 0],
-    ['', 'Delta', '8bit', slot6EntryIndex,        '=', 'Value', '', level5ExitKeycardIndex],
-    ['', 'Mem',   '8bit', slot6Type,              '=', 'Value', '', 0],
-    ['', 'Mem',   '8bit', level5ExitKeycardEntry, '=', 'Value', '', 0],
+    ['',        'Delta', '8bit', slot6Type,              '=', 'Value', '', level5ItemType],
+    ['',        'Delta', '8bit', slot6IsArm,             '=', 'Value', '', 0],
+    ['',        'Delta', '8bit', slot6EntryIndex,        '=', 'Value', '', level5ExitKeycardIndex],
+    ['Trigger', 'Mem',   '8bit', slot6Type,              '=', 'Value', '', 0],
+    ['',        'Mem',   '8bit', level5ExitKeycardEntry, '=', 'Value', '', 0],
   ),
 });
 

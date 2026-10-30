@@ -220,6 +220,8 @@ describe('Level 5 with collecting arm before key', () => {
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    // Arm collected and the exit keycard on screen
+    expect(result.stateAt(s.marker('key-card-collected') - 1)).toBe('primed');
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('key-card-collected'));
   });
