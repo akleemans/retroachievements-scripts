@@ -14,6 +14,7 @@ Sets:
 * [Koneko Monogatari (FDS)](/koneko) | [RA](https://retroachievements.org/game/6821) - FDS game for the DevJam
 * [Hugo 2 (GB)](/hugo2) | [RA](https://retroachievements.org/game/22119)
 * [Last Action Hero (GB)](/last-action-hero) | [RA](https://retroachievements.org/game/2459)
+* [Terminator 2: Judgment Day (GB)](/terminator2) | [RA](https://retroachievements.org/game/2574)
 
 ## Setup
 
