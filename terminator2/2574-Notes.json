@@ -92,7 +92,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00d0ea",
-    "Note": "[8-bit] Level end \/ event code (0 during play, set when a level ends, stays until the text screen ends; L3 changes it from 0x10 to 0x03 and from 0x09 to 0x02)\r\n0x00 = During play\r\n0x01 = After a game over screen\r\n0x02 = L1 generators wrong order (game over); L3: after 0x09, while retrying\r\n0x03 line to 0x03 = Died in levels 1-3; L3: after 0x10, on boards 1-2\r\n0x06 = L1 complete\r\n0x07 = L2 complete\r\n0x08 = L3 complete\r\n0x09 = L3 timeout, retry\r\n0x0a = L3 timeout, game over\r\n0x0b = Died in levels 4-6\r\n0x0c = L4 complete\r\n0x0e = L5 complete\r\n0x0f = L6 complete\r\n0x10 = L3 circuit done"
+    "Note": "[8-bit] Level end \/ event code (0 during play, set when a level ends, stays until the text screen ends; L3 changes it from 0x10 to 0x03 and from 0x09 to 0x02)\r\n0x00 = During play\r\n0x01 = After a game over screen\r\n0x02 = L1 generators wrong order (game over); L3: after 0x09, while retrying\r\n0x03 = Died in levels 1-3\r\n0x06 = L1 complete\r\n0x07 = L2 complete\r\n0x08 = L3 complete\r\n0x09 = L3 timeout, retry\r\n0x0a = L3 timeout, game over\r\n0x0b = Died in levels 4-6\r\n0x0c = L4 complete\r\n0x0e = L5 complete\r\n0x0f = L6 complete\r\n0x10 = L3 circuit done"
   },
   {
     "User": "adrianusk",

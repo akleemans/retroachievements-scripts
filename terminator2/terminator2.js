@@ -199,7 +199,7 @@ set.addAchievement({
       ['AndNext', 'Delta', '8bit', level,        '!=', 'Value', '', 4],
       ['',        'Mem',   '8bit', level,        '=',  'Value', '', 4,                1],
       ['ResetIf', 'Mem',   '8bit', level,        '!=', 'Value', '', 4],
-      // Only during play, not during the end animation / text screen
+      // Don't touch right side
       ['AndNext', 'Mem',   '8bit', levelEndCode, '=',  'Value', '', 0],
       ['ResetIf', 'Mem',   '8bit', playerX,      '>=', 'Value', '', level4RightSideX],
       ...progression(4, LevelEndCodeEnum.Level4Complete, true),
@@ -289,7 +289,7 @@ set.addAchievement({
   id: 648130,
   badge: '740486',
   title: 'Hey Bro, I\'m Gonna Get Some Quarters',
-  description: 'Beat the game with at least 2500 points as your high score',
+  description: 'Beat the game with a score of at least 2500 points',
   points: 10,
   type: 'missable',
   conditions: $(
@@ -311,7 +311,7 @@ set.addAchievement({
       ...newGameStart(true),
       ['',        'Mem', '8bit', loopFrameCounter, '!=', 'Delta', '8bit', loopFrameCounter,          1],
       ['ResetIf', 'Mem', '8bit', levelEndCode,     '=',  'Value', '',     LevelEndCodeEnum.GameOver],
-      // 10 minutes at 60 frames per second, counting every frame since the start like the LB
+      // 10 minutes at 60 frames per second
       ...newGameStart(true),
       ['ResetNextIf', 'Mem',   '8bit', loopFrameCounter, '!=', 'Delta', '8bit', loopFrameCounter],
       ['ResetIf',     'Value', '',     0,                '=',  'Value', '',     0,                60 * 60 * 10],
