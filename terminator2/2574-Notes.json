@@ -342,7 +342,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00de02",
-    "Note": "[8-bit] Level 5 keycard #2 column (TODO - assumed to be the exit keycard, not verified); 0x00 = On screen or collected"
+    "Note": "[8-bit] Level 5 keycard #2 column (exit keycard), 0x00 = On screen or collected"
   },
   {
     "User": "adrianusk",

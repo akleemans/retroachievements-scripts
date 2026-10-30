@@ -351,7 +351,7 @@
     {
       "address": "0xde02",
       "size": "u8",
-      "label": "Level 5 keycard #2 column (TODO - assumed to be the exit keycard, not verified); 0x00 = On screen or collected"
+      "label": "Level 5 keycard #2 column (exit keycard), 0x00 = On screen or collected"
     },
     {
       "address": "0xde06",

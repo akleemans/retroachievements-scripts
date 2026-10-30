@@ -68,7 +68,7 @@ return {
     { address = 0xddca, size = "u8", label = "Level 1 mine #8" },
     { address = 0xddce, size = "u8", label = "Level 1 mine #9" },
     { address = 0xddfe, size = "u8", label = "Level 5 item list: keycard #1 column (4 x 4 bytes); 0x00 = On screen or collected" },
-    { address = 0xde02, size = "u8", label = "Level 5 keycard #2 column (TODO - assumed to be the exit keycard, not verified); 0x00 = On screen or collected" },
+    { address = 0xde02, size = "u8", label = "Level 5 keycard #2 column (exit keycard), 0x00 = On screen or collected" },
     { address = 0xde06, size = "u8", label = "Level 5 keycard #3 column; 0x00 = On screen or collected" },
     { address = 0xde0a, size = "u8", label = "Level 5 T-800 arm column; 0x00 = On screen or collected" },
     { address = 0xde9e, size = "u8", label = "Level 5 barrier #1 column (list of 4 x 4 bytes)" },
