@@ -3,7 +3,9 @@ const set = new AchievementSet({gameId: 4967, title: 'QIX'});
 
 const percentageCovered = 0xc640;
 const multiplier = 0xc63f;
-const stageNumber = 0xc63b; // 0 - ?
+// const stageNumber = 0xc63b; // Starts at 0
+const lives = 0xc642;
+const demoFlag = 0xc65f; // 0 = Not in demo mode
 
 set.addAchievement({
   id: 13018,
@@ -12,8 +14,8 @@ set.addAchievement({
   description: 'Clear a stage with 99% of the area covered.',
   points: 10,
   conditions: $(
-    ['', 'Mem',   '8bit', stageNumber,       '>=', 'Value', '', 0],
-    ['', 'Mem',   '8bit', stageNumber,       '<=', 'Value', '', 100],
+    ['', 'Mem', '8bit', lives,    '>', 'Value', '', 0],
+    ['', 'Mem', '8bit', demoFlag, '=', 'Value', '', 0],
     ['', 'Delta', '8bit', percentageCovered, '<',  'Value', '', 99],
     ['', 'Mem',   '8bit', percentageCovered, '>=', 'Value', '', 99],
   ),
@@ -21,8 +23,8 @@ set.addAchievement({
 
 const achieveMultiplier = (multiplierNr) => {
   return [
-    ['', 'Mem',   '8bit', stageNumber, '>=', 'Value', '', 0],
-    ['', 'Mem',   '8bit', stageNumber, '<=', 'Value', '', 100],
+    ['', 'Mem', '8bit', lives,    '>', 'Value', '', 0],
+    ['', 'Mem', '8bit', demoFlag, '=', 'Value', '', 0],
     ['', 'Delta', '8bit', multiplier,  '<',  'Value', '', multiplierNr],
     ['', 'Mem',   '8bit', multiplier,  '>=', 'Value', '', multiplierNr],
   ];

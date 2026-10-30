@@ -15,7 +15,7 @@ npx vitest run qix
 ```
 * Lint:
 ```bash
-npx eslint qix/qix.js --fix
+npx eslint _contributed/qix/qix.js --fix
 ```
 * Format:
 ```bash
@@ -23,7 +23,7 @@ node scripts/align-conditions.js
 ```
 * Save to local:
 ```bash
-npx cruncheevos save qix/qix.js
+npx cruncheevos save _contributed/qix/qix.js
 ```
 
 Testing
