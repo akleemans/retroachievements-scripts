@@ -6,15 +6,15 @@ using [cruncheevos](https://github.com/suXinjke/cruncheevos).
 
 Sets:
 
-* [The Rugrats Movie (GB)](/rugrats) | [RA](https://retroachievements.org/game/2563) - My first set!
-* [Turok: Battle of the Bionosaurs (GB)](/turok) | [RA](https://retroachievements.org/game/13955)
-* [Monster Force (GBA)](/monster-force) | [RA](https://retroachievements.org/game/5260) - My graduation set for the [RA junior program](https://docs.retroachievements.org/developer-docs/jr-dev-rules.html)
-* [Mr. Do! (GB)](/mr-do) | [RA](https://retroachievements.org/game/4746)
-* [Mortal Coil (GB)](/mortal-coil) | [RA](https://retroachievements.org/game/45174) - Homebrew game which I made myself, see [itch.io](https://adrianusk.itch.io/mortal-coil)
-* [Koneko Monogatari (FDS)](/koneko) | [RA](https://retroachievements.org/game/6821) - FDS game for the DevJam
-* [Hugo 2 (GB)](/hugo2) | [RA](https://retroachievements.org/game/22119)
-* [Last Action Hero (GB)](/last-action-hero) | [RA](https://retroachievements.org/game/2459)
-* [Terminator 2: Judgment Day (GB)](/terminator2) | [RA](https://retroachievements.org/game/2574)
+* [The Rugrats Movie (GB)](/rugrats) | 2026-02-10 | [RA](https://retroachievements.org/game/2563) - My first set!
+* [Turok: Battle of the Bionosaurs (GB)](/turok) | 2026-06-21 | [RA](https://retroachievements.org/game/13955)
+* [Monster Force (GBA)](/monster-force) | 2026-10-09 | [RA](https://retroachievements.org/game/5260) - My graduation set for the [RA junior program](https://docs.retroachievements.org/developer-docs/jr-dev-rules.html)
+* [Mr. Do! (GB)](/mr-do) | 2026-10-13 | [RA](https://retroachievements.org/game/4746)
+* [Mortal Coil (GB)](/mortal-coil) | 2026-10-15 | [RA](https://retroachievements.org/game/45174) - Homebrew game which I made myself, see [itch.io](https://adrianusk.itch.io/mortal-coil)
+* [Hugo 2 (GB)](/hugo2) | 2026-10-24 | [RA](https://retroachievements.org/game/22119)
+* [Koneko Monogatari (FDS)](/koneko) | 2026-10-31 | [RA](https://retroachievements.org/game/6821) - FDS game for the DevJam
+* [Last Action Hero (GB)](/last-action-hero) | unreleased | [RA](https://retroachievements.org/game/2459)
+* [Terminator 2: Judgment Day (GB)](/terminator2) | unreleased | [RA](https://retroachievements.org/game/2574)
 
 ## Setup
 
