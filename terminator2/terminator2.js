@@ -36,7 +36,7 @@ const newGameStart = (andNextFlag) => {
     [flag, 'Mem', '16bit', score,              '=', 'Value', '', 0],
     [flag, 'Mem', '8bit',  level1ScrollColumn, '=', 'Value', '', 0],
   ];
-}
+};
 
 /* -------------------------------- */
 
@@ -215,7 +215,6 @@ set.addAchievement({
   conditions: $(
     ['ResetIf', 'Mem', '8bit', level, '!=', 'Value', '', 5],
 
-    // TODO verify
     // Checkpoint: arm picked up. The item object (slot 6) disappears and its list entry stays 0
     // (when it only scrolls off screen, the column is written back to the list)
     ['AndNext', 'Delta', '8bit', slot6Type,      '=', 'Value', '', level5ItemType],
@@ -292,6 +291,15 @@ set.addAchievement({
 
 /* ========= LEADERBOARDS ========= */
 
+// Game over codes: wrong generator order (0x02), died in levels 1-3 (0x03), level 3 timeout (0x0a), died in levels 4-6 (0x0b).
+// All are set during play, so they follow a 0. Exception: level 3 sets 0x03 after the 1st and 2nd board
+const gameOverCode = () => [
+  ['OrNext', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x02],
+  ['OrNext', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x03],
+  ['OrNext', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x0a],
+  ['',       'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x0b],
+];
+
 
 set.addLeaderboard({
   title: 'High Score',
@@ -304,13 +312,12 @@ set.addLeaderboard({
         ['', 'Mem',   '16bit', score,        '>', 'Value', '', 0],
         ['', 'Delta', '8bit',  levelEndCode, '=', 'Value', '', 0],
       ),
-      // Game over: wrong generator order, died in levels 1-3, level 3 timeout, died in levels 4-6
-      alt1: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x02]),
-      alt2: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x03]),
-      alt3: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x0a]),
-      alt4: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x0b]),
+      // Game over (core: only when set during play)
+      alt1: $(
+        ...gameOverCode(),
+      ),
       // Game beaten
-      alt5: $(
+      alt2: $(
         ['', 'Mem', '8bit', level,        '=', 'Value', '', 6],
         ['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', LevelEndCodeEnum.Level6Complete],
       ),
@@ -336,19 +343,19 @@ set.addLeaderboard({
     ),
     cancel: {
       core: '0=0',
-      // Game over
-      alt1: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x02]),
-      alt2: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x03]),
-      alt3: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x0a]),
-      alt4: $(['', 'Mem', '8bit', levelEndCode, '=', 'Value', '', 0x0b]),
+      // Game over. Only when set during play: level 3 also sets 0x03 after the 1st and 2nd board (0x10 -> 0x03)
+      alt1: $(
+        ...gameOverCode(),
+        ['', 'Delta', '8bit', levelEndCode, '=', 'Value', '', 0],
+      ),
       // Soft reset in levels 2-6: back to level 1
-      alt5: $(
+      alt2: $(
         ['', 'Delta', '8bit', level, '>', 'Value', '', 1],
         ['', 'Mem',   '8bit', level, '=', 'Value', '', 1],
       ),
       // Soft reset in level 1: the scroll column jumps back to 0 when the new game starts
       // (walking left only lowers it by 1 per frame, a soft reset at column 0-1 doesn't cancel but only adds time)
-      alt6: $(
+      alt3: $(
         ['', 'Mem',   '8bit', level,              '=', 'Value', '', 1],
         ['', 'Delta', '8bit', level1ScrollColumn, '>', 'Value', '', 1],
         ['', 'Mem',   '8bit', level1ScrollColumn, '=', 'Value', '', 0],

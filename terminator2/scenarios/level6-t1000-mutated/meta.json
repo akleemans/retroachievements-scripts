@@ -6,7 +6,8 @@
   "firstFrame": 42839,
   "markers": {
     "scenario-start": 42853,
-    "t1000-mutated": 44090
+    "t1000-mutated": 44090,
+    "game-over": 44923
   },
   "addresses": [
     {
