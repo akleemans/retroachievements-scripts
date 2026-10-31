@@ -1,8 +1,8 @@
 [
   {
-    "User": "Phlosioneer",
+    "User": "adrianusk",
     "Address": "0x010000",
-    "Note": "Cursor Icon Type [16-bit]"
+    "Note": "[16-bit] Cursor Icon Type\r\n0x06 = Grab\r\n0x08 = Pointer up\/neutral\r\n0x09 = Pointer left\r\n0x0a = Pointer right\r\n0x0d = Pointer down\r\n0x0e = Pointer left turn\r\n0x0f = Pointer right turn\r\n0x10 = Pointer down (under door)"
   },
   {
     "User": "Phlosioneer",
@@ -290,9 +290,9 @@
     "Note": "233rd Age Book Power [16-bit]\r\n0 - Off\r\n1 - On\r\nCalled \"ambient\" in the code"
   },
   {
-    "User": "suXin",
+    "User": "adrianusk",
     "Address": "0x010076",
-    "Note": "Dome island - rotation room position [8-bit]"
+    "Note": "[8-bit] Dome Island - Rotation room position (1-5)"
   },
   {
     "User": "Phlosioneer",
@@ -495,9 +495,9 @@
     "Note": "Temple Gehn Scene State [16-bit]\r\n0 - Haven't left island yet\r\n1 - ? Event primed?\r\n2 - Event completed"
   },
   {
-    "User": "Phlosioneer",
+    "User": "adrianusk",
     "Address": "0x0100c8",
-    "Note": "Dome Island Cho State [16-bit]\r\n0 - Cho is on the cliff\r\n1 - Cho has disappeared"
+    "Note": "[16-bit] Dome Island Cho State\r\n0x00 = Cho is on the cliff\r\n0x01 = Cho has disappeared"
   },
   {
     "User": "Phlosioneer",
@@ -745,6 +745,11 @@
     "Note": "Jungle Totem Stairs [16-bit]\r\n0 - Closed\r\n1 - Open"
   },
   {
+    "User": "adrianusk",
+    "Address": "0x01012c",
+    "Note": "Maybe: Girl after idol shortcut state [16-bit] TODO\r\n2 - Completed"
+  },
+  {
     "User": "Phlosioneer",
     "Address": "0x01012e",
     "Note": "Villiage Evacuation State [16-bit]\r\n0 - Never visited\r\n1 - Cutscene on the dock"
@@ -910,9 +915,9 @@
     "Note": "Tay Gateway Frog Statue [8-bit]\r\n0 - Down\r\n1 - Up"
   },
   {
-    "User": "Phlosioneer",
+    "User": "adrianusk",
     "Address": "0x01017f",
-    "Note": "Tay Gateway Fish Statue\r\n0 - Down\r\n1 - Up"
+    "Note": "Tay Gateway Fish Statue [8-bit]\r\n0 - Down\r\n1 - Up"
   },
   {
     "User": "Phlosioneer",
@@ -943,6 +948,11 @@
     "User": "Phlosioneer",
     "Address": "0x010193",
     "Note": "Tay Gateway 4th Last Pressed Statue [8-bit]\r\nCorrect value is beetle 0x10"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x010194",
+    "Note": "Tay Gateway 5th Last Pressed Statue [8-bit]\r\nCorrect value is fish 0xb"
   },
   {
     "User": "Phlosioneer",
@@ -978,6 +988,16 @@
     "User": "Phlosioneer",
     "Address": "0x0101ac",
     "Note": "Catherine's Journal Page [16-bit]"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x06237c",
+    "Note": "CdlSetLoc location buffer [32-bit]"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x062690",
+    "Note": "Number of sectors read [32-bit]"
   },
   {
     "User": "suXin",
@@ -1055,13 +1075,28 @@
     "Note": "Current page, Gehn Bedside Journal (Stack location) [32-bit]"
   },
   {
+    "User": "adrianusk",
+    "Address": "0x1ffd6c",
+    "Note": "Current page, Gehn Bedside Journal (Stack location) v2 [32-bit]"
+  },
+  {
     "User": "Phlosioneer",
     "Address": "0x1ffe1c",
     "Note": "Current page, Gehn Lab both books (Stack location) [32-bit]"
   },
   {
+    "User": "adrianusk",
+    "Address": "0x1ffe5c",
+    "Note": "Current page, Gehn Lab both books (Stack location) v2 [32-bit]"
+  },
+  {
     "User": "Phlosioneer",
     "Address": "0x1ffea4",
     "Note": "Current page via menu (Stack location) [32-bit]"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x1ffee4",
+    "Note": "Current page via menu (Stack location) copy [32-bit]"
   }
 ]
