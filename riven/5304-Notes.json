@@ -1,0 +1,1067 @@
+[
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010000",
+    "Note": "Cursor Icon Type [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010004",
+    "Note": "Tay Prison Cell Sequence [16-bit]\r\n0 - Start\r\n1 - View rebel city first\r\n2 - Look outside first\r\n3 - Both view rebel city and look outside\r\n4 - Given book and journal\r\n5 - Picked up book and journal\r\n6 - Given linking book"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010006",
+    "Note": "Trap Book Location [16-bit]\r\n0 - Tay Age or with Catherine\r\n1 - Inventory\r\n3 - Confiscated by Gehn"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010008",
+    "Note": "Easter Egg Progress [16-bit]\r\n0 - No progress\r\n1 - Orange egg pressed\r\n2 - Tay bowl pressed\r\n3 - Sub pressed\r\n4 - Elevator star pressed\r\n5 - RAWA text pressed"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01000a",
+    "Note": "Tay Age Rebel Guard Pace Location [16-bit]\r\n0 - Guard is outside the center building\r\n1 - Guard is inside the center building"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01000c",
+    "Note": "Tay Prison Townsfolk Timer [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01000e",
+    "Note": "Boiler Door Lock [16-bit]\r\nSeparate from boiler heat, but should always be opposite\r\n0 - Locked\r\n1 - Unlocked"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010010",
+    "Note": "Crater Boiler Pump Rotation [16-bit]\r\n0 - Pipe to boiler\r\n1 - Pipe to air"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010012",
+    "Note": "Crater Boiler Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010014",
+    "Note": "Boiler Grate Position [16-bit]\r\n0: Lowered\r\n1: Raised"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010016",
+    "Note": "Boiler Water Level [16-bit]\r\n0: Empty\r\n1: Full"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010018",
+    "Note": "Crater to Dome Bridge [16-bit]\r\n0 - Raised\r\n1 - Lowered"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01001a",
+    "Note": "Dome Island Dome [16-bit]\r\n0 - Spinning\r\n1 - Stopped"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01001c",
+    "Note": "Steam Dome Elevator [16-bit]\r\n0 - Raised\r\n1 - Lowered"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01001e",
+    "Note": "Crater to Dome Bridge Handle [16-bit]\r\n0 - Raise\r\n1 - Lower"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010020",
+    "Note": "Dome Power to Crater Bridge [16-bit]\r\n0 - Off\r\n1 - On\r\nThis lever powers the bridge from Crater island to Dome island."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010022",
+    "Note": "Crater-Survey Maglev Location [16-bit]\r\n0 - Survey Island\r\n1 - Crater Island"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010024",
+    "Note": "Crater Vent Lever State [16-bit]\r\n1 - Enabled\r\n0 - Disabled"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010026",
+    "Note": "Crater Double Doors [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010028",
+    "Note": "Lab Front Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01002a",
+    "Note": "Maybe: Lab Front Door Lock [16-bit]\r\n0: Locked\r\n1: Unlocked"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01002c",
+    "Note": "Gehn Returned To Lab [16-bit]\r\n0 - Gehn's gun and pipe are in the lab\r\n1 - Gehn's gun and pipe are missing\r\nTriggered by leaving Survey Island"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01002e",
+    "Note": "Gehn's Lab Vice [16-bit]\r\nAlso linked to Gehn's gun and pipe trigger, somehow\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010030",
+    "Note": "Lab Back Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010032",
+    "Note": "Unused [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010034",
+    "Note": "Lab Back Door Lock [16-bit]\r\n0: Locked\r\n1: Unlocked"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010036",
+    "Note": "Crater-Survey Maglev Direction[16-bit]\r\n0 - Forward (upper path)\r\n1 - Backward (lower path)"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010038",
+    "Note": "Survey Island Unknown Magcar Flag [16-bit]\r\nFlag related to the magcar to Jungle Island. When set to 0, the magcar disappears. But the game never sets it to 0 (checked the code and scripts thoroughly). Game calls it \"nmagcar\" - North Magcar? No Magcar? Perhaps it's an unused part of the Scribe cutscene sequence."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01003a",
+    "Note": "Frog Catch Count [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01003c",
+    "Note": "Crater Island Gehn's Lab Egg Drawer [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01003e",
+    "Note": "Easter Egg Unlock [16-bit]\r\n0 - No eggs\r\n1 - Eggs"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010040",
+    "Note": "Gehn's Lab Vent Cover [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010042",
+    "Note": "Lab Wooden Eye Roll [16-bit]\r\n0: Eye up\r\n1: Number up"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010044",
+    "Note": "Maybe: Lab book state [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010046",
+    "Note": "Maybe: Lab stove door state [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010048",
+    "Note": "Boiler Feed Line Handle Position [16-bit]\r\n0: To raise\/lower valve\r\n1: To pump"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01004a",
+    "Note": "Crater Steam Main Valve Direction [16-bit]\r\n0 - Frog trap\r\n1 - Boiler\r\n2 - Woodchipper"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01004c",
+    "Note": "Boiler Heat Lever Position [16-bit]\r\n1: Activated  (down)\r\n0: Deactivated (up)"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01004e",
+    "Note": "Boiler Heat [16-bit]\r\n0: Cold\r\n1: Hot"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010050",
+    "Note": "Boiler Platform Lever Position [16-bit]\r\n1: Lowered\r\n0: Raised"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010052",
+    "Note": "Crater Hatch Shortcut [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010054",
+    "Note": "Crater Island Ridge Seagulls [16-bit]\r\nNumber ranges between 0 and 5, tracking whether a bird should fly by."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010056",
+    "Note": "Crater Book Press [16-bit]\r\nOpen\/closed flag for the cut Book Press device"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010058",
+    "Note": "Crater Island Ytram Trap State [16-bit]\r\n0 - Lowered and closed\r\n1 - Lowered and open\r\n2 - Raised and closed\r\n3 - Raised and opened"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01005a",
+    "Note": "Crater Island Ytram Trap Bait [16-bit]\r\n0 - No bait\r\n1 - Bait in trap"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01005c",
+    "Note": "Crater Island Ytram Trap Timer [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01005e",
+    "Note": "Has caught frog [16-bit]\r\n0: No\r\n1: Yes"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010060",
+    "Note": "Unused [16-bit]\r\nRelated to a cut part of the ytram frog puzzle"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010062",
+    "Note": "Crater Dome Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010064",
+    "Note": "Crater Dome State [16-bit]\r\n0 - Spinning\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010066",
+    "Note": "Crater Island Dome-Book State [16-bit]\r\n0 - Closed\r\n1 - Opened but blank?\r\n2 - Opened with image"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010068",
+    "Note": "Dome Power [16-bit]\r\n0 - Off\r\n1 - Books are powered"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01006a",
+    "Note": "Something related to the dome viewers [16-bit]\r\nShared by all dome-viewers. Not really sure what it's tracking."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01006c",
+    "Note": "Crater Island Lumber Cart Pipe Cover [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01006e",
+    "Note": "Prison Island Dome State [16-bit]\r\n0 - Spinning\r\n1 - Stopped\r\n2 - Opening\r\n3 - Closing"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010070",
+    "Note": "Prison Island Cage State [16-bit]\r\n0 - Closed\r\n2 - Catherine is free"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010072",
+    "Note": "233rd Age Cage State [16-bit]\r\n0 - Down\r\n1 - Up"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010074",
+    "Note": "233rd Age Book Power [16-bit]\r\n0 - Off\r\n1 - On\r\nCalled \"ambient\" in the code"
+  },
+  {
+    "User": "suXin",
+    "Address": "0x010076",
+    "Note": "Dome island - rotation room position [8-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010078",
+    "Note": "Dome-Jungle Maglev Location Override [16-bit]\r\n0 - Maglev is nowhere; need to press call button first\r\n1 - Maglev is somewhere, use normal location flag\r\nWeird!"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01007a",
+    "Note": "Beetle Temple Main Gate [16-bit]\r\n0 - Gate is Up\r\n1 - Gate is Down"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01007c",
+    "Note": "Temple Hidden Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01007e",
+    "Note": "Temple Main Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010080",
+    "Note": "Steam Dome to Beetle Temple Shortcut [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010082",
+    "Note": "Beetle Temple Shortcut Gate [16-bit]\r\n0 - Gate is Up\r\n1 - Gate is Down"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010084",
+    "Note": "Steam Dome Shortcut [16-bit]\r\n0 - Retracted\r\n1 - Extended"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010086",
+    "Note": "Prison Island Catherine State [16-bit]\r\n0 - Never Met\r\n1 - Pacing left of doorway\r\n2 - Pacing right of doorway"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010088",
+    "Note": "Catherine Pacing Timer (Unused) [16-bit]\r\nThis was supposed to be her pacing timer on Prison Island, but it has been combined with her timer in event 0xbc, her pacing timer on the Survey Island viewer. This event is now unused."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01008a",
+    "Note": "Maybe: Has Met Catherine [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01008c",
+    "Note": "Prison Island Combo Counter [16-bit]\r\nCounts the number of correct button presses so far"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01008e",
+    "Note": "Prison Island Left Button [16-bit]\r\n0 - Normal\r\n1 - Pressed"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010090",
+    "Note": "Prison Island Middle Button [16-bit]\r\n0 - Normal\r\n1 - Pressed"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010092",
+    "Note": "Prison Island Right Button [16-bit]\r\n0 - Normal\r\n1 - Pressed"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010094",
+    "Note": "Prison Island Dome-Book State [16-bit]\r\n0 - Closed\r\n1 - Opened but blank?\r\n2 - Opened with image"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010096",
+    "Note": "Survey Island Gold Elevator State [16-bit]\r\n0 - Bottom floor\r\n1 - Top floor"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010098",
+    "Note": "Survey-Jungle Maglev Location [16-bit]\r\n0 - Jungle Island\r\n1 - Survey Island"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01009a",
+    "Note": "Survey Island Maglev Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01009c",
+    "Note": "Wahrk Visit Count [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01009e",
+    "Note": "Survey Island Selection [16-bit]\r\n0 - None\r\n1 - Dome Island\r\n2 - Survey Island\r\n3 - Jungle Island\r\n4 - Prison Island\r\n5 - Crater Island"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100a0",
+    "Note": "Survey Island Map Room Bridge [16-bit]\r\n0 - Down\r\n1 - Up"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100a2",
+    "Note": "Survey Island Dome Cover [16-bit]\r\n0 - Spinning\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100a4",
+    "Note": "Survey Island Selected Chunk [16-bit]\r\n0 - No selection"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100a6",
+    "Note": "Survey Island Chunk Rotation [16-bit]\r\nValues are [1, 2, 3, 4]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100a8",
+    "Note": "Survey Room Unknown Flag [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100aa",
+    "Note": "Survey Room Unknown Temp Var [16-bit]\r\nTemp variable used by the survey room's script."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100ac",
+    "Note": "Survey Island Dome-Book State [16-bit]\r\n0 - Closed\r\n1 - Opened but blank?\r\n2 - Opened with image"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100ae",
+    "Note": "Survey Room Unknown Temp Var 3 [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100b0",
+    "Note": "Survey-Jungle Maglev Location [16-bit]\r\n0 - Survey Island\r\n1 - Jungle Island"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100b2",
+    "Note": "Survey Island Underwater Light [16-bit]\r\n0 - Off\r\n1 - On"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100b4",
+    "Note": "Survey Underwater Camera [16-bit]\r\n0 - Red Light\r\n1 - Broken Light\r\n2 - Blue Light\r\n3 - Green Light\r\n4 - Yellow Light\r\n5 - Orange Light"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100b6",
+    "Note": "Survey Island Prev\/Current Light [16-bit]\r\n7-12 - Lights starting at Red\r\n0-6 - Lights starting at Red, if the Wahrk made a sound at this location, to prevent repeats"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100b8",
+    "Note": "Has Met Wahrk [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100ba",
+    "Note": "Survey Video Feed [16-bit]\r\n0 - None\r\n1 - Catherine\r\n2 - Town"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100bc",
+    "Note": "Catherine Pacing Timer [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100be",
+    "Note": "Survey Island Catherine State [16-bit]\r\n0 - Never loaded\r\n1 - Left of Doorway\r\n2 - Right of Doorway\r\n3 - In room"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100c0",
+    "Note": "Dome Temple Projector Door (Bugged) [16-bit]\r\nIn the game code it's called \"timagedoor\" (the t is a prefix that means dome island event flag). It sometimes matches the door state but sometimes doesn't."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100c2",
+    "Note": "Dome Island Projector Seat Cage [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100c4",
+    "Note": "Dome Island Projector Seat Power Lever [16-bit]\r\n0 - Off\r\n1 - On"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100c6",
+    "Note": "Temple Gehn Scene State [16-bit]\r\n0 - Haven't left island yet\r\n1 - ? Event primed?\r\n2 - Event completed"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100c8",
+    "Note": "Dome Island Cho State [16-bit]\r\n0 - Cho is on the cliff\r\n1 - Cho has disappeared"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100ca",
+    "Note": "Dome-Jungle Maglev Location [16-bit]\r\n0 - Dome Island\r\n1 - Jungle Island"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100cc",
+    "Note": "Sunner State [16-bit]\r\n0 - Idle\r\n1 - Alert\r\n2 - Ran Away\r\nResets from 2 to 0 when crossing the bridge"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100ce",
+    "Note": "Maybe: Has left starting area? 16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100d0",
+    "Note": "Dome to Beetle Bridge [16-bit]\r\n0 - Down\r\n1 - Up"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100d2",
+    "Note": "Dome Island Telescope Height [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100d4",
+    "Note": "Dome Island Telescope Hatch [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100d6",
+    "Note": "Telescope Power Lever [16-bit]\r\n0 - Off\r\n1 - On"
+  },
+  {
+    "User": "suXin",
+    "Address": "0x0100d8",
+    "Note": "Dome isalnd - Telescope handle position up\/down [8-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100da",
+    "Note": "Dome Island Telescope Pin [16-bit]\r\n0 - Inserted\r\n1 - Removed"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100dc",
+    "Note": "Dome Island Telescope Hatch Combo Counter [16-bit]\r\nIncrements with each correct button press"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100de",
+    "Note": "Dome Island Arrival Cage (Unused) [16-bit]\r\nThis flag used to control the cage in the arrival area after\/during the intro cutscene, but now it's set to 1 and never used again. The cage is handled in-movie rather than in-game."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100e0",
+    "Note": "Dome Island Beetle Opened [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100e2",
+    "Note": "Marble Compactor State [16-bit]\r\n0 - Up\r\n1 - Down"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100e4",
+    "Note": "Dome to Beetle Temple Bridge Power [16-bit]\r\n0 - Off\r\n1 - On"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100e6",
+    "Note": "Dome to Beetle Temple Bridge Lever [16-bit]\r\n0 - Down\r\n1 - Up"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100e8",
+    "Note": "Dome Island Dome-Book State [16-bit]\r\n0 - Closed\r\n1 - Opened but blank?\r\n2 - Opened with image"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100ea",
+    "Note": "Dome Island Unused Door [16-bit]\r\nThis is the state of a door that no longer exists in the game. If you hack your way into room 0x801d78b8, the door still functions, but there's no way to reach this state in the normal game.The door was part of an alternate path to the dome; it was replaced by the elevator."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100ec",
+    "Note": "Dome Island Elevator Raising Animation [16-bit]\r\nTemporary flag used when turning the player around to\r\nwatch the elevator rise. Set to 1 when the elevator movie should play, then reset to 0 after it's done."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100ee",
+    "Note": "Maybe: Jungle Island Zip Flags [16-bit]\r\nStarts at 0, set to 1 when climbing up the stairs between the maglev and the chopped tree area\r\nSet to 3 after reaching the chopped tree area"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100f0",
+    "Note": "Jungle Scarab Beetle State [16-bit]\r\n0 - Scared away\r\n1 - Next to the gate"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100f2",
+    "Note": "Jungle Door To Clearing [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100f4",
+    "Note": "Jungle Dome State [16-bit]\r\n0 - Spinning\r\n1 - Open\r\n2 - About-to-open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100f6",
+    "Note": "Jungle Flying Beetle Random Var [16-bit]\r\nRandomly determines whether to play the flying beetle\r\nmovie on \"jIsJungle1450\" screen."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100f8",
+    "Note": "Jungle Door to Cave [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100fa",
+    "Note": "Execution Tower Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100fc",
+    "Note": "Village Alarm Sounded [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0100fe",
+    "Note": "Execution Platform Floor [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010100",
+    "Note": "Submersible Position [16-bit]\r\n0 - Raised\r\n1 - Starting Dock\r\n2 - Pentagon Dock\r\n3 - Execution Platform Dock\r\n4 - Ladder Control Tower\r\n5 - Classroom Dock\r\nFully-submerged positions are just tracked by location pointers."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010102",
+    "Note": "Execution Ledge Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010104",
+    "Note": "Starting Dock State [16-bit]\r\n0 - Retracted\r\n1 - Extended"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010106",
+    "Note": "Pentagon Dock State [16-bit]\r\n0 - Retracted\r\n1 - Extended"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010108",
+    "Note": "Execution Platform Dock State [16-bit]\r\n0 - Retracted\r\n1 - Extended"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01010a",
+    "Note": "Classroom Dock State [16-bit]\r\n0 - Retracted\r\n1 - Extended"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01010c",
+    "Note": "Control Room Dock State [16-bit]\r\n0 - Retracted\r\n1 - Extended"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01010e",
+    "Note": "Execution Prisoner State [16-bit]\r\n0 - In prison\r\n1 - Fled to Tay"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010110",
+    "Note": "Execution Prison Secret Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010112",
+    "Note": "Tay Cave Light Count [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010114",
+    "Note": "Rebel Cave Door [16-bit]\r\n0 - Path leads to ocean\r\n1 - Path leads to animal puzzle"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010116",
+    "Note": "Maybe: Tay Age Book State [16-bit]\r\n0 - Hidden\r\n1 - Revealing\r\n2 - Revealed and interactable"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010118",
+    "Note": "Village Water Basin Filled [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01011a",
+    "Note": "Submersible Facing Direction [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01011c",
+    "Note": "Temporary script variable [16-bit]\r\nSeems to be unused"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01011e",
+    "Note": "Execution Prison Drain Cover [16-bit[\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010120",
+    "Note": "Jungle Island Wahrk Under Platform [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010122",
+    "Note": "Prison Ledge Ladder [16-bit]\r\n0 - Raised\r\n1 - Lowered"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010124",
+    "Note": "Jungle Island Dome-Book State [16-bit]\r\n0 - Closed\r\n1 - Opened but blank?\r\n2 - Opened with image"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010126",
+    "Note": "Town Camera Rotation [16-bit]\r\nThe fish is at rotation 4."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010128",
+    "Note": "Village Door Knock State [16-bit]\r\n0-4 - Number of knocks made so far\r\n6 - Door open movie played\r\n7 - \"Is someone there\" sound effect played"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01012a",
+    "Note": "Jungle Totem Stairs [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01012e",
+    "Note": "Villiage Evacuation State [16-bit]\r\n0 - Never visited\r\n1 - Cutscene on the dock"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010132",
+    "Note": "Submersible Turning Direction [16-bit]\r\n0 - Right\r\n1 - Left"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010134",
+    "Note": "Unused [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010136",
+    "Note": "Classroom Door [16-bit]\r\n0 - Closed\r\n1 - Open"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010138",
+    "Note": "Sunner Idle Animation Timer [16-bit]\r\nTimer set randomly between idle animations."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01013a",
+    "Note": "Classroom Left Hangman Position [16-bit]\r\nStarts at 0."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01013c",
+    "Note": "Classroom Right Hangman Position [16-bit]\r\nStarts at 0."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01013e",
+    "Note": "Classroom Hangman Current Turn [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010140",
+    "Note": "Gehn State [16-bit]\r\n0 - Hasn't met Gehn\r\n1 - Met gehn without book\r\n2 - Met gehn with book\r\n3 - Pestered gehn\r\n4 - Trapped gehn"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010142",
+    "Note": "233rd Age Pager [16-bit]\r\n0 - Off\r\n1 - On"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010144",
+    "Note": "233rd Age New Book [16-bit]\r\n0 - Closed\r\n1 - Open\r\nThe new Age that Gehn was writing."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010146",
+    "Note": "233rd Age Gehn's Record Player [16-bit]\r\n0 - Playing\r\n1 - Off"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010148",
+    "Note": "233rd Age Book Power Dup [16-bit]\r\n0 - Off\r\n1 - On\r\nCalled \"stove\" in the code"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01014e",
+    "Note": "Red Marble Column [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010150",
+    "Note": "Orange Marble Column [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010152",
+    "Note": "Yellow Marble Column [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010154",
+    "Note": "Green Marble Column [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010156",
+    "Note": "Blue Marble Column [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010158",
+    "Note": "Purple Marble Column [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01015a",
+    "Note": "Red Marble Row [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01015c",
+    "Note": "Orange Marble Row [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01015e",
+    "Note": "Yellow Marble Row [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010160",
+    "Note": "Green Marble Row [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010162",
+    "Note": "Blue Marble Row [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010164",
+    "Note": "Purple Marble Row [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010168",
+    "Note": "Dome Island Telescope Hatch Combo [16-bit]\r\nThe bottom 3 bits are the first button, the next three bits are the 2nd button, etc, with 5 button presses required. Button indices start at 1 (on the left \r\nSet to random value on startup, and rerolled when recieving Catherine's journal."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01016a",
+    "Note": "Dome Code Digit 1 [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01016c",
+    "Note": "Dome Code Digit 2 [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01016e",
+    "Note": "Dome Code Digit 3 [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010170",
+    "Note": "Dome Code Digit 4 [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010172",
+    "Note": "Dome Code Digit 5 [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010175",
+    "Note": "Tay Gateway Wehlk Statue [8-bit]\r\n0 - Down\r\n1 - Up"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01017d",
+    "Note": "Tay Gateway Frog Statue [8-bit]\r\n0 - Down\r\n1 - Up"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01017f",
+    "Note": "Tay Gateway Fish Statue\r\n0 - Down\r\n1 - Up"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010184",
+    "Note": "Tay Gateway Scarab Statue [8-bit]\r\n0 - Down\r\n1 - Up"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01018b",
+    "Note": "Tay Gateway Sunner Statue [8-bit]\r\n0 - Down\r\n1 - Up"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010190",
+    "Note": "Tay Gateway Last Pressed Statue [8-bit]\r\nCorrect value is wehlk 0x1"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010191",
+    "Note": "Tay Gateway 2nd Last Pressed Statue [8-bit]\r\nCorrect value is sunner 0x17"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010192",
+    "Note": "Tay Gateway 3rd Last Pressed Statue [8-bit]\r\nCorrect value is frog 0x9"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010193",
+    "Note": "Tay Gateway 4th Last Pressed Statue [8-bit]\r\nCorrect value is beetle 0x10"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x010198",
+    "Note": "Maybe: Crater Island Zip State [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01019c",
+    "Note": "Gehn's Lab Notes Page [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x01019e",
+    "Note": "Crater Boiler Water Bubble Movie Index [16-bit]\r\nLocal movie index for which bubble animation to play. The movies are different fro platform-raised and platform-lowered."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0101a4",
+    "Note": "Survey Room Display Related [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0101a6",
+    "Note": "Prison Island Catherine Elevator Combo [16-bit]\r\nThe bottom 3 bits are the first button, the next three bits are the 2nd button, etc, with 5 button presses required. Button indexes start at 1 (left side of device).\r\nSet to random value on startup, re-rolled when gehn is trapped in the book."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0101aa",
+    "Note": "Atrus's Journal Page [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0101ac",
+    "Note": "Catherine's Journal Page [16-bit]"
+  },
+  {
+    "User": "suXin",
+    "Address": "0x0660ec",
+    "Note": "Affects which movie will be played\/loaded next [32-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x06c730",
+    "Note": "Zip Flags 1 [32-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x06c734",
+    "Note": "Zip Flags 2 [32-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x06c738",
+    "Note": "Zip Flags 3 [32-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x06c73c",
+    "Note": "Zip Flags 4 [32-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x06c740",
+    "Note": "Zip Flags 5 [32-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x06c744",
+    "Note": "Zip Flags 6 [32-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x06c784",
+    "Note": "Movie index on disk [16-bit]\r\nNumbering starts at 0 among all movies on the disk.\r\nIs not reset after the movie finishes."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x09d370",
+    "Note": "Pointer to current screen [32-bit]\r\nThis is the only unique id for screens in Riven. Pointers are always the same for a given disk. Screen structure has ASCII name of screen is at +0x20."
+  },
+  {
+    "User": "suXin",
+    "Address": "0x09d3a8",
+    "Note": "Pointer to info about current screen, it's a list of interactive areas of the screen, variadic length [24-bit]\r\n+ 0x2 - Interactive area 0 - screen ID it leads to"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x0a4eb0",
+    "Note": "Movie playing state [8-bit]\r\n0 - Not playing\r\n1 - Playing\r\n0x63 - Starting movie (one frame)\r\n2 - ending movie (one frame)"
+  },
+  {
+    "User": "suXin",
+    "Address": "0x19e784",
+    "Note": "Interactive area index that cursor will activate [16-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x1b2518",
+    "Note": "Movie index on screen\r\nNumbering starts at 0 among all movies on this screen.\r\nThis is translated to a full-disk movie id at 0x06c784.\r\nIs not reset after movie completes."
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x1b45b0",
+    "Note": "Disk swapping state [8-bit]\r\n0 if not swapping"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x1ffd2c",
+    "Note": "Current page, Gehn Bedside Journal (Stack location) [32-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x1ffe1c",
+    "Note": "Current page, Gehn Lab both books (Stack location) [32-bit]"
+  },
+  {
+    "User": "Phlosioneer",
+    "Address": "0x1ffea4",
+    "Note": "Current page via menu (Stack location) [32-bit]"
+  }
+]
