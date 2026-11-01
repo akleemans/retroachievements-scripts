@@ -38,16 +38,27 @@ describe('Find Cho', () => {
   // });
 });
 
+const solveRotatingRoomScenarios = [
+  'dome-rotating-room',
+  'dome-rotating-room-france',
+  // 'dome-rotating-room-japan',
+  // 'dome-rotating-room-europe',
+  // 'dome-rotating-room-germany',
+];
+
+
 describe('Rotating Room', () => {
   const cheevo = achievement('Outsmart the Gate');
 
-    test(`pops when rotating room is solved`, () => {
-      const s = scenario('dome-rotating-room');
+  for (const name of solveRotatingRoomScenarios) {
+    test(`pops when rotating room is solved: ${name}`, () => {
+      const s = scenario(name);
       const result = runAchievement(cheevo, s);
 
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
       expect(result.triggered).toBe(true);
       expect(result.triggeredFrame).toBe(s.marker('rotating-room-solved'));
     });
+  }
 });
 

@@ -15,14 +15,18 @@ const regions = [
   {alt: 'alt4', name: 'Japan', screenPointer: screenPointerJapan, screenShift: -0x4c},
 ];
 
-// One condition comparing the screen pointer with a screen, in one region
-const screenIs = (region, screen, {type = 'Mem', flag = '', cmp = '=', hits} = {}) => {
-  const screenValue = screen + region.screenShift;
-  const condition = [flag, type, '32bit', region.screenPointer, cmp, 'Value', '', screenValue];
-  if (hits) {
-    condition.push(hits);
+// Converts a USA screen constant to its value in the given region
+const screenValue = (region, screen) => screen + region.screenShift;
+
+// Pattern: the player is on a screen, one alt per region
+const onScreen = (screen, ...coreConditions) => {
+  const conditions = {core: $(...coreConditions)};
+  for (const region of regions) {
+    conditions[region.alt] = $(
+      ['', 'Mem', '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)],
+    );
   }
-  return condition;
+  return conditions;
 };
 
 // Pattern: the player just moved from one screen to another, one alt per region
@@ -30,8 +34,8 @@ const movedToScreen = (fromScreen, toScreen, ...coreConditions) => {
   const conditions = {core: $(...coreConditions)};
   for (const region of regions) {
     conditions[region.alt] = $(
-      screenIs(region, fromScreen, {type: 'Delta'}),
-      screenIs(region, toScreen),
+      ['', 'Delta', '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, fromScreen)],
+      ['', 'Mem',   '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, toScreen)],
     );
   }
   return conditions;
@@ -43,8 +47,8 @@ const seenAllScreens = (screens) => {
   for (const region of regions) {
     const altConditions = [];
     for (const {before, screen} of screens) {
-      altConditions.push(screenIs(region, before, {type: 'Delta', flag: 'AndNext', cmp: '!='}));
-      altConditions.push(screenIs(region, screen, {flag: 'AddHits', hits: 1}));
+      altConditions.push(['AndNext', 'Delta', '32bit', region.screenPointer, '!=', 'Value', '', screenValue(region, before)]);
+      altConditions.push(['AddHits', 'Mem',   '32bit', region.screenPointer, '=',  'Value', '', screenValue(region, screen), 1]);
     }
     altConditions.push(['Measured', 'Value', '', 0, '=', 'Value', '', 1, screens.length]);
     conditions[region.alt] = $(...altConditions);
@@ -99,14 +103,14 @@ const rotationRoomMainGate = 0x01007a; // 0 = Up, 1 = Down
 
 set.addAchievement({
   title: 'Outsmart the Gate',
-  description: 'Solve the Gate Room puzzle',
+  description: 'Solve the rotating Gate Room puzzle',
   points: 5,
-  type: "progression",
-  conditions: $(
-    ['', 'Mem', '32bit', screenPointerUsa, '=', 'Value', '', DomeScreenEnum.GateRoomEntry],
-    ['', 'Delta', '8bit', rotationRoomPosition, '=', 'Value', '', 5],
-    ['', 'Mem', '8bit', rotationRoomPosition, '=', 'Value', '', 1],
-    ['', 'Mem', '16bit', rotationRoomMainGate, '=', 'Value', '', 1],
+  type: 'progression',
+  conditions: onScreen(
+    DomeScreenEnum.GateRoomEntry,
+    ['', 'Delta', '8bit',  rotationRoomPosition, '=', 'Value', '', 5],
+    ['', 'Mem',   '8bit',  rotationRoomPosition, '=', 'Value', '', 1],
+    ['', 'Mem',   '16bit', rotationRoomMainGate, '=', 'Value', '', 1],
   ),
 });
 
