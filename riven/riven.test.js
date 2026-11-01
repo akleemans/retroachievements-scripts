@@ -38,6 +38,26 @@ describe('Find Cho', () => {
   // });
 });
 
+// TODO
+// const inspectArtScenarios = [
+//   'dome-inspect-all-art-displays',
+// ];
+//
+// describe('The Chapel', () => {
+//   const cheevo = achievement('The Chapel');
+//
+//   for (const name of inspectArtScenarios) {
+//     test(`pops when all art is inspected: ${name}`, () => {
+//       const s = scenario(name);
+//       const result = runAchievement(cheevo, s);
+//
+//       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+//       expect(result.triggered).toBe(true);
+//       expect(result.triggeredFrame).toBe(s.marker('last-beetle-inspected'));
+//     });
+//   }
+// });
+
 const solveRotatingRoomScenarios = [
   'dome-rotating-room',
   'dome-rotating-room-france',

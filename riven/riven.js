@@ -104,7 +104,7 @@ const rotationRoomMainGate = 0x01007a; // 0 = Up, 1 = Down
 set.addAchievement({
   title: 'Outsmart the Gate',
   description: 'Solve the rotating Gate Room puzzle',
-  points: 5,
+  points: 10,
   type: 'progression',
   conditions: onScreen(
     DomeScreenEnum.GateRoomEntry,
@@ -112,6 +112,16 @@ set.addAchievement({
     ['', 'Mem',   '8bit',  rotationRoomPosition, '=', 'Value', '', 1],
     ['', 'Mem',   '16bit', rotationRoomMainGate, '=', 'Value', '', 1],
   ),
+});
+
+set.addAchievement({
+  title: 'Jungle Island',
+  description: 'Arrive at Jungle Island',
+  points: 5,
+  type: 'progression',
+  conditions: $(
+    // TODO
+  )
 });
 
 // set.addAchievement({
