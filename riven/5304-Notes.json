@@ -991,6 +991,11 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x0146a8",
+    "Note": "[8-bit] Boot disc layout (USA, read-only)\r\nLow byte of an instruction operand in the game's code at 0x800146a8, not a variable.\r\nShows which disc's program is running. It stays loaded after disc swaps, and RAM addresses depend on it.\r\n0x28 = Booted from disc 1\r\n0x2C = Booted from disc 2 or 5, globals +0x04\r\n0x48 = Booted from disc 3 or 4, globals +0x20"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x06237c",
     "Note": "[32-bit] CdlSetLoc location buffer"
   },
@@ -1041,6 +1046,16 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x09d1a4",
+    "Note": "[32-bit] Screen pointer (Europe, Germany)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x09d324",
+    "Note": "[32-bit] Screen pointer (Japan)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x09d370",
     "Note": "[32-bit] Pointer to current screen\r\nThis is the only unique id for screens in Riven. Pointers are always the same for a given disk. Screen structure has ASCII name of screen is at +0x20."
   },
@@ -1048,6 +1063,11 @@
     "User": "adrianusk",
     "Address": "0x09d3a8",
     "Note": "[24-bit] Pointer to info about current screen, it's a list of interactive areas of the screen, variadic length\r\n+ 0x02 = Interactive area 0x00 - Screen ID it leads to"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x09db68",
+    "Note": "[32-bit] Screen pointer (France)"
   },
   {
     "User": "adrianusk",
@@ -1062,7 +1082,7 @@
   {
     "User": "adrianusk",
     "Address": "0x1b2518",
-    "Note": "Movie index on screen\r\nNumbering starts at 0x00 among all movies on this screen.\r\nThis is translated to a full-disk movie id at 0x06c784.\r\nIs not reset after movie completes.\r\nTODO: Size unknown, add size tag"
+    "Note": "[16-bit] Movie index on screen\r\nNumbering starts at 0x00 among all movies on this screen.\r\nThis is translated to a full-disk movie id at 0x06c784.\r\nIs not reset after movie completes.\r\nTODO: Check if size correct"
   },
   {
     "User": "adrianusk",
