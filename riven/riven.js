@@ -70,6 +70,7 @@ const DomeScreenEnum = {
   GateRoomArt5before: 0x801cb53c,
   GateRoomArt5: 0x801cb5e8,
   GateRoomEntry: 0x801c6ca0,
+  MaglevToJungleForward: 0x801bcf98,
 };
 
 const domeIslandChoState = 0x0100c8;
@@ -114,14 +115,18 @@ set.addAchievement({
   ),
 });
 
+const domeJungleMaglevLocation = 0x0100ca; // 0 = Dome, 1 = Jungle
+
 set.addAchievement({
   title: 'Jungle Island',
-  description: 'Arrive at Jungle Island',
+  description: 'Set off for Jungle Island',
   points: 5,
   type: 'progression',
-  conditions: $(
-    // TODO
-  )
+  conditions: onScreen(
+    DomeScreenEnum.MaglevToJungleForward,
+    ['', 'Delta', '16bit', domeJungleMaglevLocation, '=', 'Value', '', 0],
+    ['', 'Mem',   '16bit', domeJungleMaglevLocation, '=', 'Value', '', 1],
+  ),
 });
 
 // set.addAchievement({

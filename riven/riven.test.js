@@ -28,44 +28,44 @@ describe('Find Cho', () => {
     });
   }
 
-  // TODO add after later part of game is unlocked where cho disappeared by the game's logic
-  // test('does not pop if Cho disappeared', () => {
-  //   const s = scenario('dome-cho-disappeared');
-  //   const result = runAchievement(cheevo, s);
-  //
-  //   expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-  //   expect(result.triggered).toBe(false);
-  // });
+  test('does not pop if Cho disappeared', () => {
+    const s = scenario('dome-cho-disappeared-germany');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
 });
 
-// TODO
-// const inspectArtScenarios = [
-//   'dome-inspect-all-art-displays',
-// ];
-//
-// describe('The Chapel', () => {
-//   const cheevo = achievement('The Chapel');
-//
-//   for (const name of inspectArtScenarios) {
-//     test(`pops when all art is inspected: ${name}`, () => {
-//       const s = scenario(name);
-//       const result = runAchievement(cheevo, s);
-//
-//       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-//       expect(result.triggered).toBe(true);
-//       expect(result.triggeredFrame).toBe(s.marker('last-beetle-inspected'));
-//     });
-//   }
-// });
+const inspectArtScenarios = [
+  // 'dome-inspect-all-art-displays',
+  'dome-inspect-all-art-displays-germany',
+];
+
+describe('The Chapel', () => {
+  const cheevo = achievement('The Chapel');
+
+  for (const name of inspectArtScenarios) {
+    test(`pops when all art is inspected: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.measuredAt(s.marker('first-art-inspected') )).toBe(1);
+      expect(result.triggered).toBe(true);
+      expect(result.measuredAt(s.marker('last-beetle-inspected') - 1)).toBe(4);
+      expect(result.triggeredFrame).toBe(s.marker('last-beetle-inspected'));
+    });
+  }
+});
 
 const solveRotatingRoomScenarios = [
   'dome-rotating-room',
   'dome-rotating-room-france',
+  'dome-rotating-room-germany',
   // 'dome-rotating-room-japan',
   // 'dome-rotating-room-europe',
-  // 'dome-rotating-room-germany',
 ];
-
 
 describe('Rotating Room', () => {
   const cheevo = achievement('Outsmart the Gate');
@@ -82,3 +82,26 @@ describe('Rotating Room', () => {
   }
 });
 
+const maglevToJungleScenarios = [
+  'dome-maglev-to-jungle',
+  'dome-maglev-to-jungle-germany',
+  // 'dome-maglev-to-jungle-japan',
+  // 'dome-maglev-to-jungle-europe',
+  // 'dome-maglev-to-jungle-germany',
+];
+
+
+describe('Jungle Island', () => {
+  const cheevo = achievement('Jungle Island');
+
+  for (const name of maglevToJungleScenarios) {
+    test(`pops when going off for Jungle Island: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('departing-maglev'));
+    });
+  }
+});
