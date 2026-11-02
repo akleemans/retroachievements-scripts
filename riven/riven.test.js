@@ -88,7 +88,7 @@ const solveRotatingRoomScenarios = [
   'temple-rotating-room-france',
   'temple-rotating-room-germany',
   'temple-rotating-room-japan',
-  // 'temple-rotating-room-europe',
+  'temple-rotating-room-europe',
 ];
 
 describe('Rotating Room', () => {
@@ -111,7 +111,7 @@ const maglevToJungleScenarios = [
   'temple-maglev-to-jungle-france',
   'temple-maglev-to-jungle-germany',
   'temple-maglev-to-jungle-japan',
-  // 'temple-maglev-to-jungle-europe',
+  'temple-maglev-to-jungle-europe',
 ];
 
 describe('Jungle Island', () => {
