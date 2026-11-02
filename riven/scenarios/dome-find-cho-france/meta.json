@@ -312,7 +312,7 @@
     {
       "address": "0x1007a",
       "size": "u16",
-      "label": "Beetle Temple Main Gate"
+      "label": "Rotation Room Main Gate"
     },
     {
       "address": "0x1007c",
@@ -332,7 +332,7 @@
     {
       "address": "0x10082",
       "size": "u16",
-      "label": "Beetle Temple Shortcut Gate"
+      "label": "Rotation Room Shortcut Gate"
     },
     {
       "address": "0x10084",

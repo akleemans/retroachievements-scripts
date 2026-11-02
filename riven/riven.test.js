@@ -5,6 +5,30 @@ import set from './riven.js';
 const achievement = (title) => Object.values(set.achievements).find((a) => a.title === title);
 const scenario = (name) => loadScenario(new URL(`./scenarios/${name}`, import.meta.url));
 
+const bootScenarios = [
+  'start-game-usa',
+  'start-game-europe',
+  'start-game-france',
+  'start-game-germany',
+  'start-game-japan',
+  'start-game-usa-disc-2',
+];
+
+describe('WARNING', () => {
+  const cheevo = achievement('WARNING');
+
+  for (const name of bootScenarios) {
+    test(`pops before the title screen: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('flags-initialized'));
+      expect(result.triggeredFrame).toBeLessThan(s.marker('title-screen'));
+    });
+  }
+});
 
 const findChoScenarios = [
   'dome-find-cho',

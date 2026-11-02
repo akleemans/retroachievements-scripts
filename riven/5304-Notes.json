@@ -302,7 +302,7 @@
   {
     "User": "adrianusk",
     "Address": "0x01007a",
-    "Note": "[16-bit] Beetle Temple Main Gate\r\n0x00 = Gate is Up\r\n0x01 = Gate is Down"
+    "Note": "[16-bit] Rotation Room Main Gate\r\n0x00 = Gate is Up\r\n0x01 = Gate is Down"
   },
   {
     "User": "adrianusk",
@@ -322,7 +322,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010082",
-    "Note": "[16-bit] Beetle Temple Shortcut Gate\r\n0x00 = Gate is Up\r\n0x01 = Gate is Down"
+    "Note": "[16-bit] Rotation Room Shortcut Gate\r\n0x00 = Gate is Up\r\n0x01 = Gate is Down"
   },
   {
     "User": "adrianusk",

@@ -73,6 +73,23 @@ const DomeScreenEnum = {
   MaglevToJungleForward: 0x801bcf98,
 };
 
+const orangeMarbleColumn = 0x010150;
+const purpleMarbleColumn = 0x010158;
+
+// On boot, the marble columns are set from 0x00 to 0xffff
+set.addAchievement({
+  title: 'WARNING',
+  description: 'Game always has to be started with Disc 1! (Discs can be switched inside the game.)',
+  points: 0,
+  conditions: $(
+    ['', 'Delta', '16bit', orangeMarbleColumn, '=', 'Value', '', 0],
+    ['', 'Mem',   '16bit', orangeMarbleColumn, '=', 'Value', '', 0xffff],
+    ['', 'Delta', '16bit', purpleMarbleColumn, '=', 'Value', '', 0],
+    ['', 'Mem',   '16bit', purpleMarbleColumn, '=', 'Value', '', 0xffff],
+  ),
+});
+
+
 const domeIslandChoState = 0x0100c8;
 
 set.addAchievement({
@@ -129,16 +146,5 @@ set.addAchievement({
   ),
 });
 
-// set.addAchievement({
-//   title: 'Meet the Ytram',
-//   description: 'Capture a poisonous Ytram',
-//   points: 0,
-//   conditions: $(
-//     ['', 'Mem', '32bit', 0x9d370, '=', 'Value', '', 0x801d5558],
-//     ['', 'Mem', '8bit', 0xa4eb0, '=', 'Value', '', 1],
-//     ['', 'Mem', '16bit', 0x6c784, '>=', 'Value', '', 117],
-//     ['', 'Mem', '16bit', 0x6c784, '<=', 'Value', '', 119],
-//   ),
-// });
 
 export default set;
