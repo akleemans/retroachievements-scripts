@@ -5,17 +5,17 @@ import set from './riven.js';
 const achievement = (title) => Object.values(set.achievements).find((a) => a.title === title);
 const scenario = (name) => loadScenario(new URL(`./scenarios/${name}`, import.meta.url));
 
-const bootScenarios = [
-  'start-game-usa',
-  'start-game-europe',
-  'start-game-france',
-  'start-game-germany',
-  'start-game-japan',
-  'start-game-usa-disc-2',
-];
-
 describe('WARNING', () => {
   const cheevo = achievement('WARNING');
+
+  const bootScenarios = [
+    'start-game-usa',
+    'start-game-europe',
+    'start-game-france',
+    'start-game-germany',
+    'start-game-japan',
+    'start-game-usa-disc-2',
+  ];
 
   for (const name of bootScenarios) {
     test(`pops before the title screen: ${name}`, () => {
@@ -30,16 +30,16 @@ describe('WARNING', () => {
   }
 });
 
-const findChoScenarios = [
-  'temple-find-cho',
-  'temple-find-cho-france',
-  'temple-find-cho-japan',
-  'temple-find-cho-europe',
-  'temple-find-cho-germany',
-];
-
 describe('Find Cho', () => {
   const cheevo = achievement('Find Cho');
+
+  const findChoScenarios = [
+    'temple-find-cho',
+    'temple-find-cho-france',
+    'temple-find-cho-japan',
+    'temple-find-cho-europe',
+    'temple-find-cho-germany',
+  ];
 
   for (const name of findChoScenarios) {
     test(`pops when cho is found: ${name}`, () => {
@@ -61,13 +61,14 @@ describe('Find Cho', () => {
   });
 });
 
-const inspectArtScenarios = [
-  // 'temple-inspect-all-art-displays',
-  'temple-inspect-all-art-displays-germany',
-];
 
 describe('The Chapel', () => {
   const cheevo = achievement('The Chapel');
+
+  const inspectArtScenarios = [
+    // 'temple-inspect-all-art-displays',
+    'temple-inspect-all-art-displays-germany',
+  ];
 
   for (const name of inspectArtScenarios) {
     test(`pops when all art is inspected: ${name}`, () => {
@@ -83,16 +84,15 @@ describe('The Chapel', () => {
   }
 });
 
-const solveRotatingRoomScenarios = [
-  'temple-rotating-room',
-  'temple-rotating-room-france',
-  'temple-rotating-room-germany',
-  'temple-rotating-room-japan',
-  'temple-rotating-room-europe',
-];
-
 describe('Rotating Room', () => {
   const cheevo = achievement('Outsmart the Gate');
+  const solveRotatingRoomScenarios = [
+    'temple-rotating-room',
+    'temple-rotating-room-france',
+    'temple-rotating-room-germany',
+    'temple-rotating-room-japan',
+    'temple-rotating-room-europe',
+  ];
 
   for (const name of solveRotatingRoomScenarios) {
     test(`pops when rotating room is solved: ${name}`, () => {
@@ -106,16 +106,17 @@ describe('Rotating Room', () => {
   }
 });
 
-const maglevToJungleScenarios = [
-  'temple-maglev-to-jungle',
-  'temple-maglev-to-jungle-france',
-  'temple-maglev-to-jungle-germany',
-  'temple-maglev-to-jungle-japan',
-  'temple-maglev-to-jungle-europe',
-];
 
 describe('Jungle Island', () => {
   const cheevo = achievement('Jungle Island');
+
+  const maglevToJungleScenarios = [
+    'temple-maglev-to-jungle',
+    'temple-maglev-to-jungle-france',
+    'temple-maglev-to-jungle-germany',
+    'temple-maglev-to-jungle-japan',
+    'temple-maglev-to-jungle-europe',
+  ];
 
   for (const name of maglevToJungleScenarios) {
     test(`pops when going off for Jungle Island: ${name}`, () => {
@@ -127,4 +128,31 @@ describe('Jungle Island', () => {
       expect(result.triggeredFrame).toBe(s.marker('departing-maglev'));
     });
   }
+});
+
+describe('Scarab Beetle', () => {
+  const cheevo = achievement('Meet the Scarab Beetle');
+
+  const maglevToJungleScenarios = [
+    'jungle-scarab-beetle',
+  ];
+
+  for (const name of maglevToJungleScenarios) {
+    test(`pops when watching scarab beetle: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('scarab-flies-away'));
+    });
+  }
+
+  test('does not pop if walking past Beetle', () => {
+    const s = scenario('jungle-scarab-beetle-missed');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
 });

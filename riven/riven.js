@@ -188,6 +188,19 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  title: 'Meet the Scarab Beetle',
+  description: 'Find a Scarab Beetle friend',
+  points: 2,
+  type: 'missable',
+  conditions: moviePlaying(JungleScreenEnum.ScarabBeetle, [6]),
+  // Old conditions:
+  // conditions: $(
+  //   ['', 'Mem', '32bit', 0x9d370, '=', 'Value', '', 0x801bcbf0],
+  //   ['', 'Mem', '16bit', 0x6c784, '=', 'Value', '', 6],
+  // ),
+});
+
+set.addAchievement({
   title: 'Meet the Sunner',
   description: 'Get up close and personal with a giant Sunner',
   points: 3,
@@ -196,18 +209,6 @@ set.addAchievement({
   // conditions: $(
   //   ['', 'Mem', '32bit', 0x9d370, '=', 'Value', '', 0x801ebd20],
   //   ['', 'Mem', '16bit', 0x6c784, '=', 'Value', '', 279],
-  // ),
-});
-
-set.addAchievement({
-  title: 'Meet the Scarab Beetle',
-  description: 'Find a Scarab Beetle friend',
-  points: 2,
-  conditions: moviePlaying(JungleScreenEnum.ScarabBeetle, [6]),
-  // Old conditions:
-  // conditions: $(
-  //   ['', 'Mem', '32bit', 0x9d370, '=', 'Value', '', 0x801bcbf0],
-  //   ['', 'Mem', '16bit', 0x6c784, '=', 'Value', '', 6],
   // ),
 });
 
