@@ -31,11 +31,11 @@ describe('WARNING', () => {
 });
 
 const findChoScenarios = [
-  'dome-find-cho',
-  'dome-find-cho-france',
-  'dome-find-cho-japan',
-  'dome-find-cho-europe',
-  'dome-find-cho-germany',
+  'temple-find-cho',
+  'temple-find-cho-france',
+  'temple-find-cho-japan',
+  'temple-find-cho-europe',
+  'temple-find-cho-germany',
 ];
 
 describe('Find Cho', () => {
@@ -53,7 +53,7 @@ describe('Find Cho', () => {
   }
 
   test('does not pop if Cho disappeared', () => {
-    const s = scenario('dome-cho-disappeared-germany');
+    const s = scenario('temple-cho-disappeared-germany');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
@@ -62,8 +62,8 @@ describe('Find Cho', () => {
 });
 
 const inspectArtScenarios = [
-  // 'dome-inspect-all-art-displays',
-  'dome-inspect-all-art-displays-germany',
+  // 'temple-inspect-all-art-displays',
+  'temple-inspect-all-art-displays-germany',
 ];
 
 describe('The Chapel', () => {
@@ -84,11 +84,11 @@ describe('The Chapel', () => {
 });
 
 const solveRotatingRoomScenarios = [
-  'dome-rotating-room',
-  'dome-rotating-room-france',
-  'dome-rotating-room-germany',
-  // 'dome-rotating-room-japan',
-  // 'dome-rotating-room-europe',
+  'temple-rotating-room',
+  'temple-rotating-room-france',
+  'temple-rotating-room-germany',
+  'temple-rotating-room-japan',
+  // 'temple-rotating-room-europe',
 ];
 
 describe('Rotating Room', () => {
@@ -107,13 +107,12 @@ describe('Rotating Room', () => {
 });
 
 const maglevToJungleScenarios = [
-  'dome-maglev-to-jungle',
-  'dome-maglev-to-jungle-germany',
-  // 'dome-maglev-to-jungle-japan',
-  // 'dome-maglev-to-jungle-europe',
-  // 'dome-maglev-to-jungle-germany',
+  'temple-maglev-to-jungle',
+  'temple-maglev-to-jungle-germany',
+  'temple-maglev-to-jungle-japan',
+  'temple-maglev-to-jungle-france',
+  // 'temple-maglev-to-jungle-europe',
 ];
-
 
 describe('Jungle Island', () => {
   const cheevo = achievement('Jungle Island');

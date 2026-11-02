@@ -1,11 +1,13 @@
 {
-  "name": "dome-cho-disappeared-germany",
+  "name": "temple-inspect-all-art-displays-germany",
   "description": "",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
-  "firstFrame": 83765,
+  "firstFrame": 8116,
   "markers": {
-    "scenario-start": 83770
+    "scenario-start": 8209,
+    "last-beetle-inspected": 17078,
+    "first-art-inspected": 10137
   },
   "addresses": [
     {

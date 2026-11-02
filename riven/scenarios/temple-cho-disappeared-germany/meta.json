@@ -1,12 +1,11 @@
 {
-  "name": "dome-maglev-to-jungle",
+  "name": "temple-cho-disappeared-germany",
   "description": "",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
-  "firstFrame": 237375,
+  "firstFrame": 83765,
   "markers": {
-    "scenario-start": 237415,
-    "departing-maglev": 239081
+    "scenario-start": 83770
   },
   "addresses": [
     {

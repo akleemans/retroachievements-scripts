@@ -1,12 +1,12 @@
 {
-  "name": "dome-rotating-room-france",
+  "name": "temple-rotating-room",
   "description": "",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
-  "firstFrame": 38609,
+  "firstFrame": 166528,
   "markers": {
-    "scenario-start": 38635,
-    "rotating-room-solved": 38807
+    "scenario-start": 166547,
+    "rotating-room-solved": 166799
   },
   "addresses": [
     {

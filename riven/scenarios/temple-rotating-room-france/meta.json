@@ -1,12 +1,12 @@
 {
-  "name": "dome-find-cho",
+  "name": "temple-rotating-room-france",
   "description": "",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
-  "firstFrame": 50835,
+  "firstFrame": 38609,
   "markers": {
-    "scenario-start": 50848,
-    "cho-found": 51393
+    "scenario-start": 38635,
+    "rotating-room-solved": 38807
   },
   "addresses": [
     {
@@ -1000,6 +1000,11 @@
       "label": "Catherine's Journal Page"
     },
     {
+      "address": "0x146a8",
+      "size": "u8",
+      "label": "Boot disc layout (USA, read-only)"
+    },
+    {
       "address": "0x6237c",
       "size": "u32",
       "label": "CdlSetLoc location buffer"
@@ -1050,6 +1055,16 @@
       "label": "Movie index on disk"
     },
     {
+      "address": "0x9d1a4",
+      "size": "u32",
+      "label": "Screen pointer (Europe, Germany)"
+    },
+    {
+      "address": "0x9d324",
+      "size": "u32",
+      "label": "Screen pointer (Japan)"
+    },
+    {
       "address": "0x9d370",
       "size": "u32",
       "label": "Pointer to current screen"
@@ -1058,6 +1073,11 @@
       "address": "0x9d3a8",
       "size": "u32",
       "label": "Pointer to info about current screen, it's a list of interactive areas of the screen, variadic length"
+    },
+    {
+      "address": "0x9db68",
+      "size": "u32",
+      "label": "Screen pointer (France)"
     },
     {
       "address": "0xa4eb0",
@@ -1071,7 +1091,7 @@
     },
     {
       "address": "0x1b2518",
-      "size": "u8",
+      "size": "u16",
       "label": "Movie index on screen"
     },
     {

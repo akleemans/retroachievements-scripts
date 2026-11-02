@@ -1,12 +1,12 @@
 {
-  "name": "dome-find-cho-japan",
+  "name": "temple-rotating-room-japan",
   "description": "",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
-  "firstFrame": 4959,
+  "firstFrame": 39791,
   "markers": {
-    "scenario-start": 4980,
-    "cho-found": 6915
+    "scenario-start": 39821,
+    "rotating-room-solved": 40041
   },
   "addresses": [
     {

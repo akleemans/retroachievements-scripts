@@ -1,12 +1,12 @@
 {
-  "name": "dome-rotating-room-germany",
+  "name": "temple-find-cho-europe",
   "description": "",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
-  "firstFrame": 51754,
+  "firstFrame": 5555,
   "markers": {
-    "scenario-start": 51787,
-    "rotating-room-solved": 52204
+    "scenario-start": 5560,
+    "cho-found": 5846
   },
   "addresses": [
     {

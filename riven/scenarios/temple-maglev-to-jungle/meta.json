@@ -1,13 +1,12 @@
 {
-  "name": "dome-inspect-all-art-displays-germany",
+  "name": "temple-maglev-to-jungle",
   "description": "",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
-  "firstFrame": 8116,
+  "firstFrame": 237375,
   "markers": {
-    "scenario-start": 8209,
-    "last-beetle-inspected": 17078,
-    "first-art-inspected": 10137
+    "scenario-start": 237415,
+    "departing-maglev": 239081
   },
   "addresses": [
     {

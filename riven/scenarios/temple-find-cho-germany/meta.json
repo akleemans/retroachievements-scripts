@@ -1,12 +1,12 @@
 {
-  "name": "dome-find-cho-europe",
+  "name": "temple-find-cho-germany",
   "description": "",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
-  "firstFrame": 5555,
+  "firstFrame": 4451,
   "markers": {
-    "scenario-start": 5560,
-    "cho-found": 5846
+    "scenario-start": 4458,
+    "cho-found": 4913
   },
   "addresses": [
     {
