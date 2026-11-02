@@ -1,18 +1,28 @@
 import {AchievementSet, define as $} from '@cruncheevos/core';
 const set = new AchievementSet({gameId: 5304, title: 'Riven: The Sequel to Myst'});
 
-// Screen constants below are USA "disc 1" values.
+// Screen constants used in achievements are USA "disc 1" values.
 // Currently only booting disc 1 is supported (booting another disk changes pointer location)
 const screenPointerUsa = 0x09d370;
 const screenPointerEuropeGermany = 0x09d1a4;
 const screenPointerFrance = 0x09db68;
 const screenPointerJapan = 0x09d324;
 
+const movieIndexUsa = 0x06c784;
+const movieIndexEuropeGermany = 0x06c5b8;
+const movieIndexFrance = 0x06cf7c;
+const movieIndexJapan = 0x06c738;
+
+const movieStateUsa = 0x0a4eb0;
+const movieStateEuropeGermany = 0x0a4ce4;
+const movieStateFrance = 0x0a56a8;
+const movieStateJapan = 0x0a4e64;
+
 const regions = [
-  {alt: 'alt1', name: 'USA', screenPointer: screenPointerUsa, screenShift: 0},
-  {alt: 'alt2', name: 'Europe, Germany', screenPointer: screenPointerEuropeGermany, screenShift: -0x1cc},
-  {alt: 'alt3', name: 'France', screenPointer: screenPointerFrance, screenShift: +0x7fc},
-  {alt: 'alt4', name: 'Japan', screenPointer: screenPointerJapan, screenShift: -0x4c},
+  {alt: 'alt1', name: 'USA', screenPointer: screenPointerUsa, screenShift: 0, movieIndex: movieIndexUsa, movieState: movieStateUsa},
+  {alt: 'alt2', name: 'Europe, Germany', screenPointer: screenPointerEuropeGermany, screenShift: -0x1cc, movieIndex: movieIndexEuropeGermany, movieState: movieStateEuropeGermany},
+  {alt: 'alt3', name: 'France', screenPointer: screenPointerFrance, screenShift: +0x7fc, movieIndex: movieIndexFrance, movieState: movieStateFrance},
+  {alt: 'alt4', name: 'Japan', screenPointer: screenPointerJapan, screenShift: -0x4c, movieIndex: movieIndexJapan, movieState: movieStateJapan},
 ];
 
 // Converts a USA screen constant to its value in the given region
@@ -56,6 +66,23 @@ const seenAllScreens = (screens) => {
   return conditions;
 };
 
+// Pattern: one of the given movies is playing on a screen, one alt per region
+const moviePlaying = (screen, movies, ...coreConditions) => {
+  const conditions = {core: $(...coreConditions)};
+  for (const region of regions) {
+    const altConditions = [
+      ['', 'Mem', '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)],
+      ['', 'Mem', '8bit',  region.movieState,    '=', 'Value', '', 1],
+    ];
+    movies.forEach((movie, i) => {
+      const flag = i === movies.length - 1 ? '' : 'OrNext';
+      altConditions.push([flag, 'Mem', '16bit', region.movieIndex, '=', 'Value', '', movie]);
+    });
+    conditions[region.alt] = $(...altConditions);
+  }
+  return conditions;
+};
+
 const DomeScreenEnum = {
   CliffBeforeCho: 0x801c1eec,
   CliffCho: 0x801c1fe8,
@@ -72,6 +99,20 @@ const DomeScreenEnum = {
   GateRoomEntry: 0x801c6ca0,
   MaglevToJungleForward: 0x801bcf98,
 };
+
+const JungleScreenEnum = {
+  EyeYtramMaglevRoom: 0x801f8290, // jYtramMagCarRm100
+  EyeLagoon: 0x801ec9a8, // jLagoon2100
+  EyeVillagePool: 0x801f2ad0, // jVlgBtlPoolEmpty720
+  EyeJungle: 0x801be754, // jIsJungle3800
+  SunnerLagoon: 0x801ebd20, // jLagoon1500
+  ScarabBeetle: 0x801bcbf0, // jClearCutArea1090
+  Classroom: 0x801f4494, // jSchoolRoom280
+  GallowsLedge: 0x801ccc50, // jVillageGehnsArea1575
+  StonehengeTunnel: 0x801c4b30, // jRebelTunnelUp103
+};
+
+/* ---------------------------------------------------------------------------------------- */
 
 const orangeMarbleColumn = 0x010150;
 const purpleMarbleColumn = 0x010158;
@@ -144,6 +185,30 @@ set.addAchievement({
     ['', 'Delta', '16bit', domeJungleMaglevLocation, '=', 'Value', '', 0],
     ['', 'Mem',   '16bit', domeJungleMaglevLocation, '=', 'Value', '', 1],
   ),
+});
+
+set.addAchievement({
+  title: 'Meet the Sunner',
+  description: 'Get up close and personal with a giant Sunner',
+  points: 3,
+  conditions: moviePlaying(JungleScreenEnum.SunnerLagoon, [279]),
+  // Old conditions:
+  // conditions: $(
+  //   ['', 'Mem', '32bit', 0x9d370, '=', 'Value', '', 0x801ebd20],
+  //   ['', 'Mem', '16bit', 0x6c784, '=', 'Value', '', 279],
+  // ),
+});
+
+set.addAchievement({
+  title: 'Meet the Scarab Beetle',
+  description: 'Find a Scarab Beetle friend',
+  points: 2,
+  conditions: moviePlaying(JungleScreenEnum.ScarabBeetle, [6]),
+  // Old conditions:
+  // conditions: $(
+  //   ['', 'Mem', '32bit', 0x9d370, '=', 'Value', '', 0x801bcbf0],
+  //   ['', 'Mem', '16bit', 0x6c784, '=', 'Value', '', 6],
+  // ),
 });
 
 
