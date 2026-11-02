@@ -108,9 +108,9 @@ describe('Rotating Room', () => {
 
 const maglevToJungleScenarios = [
   'temple-maglev-to-jungle',
+  'temple-maglev-to-jungle-france',
   'temple-maglev-to-jungle-germany',
   'temple-maglev-to-jungle-japan',
-  'temple-maglev-to-jungle-france',
   // 'temple-maglev-to-jungle-europe',
 ];
 

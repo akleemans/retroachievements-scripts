@@ -507,7 +507,7 @@
     {
       "address": "0x100c8",
       "size": "u16",
-      "label": "Dome Island Cho State"
+      "label": "Dome Island Cho State (will be set to 0x01 once Dome is entered)"
     },
     {
       "address": "0x100ca",
@@ -1027,7 +1027,7 @@
     {
       "address": "0x6c738",
       "size": "u32",
-      "label": "Zip Flags 3"
+      "label": "Zip Flags 3 (USA)"
     },
     {
       "address": "0x6c73c",
@@ -1052,7 +1052,7 @@
     {
       "address": "0x9d370",
       "size": "u32",
-      "label": "Pointer to current screen"
+      "label": "Screen pointer (USA)"
     },
     {
       "address": "0x9d3a8",

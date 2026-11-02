@@ -497,7 +497,7 @@
   {
     "User": "adrianusk",
     "Address": "0x0100c8",
-    "Note": "[16-bit] Dome Island Cho State\r\n0x00 = Cho is on the cliff\r\n0x01 = Cho has disappeared"
+    "Note": "[16-bit] Dome Island Cho State (will be set to 0x01 once Dome is entered)\r\n0x00 = Cho is on the cliff\r\n0x01 = Cho has disappeared"
   },
   {
     "User": "adrianusk",
@@ -1011,6 +1011,11 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x06c5b8",
+    "Note": "[16-bit] Movie index on disk (Europe, Germany)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x06c730",
     "Note": "[32-bit] Zip Flags 1"
   },
@@ -1022,7 +1027,7 @@
   {
     "User": "adrianusk",
     "Address": "0x06c738",
-    "Note": "[32-bit] Zip Flags 3"
+    "Note": "[32-bit] Zip Flags 3 (USA)\r\nJapan: [16-bit] Movie index on disk"
   },
   {
     "User": "adrianusk",
@@ -1046,6 +1051,11 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x06cf7c",
+    "Note": "[16-bit] Movie index on disk (France)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x09d1a4",
     "Note": "[32-bit] Screen pointer (Europe, Germany)"
   },
@@ -1057,7 +1067,7 @@
   {
     "User": "adrianusk",
     "Address": "0x09d370",
-    "Note": "[32-bit] Pointer to current screen\r\nThis is the only unique id for screens in Riven. Pointers are always the same for a given disk. Screen structure has ASCII name of screen is at +0x20."
+    "Note": "[32-bit] Screen pointer (USA)\r\nThis is the only unique id for screens in Riven. Screen structure has ASCII name of screen at +0x20.\r\nPointer values depend on region and boot disc, see the other regions' screen pointer notes."
   },
   {
     "User": "adrianusk",
@@ -1071,8 +1081,23 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x0a4ce4",
+    "Note": "[8-bit] Movie playing state (Europe, Germany)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0a4e64",
+    "Note": "[8-bit] Movie playing state (Japan)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x0a4eb0",
     "Note": "[8-bit] Movie playing state\r\n0x00 = Not playing\r\n0x01 = Playing\r\n0x63 = Starting movie (one frame)\r\n0x02 = Ending movie (one frame)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0a56a8",
+    "Note": "[8-bit] Movie playing state (France)"
   },
   {
     "User": "adrianusk",

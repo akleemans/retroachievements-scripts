@@ -3,10 +3,10 @@
   "description": "",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
-  "firstFrame": 91832,
+  "firstFrame": 91123,
   "markers": {
-    "scenario-start": 91945,
-    "departing-maglev": 96485
+    "scenario-start": 91204,
+    "departing-maglev": 95047
   },
   "addresses": [
     {
@@ -507,7 +507,7 @@
     {
       "address": "0x100c8",
       "size": "u16",
-      "label": "Dome Island Cho State"
+      "label": "Dome Island Cho State (will be set to 0x01 once Dome is entered)"
     },
     {
       "address": "0x100ca",
@@ -1020,6 +1020,11 @@
       "label": "Affects which movie will be played/loaded next"
     },
     {
+      "address": "0x6c5b8",
+      "size": "u16",
+      "label": "Movie index on disk (Europe, Germany)"
+    },
+    {
       "address": "0x6c730",
       "size": "u32",
       "label": "Zip Flags 1"
@@ -1032,7 +1037,7 @@
     {
       "address": "0x6c738",
       "size": "u32",
-      "label": "Zip Flags 3"
+      "label": "Zip Flags 3 (USA)"
     },
     {
       "address": "0x6c73c",
@@ -1055,6 +1060,11 @@
       "label": "Movie index on disk"
     },
     {
+      "address": "0x6cf7c",
+      "size": "u16",
+      "label": "Movie index on disk (France)"
+    },
+    {
       "address": "0x9d1a4",
       "size": "u32",
       "label": "Screen pointer (Europe, Germany)"
@@ -1067,7 +1077,7 @@
     {
       "address": "0x9d370",
       "size": "u32",
-      "label": "Pointer to current screen"
+      "label": "Screen pointer (USA)"
     },
     {
       "address": "0x9d3a8",
@@ -1080,9 +1090,24 @@
       "label": "Screen pointer (France)"
     },
     {
+      "address": "0xa4ce4",
+      "size": "u8",
+      "label": "Movie playing state (Europe, Germany)"
+    },
+    {
+      "address": "0xa4e64",
+      "size": "u8",
+      "label": "Movie playing state (Japan)"
+    },
+    {
       "address": "0xa4eb0",
       "size": "u8",
       "label": "Movie playing state"
+    },
+    {
+      "address": "0xa56a8",
+      "size": "u8",
+      "label": "Movie playing state (France)"
     },
     {
       "address": "0x19e784",
