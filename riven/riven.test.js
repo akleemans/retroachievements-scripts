@@ -135,6 +135,7 @@ describe('Scarab Beetle', () => {
 
   const maglevToJungleScenarios = [
     'jungle-scarab-beetle',
+    'jungle-scarab-beetle-not-flown-away',
   ];
 
   for (const name of maglevToJungleScenarios) {
@@ -144,7 +145,7 @@ describe('Scarab Beetle', () => {
 
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
       expect(result.triggered).toBe(true);
-      expect(result.triggeredFrame).toBe(s.marker('scarab-flies-away'));
+      expect(result.triggeredFrame).toBe(s.marker('scarab-close-up'));
     });
   }
 
