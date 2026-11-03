@@ -119,6 +119,7 @@ const purpleMarbleColumn = 0x010158;
 
 // On boot, the marble columns are set from 0x00 to 0xffff
 set.addAchievement({
+  id: 648931,
   title: 'WARNING',
   description: 'Game always has to be started with Disc 1! (Discs can be switched inside the game.)',
   points: 0,
@@ -134,6 +135,7 @@ set.addAchievement({
 const domeIslandChoState = 0x0100c8;
 
 set.addAchievement({
+  id: 648932,
   title: 'Find Cho',
   description: 'Find out what happened to the guard',
   points: 1,
@@ -145,6 +147,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 648933,
   title: 'The Chapel',
   description: 'Inspect all art displays in the Gate Room at Dome Island',
   points: 2,
@@ -161,6 +164,7 @@ const rotationRoomPosition = 0x010076; // 1-5
 const rotationRoomMainGate = 0x01007a; // 0 = Up, 1 = Down
 
 set.addAchievement({
+  id: 648934,
   title: 'Outsmart the Gate',
   description: 'Solve the rotating Gate Room puzzle',
   points: 10,
@@ -176,6 +180,7 @@ set.addAchievement({
 const domeJungleMaglevLocation = 0x0100ca; // 0 = Dome, 1 = Jungle
 
 set.addAchievement({
+  id: 648935,
   title: 'Jungle Island',
   description: 'Set off for Jungle Island',
   points: 5,
@@ -188,29 +193,25 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 648936,
   title: 'Meet the Scarab Beetle',
   description: 'Find a Scarab Beetle friend',
   points: 2,
   type: 'missable',
   conditions: moviePlaying(JungleScreenEnum.ScarabBeetle, [6]),
-  // Old conditions:
-  // conditions: $(
-  //   ['', 'Mem', '32bit', 0x9d370, '=', 'Value', '', 0x801bcbf0],
-  //   ['', 'Mem', '16bit', 0x6c784, '=', 'Value', '', 6],
-  // ),
 });
 
-set.addAchievement({
-  title: 'Meet the Sunner',
-  description: 'Get up close and personal with a giant Sunner',
-  points: 3,
-  conditions: moviePlaying(JungleScreenEnum.SunnerLagoon, [279]),
-  // Old conditions:
-  // conditions: $(
-  //   ['', 'Mem', '32bit', 0x9d370, '=', 'Value', '', 0x801ebd20],
-  //   ['', 'Mem', '16bit', 0x6c784, '=', 'Value', '', 279],
-  // ),
-});
+// set.addAchievement({
+//   title: 'Meet the Sunner',
+//   description: 'Get up close and personal with a giant Sunner',
+//   points: 3,
+//   conditions: moviePlaying(JungleScreenEnum.SunnerLagoon, [279]),
+//   // Old conditions:
+//   // conditions: $(
+//   //   ['', 'Mem', '32bit', 0x9d370, '=', 'Value', '', 0x801ebd20],
+//   //   ['', 'Mem', '16bit', 0x6c784, '=', 'Value', '', 279],
+//   // ),
+// });
 
 
 export default set;
