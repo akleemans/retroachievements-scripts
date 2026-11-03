@@ -201,17 +201,12 @@ set.addAchievement({
   conditions: moviePlaying(JungleScreenEnum.ScarabBeetle, [6]),
 });
 
-// set.addAchievement({
-//   title: 'Meet the Sunner',
-//   description: 'Get up close and personal with a giant Sunner',
-//   points: 3,
-//   conditions: moviePlaying(JungleScreenEnum.SunnerLagoon, [279]),
-//   // Old conditions:
-//   // conditions: $(
-//   //   ['', 'Mem', '32bit', 0x9d370, '=', 'Value', '', 0x801ebd20],
-//   //   ['', 'Mem', '16bit', 0x6c784, '=', 'Value', '', 279],
-//   // ),
-// });
+set.addAchievement({
+  title: 'Meet the Sunner',
+  description: 'Get up close and personal with a giant Sunner',
+  points: 3,
+  conditions: moviePlaying(JungleScreenEnum.SunnerLagoon, [279]),
+});
 
 
 export default set;

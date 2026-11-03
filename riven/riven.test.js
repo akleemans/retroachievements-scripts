@@ -157,3 +157,30 @@ describe('Scarab Beetle', () => {
     expect(result.triggered).toBe(false);
   });
 });
+
+describe('Sunner', () => {
+  const cheevo = achievement('Meet the Sunner');
+
+  const sunnerScenarios = [
+    'jungle-sunner',
+  ];
+
+  for (const name of sunnerScenarios) {
+    test(`pops when got close to sunners: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('sunner-close-up'));
+    });
+  }
+
+  test('does not pop if walking past Sunner', () => {
+    const s = scenario('jungle-sunner-missed');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
