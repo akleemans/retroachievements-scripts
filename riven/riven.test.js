@@ -226,3 +226,42 @@ describe('Eye Spy', () => {
     });
   }
 });
+
+describe('Submarine', () => {
+  const cheevo = achievement('Submarine');
+
+  const submarineScenarios = [
+    'jungle-enter-submarine'
+  ];
+
+  for (const name of submarineScenarios) {
+    test(`pops when hatch opening movie plays: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('hatch-opens'));
+    });
+  }
+});
+
+describe('Dni Scholar', () => {
+  const cheevo = achievement("D'ni Scholar");
+
+  const submarineScenarios = [
+    'jungle-school-game'
+  ];
+
+  for (const name of submarineScenarios) {
+    test(`pops when both players lost: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.measuredAt(s.marker('first-player-lost'))).toBe(1);
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('second-player-lost'));
+    });
+  }
+});

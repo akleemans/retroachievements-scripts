@@ -147,6 +147,7 @@ const JungleScreenEnum = {
   GallowsLedge: 0x801ccc50, // jVillageGehnsArea1575
   StonehengeTunnel: 0x801c4b30, // jRebelTunnelUp103
   VillagerInHut: 0x801e254c, // disc2-id253-JVPCNKCS-ch2
+  SubmarineHatchVillageDock: 0x801f0d98, // outside the closed hatch, ladder dock near village
 };
 
 /* ---------------------------------------------------------------------------------------- */
@@ -262,6 +263,23 @@ set.addAchievement({
     // Eye in village pool can be both inspected with and without water (forming a beetle)
     {screen: JungleScreenEnum.EyeVillagePool, movie: [292, 293]},
     {screen: JungleScreenEnum.EyeJungle, movie: 14},
+  ]),
+});
+
+set.addAchievement({
+  title: 'Submarine',
+  description: 'Get access to the submarine',
+  points: 5,
+  conditions: moviePlaying(JungleScreenEnum.SubmarineHatchVillageDock, [289]),
+});
+
+set.addAchievement({
+  title: "D'ni Scholar",
+  description: 'Make both players "win" in the Classroom',
+  points: 5,
+  conditions: seenAllMovies([
+    {screen: JungleScreenEnum.Classroom, movie: 300},
+    {screen: JungleScreenEnum.Classroom, movie: 298},
   ]),
 });
 
