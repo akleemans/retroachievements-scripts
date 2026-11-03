@@ -58,13 +58,15 @@ const resetOnBoot = () => {
     ['AndNext', 'Delta', '16bit', purpleMarbleColumn, '=', 'Value', '', 0],
     ['ResetIf', 'Mem',   '16bit', purpleMarbleColumn, '=', 'Value', '', 0xffff],
   ];
-}
+};
 
 // Pattern: the player has seen every screen in a list, in any order (each screen counts once), one alt per region
 const seenAllScreens = (screens) => {
-  const conditions = {core: $(
-      ...resetOnBoot()
-    )};
+  const conditions = {
+    core: $(
+      ...resetOnBoot(),
+    ),
+  };
   for (const region of regions) {
     const altConditions = [];
     for (const {before, screen} of screens) {
@@ -82,14 +84,36 @@ const moviePlaying = (screen, movies, ...coreConditions) => {
   const conditions = {core: $(...coreConditions)};
   for (const region of regions) {
     const altConditions = [
-      ['', 'Mem', '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)],
+      ['', 'Mem',   '32bit', region.screenPointer, '=',  'Value', '', screenValue(region, screen)],
       ['', 'Delta', '8bit',  region.movieState,    '!=', 'Value', '', 1],
-      ['', 'Mem', '8bit',  region.movieState,    '=', 'Value', '', 1],
+      ['', 'Mem',   '8bit',  region.movieState,    '=',  'Value', '', 1],
     ];
     movies.forEach((movie, i) => {
       const flag = i === movies.length - 1 ? '' : 'OrNext';
       altConditions.push([flag, 'Mem', '16bit', region.movieIndex, '=', 'Value', '', movie]);
     });
+    conditions[region.alt] = $(...altConditions);
+  }
+  return conditions;
+};
+
+// Pattern: every movie in a list has played, in any order (each counts once), one alt per region.
+// "movie" can be a single ID or an array of IDs that all count for the same entry.
+const seenAllMovies = (movies) => {
+  const conditions = {core: $(...resetOnBoot())};
+  for (const region of regions) {
+    const altConditions = [];
+    for (const {screen, movie} of movies) {
+      // OrNext alternatives must come first: chains are evaluated strictly left to right
+      const ids = [movie].flat();
+      ids.forEach((id, i) => {
+        const flag = i === ids.length - 1 ? 'AndNext' : 'OrNext';
+        altConditions.push([flag, 'Mem', '16bit', region.movieIndex, '=', 'Value', '', id]);
+      });
+      altConditions.push(['AndNext', 'Mem', '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)]);
+      altConditions.push(['AddHits', 'Mem', '8bit',  region.movieState,    '=', 'Value', '', 1, 1]);
+    }
+    altConditions.push(['Measured', 'Value', '', 0, '=', 'Value', '', 1, movies.length]);
     conditions[region.alt] = $(...altConditions);
   }
   return conditions;
@@ -228,7 +252,17 @@ set.addAchievement({
   conditions: moviePlaying(JungleScreenEnum.VillagerInHut, [253]),
 });
 
-
-
+set.addAchievement({
+  title: 'Eye Spy',
+  description: 'Find and rotate all 4 wooden animal eyes',
+  points: 5,
+  conditions: seenAllMovies([
+    {screen: JungleScreenEnum.EyeYtramMaglevRoom, movie: 304},
+    {screen: JungleScreenEnum.EyeLagoon, movie: 285},
+    // Eye in village pool can be both inspected with and without water (forming a beetle)
+    {screen: JungleScreenEnum.EyeVillagePool, movie: [292, 293]},
+    {screen: JungleScreenEnum.EyeJungle, movie: 14},
+  ]),
+});
 
 export default set;

@@ -76,7 +76,7 @@ describe('The Chapel', () => {
       const result = runAchievement(cheevo, s);
 
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-      expect(result.measuredAt(s.marker('first-art-inspected') )).toBe(1);
+      expect(result.measuredAt(s.marker('first-art-inspected'))).toBe(1);
       expect(result.triggered).toBe(true);
       expect(result.measuredAt(s.marker('last-beetle-inspected') - 1)).toBe(4);
       expect(result.triggeredFrame).toBe(s.marker('last-beetle-inspected'));
@@ -169,9 +169,7 @@ describe('Scarab Beetle', () => {
 describe('Sunner', () => {
   const cheevo = achievement('Meet the Sunner');
 
-  const sunnerScenarios = [
-    'jungle-sunner',
-  ];
+  const sunnerScenarios = ['jungle-sunner'];
 
   for (const name of sunnerScenarios) {
     test(`pops when got close to sunners: ${name}`, () => {
@@ -196,9 +194,7 @@ describe('Sunner', () => {
 describe('Knock, Knock', () => {
   const cheevo = achievement('Knock, Knock');
 
-  const sunnerScenarios = [
-    'jungle-knock-knock',
-  ];
+  const sunnerScenarios = ['jungle-knock-knock'];
 
   for (const name of sunnerScenarios) {
     test(`pops when peephole opens: ${name}`, () => {
@@ -208,6 +204,25 @@ describe('Knock, Knock', () => {
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
       expect(result.triggered).toBe(true);
       expect(result.triggeredFrame).toBe(s.marker('villager-looks-outside'));
+    });
+  }
+});
+
+describe('Eye Spy', () => {
+  const cheevo = achievement('Eye Spy');
+
+  const jungleEyeScenarios = ['jungle-eye-spy'];
+
+  for (const name of jungleEyeScenarios) {
+    test(`pops when all 4 eyes seen: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.measuredAt(s.marker('first-eye-inspected'))).toBe(1);
+      expect(result.triggered).toBe(true);
+      expect(result.measuredAt(s.marker('last-eye-inspected') - 1)).toBe(3);
+      expect(result.triggeredFrame).toBe(s.marker('last-eye-inspected'));
     });
   }
 });
