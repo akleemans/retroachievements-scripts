@@ -82,6 +82,14 @@ describe('The Chapel', () => {
       expect(result.triggeredFrame).toBe(s.marker('last-beetle-inspected'));
     });
   }
+
+  test('does not pop on startup', () => {
+    const s = scenario('start-game-usa');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
 });
 
 describe('Rotating Room', () => {

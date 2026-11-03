@@ -51,9 +51,20 @@ const movedToScreen = (fromScreen, toScreen, ...coreConditions) => {
   return conditions;
 };
 
+const resetOnBoot = () => {
+  return [
+    ['AndNext', 'Delta', '16bit', orangeMarbleColumn, '=', 'Value', '', 0],
+    ['AndNext', 'Mem',   '16bit', orangeMarbleColumn, '=', 'Value', '', 0xffff],
+    ['AndNext', 'Delta', '16bit', purpleMarbleColumn, '=', 'Value', '', 0],
+    ['ResetIf', 'Mem',   '16bit', purpleMarbleColumn, '=', 'Value', '', 0xffff],
+  ];
+}
+
 // Pattern: the player has seen every screen in a list, in any order (each screen counts once), one alt per region
 const seenAllScreens = (screens) => {
-  const conditions = {core: $()};
+  const conditions = {core: $(
+      ...resetOnBoot()
+    )};
   for (const region of regions) {
     const altConditions = [];
     for (const {before, screen} of screens) {
@@ -72,6 +83,7 @@ const moviePlaying = (screen, movies, ...coreConditions) => {
   for (const region of regions) {
     const altConditions = [
       ['', 'Mem', '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)],
+      ['', 'Delta', '8bit',  region.movieState,    '!=', 'Value', '', 1],
       ['', 'Mem', '8bit',  region.movieState,    '=', 'Value', '', 1],
     ];
     movies.forEach((movie, i) => {
