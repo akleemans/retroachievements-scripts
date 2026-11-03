@@ -122,6 +122,7 @@ const JungleScreenEnum = {
   Classroom: 0x801f4494, // jSchoolRoom280
   GallowsLedge: 0x801ccc50, // jVillageGehnsArea1575
   StonehengeTunnel: 0x801c4b30, // jRebelTunnelUp103
+  VillagerInHut: 0x801e254c, // disc2-id253-JVPCNKCS-ch2
 };
 
 /* ---------------------------------------------------------------------------------------- */
@@ -219,6 +220,15 @@ set.addAchievement({
   points: 3,
   conditions: moviePlaying(JungleScreenEnum.SunnerLagoon, [279]),
 });
+
+set.addAchievement({
+  title: 'Knock, Knock',
+  description: 'Check if someone\'s home at a villager\'s hut by knocking multiple times',
+  points: 3,
+  conditions: moviePlaying(JungleScreenEnum.VillagerInHut, [253]),
+});
+
+
 
 
 export default set;

@@ -192,3 +192,22 @@ describe('Sunner', () => {
     expect(result.triggered).toBe(false);
   });
 });
+
+describe('Knock, Knock', () => {
+  const cheevo = achievement('Knock, Knock');
+
+  const sunnerScenarios = [
+    'jungle-knock-knock',
+  ];
+
+  for (const name of sunnerScenarios) {
+    test(`pops when peephole opens: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('villager-looks-outside'));
+    });
+  }
+});
