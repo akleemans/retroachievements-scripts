@@ -7,7 +7,9 @@
   "markers": {
     "scenario-start": 247301,
     "first-eye-inspected": 249057,
-    "last-eye-inspected": 274302
+    "last-eye-inspected": 274302,
+    "first-eye-movie-finished": 248622,
+    "last-eye-movie-finished": 274820
   },
   "addresses": [
     {

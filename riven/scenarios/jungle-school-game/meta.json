@@ -7,7 +7,9 @@
   "markers": {
     "scenario-start": 439133,
     "second-player-lost": 456393,
-    "first-player-lost": 445072
+    "first-player-lost": 445072,
+    "first-player-lost-movie-finished": 444908,
+    "second-player-lost-movie-finished": 456951
   },
   "addresses": [
     {

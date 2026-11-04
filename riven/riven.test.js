@@ -147,13 +147,14 @@ describe('Scarab Beetle', () => {
   ];
 
   for (const name of maglevToJungleScenarios) {
-    test(`pops when watching scarab beetle: ${name}`, () => {
+    test(`pops when scarab beetle movie finishes: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
 
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('scarab-close-up'))).toBe('active');
       expect(result.triggered).toBe(true);
-      expect(result.triggeredFrame).toBe(s.marker('scarab-close-up'));
+      expect(result.triggeredFrame).toBe(s.marker('scarab-movie-finished'));
     });
   }
 
@@ -172,13 +173,14 @@ describe('Sunner', () => {
   const sunnerScenarios = ['jungle-sunner'];
 
   for (const name of sunnerScenarios) {
-    test(`pops when got close to sunners: ${name}`, () => {
+    test(`pops when sunner movie finishes: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
 
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('sunner-close-up'))).toBe('active');
       expect(result.triggered).toBe(true);
-      expect(result.triggeredFrame).toBe(s.marker('sunner-close-up'));
+      expect(result.triggeredFrame).toBe(s.marker('sunner-movie-finished'));
     });
   }
 
@@ -197,13 +199,14 @@ describe('Knock, Knock', () => {
   const sunnerScenarios = ['jungle-knock-knock'];
 
   for (const name of sunnerScenarios) {
-    test(`pops when peephole opens: ${name}`, () => {
+    test(`pops when villager movie finishes: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
 
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('villager-looks-outside'))).toBe('active');
       expect(result.triggered).toBe(true);
-      expect(result.triggeredFrame).toBe(s.marker('villager-looks-outside'));
+      expect(result.triggeredFrame).toBe(s.marker('villager-movie-finished'));
     });
   }
 });
@@ -214,15 +217,17 @@ describe('Eye Spy', () => {
   const jungleEyeScenarios = ['jungle-eye-spy'];
 
   for (const name of jungleEyeScenarios) {
-    test(`pops when all 4 eyes seen: ${name}`, () => {
+    test(`pops when all 4 eye movies finished: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
 
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-      expect(result.measuredAt(s.marker('first-eye-inspected'))).toBe(1);
+      expect(result.measuredAt(s.marker('first-eye-movie-finished') - 1)).toBe(0);
+      expect(result.measuredAt(s.marker('first-eye-movie-finished'))).toBe(1);
       expect(result.triggered).toBe(true);
-      expect(result.measuredAt(s.marker('last-eye-inspected') - 1)).toBe(3);
-      expect(result.triggeredFrame).toBe(s.marker('last-eye-inspected'));
+      expect(result.stateAt(s.marker('last-eye-inspected'))).toBe('active');
+      expect(result.measuredAt(s.marker('last-eye-movie-finished') - 1)).toBe(3);
+      expect(result.triggeredFrame).toBe(s.marker('last-eye-movie-finished'));
     });
   }
 });
@@ -230,38 +235,58 @@ describe('Eye Spy', () => {
 describe('Submarine', () => {
   const cheevo = achievement('Submarine');
 
-  const submarineScenarios = [
-    'jungle-enter-submarine'
-  ];
+  const submarineScenarios = ['jungle-enter-submarine'];
 
   for (const name of submarineScenarios) {
-    test(`pops when hatch opening movie plays: ${name}`, () => {
+    test(`pops when hatch opening movie finishes: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
 
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('hatch-opens'))).toBe('active');
       expect(result.triggered).toBe(true);
-      expect(result.triggeredFrame).toBe(s.marker('hatch-opens'));
+      expect(result.triggeredFrame).toBe(s.marker('hatch-movie-finished'));
     });
   }
 });
 
 describe('Dni Scholar', () => {
-  const cheevo = achievement("D'ni Scholar");
+  const cheevo = achievement('D\'ni Scholar');
 
-  const submarineScenarios = [
-    'jungle-school-game'
-  ];
+  const submarineScenarios = ['jungle-school-game'];
 
   for (const name of submarineScenarios) {
-    test(`pops when both players lost: ${name}`, () => {
+    test(`pops when both players-lost movies finished: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
 
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-      expect(result.measuredAt(s.marker('first-player-lost'))).toBe(1);
+      expect(result.measuredAt(s.marker('first-player-lost-movie-finished') - 1)).toBe(0);
+      expect(result.measuredAt(s.marker('first-player-lost-movie-finished'))).toBe(1);
       expect(result.triggered).toBe(true);
-      expect(result.triggeredFrame).toBe(s.marker('second-player-lost'));
+      expect(result.stateAt(s.marker('second-player-lost'))).toBe('active');
+      expect(result.triggeredFrame).toBe(s.marker('second-player-lost-movie-finished'));
+    });
+  }
+});
+
+describe('Boiler Island', () => {
+  const cheevo = achievement('Boiler Island');
+
+  const lumberCartScenarios = [
+    'boiler-island-mine-cart',
+    'boiler-island-mine-cart-skipped',
+  ];
+
+  for (const name of lumberCartScenarios) {
+    test(`pops when lumber cart movie finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('cart-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('cart-movie-finished'));
     });
   }
 });

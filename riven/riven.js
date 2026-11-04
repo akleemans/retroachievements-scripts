@@ -79,14 +79,19 @@ const seenAllScreens = (screens) => {
   return conditions;
 };
 
-// Pattern: one of the given movies is playing on a screen, one alt per region
-const moviePlaying = (screen, movies, ...coreConditions) => {
+const MovieState = {
+  Playing: 0x01,
+  Ending: 0x02, // held for a few frames after the movie finishes
+};
+
+// Pattern: one of the given movies just finished playing on a screen, one alt per region
+const movieFinished = (screen, movies, ...coreConditions) => {
   const conditions = {core: $(...coreConditions)};
   for (const region of regions) {
     const altConditions = [
-      ['', 'Mem',   '32bit', region.screenPointer, '=',  'Value', '', screenValue(region, screen)],
-      ['', 'Delta', '8bit',  region.movieState,    '!=', 'Value', '', 1],
-      ['', 'Mem',   '8bit',  region.movieState,    '=',  'Value', '', 1],
+      ['', 'Mem',   '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)],
+      ['', 'Delta', '8bit',  region.movieState,    '=', 'Value', '', MovieState.Playing],
+      ['', 'Mem',   '8bit',  region.movieState,    '=', 'Value', '', MovieState.Ending],
     ];
     movies.forEach((movie, i) => {
       const flag = i === movies.length - 1 ? '' : 'OrNext';
@@ -97,7 +102,7 @@ const moviePlaying = (screen, movies, ...coreConditions) => {
   return conditions;
 };
 
-// Pattern: every movie in a list has played, in any order (each counts once), one alt per region.
+// Pattern: every movie in a list has finished playing, in any order (each counts once), one alt per region.
 // "movie" can be a single ID or an array of IDs that all count for the same entry.
 const seenAllMovies = (movies) => {
   const conditions = {core: $(...resetOnBoot())};
@@ -111,7 +116,8 @@ const seenAllMovies = (movies) => {
         altConditions.push([flag, 'Mem', '16bit', region.movieIndex, '=', 'Value', '', id]);
       });
       altConditions.push(['AndNext', 'Mem', '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)]);
-      altConditions.push(['AddHits', 'Mem', '8bit',  region.movieState,    '=', 'Value', '', 1, 1]);
+      altConditions.push(['AndNext', 'Delta', '8bit', region.movieState,   '=', 'Value', '', MovieState.Playing]);
+      altConditions.push(['AddHits', 'Mem',   '8bit', region.movieState,   '=', 'Value', '', MovieState.Ending, 1]);
     }
     altConditions.push(['Measured', 'Value', '', 0, '=', 'Value', '', 1, movies.length]);
     conditions[region.alt] = $(...altConditions);
@@ -148,6 +154,7 @@ const JungleScreenEnum = {
   StonehengeTunnel: 0x801c4b30, // jRebelTunnelUp103
   VillagerInHut: 0x801e254c, // disc2-id253-JVPCNKCS-ch2
   SubmarineHatchVillageDock: 0x801f0d98, // outside the closed hatch, ladder dock near village
+  LumberCartToBoiler: 0x801e93d8, // inside the lumber cart, plays JLMBRJ2B (257) to Boiler Island
 };
 
 /* ---------------------------------------------------------------------------------------- */
@@ -236,21 +243,21 @@ set.addAchievement({
   description: 'Find a Scarab Beetle friend',
   points: 2,
   type: 'missable',
-  conditions: moviePlaying(JungleScreenEnum.ScarabBeetle, [6]),
+  conditions: movieFinished(JungleScreenEnum.ScarabBeetle, [6]),
 });
 
 set.addAchievement({
   title: 'Meet the Sunner',
   description: 'Get up close and personal with a giant Sunner',
   points: 3,
-  conditions: moviePlaying(JungleScreenEnum.SunnerLagoon, [279]),
+  conditions: movieFinished(JungleScreenEnum.SunnerLagoon, [279]),
 });
 
 set.addAchievement({
   title: 'Knock, Knock',
   description: 'Check if someone\'s home at a villager\'s hut by knocking multiple times',
   points: 3,
-  conditions: moviePlaying(JungleScreenEnum.VillagerInHut, [253]),
+  conditions: movieFinished(JungleScreenEnum.VillagerInHut, [253]),
 });
 
 set.addAchievement({
@@ -270,11 +277,11 @@ set.addAchievement({
   title: 'Submarine',
   description: 'Get access to the submarine',
   points: 5,
-  conditions: moviePlaying(JungleScreenEnum.SubmarineHatchVillageDock, [289]),
+  conditions: movieFinished(JungleScreenEnum.SubmarineHatchVillageDock, [289]),
 });
 
 set.addAchievement({
-  title: "D'ni Scholar",
+  title: 'D\'ni Scholar',
   description: 'Make both players "win" in the Classroom',
   points: 5,
   conditions: seenAllMovies([
@@ -282,5 +289,15 @@ set.addAchievement({
     {screen: JungleScreenEnum.Classroom, movie: 298},
   ]),
 });
+
+
+set.addAchievement({
+  title: 'Boiler Island',
+  description: 'Arrive at Boiler Island',
+  points: 5,
+  type: 'progression',
+  conditions: movieFinished(JungleScreenEnum.LumberCartToBoiler, [257]),
+});
+
 
 export default set;
