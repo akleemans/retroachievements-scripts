@@ -31,7 +31,7 @@ describe('WARNING', () => {
 });
 
 describe('Find Cho', () => {
-  const cheevo = achievement('Find Cho');
+  const cheevo = achievement('Cho?');
 
   const findChoScenarios = [
     'temple-find-cho',
@@ -289,4 +289,212 @@ describe('Boiler Island', () => {
       expect(result.triggeredFrame).toBe(s.marker('cart-movie-finished'));
     });
   }
+});
+
+describe('Boiler Puzzle', () => {
+  const cheevo = achievement('Boiler Puzzle');
+
+  const boilerPuzzleScenarios = ['boiler-solve-boiler-puzzle'];
+
+  for (const name of boilerPuzzleScenarios) {
+    test(`pops when boiler door movie finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('door-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('door-movie-finished'));
+    });
+  }
+});
+
+describe('Meet the Ytram', () => {
+  const cheevo = achievement('Meet the Ytram');
+
+  const ytramScenarios = ['boiler-capture-ytram'];
+
+  for (const name of ytramScenarios) {
+    test(`pops when ytram capture movie finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('ytram-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('ytram-movie-finished'));
+    });
+  }
+});
+
+describe('Gehn\'s Lab', () => {
+  const cheevo = achievement('Gehn\'s Lab');
+
+  const gehnsLabScenarios = ['boiler-access-gehns-lab'];
+
+  for (const name of gehnsLabScenarios) {
+    test(`pops when vent cover movie finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('crawl-pipe-entered'))).toBe('active');
+      expect(result.stateAt(s.marker('vent-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('vent-movie-finished'));
+    });
+  }
+});
+
+describe('Survey Island', () => {
+  const cheevo = achievement('Survey Island');
+
+  const maglevToSurveyScenarios = [
+    'boiler-maglev-to-survey',
+    'jungle-maglev-to-survey',
+  ];
+
+  for (const name of maglevToSurveyScenarios) {
+    test(`pops when maglev ride to Survey finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('maglev-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('maglev-movie-finished'));
+    });
+  }
+});
+
+describe('Gehn\'s Map', () => {
+  const cheevo = achievement('Gehn\'s Map');
+
+  // One recording per chosen island: Survey, Crater, Jungle, Prison
+  const mapScenarios = [
+    'survey-map-interaction-1',
+    'survey-map-interaction-2',
+    'survey-map-interaction-3',
+    'survey-map-interaction-4',
+  ];
+
+  for (const name of mapScenarios) {
+    test(`pops when first chunk is selected on the detailed map: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('detailed-map-reached'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('first-chunk-selected'));
+    });
+  }
+});
+
+describe('Deep Into the Earth', () => {
+  const cheevo = achievement('Deep Into the Earth');
+
+  const goldenLiftScenarios = ['survey-use-golden-lift'];
+
+  for (const name of goldenLiftScenarios) {
+    test(`pops when gold elevator arrives underground: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('elevator-ride-down-start'))).toBe('active');
+      expect(result.stateAt(s.marker('elevator-drop-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('elevator-drop-movie-finished'));
+    });
+  }
+});
+
+describe('Unwelcome Visitor', () => {
+  const cheevo = achievement('Unwelcome Visitor');
+
+  test('pops when the Scribe fleeing movie finishes: survey-follow-scribe', () => {
+    const s = scenario('survey-follow-scribe');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('scribe-spotted'))).toBe('active');
+    expect(result.stateAt(s.marker('scribe-flees-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('scribe-flees-movie-finished'));
+  });
+
+  test('does not pop when following the Scribe too late', () => {
+    const s = scenario('survey-follow-scribe-too-late');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('maglev-platform-reached'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
+describe('Meet the Wahrk', () => {
+  const cheevo = achievement('Meet the Wahrk');
+
+  test('pops when the first wahrk movie finishes: survey-watch-wahrk', () => {
+    const s = scenario('survey-watch-wahrk');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('wahrk-first-call'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('wahrk-first-movie-finished'));
+  });
+});
+
+describe('Is that glass thick enough?', () => {
+  const cheevo = achievement('Is that glass thick enough?');
+
+  test('pops when the wahrk attack movie finishes: survey-watch-wahrk', () => {
+    const s = scenario('survey-watch-wahrk');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('wahrk-first-movie-finished'))).toBe('active');
+    expect(result.stateAt(s.marker('wahrk-third-movie-finished'))).toBe('active');
+    expect(result.stateAt(s.marker('wahrk-annoyed-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('wahrk-annoyed-movie-finished'));
+  });
+});
+
+describe('Is that Catherine?', () => {
+  const cheevo = achievement('Is that Catherine?');
+
+  test('pops when the Catherine movie finishes: survey-watch-catherine', () => {
+    const s = scenario('survey-watch-catherine');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('town-feed-on'))).toBe('active');
+    expect(result.stateAt(s.marker('catherine-feed-on'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('catherine-movie-finished'));
+  });
+
+  test('does not pop when only watching the wahrk: survey-watch-wahrk', () => {
+    const result = runAchievement(cheevo, scenario('survey-watch-wahrk'));
+
+    expect(result.triggered).toBe(false);
+  });
+});
+
+describe('Gehn Is Watching You', () => {
+  const cheevo = achievement('Gehn Is Watching You');
+
+  test('pops when the Gehn movie finishes: temple-gehn-watching', () => {
+    const s = scenario('temple-gehn-watching');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('gehn-screen-reached'))).toBe('active');
+    expect(result.stateAt(s.marker('gehn-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('gehn-movie-finished'));
+  });
 });

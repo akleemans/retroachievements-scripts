@@ -84,20 +84,38 @@ const MovieState = {
   Ending: 0x02, // held for a few frames after the movie finishes
 };
 
+// Conditions for one of the given movies just finishing on a screen, for one region
+const movieFinishedInRegion = (region, screen, movies) => {
+  const altConditions = [
+    ['', 'Mem',   '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)],
+    ['', 'Delta', '8bit',  region.movieState,    '=', 'Value', '', MovieState.Playing],
+    ['', 'Mem',   '8bit',  region.movieState,    '=', 'Value', '', MovieState.Ending],
+  ];
+  movies.forEach((movie, i) => {
+    const flag = i === movies.length - 1 ? '' : 'OrNext';
+    altConditions.push([flag, 'Mem', '16bit', region.movieIndex, '=', 'Value', '', movie]);
+  });
+  return altConditions;
+};
+
 // Pattern: one of the given movies just finished playing on a screen, one alt per region
 const movieFinished = (screen, movies, ...coreConditions) => {
   const conditions = {core: $(...coreConditions)};
   for (const region of regions) {
-    const altConditions = [
-      ['', 'Mem',   '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)],
-      ['', 'Delta', '8bit',  region.movieState,    '=', 'Value', '', MovieState.Playing],
-      ['', 'Mem',   '8bit',  region.movieState,    '=', 'Value', '', MovieState.Ending],
-    ];
-    movies.forEach((movie, i) => {
-      const flag = i === movies.length - 1 ? '' : 'OrNext';
-      altConditions.push([flag, 'Mem', '16bit', region.movieIndex, '=', 'Value', '', movie]);
-    });
-    conditions[region.alt] = $(...altConditions);
+    conditions[region.alt] = $(...movieFinishedInRegion(region, screen, movies));
+  }
+  return conditions;
+};
+
+// Pattern: like movieFinished, but for several routes ({screen, movies, conditions}), one alt per route and region.
+// "conditions" are extra checks for that route only, e.g. a flag to tell apart screens that share a pointer value.
+const anyMovieFinished = (routes, ...coreConditions) => {
+  const conditions = {core: $(...coreConditions)};
+  let altNumber = 1;
+  for (const {screen, movies, conditions: routeConditions = []} of routes) {
+    for (const region of regions) {
+      conditions[`alt${altNumber++}`] = $(...movieFinishedInRegion(region, screen, movies), ...routeConditions);
+    }
   }
   return conditions;
 };
@@ -140,6 +158,7 @@ const DomeScreenEnum = {
   GateRoomArt5: 0x801cb5e8,
   GateRoomEntry: 0x801c6ca0,
   MaglevToJungleForward: 0x801bcf98,
+  GehnWatching: 0x801be0cc, // temple, plays movie 33 of Gehn watching the player
 };
 
 const JungleScreenEnum = {
@@ -155,7 +174,32 @@ const JungleScreenEnum = {
   VillagerInHut: 0x801e254c, // disc2-id253-JVPCNKCS-ch2
   SubmarineHatchVillageDock: 0x801f0d98, // outside the closed hatch, ladder dock near village
   LumberCartToBoiler: 0x801e93d8, // inside the lumber cart, plays JLMBRJ2B (257) to Boiler Island
+  MaglevToSurvey: 0x801d6b64, // inside the maglev, plays movie 158 to Survey Island
 };
+
+const BoilerScreenEnum = {
+  YtramTrapDown: 0x801d5558, // bYtram_TrapDown810
+  BoilerInterior: 0x801bd080, // bBoilerInterior17
+  YtramCave: 0x801d7ad0, // bYtramCave_S2250
+  FireMarbleDome: 0x801de464, // bFMD_DROBG
+  CrawlPipe: 0x801d61e0, // bCrawlPipe100
+  BoilerDoor: 0x801bb808, // boiler door, plays movie 10 when it opens
+  LabVentCover: 0x801d675c, // end of the crawl pipe, plays movie 125 when the vent cover falls into Gehn's Lab
+  MaglevToSurvey: 0x801c837c, // inside the maglev, plays movie 39 to Survey Island. Same value as DomeScreenEnum.GateRoomArt1before!
+};
+
+const SurveyScreenEnum = {
+  DetailedMap: 0x801c0490, // detailed map table, after choosing an island in the map room
+  GoldElevator: 0x801ba62c, // inside the gold elevator, plays 8 GFELVDNC, 9 GELVRDU, 10 GELVDROP on the way down
+  ScribeFlees: 0x801cacb4, // maglev platform, plays 98 GAMGTNLV when the Scribe escapes by maglev (only if followed in time)
+  WahrkRoom: 0x801cd230, // gWharkRoomRARMDN700, plays GWHARK1-6 (111-116) when the wahrk is called
+  WahrkRoomLeftScope: 0x801cdbb4, // gWharkRoomLeftScope, video feed to the town or Catherine's chamber
+};
+
+const surveySelectedChunk = 0x0100a4; // 0 = no chunk selected on the detailed map
+
+const craterSurveyMaglevLocation = 0x010022; // 0 = Survey, 1 = Crater
+const surveyJungleMaglevLocation = 0x0100b0; // 0 = Survey, 1 = Jungle
 
 /* ---------------------------------------------------------------------------------------- */
 
@@ -181,9 +225,10 @@ const domeIslandChoState = 0x0100c8;
 
 set.addAchievement({
   id: 648932,
-  title: 'Find Cho',
+  title: 'Cho?',
   description: 'Find out what happened to the guard',
   points: 1,
+  type: 'missable',
   conditions: movedToScreen(
     DomeScreenEnum.CliffBeforeCho,
     DomeScreenEnum.CliffCho,
@@ -227,7 +272,7 @@ const domeJungleMaglevLocation = 0x0100ca; // 0 = Dome, 1 = Jungle
 set.addAchievement({
   id: 648935,
   title: 'Jungle Island',
-  description: 'Set off for Jungle Island',
+  description: 'Arrive at Jungle Island',
   points: 5,
   type: 'progression',
   conditions: onScreen(
@@ -242,7 +287,6 @@ set.addAchievement({
   title: 'Meet the Scarab Beetle',
   description: 'Find a Scarab Beetle friend',
   points: 2,
-  type: 'missable',
   conditions: movieFinished(JungleScreenEnum.ScarabBeetle, [6]),
 });
 
@@ -257,6 +301,7 @@ set.addAchievement({
   title: 'Knock, Knock',
   description: 'Check if someone\'s home at a villager\'s hut by knocking multiple times',
   points: 3,
+  type: 'missable',
   conditions: movieFinished(JungleScreenEnum.VillagerInHut, [253]),
 });
 
@@ -290,7 +335,6 @@ set.addAchievement({
   ]),
 });
 
-
 set.addAchievement({
   title: 'Boiler Island',
   description: 'Arrive at Boiler Island',
@@ -299,5 +343,109 @@ set.addAchievement({
   conditions: movieFinished(JungleScreenEnum.LumberCartToBoiler, [257]),
 });
 
+set.addAchievement({
+  title: 'Boiler Puzzle',
+  description: 'Complete the Boiler puzzle',
+  points: 10,
+  type: 'progression',
+  conditions: movieFinished(BoilerScreenEnum.BoilerDoor, [10]),
+});
+
+set.addAchievement({
+  title: 'Meet the Ytram',
+  description: 'Capture a poisonous Ytram',
+  points: 5,
+  conditions: movieFinished(BoilerScreenEnum.YtramTrapDown, [117, 118, 119, 120, 121]),
+});
+
+set.addAchievement({
+  title: 'Gehn\'s Lab',
+  description: 'Find a way into Gehn\'s Lab',
+  points: 10,
+  type: 'progression',
+  conditions: movieFinished(BoilerScreenEnum.LabVentCover, [125]),
+});
+
+set.addAchievement({
+  title: 'Survey Island',
+  description: 'Arrive at Survey Island',
+  points: 5,
+  type: 'progression',
+  conditions: anyMovieFinished([
+    {
+      screen: BoilerScreenEnum.MaglevToSurvey,
+      movies: [39],
+      conditions: [['', 'Mem', '16bit', craterSurveyMaglevLocation, '=', 'Value', '', 0]],
+    },
+    {
+      screen: JungleScreenEnum.MaglevToSurvey,
+      movies: [158],
+      conditions: [['', 'Mem', '16bit', surveyJungleMaglevLocation, '=', 'Value', '', 0]],
+    },
+  ]),
+});
+
+set.addAchievement({
+  title: 'Gehn\'s Map',
+  description: 'Interact with the relief map on Survey Island',
+  points: 5,
+  // Selecting a chunk on the detailed map is the first interaction, regardless of the chosen island
+  conditions: onScreen(
+    SurveyScreenEnum.DetailedMap,
+    ['', 'Delta', '16bit', surveySelectedChunk, '=',  'Value', '', 0],
+    ['', 'Mem',   '16bit', surveySelectedChunk, '!=', 'Value', '', 0],
+  ),
+});
+
+set.addAchievement({
+  title: 'Deep Into the Earth',
+  description: 'Find a way into the underground of Survey Island',
+  points: 3,
+  // Last movie of the ride down: elevator door opens onto the underground corridor
+  conditions: movieFinished(SurveyScreenEnum.GoldElevator, [10]),
+});
+
+
+set.addAchievement({
+  title: 'Unwelcome Visitor',
+  description: 'Follow the Scribe to see him flee',
+  points: 1,
+  type: 'missable',
+  // Not 97 GPTTY: that's the first glimpse of the Scribe, which also plays when following him too late
+  conditions: movieFinished(SurveyScreenEnum.ScribeFlees, [98]),
+});
+
+set.addAchievement({
+  title: 'Meet the Wahrk',
+  description: 'Finally meet one of Gehn\'s fearsome pets',
+  points: 2,
+  // The first call plays GWHARK1 (111); any wahrk clip counts in case a save starts further along
+  conditions: movieFinished(SurveyScreenEnum.WahrkRoom, [111, 112, 113, 114, 115, 116]),
+});
+
+set.addAchievement({
+  title: 'Is that glass thick enough?',
+  description: 'Annoy the Wahrk',
+  points: 2,
+  // GWHARK6 (116): the wahrk charges at the glass. Played on the 4th call (0x1009c Wahrk Visit Count 3 -> 4)
+  conditions: movieFinished(SurveyScreenEnum.WahrkRoom, [116]),
+});
+
+set.addAchievement({
+  title: 'Is that Catherine?',
+  description: 'Take a look into Catherine\'s chamber',
+  points: 2,
+  type: 'missable',
+  // G6_ASCP (136): first look at Catherine's feed, she walks from the room (0x100be state 3) to left of the doorway (1).
+  // The first look always starts "in room", so later variants (other *_ASCP clips) shouldn't be needed.
+  conditions: movieFinished(SurveyScreenEnum.WahrkRoomLeftScope, [136]),
+});
+
+set.addAchievement({
+  title: 'Gehn Is Watching You',
+  description: 'Find Gehn watching you in the Temple',
+  points: 2,
+  conditions: movieFinished(DomeScreenEnum.GehnWatching, [33]),
+});
 
 export default set;
