@@ -277,7 +277,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010070",
-    "Note": "[16-bit] Prison Island Cage State\r\n0x00 = Closed\r\n0x02 = Catherine is free"
+    "Note": "[16-bit] Prison Island Cage State\r\n0x00 = Closed\r\n0x01 = Opening (lasts a moment while Catherine is freed)\r\n0x02 = Catherine is free\r\nCalled \"pcage\" in the code. While it is 0x02, the Prison, Jungle, Book Assembly and Garden books in Gehn's office show torn-out pages."
   },
   {
     "User": "adrianusk",
@@ -287,7 +287,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010074",
-    "Note": "[16-bit] 233rd Age Book Power\r\n0x00 = Off\r\n0x01 = On\r\nCalled \"ambient\" in the code"
+    "Note": "[16-bit] 233rd Age Office Ambient Sound\r\nBitflags:\r\nbit0 = Stove on\r\nbit1 = Record player on\r\n0x00 = Silent\r\n0x01 = Stove only (set when you arrive in 233)\r\n0x02 = Record player only\r\n0x03 = Stove + record player\r\nCalled \"oambient\" in the code"
   },
   {
     "User": "adrianusk",
@@ -812,7 +812,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010148",
-    "Note": "[16-bit] 233rd Age Book Power Dup\r\n0x00 = Off\r\n0x01 = On\r\nCalled \"stove\" in the code"
+    "Note": "[16-bit] 233rd Age Stove\r\n0x00 = Off\r\n0x01 = On\r\nCalled \"ostove\" in the code"
   },
   {
     "User": "adrianusk",
@@ -991,6 +991,16 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x010700",
+    "Note": "[32-bit] Boot disc and region (read-only)\r\nFirst entry of a jump table in the game's code, not a variable. Never written at runtime.\r\nShows which disc's program is running and the region; RAM addresses depend on both.\r\n0x8001622C = USA, booted from disc 1\r\n0x80016230 = USA, booted from disc 2 or 5\r\n0x8001624C = USA, booted from disc 3 or 4\r\n0x8001BD7C = Europe\/Germany, booted from disc 1\r\n0x8001BD80 = Europe\/Germany, booted from disc 2 or 5\r\n0x8001BD9C = Europe\/Germany, booted from disc 3 or 4\r\n0x800161F4 = France, booted from disc 1\r\n0x800161F8 = France, booted from disc 2 or 5\r\n0x80016214 = France, booted from disc 3 or 4\r\n0x8001617C = Japan, booted from disc 1\r\n0x80016180 = Japan, booted from disc 2 or 5\r\n0x8001619C = Japan, booted from disc 3 or 4"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x0125fd",
+    "Note": "[8-bit] Europe\/Germany language (read-only)\r\nCharacter in the memory card file name string (\"BESLES-00963\" \/ \"BESLES-01100\"), not a variable.\r\nOnly meaningful when 0x010700 shows Europe\/Germany.\r\n0x30 = Europe (English)\r\n0x31 = Germany"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x0146a8",
     "Note": "[8-bit] Boot disc layout (USA, read-only)\r\nLow byte of an instruction operand in the game's code at 0x800146a8, not a variable.\r\nShows which disc's program is running. It stays loaded after disc swaps, and RAM addresses depend on it.\r\n0x28 = Booted from disc 1\r\n0x2C = Booted from disc 2 or 5, globals +0x04\r\n0x48 = Booted from disc 3 or 4, globals +0x20"
   },
@@ -1092,7 +1102,7 @@
   {
     "User": "adrianusk",
     "Address": "0x0a4eb0",
-    "Note": "[8-bit] Movie playing state\r\n0x00 = Not playing\r\n0x01 = Playing\r\n0x63 = Starting movie (one frame)\r\n0x02 = Ending movie (one frame)"
+    "Note": "[8-bit] Movie playing state\r\n0x00 = Not playing\r\n0x01 = Playing\r\n0x02 = Ending movie (4-8 frames)\r\n0x63 = Starting movie (one frame)"
   },
   {
     "User": "adrianusk",
@@ -1106,8 +1116,28 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x1b22cc",
+    "Note": "[8-bit] Current island (Europe, Germany)\r\nSame values as the USA note at 0x1b2498."
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x1b244c",
+    "Note": "[8-bit] Current island (Japan)\r\nSame values as the USA note at 0x1b2498."
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x1b2498",
+    "Note": "[8-bit] Current island (USA)\r\nCalled \"stack\" in the code. Address depends on region and boot disc, see the other regions' island notes.\r\n0x00 = Temple Island (disc 1)\r\n0x01 = Prison Island (disc 3)\r\n0x02 = Survey Island (disc 4)\r\n0x03 = Tay (disc 4)\r\n0x04 = Boiler Island (disc 3)\r\n0x05 = Jungle Island (disc 2)\r\n0x06 = 233rd Age (disc 5)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x1b2518",
     "Note": "[16-bit] Movie index on screen\r\nNumbering starts at 0x00 among all movies on this screen.\r\nThis is translated to a full-disk movie id at 0x06c784.\r\nIs not reset after movie completes.\r\nTODO: Check if size correct"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x1b2c94",
+    "Note": "[8-bit] Current island (France)\r\nSame values as the USA note at 0x1b2498."
   },
   {
     "User": "adrianusk",

@@ -297,7 +297,7 @@
     {
       "address": "0x10074",
       "size": "u16",
-      "label": "233rd Age Book Power"
+      "label": "233rd Age Office Ambient Sound"
     },
     {
       "address": "0x10076",
@@ -822,7 +822,7 @@
     {
       "address": "0x10148",
       "size": "u16",
-      "label": "233rd Age Book Power Dup"
+      "label": "233rd Age Stove"
     },
     {
       "address": "0x1014e",
