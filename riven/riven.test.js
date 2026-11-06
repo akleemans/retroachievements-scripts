@@ -752,3 +752,43 @@ describe('Pity for the old man', () => {
     expect(result.triggered).toBe(false);
   });
 });
+
+describe('Endings', () => {
+  // Each ending achievement with its recordings; every recording is also run against every other ending achievement
+  const endings = [
+    {title: 'Alone in the Dark', scenarios: ['ending1-open-fissure-without-visiting-gehn-or-tay']},
+    {title: 'What Does This Do Again?', scenarios: ['ending2-use-trap-book-on-tay']},
+    {title: 'You Have My Sympathy', scenarios: ['ending3-use-trap-book-without-visiting-gehn']},
+    {title: 'Trap Book in Riven after Gehn', scenarios: ['ending4-use-trap-book-on-riven-after-gehn']},
+    {title: 'No Thanks, After You', scenarios: ['ending5-refuse-gehn-three-times']},
+    {title: 'Gehn\'s victory', scenarios: ['ending6-open-star-fissure-without-capturing-gehn']},
+    {title: 'Pity for the old man', scenarios: ['ending7-release-gehn-in-233', 'ending7-release-gehn-on-prison-island']},
+    {title: 'Betraying the Moiety', scenarios: ['ending8-release-gehn-on-tay']},
+    {title: 'We Will Never Know Her Fate', scenarios: ['ending9-forget-catherine']},
+    {title: 'The Ending Can Never Truly Be Written', scenarios: ['temple-best-ending']},
+  ];
+
+  for (const ending of endings) {
+    const cheevo = achievement(ending.title);
+
+    for (const name of ending.scenarios) {
+      test(`${ending.title} pops after the ending movie: ${name}`, () => {
+        const s = scenario(name);
+        const result = runAchievement(cheevo, s);
+
+        expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+        expect(result.stateAt(s.marker('ending-movie-start'))).toBe('active');
+        expect(result.triggered).toBe(true);
+        expect(result.triggeredFrame).toBe(s.marker('ending-movie-finished'));
+      });
+    }
+
+    for (const other of endings.filter((e) => e !== ending)) {
+      for (const name of other.scenarios) {
+        test(`${ending.title} does not pop on another ending: ${name}`, () => {
+          expect(runAchievement(cheevo, scenario(name)).triggered).toBe(false);
+        });
+      }
+    }
+  }
+});

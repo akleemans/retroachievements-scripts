@@ -215,6 +215,7 @@ const Age233ScreenEnum = {
   CageArrival: 0x801b90bc, // inside Gehn's cage, where every fire marble dome book links to
   // Gehn's study, after handing him the trap book. Plays 26 (O6_10Z, Gehn opens the book and links into it),
   // while Gehn State (0x10140) goes 1 -> 4 at the movie start
+  // E5: the same screen plays 24 (OGR_B, Gehn gives up after the third refusal) with Gehn State 3
   GehnTakesTrapBook: 0x801bf65c,
   // Black screen after touching the Prison Island book in Gehn's study. Plays 18 and 19 (GEHN.BIN, linking to Prison Island)
   PrisonBookLink: 0x801befe4,
@@ -225,9 +226,13 @@ const PrisonScreenEnum = {
   CatherineCage: 0x801ba0dc,
 };
 
+// Star Fissure endings: each outcome has its own screen and movie (disc 5, GEHN.BIN IDs)
 const DomeEndingScreenEnum = {
   // Fissure temple, after summoning Atrus with the linking book. Plays 65 (the final ending scene with Atrus)
   AtrusArrives: 0x801c4c28,
+  FissureCatherineNotFreed: 0x801c4c8c, // E9, plays 66: Gehn trapped, Catherine still on Prison Island
+  FissureGehnNotTrapped: 0x801c4cf0, // E6, plays 67: trap book retrieved, Gehn still free
+  FissureAlone: 0x801c4d54, // E1, plays 68: Fissure opened without visiting Tay or Gehn
 };
 
 const TayScreenEnum = {
@@ -243,13 +248,15 @@ const TayScreenEnum = {
 const EndingScreenEnum = {
   // E2: trap book used in Tay. Plays 28 (ATRAPBK, opening the book), then 1 on TrapBookTay
   // (Tay's own table in REBEL.BIN on disc 4: R6_18 channel 1). ID 1 on Survey is GELCRHDL, the screen tells them apart.
+  // E8 (trap book used in Tay after trapping Gehn) uses the same screen with 0 (REBEL.BIN).
   TrapBookTay: 0x801b8f40,
   // E4: trap book used on Riven after visiting Gehn. Plays 308 (ATRAPBK) on the jungle disc, then the game loads disc 5
   // and plays 2 (GEHN.BIN: O6_15X, Gehn picks up the trap book in front of the cage) on TrapBookRiven.
   // Not checked yet: the trap book on Riven before visiting Gehn (E3) might use the same screen with another movie.
   TrapBookRiven: 0x801b9504,
   // E7 (trap book used after trapping Gehn) uses the same screen with 1 (GEHN.BIN: O6_16X channel 1),
-  // whether the book is opened in the 233rd age (ATRAPBK 69) or on Prison Island (ATRAPBK 46)
+  // whether the book is opened in the 233rd age (ATRAPBK 69) or on Prison Island (ATRAPBK 46).
+  // E3 (trap book used before visiting Gehn) uses the same screen with 0 (GEHN.BIN: O6_16X channel 0).
 };
 
 const gehnState = 0x010140; // 1 at the start of the 233rd age scenes, 4 once Gehn is trapped
@@ -652,10 +659,26 @@ set.addAchievement({
 /* -------------------- Bad Endings ------------------ */
 
 set.addAchievement({
+  title: 'Alone in the Dark',
+  description: 'Open the Star Fissure without ever visiting Tay or Gehn (E1)',
+  points: 5,
+  type: 'missable',
+  conditions: movieFinished(DomeEndingScreenEnum.FissureAlone, [68]),
+});
+
+set.addAchievement({
   title: 'What Does This Do Again?',
   description: 'Retrieve the Trap Book and use it in Tay (E2)',
   points: 3,
   conditions: movieFinished(EndingScreenEnum.TrapBookTay, [1]),
+});
+
+set.addAchievement({
+  title: 'You Have My Sympathy',
+  description: 'Retrieve the Trap Book before visiting Gehn and use it on Riven (E3)',
+  points: 5,
+  type: 'missable',
+  conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [0]),
 });
 
 set.addAchievement({
@@ -665,12 +688,25 @@ set.addAchievement({
   conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [2]),
 });
 
-// set.addAchievement({
-//   title: 'No Thanks, After You\t',
-//   description: 'Refuse to enter Gehn\'s Prison Book three times (E5)',
-//   points: 10,
-//   // conditions: TODO
-// });
+set.addAchievement({
+  title: 'No Thanks, After You',
+  description: 'Refuse Gehn\'s invitation of entering the Trap Book three times (E5)',
+  points: 10,
+  conditions: movieFinished(
+    Age233ScreenEnum.GehnTakesTrapBook,
+    [24],
+    ['', 'Mem', '16bit', gehnState, '=', 'Value', '', 3],
+  ),
+});
+
+
+set.addAchievement({
+  title: 'Gehn\'s victory',
+  description: 'Retrieve the Trap Book without capturing Gehn and open the Star Fissure (E6)',
+  points: 10,
+  type: 'missable',
+  conditions: movieFinished(DomeEndingScreenEnum.FissureGehnNotTrapped, [67]),
+});
 
 set.addAchievement({
   title: 'Pity for the old man',
@@ -679,4 +715,18 @@ set.addAchievement({
   conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [1]),
 });
 
+set.addAchievement({
+  title: 'Betraying the Moiety',
+  description: 'Capture Gehn, return to Tay, and use the Trap Book there (E8)',
+  points: 10,
+  conditions: movieFinished(EndingScreenEnum.TrapBookTay, [0]),
+});
+
+set.addAchievement({
+  title: 'We Will Never Know Her Fate',
+  description: 'Capture Gehn and open the Star Fissure without freeing Catherine (E9)',
+  points: 10,
+  type: 'missable',
+  conditions: movieFinished(DomeEndingScreenEnum.FissureCatherineNotFreed, [66]),
+});
 export default set;
