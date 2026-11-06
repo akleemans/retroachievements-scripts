@@ -51,6 +51,18 @@ const movedToScreen = (fromScreen, toScreen, ...coreConditions) => {
   return conditions;
 };
 
+// Pattern: the player just arrived on a screen, from any other screen, one alt per region
+const arrivedOnScreen = (screen, ...coreConditions) => {
+  const conditions = {core: $(...coreConditions)};
+  for (const region of regions) {
+    conditions[region.alt] = $(
+      ['', 'Delta', '32bit', region.screenPointer, '!=', 'Value', '', screenValue(region, screen)],
+      ['', 'Mem',   '32bit', region.screenPointer, '=',  'Value', '', screenValue(region, screen)],
+    );
+  }
+  return conditions;
+};
+
 const resetOnBoot = () => {
   return [
     ['AndNext', 'Delta', '16bit', orangeMarbleColumn, '=', 'Value', '', 0],
@@ -159,6 +171,7 @@ const DomeScreenEnum = {
   GateRoomEntry: 0x801c6ca0,
   MaglevToJungleForward: 0x801bcf98,
   GehnWatching: 0x801be0cc, // temple, plays movie 33 of Gehn watching the player
+  MarblePress: 0x801ccefc, // tIslandExterior7500, fire marble press. Plays 90 on a correct solution, 91/93 otherwise
 };
 
 const JungleScreenEnum = {
@@ -170,7 +183,9 @@ const JungleScreenEnum = {
   ScarabBeetle: 0x801bcbf0, // jClearCutArea1090
   Classroom: 0x801f4494, // jSchoolRoom280
   GallowsLedge: 0x801ccc50, // jVillageGehnsArea1575
-  StonehengeTunnel: 0x801c4b30, // jRebelTunnelUp103
+  GallowsWinch: 0x801cb610, // inside the gallows, facing the hanging winch handle. Plays 113 JVLGHNDL when pulled
+  StonehengeTunnel: 0x801c4b30, // jRebelTunnelUp103, plays 51 JRTWATER when the stone puzzle is solved
+  RebelCaveDoor: 0x801c3f18, // rotating door to the Moiety cave, plays 50 JRBTDROP when switched to the animal puzzle
   VillagerInHut: 0x801e254c, // disc2-id253-JVPCNKCS-ch2
   SubmarineHatchVillageDock: 0x801f0d98, // outside the closed hatch, ladder dock near village
   LumberCartToBoiler: 0x801e93d8, // inside the lumber cart, plays JLMBRJ2B (257) to Boiler Island
@@ -196,6 +211,50 @@ const SurveyScreenEnum = {
   WahrkRoomLeftScope: 0x801cdbb4, // gWharkRoomLeftScope, video feed to the town or Catherine's chamber
 };
 
+const Age233ScreenEnum = {
+  CageArrival: 0x801b90bc, // inside Gehn's cage, where every fire marble dome book links to
+  // Gehn's study, after handing him the trap book. Plays 26 (O6_10Z, Gehn opens the book and links into it),
+  // while Gehn State (0x10140) goes 1 -> 4 at the movie start
+  GehnTakesTrapBook: 0x801bf65c,
+  // Black screen after touching the Prison Island book in Gehn's study. Plays 18 and 19 (GEHN.BIN, linking to Prison Island)
+  PrisonBookLink: 0x801befe4,
+};
+
+const PrisonScreenEnum = {
+  // Catherine's cage, after opening it. Plays 5, then 6 (Catherine is freed and links to Tay) while the cage state is 2
+  CatherineCage: 0x801ba0dc,
+};
+
+const DomeEndingScreenEnum = {
+  // Fissure temple, after summoning Atrus with the linking book. Plays 65 (the final ending scene with Atrus)
+  AtrusArrives: 0x801c4c28,
+};
+
+const TayScreenEnum = {
+  // After linking to Tay: plays 24 (R3_5R, the Moiety captors approach) and 25 (R3_8, night boat ride to the tree).
+  // Tay's movies are in REBEL/MOVIE on disc 4, not in the disc's ID table (ID 25 there is Survey's GPINS2).
+  BoatRide: 0x801bacc0,
+  PrisonCell: 0x801b90dc, // first view inside the tree prison cell, after a black hand-over screen
+  // Looking out of the prison cell window at the village, where 4 scenes of moving people play:
+  // 10 upper right walkway, 21 lower right, 22 far left, 11-20 middle house windows (all count as one scene)
+  PrisonWindow: 0x801b9b88,
+};
+
+const EndingScreenEnum = {
+  // E2: trap book used in Tay. Plays 28 (ATRAPBK, opening the book), then 1 on TrapBookTay
+  // (Tay's own table in REBEL.BIN on disc 4: R6_18 channel 1). ID 1 on Survey is GELCRHDL, the screen tells them apart.
+  TrapBookTay: 0x801b8f40,
+  // E4: trap book used on Riven after visiting Gehn. Plays 308 (ATRAPBK) on the jungle disc, then the game loads disc 5
+  // and plays 2 (GEHN.BIN: O6_15X, Gehn picks up the trap book in front of the cage) on TrapBookRiven.
+  // Not checked yet: the trap book on Riven before visiting Gehn (E3) might use the same screen with another movie.
+  TrapBookRiven: 0x801b9504,
+  // E7 (trap book used after trapping Gehn) uses the same screen with 1 (GEHN.BIN: O6_16X channel 1),
+  // whether the book is opened in the 233rd age (ATRAPBK 69) or on Prison Island (ATRAPBK 46)
+};
+
+const gehnState = 0x010140; // 1 at the start of the 233rd age scenes, 4 once Gehn is trapped
+const prisonCage = 0x010070; // 0 = Closed, 1 = Opening, 2 = Catherine is free
+
 const surveySelectedChunk = 0x0100a4; // 0 = no chunk selected on the detailed map
 
 const craterSurveyMaglevLocation = 0x010022; // 0 = Survey, 1 = Crater
@@ -210,7 +269,7 @@ const purpleMarbleColumn = 0x010158;
 set.addAchievement({
   id: 648931,
   title: 'WARNING',
-  description: 'Game always has to be started with Disc 1! (Discs can be switched inside the game.)',
+  description: 'Game always has to be started with Disc 1! Discs can be switched inside the game.',
   points: 0,
   conditions: $(
     ['', 'Delta', '16bit', orangeMarbleColumn, '=', 'Value', '', 0],
@@ -446,6 +505,178 @@ set.addAchievement({
   description: 'Find Gehn watching you in the Temple',
   points: 2,
   conditions: movieFinished(DomeScreenEnum.GehnWatching, [33]),
+});
+
+const domePower = 0x010068; // 0 = Off, 1 = Books are powered (set when the marble puzzle is solved)
+
+set.addAchievement({
+  title: 'Marble Puzzle',
+  description: 'Solve the Marble Puzzle',
+  points: 25,
+  type: 'progression',
+  // Movie 90 plays after pressing with the correct marble placement + Dome Power (0 -> 1) is set at its start
+  conditions: movieFinished(
+    DomeScreenEnum.MarblePress,
+    [90],
+    ['', 'Mem', '16bit', domePower, '=', 'Value', '', 1],
+  ),
+});
+
+// TODO test options
+set.addAchievement({
+  title: 'Gehn\'s Realm',
+  description: 'Find a way into Gehn\'s realm',
+  points: 10,
+  type: 'progression',
+  // Arriving in Gehn's cage (every dome book links to the same screen)
+  conditions: arrivedOnScreen(Age233ScreenEnum.CageArrival),
+  // TODO Other option: any dome book opening with the linking panel image (before the flyby, player hasn't linked yet).
+  // Dome-Book State per dome: 0 = Closed, 1 = Opened but blank, 2 = Opened with image
+  // conditions: $(
+  //   ['OrNext', 'Mem', '16bit', 0x0100e8, '=', 'Value', '', 2], // Dome Island
+  //   ['OrNext', 'Mem', '16bit', 0x010124, '=', 'Value', '', 2], // Jungle Island
+  //   ['OrNext', 'Mem', '16bit', 0x010066, '=', 'Value', '', 2], // Crater Island
+  //   ['OrNext', 'Mem', '16bit', 0x010094, '=', 'Value', '', 2], // Prison Island
+  //   ['',       'Mem', '16bit', 0x0100ac, '=', 'Value', '', 2], // Survey Island
+  // ),
+});
+
+const executionPlatformFloor = 0x0100fe; // 0 = Closed, 1 = Open
+
+set.addAchievement({
+  title: 'The Wahrk Gallows',
+  description: 'Find a way up to the prison ledge',
+  points: 5,
+  conditions: movieFinished(
+    JungleScreenEnum.GallowsWinch,
+    [113],
+    ['',  'Mem', '16bit', executionPlatformFloor, '=', 'Value', '', 0],
+  ),
+});
+
+const rebelCaveDoor = 0x010114; // 0 = Path leads to ocean, 1 = Path leads to animal puzzle
+const tayAgeBookState = 0x010116; // 0 = Hidden, 1 = Revealing, 2 = Revealed and interactable
+
+set.addAchievement({
+  title: 'Find the Moiety Cave',
+  description: 'Locate the Moiety\'s hidden cavern',
+  points: 10,
+  // Switching the door to the animal puzzle plays 50 (JRBTDROP); the door state flips 0 -> 1 at its start
+  conditions: movieFinished(
+    JungleScreenEnum.RebelCaveDoor,
+    [50],
+    ['', 'Mem', '16bit', rebelCaveDoor, '=', 'Value', '', 1],
+  ),
+});
+
+set.addAchievement({
+  title: 'Secrets of Stonehenge',
+  description: 'Solve the Moiety\'s hardest puzzle',
+  points: 25,
+  // The correct last stone sets the book state to 1 (Revealing), then 51 (JRTWATER) floods the room.
+  // The book state becomes 2 (Revealed) shortly after the movie ends.
+  conditions: movieFinished(
+    JungleScreenEnum.StonehengeTunnel,
+    [51],
+    ['', 'Mem', '16bit', tayAgeBookState, '=', 'Value', '', 1],
+  ),
+});
+
+set.addAchievement({
+  title: 'The New Great Tree',
+  description: 'Enter the Moiety\'s new stronghold in Tay',
+  points: 3,
+  conditions: movieFinished(TayScreenEnum.BoatRide, [25]),
+  // TODO Other idea: first screen in the tree prison cell, probably too late
+  // conditions: arrivedOnScreen(TayScreenEnum.PrisonCell),
+});
+
+set.addAchievement({
+  title: 'Captive Audience',
+  description: 'Not quite a prisoner, not quite welcome - watch the rebels of Tay go about their lives in 4 different scenes from your prison cell',
+  points: 5,
+  type: 'missable',
+  conditions: seenAllMovies([
+    {screen: TayScreenEnum.PrisonWindow, movie: 10},
+    {screen: TayScreenEnum.PrisonWindow, movie: 21},
+    {screen: TayScreenEnum.PrisonWindow, movie: 22},
+    // Middle house windows play several variants (IDs from REBEL.BIN, see docs/movie-extract/disc4-rebel-*)
+    {screen: TayScreenEnum.PrisonWindow, movie: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]},
+  ]),
+});
+
+
+set.addAchievement({
+  title: 'Not Prepared Enough',
+  description: 'Trap Gehn',
+  points: 10,
+  conditions: movieFinished(
+    Age233ScreenEnum.GehnTakesTrapBook,
+    [26],
+    ['', 'Mem', '16bit', gehnState, '=', 'Value', '', 4],
+  ),
+});
+
+set.addAchievement({
+  title: 'Visit the Once Great Tree',
+  description: 'Arrive on Prison Island',
+  points: 5,
+  conditions: movieFinished(Age233ScreenEnum.PrisonBookLink, [19]),
+});
+
+set.addAchievement({
+  title: 'Music to Her Ears',
+  description: 'Free Catherine',
+  points: 10,
+  conditions: movieFinished(
+    PrisonScreenEnum.CatherineCage,
+    [6],
+    ['', 'Mem', '16bit', prisonCage, '=', 'Value', '', 2],
+  ),
+});
+
+set.addAchievement({
+  title: 'The Ending Can Never Truly Be Written',
+  description: 'Trap Gehn, save Catherine, and get home - safely?',
+  points: 25,
+  type: 'win_condition',
+  conditions: movieFinished(
+    DomeEndingScreenEnum.AtrusArrives,
+    [65],
+    ['', 'Mem', '16bit', gehnState, '=', 'Value', '', 4],
+    ['', 'Mem', '16bit', prisonCage, '=', 'Value', '', 2],
+  ),
+});
+
+
+/* -------------------- Bad Endings ------------------ */
+
+set.addAchievement({
+  title: 'What Does This Do Again?',
+  description: 'Retrieve the Trap Book and use it in Tay (E2)',
+  points: 3,
+  conditions: movieFinished(EndingScreenEnum.TrapBookTay, [1]),
+});
+
+set.addAchievement({
+  title: 'Trap Book in Riven after Gehn',
+  description: 'Visit Gehn, then retrieve the Trap Book and use it on Riven (E4)',
+  points: 5,
+  conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [2]),
+});
+
+// set.addAchievement({
+//   title: 'No Thanks, After You\t',
+//   description: 'Refuse to enter Gehn\'s Prison Book three times (E5)',
+//   points: 10,
+//   // conditions: TODO
+// });
+
+set.addAchievement({
+  title: 'Pity for the old man',
+  description: 'Capture Gehn, then use the Trap Book on Riven (E7)',
+  points: 5,
+  conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [1]),
 });
 
 export default set;

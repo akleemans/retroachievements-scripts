@@ -413,7 +413,7 @@ describe('Deep Into the Earth', () => {
 describe('Unwelcome Visitor', () => {
   const cheevo = achievement('Unwelcome Visitor');
 
-  test('pops when the Scribe fleeing movie finishes: survey-follow-scribe', () => {
+  test('pops when the Scribe fleeing movie finishes', () => {
     const s = scenario('survey-follow-scribe');
     const result = runAchievement(cheevo, s);
 
@@ -437,7 +437,7 @@ describe('Unwelcome Visitor', () => {
 describe('Meet the Wahrk', () => {
   const cheevo = achievement('Meet the Wahrk');
 
-  test('pops when the first wahrk movie finishes: survey-watch-wahrk', () => {
+  test('pops when the first wahrk movie finishes', () => {
     const s = scenario('survey-watch-wahrk');
     const result = runAchievement(cheevo, s);
 
@@ -451,7 +451,7 @@ describe('Meet the Wahrk', () => {
 describe('Is that glass thick enough?', () => {
   const cheevo = achievement('Is that glass thick enough?');
 
-  test('pops when the wahrk attack movie finishes: survey-watch-wahrk', () => {
+  test('pops when the wahrk attack movie finishes', () => {
     const s = scenario('survey-watch-wahrk');
     const result = runAchievement(cheevo, s);
 
@@ -466,7 +466,7 @@ describe('Is that glass thick enough?', () => {
 describe('Is that Catherine?', () => {
   const cheevo = achievement('Is that Catherine?');
 
-  test('pops when the Catherine movie finishes: survey-watch-catherine', () => {
+  test('pops when the Catherine movie finishes', () => {
     const s = scenario('survey-watch-catherine');
     const result = runAchievement(cheevo, s);
 
@@ -477,7 +477,7 @@ describe('Is that Catherine?', () => {
     expect(result.triggeredFrame).toBe(s.marker('catherine-movie-finished'));
   });
 
-  test('does not pop when only watching the wahrk: survey-watch-wahrk', () => {
+  test('does not pop when only watching the wahrk', () => {
     const result = runAchievement(cheevo, scenario('survey-watch-wahrk'));
 
     expect(result.triggered).toBe(false);
@@ -487,7 +487,7 @@ describe('Is that Catherine?', () => {
 describe('Gehn Is Watching You', () => {
   const cheevo = achievement('Gehn Is Watching You');
 
-  test('pops when the Gehn movie finishes: temple-gehn-watching', () => {
+  test('pops when the Gehn movie finishes', () => {
     const s = scenario('temple-gehn-watching');
     const result = runAchievement(cheevo, s);
 
@@ -496,5 +496,259 @@ describe('Gehn Is Watching You', () => {
     expect(result.stateAt(s.marker('gehn-movie-start'))).toBe('active');
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('gehn-movie-finished'));
+  });
+});
+
+describe('Marble Puzzle', () => {
+  const cheevo = achievement('Marble Puzzle');
+
+  test('pops when the solved movie finishes', () => {
+    const s = scenario('temple-marble-puzzle');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('puzzle-solved'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('solved-movie-finished'));
+  });
+
+  test('does not pop with a wrong marble placement', () => {
+    const s = scenario('temple-marble-puzzle-wrong');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('press-fired-wrong'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+});
+
+describe('Gehn\'s Realm', () => {
+  const cheevo = achievement('Gehn\'s Realm');
+
+  test('pops when arriving in Gehns cage', () => {
+    const s = scenario('temple-open-dome-to-233');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('book-opened'))).toBe('active');
+    expect(result.stateAt(s.marker('panel-active'))).toBe('active');
+    expect(result.stateAt(s.marker('link-screen'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('arrived-233'));
+    // Option 2 (dome book opening): expect(result.triggeredFrame).toBe(s.marker('book-opened'));
+  });
+});
+
+describe('The Wahrk Gallows', () => {
+  const cheevo = achievement('The Wahrk Gallows');
+
+  test('pops when the winch movie finishes', () => {
+    const s = scenario('jungle-gallows-entry');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('winch-screen-reached'))).toBe('active');
+    expect(result.stateAt(s.marker('winch-pulled'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('winch-movie-finished'));
+    expect(result.triggeredFrame).toBeLessThan(s.marker('ledge-reached'));
+  });
+});
+
+describe('Find the Moiety Cave', () => {
+  const cheevo = achievement('Find the Moiety Cave');
+
+  test('pops when the door switch movie finishes', () => {
+    const s = scenario('jungle-moiety-cave-found');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('door-switched'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('door-movie-finished'));
+  });
+});
+
+describe('Secrets of Stonehenge', () => {
+  const cheevo = achievement('Secrets of Stonehenge');
+
+  test('pops when the water movie finishes', () => {
+    const s = scenario('jungle-moiety-cave-puzzle-solved');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('first-stone-pressed'))).toBe('active');
+    expect(result.stateAt(s.marker('last-stone-pressed'))).toBe('active');
+    expect(result.stateAt(s.marker('water-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('water-movie-finished'));
+  });
+
+  test('does not pop on a wrong stone order, then pops on the correct one', () => {
+    const s = scenario('jungle-moiety-cave-wrong-solution-first');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('wrong-stone-movie-finished'))).toBe('active');
+    expect(result.stateAt(s.marker('stones-reset'))).toBe('active');
+    expect(result.stateAt(s.marker('last-stone-pressed'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    // Water movie was skipped here, which still counts
+    expect(result.triggeredFrame).toBe(s.marker('water-movie-finished'));
+  });
+});
+
+describe('The New Great Tree', () => {
+  const cheevo = achievement('The New Great Tree');
+
+  test('pops when the boat ride to the tree finishes: tay-enter-tree', () => {
+    const s = scenario('tay-enter-tree');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('captors-movie-start'))).toBe('active');
+    expect(result.stateAt(s.marker('boat-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('boat-movie-finished'));
+    // Option 2 (cell arrival): expect(result.triggeredFrame).toBe(s.marker('cell-reached'));
+  });
+});
+
+describe('Captive Audience', () => {
+  const cheevo = achievement('Captive Audience');
+
+  test('pops when all 4 village scenes were watched: tay-watch-people', () => {
+    const s = scenario('tay-watch-people');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.measuredAt(s.marker('right-scene-finished'))).toBe(1);
+    expect(result.measuredAt(s.marker('middle-scene-finished'))).toBe(2);
+    // Other middle house variants count as the same scene
+    expect(result.measuredAt(s.marker('middle-scene-repeated'))).toBe(2);
+    expect(result.measuredAt(s.marker('left-scene-finished'))).toBe(3);
+    expect(result.stateAt(s.marker('last-scene-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('last-scene-finished'));
+  });
+});
+
+describe('What Does This Do Again?', () => {
+  const cheevo = achievement('What Does This Do Again?');
+
+  test('pops when the Tay trap book ending finishes', () => {
+    const s = scenario('ending2-use-trap-book-on-tay');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('trap-book-movie-start'))).toBe('active');
+    expect(result.stateAt(s.marker('ending-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('ending-movie-finished'));
+  });
+});
+
+describe('Trap Book in Riven after Gehn', () => {
+  const cheevo = achievement('Trap Book in Riven after Gehn');
+
+  test('pops when the Gehn trap book ending finishes', () => {
+    const s = scenario('ending4-use-trap-book-on-riven-after-gehn');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('trap-book-movie-start'))).toBe('active');
+    expect(result.stateAt(s.marker('ending-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('ending-movie-finished'));
+  });
+
+  for (const name of ['ending7-release-gehn-in-233', 'ending7-release-gehn-on-prison-island']) {
+    test(`does not pop on the E7 ending (same screen, other movie): ${name}`, () => {
+      const result = runAchievement(cheevo, scenario(name));
+
+      expect(result.triggered).toBe(false);
+    });
+  }
+});
+
+describe('Not Prepared Enough', () => {
+  const cheevo = achievement('Not Prepared Enough');
+
+  test('pops when Gehn links into the trap book', () => {
+    const s = scenario('233-trap-gehn');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('trap-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('trap-movie-finished'));
+  });
+});
+
+describe('Visit the Once Great Tree', () => {
+  const cheevo = achievement('Visit the Once Great Tree');
+
+  test('pops after the link to Prison Island', () => {
+    const s = scenario('233-go-to-prison-island');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('link-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('link-movie-finished'));
+  });
+});
+
+describe('Music to Her Ears', () => {
+  const cheevo = achievement('Music to Her Ears');
+
+  test('pops after Catherine is freed: prison-free-catherine', () => {
+    const s = scenario('prison-free-catherine');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('cage-opened'))).toBe('active');
+    expect(result.stateAt(s.marker('freed-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('freed-movie-finished'));
+  });
+});
+
+describe('The Ending Can Never Truly Be Written', () => {
+  const cheevo = achievement('The Ending Can Never Truly Be Written');
+
+  test('pops at the end of the final scene: temple-best-ending', () => {
+    const s = scenario('temple-best-ending');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('ending-movie-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('ending-movie-finished'));
+  });
+});
+
+describe('Pity for the old man', () => {
+  const cheevo = achievement('Pity for the old man');
+
+  const scenarios = ['ending7-release-gehn-in-233', 'ending7-release-gehn-on-prison-island'];
+
+  for (const name of scenarios) {
+    test(`pops after the ending movie: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('trap-book-movie-start'))).toBe('active');
+      expect(result.stateAt(s.marker('ending-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('ending-movie-finished'));
+    });
+  }
+
+  test('does not pop on the E4 ending (same screen, other movie)', () => {
+    const result = runAchievement(cheevo, scenario('ending4-use-trap-book-on-riven-after-gehn'));
+
+    expect(result.triggered).toBe(false);
   });
 });
