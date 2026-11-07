@@ -63,6 +63,27 @@ const arrivedOnScreen = (screen, ...coreConditions) => {
   return conditions;
 };
 
+// Hotspot click detection (USA): the index in the screen's hotspot list
+const hoveredHotspotIndexUsa = 0x19e784;
+const clickStateUsa = 0x09db68;
+
+// Converts a USA address of an EXE global to the given region. Globals of the EXE shift like the screen pointer cell, save flags at 0x10000 don't shift.
+const regionAddress = (region, usaAddress) => usaAddress + region.screenPointer - screenPointerUsa;
+
+// Pattern: the player just clicked a hotspot on a screen (hotspotIndex = position in the screen's hotspot list), one alt per region
+const clickedHotspot = (screen, hotspotIndex, ...coreConditions) => {
+  const conditions = {core: $(...coreConditions)};
+  for (const region of regions) {
+    conditions[region.alt] = $(
+      ['', 'Mem',   '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)],
+      ['', 'Mem',   '16bit', regionAddress(region, hoveredHotspotIndexUsa), '=', 'Value', '', hotspotIndex],
+      ['', 'Delta', '8bit',  regionAddress(region, clickStateUsa), '=', 'Value', '', 0],
+      ['', 'Mem',   '8bit',  regionAddress(region, clickStateUsa), '=', 'Value', '', 1],
+    );
+  }
+  return conditions;
+};
+
 const resetOnBoot = () => {
   return [
     ['AndNext', 'Delta', '16bit', orangeMarbleColumn, '=', 'Value', '', 0],
@@ -171,7 +192,8 @@ const DomeScreenEnum = {
   GateRoomEntry: 0x801c6ca0,
   MaglevToJungleForward: 0x801bcf98,
   GehnWatching: 0x801be0cc, // temple, plays movie 33 of Gehn watching the player
-  MarblePress: 0x801ccefc, // tIslandExterior7500, fire marble press. Plays 90 on a correct solution, 91/93 otherwise
+  MarblePress: 0x801ccefc, // tIslandExterior7500, fire marble press
+  TempleLamps: 0x801be450,
 };
 
 const JungleScreenEnum = {
@@ -190,6 +212,8 @@ const JungleScreenEnum = {
   SubmarineHatchVillageDock: 0x801f0d98, // outside the closed hatch, ladder dock near village
   LumberCartToBoiler: 0x801e93d8, // inside the lumber cart, plays JLMBRJ2B (257) to Boiler Island
   MaglevToSurvey: 0x801d6b64, // inside the maglev, plays movie 158 to Survey Island
+  WireframeVillage: 0x801e2190, // jVillage2725, wireframe render of the village, only reachable with the easter egg
+  ThroneStairs: 0x801c1dfc, // jGThrone450, stairs up to the throne, lamp hotspot 9 (index 3) shows the sky walk
 };
 
 const BoilerScreenEnum = {
@@ -213,8 +237,7 @@ const SurveyScreenEnum = {
 
 const Age233ScreenEnum = {
   CageArrival: 0x801b90bc, // inside Gehn's cage, where every fire marble dome book links to
-  // Gehn's study, after handing him the trap book. Plays 26 (O6_10Z, Gehn opens the book and links into it),
-  // while Gehn State (0x10140) goes 1 -> 4 at the movie start
+  // Gehn's study, after handing him the trap book. Plays 26 (O6_10Z, Gehn opens the book and links into it)
   // E5: the same screen plays 24 (OGR_B, Gehn gives up after the third refusal) with Gehn State 3
   GehnTakesTrapBook: 0x801bf65c,
   // Black screen after touching the Prison Island book in Gehn's study. Plays 18 and 19 (GEHN.BIN, linking to Prison Island)
@@ -226,7 +249,7 @@ const PrisonScreenEnum = {
   CatherineCage: 0x801ba0dc,
 };
 
-// Star Fissure endings: each outcome has its own screen and movie (disc 5, GEHN.BIN IDs)
+// Star Fissure endings: each outcome has its own screen and movie
 const DomeEndingScreenEnum = {
   // Fissure temple, after summoning Atrus with the linking book. Plays 65 (the final ending scene with Atrus)
   AtrusArrives: 0x801c4c28,
@@ -236,27 +259,19 @@ const DomeEndingScreenEnum = {
 };
 
 const TayScreenEnum = {
-  // After linking to Tay: plays 24 (R3_5R, the Moiety captors approach) and 25 (R3_8, night boat ride to the tree).
+  // After linking to Tay: plays 24 (the Moiety captors approach) and 25 (night boat ride to the tree).
   // Tay's movies are in REBEL/MOVIE on disc 4, not in the disc's ID table (ID 25 there is Survey's GPINS2).
   BoatRide: 0x801bacc0,
   PrisonCell: 0x801b90dc, // first view inside the tree prison cell, after a black hand-over screen
-  // Looking out of the prison cell window at the village, where 4 scenes of moving people play:
-  // 10 upper right walkway, 21 lower right, 22 far left, 11-20 middle house windows (all count as one scene)
   PrisonWindow: 0x801b9b88,
 };
 
 const EndingScreenEnum = {
   // E2: trap book used in Tay. Plays 28 (ATRAPBK, opening the book), then 1 on TrapBookTay
-  // (Tay's own table in REBEL.BIN on disc 4: R6_18 channel 1). ID 1 on Survey is GELCRHDL, the screen tells them apart.
   // E8 (trap book used in Tay after trapping Gehn) uses the same screen with 0 (REBEL.BIN).
   TrapBookTay: 0x801b8f40,
-  // E4: trap book used on Riven after visiting Gehn. Plays 308 (ATRAPBK) on the jungle disc, then the game loads disc 5
-  // and plays 2 (GEHN.BIN: O6_15X, Gehn picks up the trap book in front of the cage) on TrapBookRiven.
-  // Not checked yet: the trap book on Riven before visiting Gehn (E3) might use the same screen with another movie.
+  // E3, E4, E7
   TrapBookRiven: 0x801b9504,
-  // E7 (trap book used after trapping Gehn) uses the same screen with 1 (GEHN.BIN: O6_16X channel 1),
-  // whether the book is opened in the 233rd age (ATRAPBK 69) or on Prison Island (ATRAPBK 46).
-  // E3 (trap book used before visiting Gehn) uses the same screen with 0 (GEHN.BIN: O6_16X channel 0).
 };
 
 const gehnState = 0x010140; // 1 at the start of the 233rd age scenes, 4 once Gehn is trapped
@@ -655,6 +670,88 @@ set.addAchievement({
   ),
 });
 
+// Golden Dome states. None of them is persistent, so the achievement counts the opening event of each dome instead:
+// - Temple:  0 = Spinning, 1 = Stopped. Goes back to 0 when the dome closes around the player (movies 121/122 TCLSINSD)
+// - Boiler:  0 = Spinning, 1 = Open
+// - Prison:  0 = Spinning, 1 = Stopped, 2 = Opening, 3 = Closing. Opened with the button inside (then movie 40),
+//            goes back to 0 when Catherine is freed
+// - Survey:  0 = Spinning, 1 = Open
+// - Jungle:  0 = Spinning, 1 = Open, 2 = About to open
+const goldenDomes = [
+  0x01001a, // tdome, Temple Island
+  0x010064, // bdome, Boiler Island
+  0x01006e, // pdome, Prison Island
+  0x0100a2, // gdome, Survey Island
+  0x0100f4, // jdome, Jungle Island
+];
+
+// TODO test
+set.addAchievement({
+  title: 'Full Coverage',
+  description: 'Restore Gehn\'s transportation network by opening all five Golden Domes across Riven',
+  points: 10,
+  // Each dome counts once when its flag changes to 1. Region independent (save flags don't shift).
+  // Caveats: hits are lost on power off / reset, and loading a save where a dome is open counts as opening it.
+  conditions: {
+    core: $(
+      ...resetOnBoot(),
+      ...goldenDomes.flatMap((dome) => [
+        ['AndNext', 'Delta', '16bit', dome, '!=', 'Value', '', 1],
+        ['AddHits', 'Mem',   '16bit', dome, '=',  'Value', '', 1, 1],
+      ]),
+      ['Measured', 'Value', '', 0, '=', 'Value', '', 1, goldenDomes.length],
+    ),
+  },
+});
+
+const easterEggUnlock = 0x01003e; // 0 = Locked, 1 = Unlocked (set on the last step)
+
+set.addAchievement({
+  title: 'Commercial Break',
+  description: 'Watch an Ad on Gehn\'s CCTV',
+  points: 5,
+  // Left scope in Wahrk Room plays movie 145 (Silly Putty ad) instead of the feed if the egg is unlocked
+  conditions: movieFinished(
+    SurveyScreenEnum.WahrkRoomLeftScope,
+    [145],
+    ['', 'Mem', '16bit', easterEggUnlock, '=', 'Value', '', 1],
+  ),
+});
+
+set.addAchievement({
+  title: 'Deck the Halls',
+  description: 'Decorate the Temple in Green and Red',
+  points: 5,
+  // The lights only appear after clicking the lamp: hotspot 8 shows picture 3 if the egg is unlocked
+  conditions: clickedHotspot(
+    DomeScreenEnum.TempleLamps,
+    3,
+    ['', 'Mem', '16bit', easterEggUnlock, '=', 'Value', '', 1],
+  ),
+});
+
+set.addAchievement({
+  title: 'The Wireframe',
+  description: 'See the Jungle Village before it was Rendered',
+  points: 10,
+  // Turning right on jVillage2710 leads to jVillage2725 instead of jVillage2700 if the egg is unlocked
+  conditions: arrivedOnScreen(
+    JungleScreenEnum.WireframeVillage,
+    ['', 'Mem', '16bit', easterEggUnlock, '=', 'Value', '', 1],
+  ),
+});
+
+set.addAchievement({
+  title: 'A Walk in the Sky',
+  description: 'Climb the Stairs to the Throne into the Sky',
+  points: 5,
+  // Clicking the lamp on jGThrone450 (hotspot 9) shows picture 3, the stairs in a blue sky if egg unlocked
+  conditions: clickedHotspot(
+    JungleScreenEnum.ThroneStairs,
+    3,
+    ['', 'Mem', '16bit', easterEggUnlock, '=', 'Value', '', 1],
+  ),
+});
 
 /* -------------------- Bad Endings ------------------ */
 

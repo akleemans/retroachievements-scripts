@@ -792,3 +792,108 @@ describe('Endings', () => {
     }
   }
 });
+
+describe('Full Coverage', () => {
+  const cheevo = achievement('Full Coverage');
+
+  test('counts the Prison Island dome when it opens', () => {
+    const s = scenario('233-go-to-prison-island');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.measuredAt(s.marker('prison-dome-opened') - 1)).toBe(0);
+    expect(result.measuredAt(s.marker('prison-dome-opened'))).toBe(1);
+    expect(result.triggered).toBe(false);
+  });
+
+  test('does not count a dome closing', () => {
+    const result = runAchievement(cheevo, scenario('temple-open-dome-to-233'));
+
+    expect(result.triggered).toBe(false);
+  });
+});
+
+describe('Commercial Break', () => {
+  const cheevo = achievement('Commercial Break');
+
+  for (const name of ['survey-watch-catherine', 'survey-watch-wahrk']) {
+    test(`does not pop on the regular feeds: ${name}`, () => {
+      expect(runAchievement(cheevo, scenario(name)).triggered).toBe(false);
+    });
+  }
+
+  test('pops when the ad finishes on the left scope', () => {
+    // started by a click on the tiny hotspot 20 (hover index 8) in the bottom right corner of the scope
+    const s = scenario('easter-egg-silly-putty');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scope-arrived'))).toBe('active');
+    expect(result.stateAt(s.marker('ad-started'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('ad-finished'));
+  });
+});
+
+describe('Deck the Halls', () => {
+  const cheevo = achievement('Deck the Halls');
+
+  test('does not pop on the lamp room without the easter egg', () => {
+    // gehn-screen-left is the arrival on the lamp room (tTempleNoChr1300)
+    const s = scenario('temple-gehn-watching');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('gehn-screen-left'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+
+  test('pops when the lamp is clicked with the easter egg unlocked, not on arrival', () => {
+    // the lights are on screen right after lamp-clicked (screenshots 1400756 without, 1400846 with lights)
+    const s = scenario('easter-egg-activate-and-christmas');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('egg-unlocked'))).toBe('active');
+    expect(result.stateAt(s.marker('lamp-room-arrived'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('lamp-clicked'));
+  });
+});
+
+describe('The Wireframe', () => {
+  const cheevo = achievement('The Wireframe');
+
+  test('pops when turning right into the wireframe village', () => {
+    const s = scenario('easter-egg-wireframe');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('ladder-view-arrived'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('wireframe-arrived'));
+  });
+
+  test('does not pop on startup', () => {
+    const s = scenario('start-game-usa');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.triggered).toBe(false);
+  });
+});
+
+describe('A Walk in the Sky', () => {
+  const cheevo = achievement('A Walk in the Sky');
+
+  test('pops when the lamp on the throne stairs is clicked, not on arrival', () => {
+    // the sky is on screen right after lamp-clicked (screenshots 50063 without, 50093 with)
+    const s = scenario('easter-egg-sky-walk');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('throne-stairs-arrived'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('lamp-clicked'));
+  });
+
+  test('does not pop on the Temple lamp click (other screen)', () => {
+    const s = scenario('easter-egg-activate-and-christmas');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.triggered).toBe(false);
+  });
+});
