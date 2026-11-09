@@ -134,6 +134,19 @@ end
 local outDir = OUT_ROOT .. "/" .. SCENARIO.name
 local shotsDir = outDir .. "/screenshots"
 
+-- never overwrite an existing recording
+local function file_exists(path)
+    local f = io.open(path, "r")
+    if f then f:close() return true end
+    return false
+end
+for _, file in ipairs({ "recording.txt", "meta.json" }) do
+    if file_exists(outDir .. "/" .. file) then
+        error("\nscenario '" .. SCENARIO.name .. "' already has a recording (" .. outDir .. "/" .. file .. ").\n" ..
+              "Change `name` in recorder-config.lua, or delete the scenario folder to record it again.")
+    end
+end
+
 local function ensure_dir(path)
     -- try both unix and windows mkdir; errors are harmless if it exists
     os.execute('mkdir -p "' .. path .. '" 2>/dev/null')
