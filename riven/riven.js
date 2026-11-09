@@ -552,7 +552,7 @@ set.addAchievement({
   type: 'progression',
   // Arriving in Gehn's cage (every dome book links to the same screen)
   conditions: arrivedOnScreen(Age233ScreenEnum.CageArrival),
-  // TODO Other option: any dome book opening with the linking panel image (before the flyby, player hasn't linked yet).
+  // Other option: any dome book opening with the linking panel image (before the flyby, player hasn't linked yet).
   // Dome-Book State per dome: 0 = Closed, 1 = Opened but blank, 2 = Opened with image
   // conditions: $(
   //   ['OrNext', 'Mem', '16bit', 0x0100e8, '=', 'Value', '', 2], // Dome Island
@@ -669,13 +669,19 @@ set.addAchievement({
   ),
 });
 
-// Pause while no region has a screen loaded (pointer < 0x80000000): during boot and while loading a save
+// Pause while no region has a screen loaded (during boot and while loading a save). Screens are 0x801xxxxx,
+// other regions' pointer addresses can hold junk like 0x8001004e (Japan) or 0x94c698c6 (France).
+// In-game loads keep the pointer (load-state-france-in-game) and aren't caught, accepted as the player's own save.
 const pauseIfNoScreen = () => {
   return [
-    ['AndNext', 'Mem', '32bit', screenPointerUsa,           '<', 'Value', '', 0x80000000],
-    ['AndNext', 'Mem', '32bit', screenPointerEuropeGermany, '<', 'Value', '', 0x80000000],
-    ['AndNext', 'Mem', '32bit', screenPointerFrance,        '<', 'Value', '', 0x80000000],
-    ['PauseIf', 'Mem', '32bit', screenPointerJapan,         '<', 'Value', '', 0x80000000],
+    ['AddSource', 'Mem',   '32bit', screenPointerUsa,           '/',  'Value', '', 0x100000],
+    ['AndNext',   'Value', '',      0,                          '!=', 'Value', '', 0x801],
+    ['AddSource', 'Mem',   '32bit', screenPointerEuropeGermany, '/',  'Value', '', 0x100000],
+    ['AndNext',   'Value', '',      0,                          '!=', 'Value', '', 0x801],
+    ['AddSource', 'Mem',   '32bit', screenPointerFrance,        '/',  'Value', '', 0x100000],
+    ['AndNext',   'Value', '',      0,                          '!=', 'Value', '', 0x801],
+    ['AddSource', 'Mem',   '32bit', screenPointerJapan,         '/',  'Value', '', 0x100000],
+    ['PauseIf',   'Value', '',      0,                          '!=', 'Value', '', 0x801],
   ];
 };
 
@@ -686,7 +692,6 @@ const prisonDome = 0x01006e;
 const surveyDome = 0x0100a2;
 const jungleDome = 0x0100f4;
 
-// TODO test if loading a save is paused in other regions
 // Test: Save state 9b: Jungle -> Survey -> Boiler -> 233, Trap Gehn -> Prison Island -> Temple
 set.addAchievement({
   title: 'Full Coverage',
@@ -694,7 +699,6 @@ set.addAchievement({
   points: 10,
   conditions: {
     core: $(
-      // TODO maybe resetOnBoot?
       ...pauseIfNoScreen(),
       // Add 1 hit each on opening a dome
       ['AndNext',   'Delta', 'Bit0', templeDome, '=', 'Value', '', 0],

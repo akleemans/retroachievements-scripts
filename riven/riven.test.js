@@ -847,6 +847,24 @@ describe('Full Coverage', () => {
     expect(result.triggeredFrame).toBe(1425927);
   });
 
+  const regionLoads = [
+    // [scenario, save flags written, first screen]
+    ['load-state-europe', 3086, 3837],
+    ['load-state-france', 3113, 3269],
+    ['load-state-japan', 3153, 3981],
+  ];
+
+  for (const [name, loadFrame, screenFrame] of regionLoads) {
+    test(`is paused while loading a save: ${name}`, () => {
+      const result = runAchievement(cheevo, scenario(name));
+
+      expect(result.stateAt(loadFrame)).toBe('paused');
+      expect(result.stateAt(screenFrame - 1)).toBe('paused');
+      expect(result.stateAt(screenFrame)).toBe('active');
+      expect(result.measuredAt(screenFrame)).toBe(0);
+    });
+  }
+
   test('does not count a dome opened by loading a save', () => {
     // all save flags (jdome 0 -> 1) are written at frame 3038, the first screen loads at 3891
     const s = scenario('domes-load-save-file-jungle-dome-open');
@@ -955,6 +973,25 @@ describe('A Walk in the Sky', () => {
 
 describe('Gehn\'s Secret Paths', () => {
   const cheevo = achievement('Gehn\'s Secret Paths');
+
+  const regionLoads = [
+    // [scenario, save flags written, first screen]
+    ['load-state-europe', 3086, 3837],
+    ['load-state-france', 3113, 3269],
+    ['load-state-japan', 3153, 3981],
+  ];
+
+  for (const [name, loadFrame, screenFrame] of regionLoads) {
+    test(`is paused while loading a save: ${name}`, () => {
+      // these saves have only the beetle room inner gate open
+      const result = runAchievement(cheevo, scenario(name));
+
+      expect(result.stateAt(loadFrame)).toBe('paused');
+      expect(result.stateAt(screenFrame - 1)).toBe('paused');
+      expect(result.stateAt(screenFrame)).toBe('active');
+      expect(result.measuredAt(screenFrame)).toBe(1);
+    });
+  }
 
   test('does not pop when a save is loaded', () => {
     // early save, only the beetle room inner gate open (save flags written at 3038, first screen at 3891)
