@@ -372,6 +372,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650594,
   title: 'Meet the Sunner',
   description: 'Get up close and personal with a giant Sunner',
   points: 3,
@@ -379,6 +380,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650595,
   title: 'Knock, Knock',
   description: 'Check if someone\'s home at a villager\'s hut by knocking multiple times',
   points: 3,
@@ -387,6 +389,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650596,
   title: 'Eye Spy',
   description: 'Find and rotate all 4 wooden animal eyes',
   points: 5,
@@ -400,6 +403,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650597,
   title: 'Submarine',
   description: 'Get access to the submarine',
   points: 5,
@@ -407,6 +411,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650598,
   title: 'D\'ni Scholar',
   description: 'Make both players "win" in the Classroom',
   points: 5,
@@ -417,6 +422,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650599,
   title: 'Boiler Island',
   description: 'Arrive at Boiler Island',
   points: 5,
@@ -425,6 +431,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650600,
   title: 'Boiler Puzzle',
   description: 'Complete the Boiler puzzle',
   points: 10,
@@ -433,6 +440,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650601,
   title: 'Meet the Ytram',
   description: 'Capture a poisonous Ytram',
   points: 5,
@@ -440,6 +448,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650602,
   title: 'Gehn\'s Lab',
   description: 'Find a way into Gehn\'s Lab',
   points: 10,
@@ -448,6 +457,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650603,
   title: 'Survey Island',
   description: 'Arrive at Survey Island',
   points: 5,
@@ -467,6 +477,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650604,
   title: 'Gehn\'s Map',
   description: 'Interact with the relief map on Survey Island',
   points: 5,
@@ -479,6 +490,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650605,
   title: 'Deep Into the Earth',
   description: 'Find a way into the underground of Survey Island',
   points: 3,
@@ -488,6 +500,7 @@ set.addAchievement({
 
 
 set.addAchievement({
+  id: 650606,
   title: 'Unwelcome Visitor',
   description: 'Follow the Scribe to see him flee',
   points: 1,
@@ -497,6 +510,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650607,
   title: 'Meet the Wahrk',
   description: 'Finally meet one of Gehn\'s fearsome pets',
   points: 2,
@@ -505,6 +519,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650608,
   title: 'Is that glass thick enough?',
   description: 'Annoy the Wahrk',
   points: 2,
@@ -513,6 +528,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650609,
   title: 'Is that Catherine?',
   description: 'Take a look into Catherine\'s chamber',
   points: 2,
@@ -523,6 +539,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650610,
   title: 'Gehn Is Watching You',
   description: 'Find Gehn watching you in the Temple',
   points: 2,
@@ -532,6 +549,7 @@ set.addAchievement({
 const domePower = 0x010068; // 0 = Off, 1 = Books are powered (set when the marble puzzle is solved)
 
 set.addAchievement({
+  id: 650611,
   title: 'Marble Puzzle',
   description: 'Solve the Marble Puzzle',
   points: 25,
@@ -546,6 +564,7 @@ set.addAchievement({
 
 // TODO test options
 set.addAchievement({
+  id: 650612,
   title: 'Gehn\'s Realm',
   description: 'Find a way into Gehn\'s realm',
   points: 10,
@@ -566,6 +585,7 @@ set.addAchievement({
 const executionPlatformFloor = 0x0100fe; // 0 = Closed, 1 = Open
 
 set.addAchievement({
+  id: 650613,
   title: 'The Wahrk Gallows',
   description: 'Find a way up to the prison ledge',
   points: 5,
@@ -580,6 +600,7 @@ const rebelCaveDoor = 0x010114; // 0 = Path leads to ocean, 1 = Path leads to an
 const tayAgeBookState = 0x010116; // 0 = Hidden, 1 = Revealing, 2 = Revealed and interactable
 
 set.addAchievement({
+  id: 650614,
   title: 'Find the Moiety Cave',
   description: 'Locate the Moiety\'s hidden cavern',
   points: 10,
@@ -592,6 +613,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650615,
   title: 'Secrets of Stonehenge',
   description: 'Solve the Moiety\'s hardest puzzle',
   points: 25,
@@ -604,6 +626,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650616,
   title: 'The New Great Tree',
   description: 'Enter the Moiety\'s new stronghold in Tay',
   points: 3,
@@ -613,6 +636,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650617,
   title: 'Captive Audience',
   description: 'Not quite a prisoner, not quite welcome - watch the rebels of Tay go about their lives in 4 different scenes from your prison cell',
   points: 5,
@@ -628,6 +652,7 @@ set.addAchievement({
 
 
 set.addAchievement({
+  id: 650618,
   title: 'Not Prepared Enough',
   description: 'Trap Gehn',
   points: 10,
@@ -639,6 +664,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650619,
   title: 'Visit the Once Great Tree',
   description: 'Arrive on Prison Island',
   points: 5,
@@ -646,6 +672,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650620,
   title: 'Music to Her Ears',
   description: 'Free Catherine',
   points: 10,
@@ -657,6 +684,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650621,
   title: 'The Ending Can Never Truly Be Written',
   description: 'Trap Gehn, save Catherine, and get home - safely?',
   points: 25,
@@ -694,6 +722,7 @@ const jungleDome = 0x0100f4;
 
 // Test: Save state 9b: Jungle -> Survey -> Boiler -> 233, Trap Gehn -> Prison Island -> Temple
 set.addAchievement({
+  id: 650622,
   title: 'Full Coverage',
   description: 'Restore Gehn\'s transportation network by opening all five Golden Domes across Riven in a single session',
   points: 10,
@@ -726,6 +755,7 @@ const templeSteamDomeToBeetleTempleOuterDoor = 0x010080; // toggled at handle ou
 const templeBeetleRoomInnerGate = 0x010082; // Rotation Room Shortcut Gate, 1 = Down, set for free by the endgame
 
 set.addAchievement({
+  id: 650623,
   title: 'Gehn\'s Secret Paths',
   description: 'Open all seven permanent shortcuts across Riven before Gehn is caught',
   points: 10,
@@ -760,6 +790,7 @@ set.addAchievement({
 const easterEggUnlock = 0x01003e; // 0 = Locked, 1 = Unlocked (set on the last step)
 
 set.addAchievement({
+  id: 650624,
   title: 'Commercial Break',
   description: 'Watch an Ad on Gehn\'s CCTV',
   points: 5,
@@ -773,6 +804,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'Deck the Halls',
+  id: 650625,
   description: 'Decorate the Temple in Green and Red',
   points: 5,
   // The lights only appear after clicking the lamp: hotspot 8 shows picture 3 if the egg is unlocked
@@ -784,6 +816,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650626,
   title: 'The Wireframe',
   description: 'See the Jungle Village before it was Rendered',
   points: 5,
@@ -795,6 +828,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650627,
   title: 'A Walk in the Sky',
   description: 'Enjoy the view on the sky walk',
   points: 5,
@@ -809,6 +843,7 @@ set.addAchievement({
 /* -------------------- Bad Endings ------------------ */
 
 set.addAchievement({
+  id: 650628,
   title: 'Alone in the Dark',
   description: 'Open the Star Fissure without ever visiting Tay or Gehn (E1)',
   points: 5,
@@ -817,6 +852,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650629,
   title: 'What Does This Do Again?',
   description: 'Retrieve the Trap Book and use it in Tay (E2)',
   points: 3,
@@ -824,6 +860,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650630,
   title: 'You Have My Sympathy',
   description: 'Retrieve the Trap Book before visiting Gehn and use it on Riven (E3)',
   points: 5,
@@ -832,6 +869,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650631,
   title: 'Trap Book in Riven after Gehn',
   description: 'Visit Gehn, then retrieve the Trap Book and use it on Riven (E4)',
   points: 5,
@@ -839,6 +877,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650632,
   title: 'No Thanks, After You',
   description: 'Refuse Gehn\'s invitation of entering the Trap Book three times (E5)',
   points: 10,
@@ -851,6 +890,7 @@ set.addAchievement({
 
 
 set.addAchievement({
+  id: 650633,
   title: 'Gehn\'s victory',
   description: 'Retrieve the Trap Book without capturing Gehn and open the Star Fissure (E6)',
   points: 10,
@@ -859,6 +899,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650634,
   title: 'Pity for the old man',
   description: 'Capture Gehn, then use the Trap Book on Riven (E7)',
   points: 5,
@@ -866,6 +907,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650635,
   title: 'Betraying the Moiety',
   description: 'Capture Gehn, return to Tay, and use the Trap Book there (E8)',
   points: 10,
@@ -873,6 +915,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 650636,
   title: 'We Will Never Know Her Fate',
   description: 'Capture Gehn and open the Star Fissure without freeing Catherine (E9)',
   points: 10,
