@@ -75,10 +75,10 @@ const clickedHotspot = (screen, hotspotIndex, ...coreConditions) => {
   const conditions = {core: $(...coreConditions)};
   for (const region of regions) {
     conditions[region.alt] = $(
-      ['', 'Mem',   '32bit', region.screenPointer, '=', 'Value', '', screenValue(region, screen)],
+      ['', 'Mem',   '32bit', region.screenPointer,                          '=', 'Value', '', screenValue(region, screen)],
       ['', 'Mem',   '16bit', regionAddress(region, hoveredHotspotIndexUsa), '=', 'Value', '', hotspotIndex],
-      ['', 'Delta', '8bit',  regionAddress(region, clickStateUsa), '=', 'Value', '', 0],
-      ['', 'Mem',   '8bit',  regionAddress(region, clickStateUsa), '=', 'Value', '', 1],
+      ['', 'Delta', '8bit',  regionAddress(region, clickStateUsa),          '=', 'Value', '', 0],
+      ['', 'Mem',   '8bit',  regionAddress(region, clickStateUsa),          '=', 'Value', '', 1],
     );
   }
   return conditions;
@@ -664,7 +664,7 @@ set.addAchievement({
   conditions: movieFinished(
     DomeEndingScreenEnum.AtrusArrives,
     [65],
-    ['', 'Mem', '16bit', gehnState, '=', 'Value', '', 4],
+    ['', 'Mem', '16bit', gehnState,  '=', 'Value', '', 4],
     ['', 'Mem', '16bit', prisonCage, '=', 'Value', '', 2],
   ),
 });
@@ -701,17 +701,17 @@ set.addAchievement({
     core: $(
       ...pauseIfNoScreen(),
       // Add 1 hit each on opening a dome
-      ['AndNext',   'Delta', 'Bit0', templeDome, '=', 'Value', '', 0],
-      ['AddHits',   'Mem',   'Bit0', templeDome, '=', 'Value', '', 1, 1],
-      ['AndNext',   'Delta', 'Bit0', boilerDome, '=', 'Value', '', 0],
-      ['AddHits',   'Mem',   'Bit0', boilerDome, '=', 'Value', '', 1, 1],
-      ['AndNext',   'Delta', 'Bit0', prisonDome, '=', 'Value', '', 0],
-      ['AddHits',   'Mem',   'Bit0', prisonDome, '=', 'Value', '', 1, 1],
-      ['AndNext',   'Delta', 'Bit0', surveyDome, '=', 'Value', '', 0],
-      ['AddHits',   'Mem',   'Bit0', surveyDome, '=', 'Value', '', 1, 1],
-      ['AndNext',   'Delta', 'Bit0', jungleDome, '=', 'Value', '', 0],
-      ['AddHits',   'Mem',   'Bit0', jungleDome, '=', 'Value', '', 1, 1],
-      ['Measured',  'Value', '',     0,          '=', 'Value', '', 1, 5],
+      ['AndNext',  'Delta', 'Bit0', templeDome, '=', 'Value', '', 0],
+      ['AddHits',  'Mem',   'Bit0', templeDome, '=', 'Value', '', 1, 1],
+      ['AndNext',  'Delta', 'Bit0', boilerDome, '=', 'Value', '', 0],
+      ['AddHits',  'Mem',   'Bit0', boilerDome, '=', 'Value', '', 1, 1],
+      ['AndNext',  'Delta', 'Bit0', prisonDome, '=', 'Value', '', 0],
+      ['AddHits',  'Mem',   'Bit0', prisonDome, '=', 'Value', '', 1, 1],
+      ['AndNext',  'Delta', 'Bit0', surveyDome, '=', 'Value', '', 0],
+      ['AddHits',  'Mem',   'Bit0', surveyDome, '=', 'Value', '', 1, 1],
+      ['AndNext',  'Delta', 'Bit0', jungleDome, '=', 'Value', '', 0],
+      ['AddHits',  'Mem',   'Bit0', jungleDome, '=', 'Value', '', 1, 1],
+      ['Measured', 'Value', '',     0,          '=', 'Value', '', 1, 5],
     ),
   },
 });
@@ -721,7 +721,7 @@ const junglePrisonLedgeLadder = 0x010122;
 const boilerHatchShortcut = 0x010052;
 const boilerGehnsLabFrontDoorLock = 0x01002a; // 1 once opened from inside, then opens from outside too
 const boilerToDomeBridge = 0x010018; // toggled by handles on both ends
-const templeSteamDomeInnerBridge = 0x010084;  // 0 = Retracted, 1 = Extended, reset to 0 by the endgame
+const templeSteamDomeInnerBridge = 0x010084; // 0 = Retracted, 1 = Extended, reset to 0 by the endgame
 const templeSteamDomeToBeetleTempleOuterDoor = 0x010080; // toggled at handle outside, reset to 0 only by the endgame
 const templeBeetleRoomInnerGate = 0x010082; // Rotation Room Shortcut Gate, 1 = Down, set for free by the endgame
 
@@ -735,21 +735,21 @@ set.addAchievement({
   conditions: {
     core: $(
       ...pauseIfNoScreen(),
-      ['PauseIf',   'Mem',   '16bit', gehnState, '=', 'Value', '', 4],
-      ['AddSource', 'Delta', 'Bit0', boilerToDomeBridge],
-      ['AddSource', 'Delta', 'Bit0', boilerHatchShortcut],
-      ['AddSource', 'Delta', 'Bit0', junglePrisonLedgeLadder],
-      ['AddSource', 'Delta', 'Bit0', templeSteamDomeToBeetleTempleOuterDoor],
-      ['AddSource', 'Delta', 'Bit0', templeSteamDomeInnerBridge],
-      ['AddSource', 'Delta', 'Bit0', templeBeetleRoomInnerGate],
-      ['',          'Delta', 'Bit0', boilerGehnsLabFrontDoorLock, '=', 'Value', '', 6],
-      ['AddSource', 'Mem',   'Bit0', boilerToDomeBridge],
-      ['AddSource', 'Mem',   'Bit0', boilerHatchShortcut],
-      ['AddSource', 'Mem',   'Bit0', junglePrisonLedgeLadder],
-      ['AddSource', 'Mem',   'Bit0', templeSteamDomeToBeetleTempleOuterDoor],
-      ['AddSource', 'Mem',   'Bit0', templeSteamDomeInnerBridge],
-      ['AddSource', 'Mem',   'Bit0', templeBeetleRoomInnerGate],
-      ['Measured',  'Mem',   'Bit0', boilerGehnsLabFrontDoorLock, '=', 'Value', '', 7],
+      ['PauseIf',   'Mem',   '16bit', gehnState,                              '=', 'Value', '', 4],
+      ['AddSource', 'Delta', 'Bit0',  boilerToDomeBridge],
+      ['AddSource', 'Delta', 'Bit0',  boilerHatchShortcut],
+      ['AddSource', 'Delta', 'Bit0',  junglePrisonLedgeLadder],
+      ['AddSource', 'Delta', 'Bit0',  templeSteamDomeToBeetleTempleOuterDoor],
+      ['AddSource', 'Delta', 'Bit0',  templeSteamDomeInnerBridge],
+      ['AddSource', 'Delta', 'Bit0',  templeBeetleRoomInnerGate],
+      ['',          'Delta', 'Bit0',  boilerGehnsLabFrontDoorLock,            '=', 'Value', '', 6],
+      ['AddSource', 'Mem',   'Bit0',  boilerToDomeBridge],
+      ['AddSource', 'Mem',   'Bit0',  boilerHatchShortcut],
+      ['AddSource', 'Mem',   'Bit0',  junglePrisonLedgeLadder],
+      ['AddSource', 'Mem',   'Bit0',  templeSteamDomeToBeetleTempleOuterDoor],
+      ['AddSource', 'Mem',   'Bit0',  templeSteamDomeInnerBridge],
+      ['AddSource', 'Mem',   'Bit0',  templeBeetleRoomInnerGate],
+      ['Measured',  'Mem',   'Bit0',  boilerGehnsLabFrontDoorLock,            '=', 'Value', '', 7],
     ),
   },
 });
@@ -767,7 +767,7 @@ set.addAchievement({
   conditions: movieFinished(
     SurveyScreenEnum.WahrkRoomLeftScope,
     [145],
-    ['', 'Mem', '16bit', easterEggUnlock, '=', 'Value', '', 1],
+    ['',  'Mem', '16bit', easterEggUnlock, '=', 'Value', '', 1],
   ),
 });
 
