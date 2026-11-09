@@ -596,7 +596,6 @@ set.addAchievement({
   description: 'Solve the Moiety\'s hardest puzzle',
   points: 25,
   // The correct last stone sets the book state to 1 (Revealing), then 51 (JRTWATER) floods the room.
-  // The book state becomes 2 (Revealed) shortly after the movie ends.
   conditions: movieFinished(
     JungleScreenEnum.StonehengeTunnel,
     [51],
@@ -670,39 +669,89 @@ set.addAchievement({
   ),
 });
 
-// Golden Dome states. None of them is persistent, so the achievement counts the opening event of each dome instead:
-// - Temple:  0 = Spinning, 1 = Stopped. Goes back to 0 when the dome closes around the player (movies 121/122 TCLSINSD)
-// - Boiler:  0 = Spinning, 1 = Open
-// - Prison:  0 = Spinning, 1 = Stopped, 2 = Opening, 3 = Closing. Opened with the button inside (then movie 40),
-//            goes back to 0 when Catherine is freed
-// - Survey:  0 = Spinning, 1 = Open
-// - Jungle:  0 = Spinning, 1 = Open, 2 = About to open
-const goldenDomes = [
-  0x01001a, // tdome, Temple Island
-  0x010064, // bdome, Boiler Island
-  0x01006e, // pdome, Prison Island
-  0x0100a2, // gdome, Survey Island
-  0x0100f4, // jdome, Jungle Island
-];
+// Pause while no region has a screen loaded (pointer < 0x80000000): during boot and while loading a save
+const pauseIfNoScreen = () => {
+  return [
+    ['AndNext', 'Mem', '32bit', screenPointerUsa,           '<', 'Value', '', 0x80000000],
+    ['AndNext', 'Mem', '32bit', screenPointerEuropeGermany, '<', 'Value', '', 0x80000000],
+    ['AndNext', 'Mem', '32bit', screenPointerFrance,        '<', 'Value', '', 0x80000000],
+    ['PauseIf', 'Mem', '32bit', screenPointerJapan,         '<', 'Value', '', 0x80000000],
+  ];
+};
 
-// TODO test
+// Golden Dome states, Bit0 = open. Temple and Prison close again when the player steps inside
+const templeDome = 0x01001a;
+const boilerDome = 0x010064;
+const prisonDome = 0x01006e;
+const surveyDome = 0x0100a2;
+const jungleDome = 0x0100f4;
+
+// TODO test if loading a save is paused in other regions
+// Test: Save state 9b: Jungle -> Survey -> Boiler -> 233, Trap Gehn -> Prison Island -> Temple
 set.addAchievement({
   title: 'Full Coverage',
-  description: 'Restore Gehn\'s transportation network by opening all five Golden Domes across Riven',
+  description: 'Restore Gehn\'s transportation network by opening all five Golden Domes across Riven in a single session',
   points: 10,
-  // Each dome counts once when its flag changes to 1. Region independent (save flags don't shift).
-  // Caveats: hits are lost on power off / reset, and loading a save where a dome is open counts as opening it.
   conditions: {
     core: $(
-      ...resetOnBoot(),
-      ...goldenDomes.flatMap((dome) => [
-        ['AndNext', 'Delta', '16bit', dome, '!=', 'Value', '', 1],
-        ['AddHits', 'Mem',   '16bit', dome, '=',  'Value', '', 1, 1],
-      ]),
-      ['Measured', 'Value', '', 0, '=', 'Value', '', 1, goldenDomes.length],
+      // TODO maybe resetOnBoot?
+      ...pauseIfNoScreen(),
+      // Add 1 hit each on opening a dome
+      ['AndNext',   'Delta', 'Bit0', templeDome, '=', 'Value', '', 0],
+      ['AddHits',   'Mem',   'Bit0', templeDome, '=', 'Value', '', 1, 1],
+      ['AndNext',   'Delta', 'Bit0', boilerDome, '=', 'Value', '', 0],
+      ['AddHits',   'Mem',   'Bit0', boilerDome, '=', 'Value', '', 1, 1],
+      ['AndNext',   'Delta', 'Bit0', prisonDome, '=', 'Value', '', 0],
+      ['AddHits',   'Mem',   'Bit0', prisonDome, '=', 'Value', '', 1, 1],
+      ['AndNext',   'Delta', 'Bit0', surveyDome, '=', 'Value', '', 0],
+      ['AddHits',   'Mem',   'Bit0', surveyDome, '=', 'Value', '', 1, 1],
+      ['AndNext',   'Delta', 'Bit0', jungleDome, '=', 'Value', '', 0],
+      ['AddHits',   'Mem',   'Bit0', jungleDome, '=', 'Value', '', 1, 1],
+      ['Measured',  'Value', '',     0,          '=', 'Value', '', 1, 5],
     ),
   },
 });
+
+// Shortcuts, persistent (only their switch/handle writes them). 0 = Closed, 1 = Open
+const junglePrisonLedgeLadder = 0x010122;
+const boilerHatchShortcut = 0x010052;
+const boilerGehnsLabFrontDoorLock = 0x01002a; // 1 once opened from inside, then opens from outside too
+const boilerToDomeBridge = 0x010018; // toggled by handles on both ends
+const templeSteamDomeInnerBridge = 0x010084;  // 0 = Retracted, 1 = Extended, reset to 0 by the endgame
+const templeSteamDomeToBeetleTempleOuterDoor = 0x010080; // toggled at handle outside, reset to 0 only by the endgame
+const templeBeetleRoomInnerGate = 0x010082; // Rotation Room Shortcut Gate, 1 = Down, set for free by the endgame
+
+set.addAchievement({
+  title: 'Gehn\'s Secret Paths',
+  description: 'Open all seven permanent shortcuts across Riven before Gehn is caught',
+  points: 10,
+  type: 'missable',
+  // Last of seven just opened (6 -> 7), so loading a save doesn't count.
+  // Paused once Gehn is trapped, as the endgame closes both steam dome paths and opens the inner gate.
+  conditions: {
+    core: $(
+      ...pauseIfNoScreen(),
+      ['PauseIf',   'Mem',   '16bit', gehnState, '=', 'Value', '', 4],
+      ['AddSource', 'Delta', 'Bit0', boilerToDomeBridge],
+      ['AddSource', 'Delta', 'Bit0', boilerHatchShortcut],
+      ['AddSource', 'Delta', 'Bit0', junglePrisonLedgeLadder],
+      ['AddSource', 'Delta', 'Bit0', templeSteamDomeToBeetleTempleOuterDoor],
+      ['AddSource', 'Delta', 'Bit0', templeSteamDomeInnerBridge],
+      ['AddSource', 'Delta', 'Bit0', templeBeetleRoomInnerGate],
+      ['',          'Delta', 'Bit0', boilerGehnsLabFrontDoorLock, '=', 'Value', '', 6],
+      ['AddSource', 'Mem',   'Bit0', boilerToDomeBridge],
+      ['AddSource', 'Mem',   'Bit0', boilerHatchShortcut],
+      ['AddSource', 'Mem',   'Bit0', junglePrisonLedgeLadder],
+      ['AddSource', 'Mem',   'Bit0', templeSteamDomeToBeetleTempleOuterDoor],
+      ['AddSource', 'Mem',   'Bit0', templeSteamDomeInnerBridge],
+      ['AddSource', 'Mem',   'Bit0', templeBeetleRoomInnerGate],
+      ['Measured',  'Mem',   'Bit0', boilerGehnsLabFrontDoorLock, '=', 'Value', '', 7],
+    ),
+  },
+});
+
+
+/* -------------------- Easter Eggs ------------------ */
 
 const easterEggUnlock = 0x01003e; // 0 = Locked, 1 = Unlocked (set on the last step)
 
@@ -733,7 +782,7 @@ set.addAchievement({
 set.addAchievement({
   title: 'The Wireframe',
   description: 'See the Jungle Village before it was Rendered',
-  points: 10,
+  points: 5,
   // Turning right on jVillage2710 leads to jVillage2725 instead of jVillage2700 if the egg is unlocked
   conditions: arrivedOnScreen(
     JungleScreenEnum.WireframeVillage,
@@ -743,7 +792,7 @@ set.addAchievement({
 
 set.addAchievement({
   title: 'A Walk in the Sky',
-  description: 'Climb the Stairs to the Throne into the Sky',
+  description: 'Enjoy the view on the sky walk',
   points: 5,
   // Clicking the lamp on jGThrone450 (hotspot 9) shows picture 3, the stairs in a blue sky if egg unlocked
   conditions: clickedHotspot(

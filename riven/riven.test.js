@@ -810,6 +810,61 @@ describe('Full Coverage', () => {
 
     expect(result.triggered).toBe(false);
   });
+
+  test('counts the Jungle dome while it stays open across islands', () => {
+    // jdome: 0 -> 2 (about to open, frame 321484) -> 1 (open, frame 322500), island 5 -> 2 -> 5 afterwards
+    const s = scenario('domes-1-open-jungle-dome');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.measuredTarget).toBe(5);
+    expect(result.measuredAt(321484)).toBe(0);
+    expect(result.measuredAt(322500)).toBe(1);
+    expect(result.measuredAt(337591)).toBe(1);
+    expect(result.triggered).toBe(false);
+  });
+
+  test('counts the Temple dome on arrival from 233, ignores the Prison dome closing', () => {
+    // pdome 1 -> 0 when stepping inside (frame 1417066), then via 233 to Temple, tdome 0 -> 1 (frame 1431410)
+    const s = scenario('test-prison-dome-opening');
+    const result = runAchievement(cheevo, s);
+
+    // the recording starts mid-game with pdome = 1, which counts on the first frame (memory jumps from 0)
+    expect(result.measuredAt(1431410) - result.measuredAt(1431410 - 1)).toBe(1);
+    expect(result.measuredAt(1431410)).toBe(result.measuredAt(1417066) + 1);
+    expect(result.triggered).toBe(false);
+  });
+
+  test('pops when the fifth dome opens', () => {
+    // Jungle, Survey, Boiler, Prison, Temple; Boiler and Prison close again before the end, which doesn't matter
+    const s = scenario('domes-open-all-5');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.measuredAt(1305829)).toBe(1);
+    expect(result.measuredAt(1337000)).toBe(2);
+    expect(result.measuredAt(1364823)).toBe(3);
+    expect(result.measuredAt(1414393)).toBe(4);
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(1425927);
+  });
+
+  test('does not count a dome opened by loading a save', () => {
+    // all save flags (jdome 0 -> 1) are written at frame 3038, the first screen loads at 3891
+    const s = scenario('domes-load-save-file-jungle-dome-open');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(3038)).toBe('paused');
+    expect(result.stateAt(3891)).toBe('active');
+    expect(result.measuredAt(3891)).toBe(0);
+    expect(result.triggered).toBe(false);
+  });
+
+  for (const name of ['start-game-usa', 'start-game-japan', 'start-game-usa-disc-2']) {
+    test(`does not pop on boot garbage: ${name}`, () => {
+      const result = runAchievement(cheevo, scenario(name));
+
+      expect(result.triggered).toBe(false);
+    });
+  }
 });
 
 describe('Commercial Break', () => {
@@ -896,4 +951,78 @@ describe('A Walk in the Sky', () => {
 
     expect(result.triggered).toBe(false);
   });
+});
+
+describe('Gehn\'s Secret Paths', () => {
+  const cheevo = achievement('Gehn\'s Secret Paths');
+
+  test('does not pop when a save is loaded', () => {
+    // early save, only the beetle room inner gate open (save flags written at 3038, first screen at 3891)
+    const s = scenario('domes-load-save-file-jungle-dome-open');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.measuredTarget).toBe(7);
+    expect(result.stateAt(3038)).toBe('paused');
+    expect(result.stateAt(3891)).toBe('active');
+    expect(result.measuredAt(3891)).toBe(1);
+    expect(result.triggered).toBe(false);
+  });
+
+  test('pops when the last shortcut is opened (Prison Ledge Ladder)', () => {
+    // the other six are open, the ladder goes 0 -> 1 at frame 1013951
+    const s = scenario('shortcuts-prison-ledge');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.measuredAt(1013951 - 1)).toBe(6);
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(1013951);
+  });
+
+  // each recording opens one more shortcut: [scenario, frame, progress before, progress after]
+  const progressSteps = [
+    ['shortcuts-temple-beetle-inner-gate', 88313, 0, 1],
+    ['shortcuts-boiler-hatch', 520789, 1, 2],
+    ['shortcuts-boiler-gehns-lab-door', 553273, 2, 3],
+    ['shortcuts-boiler-to-temple-dome-bridge', 586087, 3, 4],
+    ['shortcuts-temple-dome-inner-bridge', 596715, 4, 5],
+    ['shortcuts-temple-dome-to-beetle-outer-door', 616496, 5, 6],
+  ];
+
+  for (const [name, frame, before, after] of progressSteps) {
+    test(`counts the shortcut and keeps it across islands: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.measuredAt(frame - 1)).toBe(before);
+      expect(result.measuredAt(frame)).toBe(after);
+      expect(result.measuredAt(s.frameNumberAt(s.length - 1))).toBe(after);
+      expect(result.triggered).toBe(false);
+    });
+  }
+
+  test('pauses when Gehn is trapped', () => {
+    // all seven open, Gehn State 1 -> 4 at frame 1312806
+    const s = scenario('233-trap-gehn');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(1312806 - 1)).toBe('active');
+    expect(result.measuredAt(1312806 - 1)).toBe(7);
+    expect(result.stateAt(1312806)).toBe('paused');
+    expect(result.triggered).toBe(false);
+  });
+
+  test('stays paused when the endgame closes the steam dome paths', () => {
+    // Gehn trapped, 0x10080 and 0x10084 go back to 0 at frame 1390852 when Catherine is freed
+    const s = scenario('prison-free-catherine');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.framesInState('active')).toEqual([]);
+    expect(result.triggered).toBe(false);
+  });
+
+  for (const name of ['start-game-usa', 'start-game-japan', 'start-game-usa-disc-2']) {
+    test(`does not pop on boot garbage: ${name}`, () => {
+      expect(runAchievement(cheevo, scenario(name)).triggered).toBe(false);
+    });
+  }
 });
