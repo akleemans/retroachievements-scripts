@@ -742,6 +742,10 @@ set.addAchievement({
       ['AddHits',  'Mem',   'Bit0', jungleDome, '=', 'Value', '', 1, 1],
       ['Measured', 'Value', '',     0,          '=', 'Value', '', 1, 5],
     ),
+    // In an alt, as core is still paused when the boot signal fires (no screen loaded yet) and a paused group skips its ResetIf
+    alt1: $(
+      ...resetOnBoot(),
+    ),
   },
 });
 
@@ -845,7 +849,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650628,
   title: 'Alone in the Dark',
-  description: 'Open the Star Fissure without ever visiting Tay or Gehn (E1)',
+  description: 'Open the Star Fissure without ever visiting Tay or Gehn', // E1
   points: 5,
   type: 'missable',
   conditions: movieFinished(DomeEndingScreenEnum.FissureAlone, [68]),
@@ -854,7 +858,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650629,
   title: 'What Does This Do Again?',
-  description: 'Retrieve the Trap Book and use it in Tay (E2)',
+  description: 'Retrieve the Trap Book and use it in Tay', // E2
   points: 3,
   conditions: movieFinished(EndingScreenEnum.TrapBookTay, [1]),
 });
@@ -862,7 +866,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650630,
   title: 'You Have My Sympathy',
-  description: 'Retrieve the Trap Book before visiting Gehn and use it on Riven (E3)',
+  description: 'Retrieve the Trap Book before visiting Gehn and use it on Riven', // E3
   points: 5,
   type: 'missable',
   conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [0]),
@@ -871,7 +875,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650631,
   title: 'Trap Book in Riven after Gehn',
-  description: 'Visit Gehn, then retrieve the Trap Book and use it on Riven (E4)',
+  description: 'Visit Gehn, then retrieve the Trap Book and use it on Riven', // E4
   points: 5,
   conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [2]),
 });
@@ -879,7 +883,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650632,
   title: 'No Thanks, After You',
-  description: 'Refuse Gehn\'s invitation of entering the Trap Book three times (E5)',
+  description: 'Refuse Gehn\'s invitation of entering the Trap Book three times', // E5
   points: 10,
   conditions: movieFinished(
     Age233ScreenEnum.GehnTakesTrapBook,
@@ -892,7 +896,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650633,
   title: 'Gehn\'s victory',
-  description: 'Retrieve the Trap Book without capturing Gehn and open the Star Fissure (E6)',
+  description: 'Retrieve the Trap Book without capturing Gehn and open the Star Fissure', // E6
   points: 10,
   type: 'missable',
   conditions: movieFinished(DomeEndingScreenEnum.FissureGehnNotTrapped, [67]),
@@ -901,7 +905,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650634,
   title: 'Pity for the old man',
-  description: 'Capture Gehn, then use the Trap Book on Riven (E7)',
+  description: 'Capture Gehn, then use the Trap Book on Riven', // E7
   points: 5,
   conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [1]),
 });
@@ -909,7 +913,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650635,
   title: 'Betraying the Moiety',
-  description: 'Capture Gehn, return to Tay, and use the Trap Book there (E8)',
+  description: 'Capture Gehn, return to Tay, and use the Trap Book there', // E8
   points: 10,
   conditions: movieFinished(EndingScreenEnum.TrapBookTay, [0]),
 });
@@ -917,7 +921,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650636,
   title: 'We Will Never Know Her Fate',
-  description: 'Capture Gehn and open the Star Fissure without freeing Catherine (E9)',
+  description: 'Capture Gehn and open the Star Fissure without freeing Catherine', // E9
   points: 10,
   type: 'missable',
   conditions: movieFinished(DomeEndingScreenEnum.FissureCatherineNotFreed, [66]),

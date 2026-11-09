@@ -1,9 +1,25 @@
 import {describe, test, expect} from 'vitest';
+import {Scenario} from 'cruncheevos-playtest';
 import {loadScenario, runAchievement} from 'cruncheevos-playtest/testing';
 import set from './riven.js';
 
 const achievement = (title) => Object.values(set.achievements).find((a) => a.title === title);
 const scenario = (name) => loadScenario(new URL(`./scenarios/${name}`, import.meta.url));
+
+// Appends a recording to another one (second.firstFrame lands on first.lastFrame + 1), as if the second had been
+// recorded right after the first. Addresses the second recording doesn't watch read 0.
+const appendScenario = (first, second) => {
+  const offset = first.lastFrame + 1 - second.firstFrame;
+  const secondColumn = first.columns.map((c) => second.columns.findIndex((sc) => sc.address === c.address));
+  const rows = [
+    ...first.rows,
+    ...second.rows.map((row) => ({
+      frame: row.frame + offset,
+      values: secondColumn.map((column) => (column < 0 ? 0 : row.values[column])),
+    })),
+  ];
+  return new Scenario({meta: {}, columns: first.columns, rows});
+};
 
 describe('WARNING', () => {
   const cheevo = achievement('WARNING');
@@ -846,6 +862,28 @@ describe('Full Coverage', () => {
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(1425927);
   });
+
+  for (const name of ['start-game-usa', 'start-game-europe', 'start-game-france', 'start-game-germany', 'start-game-japan']) {
+    test(`forgets opened domes when the console is rebooted: ${name}`, () => {
+      // Synthetic: no recording has a reboot after a dome opening, so a boot recording is appended to a dome recording
+      const domes = scenario('domes-1-open-jungle-dome');
+      const boot = scenario(name);
+      const s = appendScenario(domes, boot);
+      const bootSignal = domes.lastFrame + 1 + boot.marker('flags-initialized');
+      const result = runAchievement(cheevo, s);
+
+      expect(result.measuredAt(domes.lastFrame)).toBe(1);
+      // core is still paused on the boot signal, the hit survives until then
+      expect(result.stateAt(bootSignal - 1)).toBe('paused');
+      expect(result.measuredAt(bootSignal - 1)).toBe(1);
+      // the hits are cleared here, the measured value only follows once the pause lifts (AddHits total, not the Measured condition's own hits)
+      expect(result.stateAt(bootSignal)).toBe('reset');
+      expect(result.framesInState('reset')).toHaveLength(1);
+      expect(result.stateAt(s.lastFrame)).toBe('active');
+      expect(result.measuredAt(s.lastFrame)).toBe(0);
+      expect(result.triggered).toBe(false);
+    });
+  }
 
   const regionLoads = [
     // [scenario, save flags written, first screen]
