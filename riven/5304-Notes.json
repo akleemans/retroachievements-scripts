@@ -57,12 +57,12 @@
   {
     "User": "adrianusk",
     "Address": "0x010018",
-    "Note": "[16-bit] Crater to Dome Bridge\r\n0x00 = Raised\r\n0x01 = Lowered"
+    "Note": "[16-bit] Boiler to Dome Bridge\r\n0x00 = Raised\r\n0x01 = Lowered"
   },
   {
     "User": "adrianusk",
     "Address": "0x01001a",
-    "Note": "[16-bit] Dome Island Dome\r\n0x00 = Spinning\r\n0x01 = Stopped"
+    "Note": "[16-bit] Temple Island Dome State\r\n0x00 = Spinning\r\n0x01 = Stopped"
   },
   {
     "User": "adrianusk",
@@ -77,12 +77,12 @@
   {
     "User": "adrianusk",
     "Address": "0x010020",
-    "Note": "[16-bit] Dome Power to Crater Bridge\r\n0x00 = Off\r\n0x01 = On\r\nThis lever powers the bridge from Crater island to Dome island."
+    "Note": "[16-bit] Dome Power to Boiler Bridge\r\n0x00 = Off\r\n0x01 = On\r\nThis lever powers the bridge from Boiler island to Temple island."
   },
   {
     "User": "adrianusk",
     "Address": "0x010022",
-    "Note": "[16-bit] Crater-Survey Maglev Location\r\n0x00 = Survey Island\r\n0x01 = Crater Island"
+    "Note": "[16-bit] Boiler-Survey Maglev Location\r\n0x00 = Survey Island\r\n0x01 = Boiler Island"
   },
   {
     "User": "adrianusk",
@@ -102,7 +102,7 @@
   {
     "User": "adrianusk",
     "Address": "0x01002a",
-    "Note": "[16-bit] Maybe: Lab Front Door Lock\r\n0x00 = Locked\r\n0x01 = Unlocked"
+    "Note": "[16-bit] Lab Front Door Lock\r\n0x00 = Locked\r\n0x01 = Unlocked"
   },
   {
     "User": "adrianusk",
@@ -147,7 +147,7 @@
   {
     "User": "adrianusk",
     "Address": "0x01003c",
-    "Note": "[16-bit] Crater Island Gehn's Lab Egg Drawer\r\n0x00 = Closed\r\n0x01 = Open"
+    "Note": "[16-bit] Boiler Island Gehn's Lab Egg Drawer\r\n0x00 = Closed\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
@@ -207,7 +207,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010054",
-    "Note": "[16-bit] Crater Island Ridge Seagulls\r\nNumber ranges between 0x00 and 0x05, tracking whether a bird should fly by."
+    "Note": "[16-bit] Boiler Island Ridge Seagulls\r\nNumber ranges between 0x00 and 0x05, tracking whether a bird should fly by."
   },
   {
     "User": "adrianusk",
@@ -217,17 +217,17 @@
   {
     "User": "adrianusk",
     "Address": "0x010058",
-    "Note": "[16-bit] Crater Island Ytram Trap State\r\n0x00 = Lowered and closed\r\n0x01 = Lowered and open\r\n0x02 = Raised and closed\r\n0x03 = Raised and opened"
+    "Note": "[16-bit] Boiler Island Ytram Trap State\r\n0x00 = Lowered and closed\r\n0x01 = Lowered and open\r\n0x02 = Raised and closed\r\n0x03 = Raised and opened"
   },
   {
     "User": "adrianusk",
     "Address": "0x01005a",
-    "Note": "[16-bit] Crater Island Ytram Trap Bait\r\n0x00 = No bait\r\n0x01 = Bait in trap"
+    "Note": "[16-bit] Boiler Island Ytram Trap Bait\r\n0x00 = No bait\r\n0x01 = Bait in trap"
   },
   {
     "User": "adrianusk",
     "Address": "0x01005c",
-    "Note": "[16-bit] Crater Island Ytram Trap Timer"
+    "Note": "[16-bit] Boiler Island Ytram Trap Timer"
   },
   {
     "User": "adrianusk",
@@ -242,17 +242,17 @@
   {
     "User": "adrianusk",
     "Address": "0x010062",
-    "Note": "[16-bit] Crater Dome Door\r\n0x00 = Closed\r\n0x01 = Open"
+    "Note": "[16-bit] Boiler Dome Door\r\n0x00 = Closed\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
     "Address": "0x010064",
-    "Note": "[16-bit] Crater Dome State\r\n0x00 = Spinning\r\n0x01 = Open"
+    "Note": "[16-bit] Boiler Dome State\r\n0x00 = Spinning\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
     "Address": "0x010066",
-    "Note": "[16-bit] Crater Island Dome-Book State\r\n0x00 = Closed\r\n0x01 = Opened but blank?\r\n0x02 = Opened with image"
+    "Note": "[16-bit] Boiler Island Dome-Book State\r\n0x00 = Closed\r\n0x01 = Opened but blank?\r\n0x02 = Opened with image"
   },
   {
     "User": "adrianusk",
@@ -267,7 +267,7 @@
   {
     "User": "adrianusk",
     "Address": "0x01006c",
-    "Note": "[16-bit] Crater Island Lumber Cart Pipe Cover\r\n0x00 = Closed\r\n0x01 = Open"
+    "Note": "[16-bit] Boiler Island Lumber Cart Pipe Cover\r\n0x00 = Closed\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
@@ -292,7 +292,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010076",
-    "Note": "[8-bit] Dome Island - Rotation room position (0x01-0x05)"
+    "Note": "[8-bit] Temple Island - Rotation room position (0x01-0x05)"
   },
   {
     "User": "adrianusk",
@@ -392,7 +392,7 @@
   {
     "User": "adrianusk",
     "Address": "0x01009e",
-    "Note": "[16-bit] Survey Island Selection\r\n0x00 = None\r\n0x01 = Dome Island\r\n0x02 = Survey Island\r\n0x03 = Jungle Island\r\n0x04 = Prison Island\r\n0x05 = Crater Island"
+    "Note": "[16-bit] Survey Island Selection\r\n0x00 = None\r\n0x01 = Temple Island\r\n0x02 = Survey Island\r\n0x03 = Jungle Island\r\n0x04 = Prison Island\r\n0x05 = Boiler Island"
   },
   {
     "User": "adrianusk",
@@ -402,7 +402,7 @@
   {
     "User": "adrianusk",
     "Address": "0x0100a2",
-    "Note": "[16-bit] Survey Island Dome Cover\r\n0x00 = Spinning\r\n0x01 = Open"
+    "Note": "[16-bit] Survey Island Dome State\r\n0x00 = Spinning\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
@@ -477,17 +477,17 @@
   {
     "User": "adrianusk",
     "Address": "0x0100c0",
-    "Note": "[16-bit] Dome Temple Projector Door (Bugged)\r\nIn the game code it's called \"timagedoor\" (the t is a prefix that means dome island event flag). It sometimes matches the door state but sometimes doesn't."
+    "Note": "[16-bit] Dome Temple Projector Door (Bugged)\r\nIn the game code it's called \"timagedoor\" (the t is a prefix that means Temple island event flag). It sometimes matches the door state but sometimes doesn't."
   },
   {
     "User": "adrianusk",
     "Address": "0x0100c2",
-    "Note": "[16-bit] Dome Island Projector Seat Cage\r\n0x00 = Closed\r\n0x01 = Open"
+    "Note": "[16-bit] Temple Island Projector Seat Cage\r\n0x00 = Closed\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
     "Address": "0x0100c4",
-    "Note": "[16-bit] Dome Island Projector Seat Power Lever\r\n0x00 = Off\r\n0x01 = On"
+    "Note": "[16-bit] Temple Island Projector Seat Power Lever\r\n0x00 = Off\r\n0x01 = On"
   },
   {
     "User": "adrianusk",
@@ -497,12 +497,12 @@
   {
     "User": "adrianusk",
     "Address": "0x0100c8",
-    "Note": "[16-bit] Dome Island Cho State (will be set to 0x01 once Dome is entered)\r\n0x00 = Cho is on the cliff\r\n0x01 = Cho has disappeared"
+    "Note": "[16-bit] Temple Island Cho State (will be set to 0x01 once Dome is entered)\r\n0x00 = Cho is on the cliff\r\n0x01 = Cho has disappeared"
   },
   {
     "User": "adrianusk",
     "Address": "0x0100ca",
-    "Note": "[16-bit] Dome-Jungle Maglev Location\r\n0x00 = Dome Island\r\n0x01 = Jungle Island"
+    "Note": "[16-bit] Temple-Jungle Maglev Location\r\n0x00 = Temple Island\r\n0x01 = Jungle Island"
   },
   {
     "User": "adrianusk",
@@ -522,12 +522,12 @@
   {
     "User": "adrianusk",
     "Address": "0x0100d2",
-    "Note": "[16-bit] Dome Island Telescope Height"
+    "Note": "[16-bit] Temple Island Telescope Height"
   },
   {
     "User": "adrianusk",
     "Address": "0x0100d4",
-    "Note": "[16-bit] Dome Island Telescope Hatch\r\n0x00 = Closed\r\n0x01 = Open"
+    "Note": "[16-bit] Temple Island Telescope Hatch\r\n0x00 = Closed\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
@@ -537,27 +537,27 @@
   {
     "User": "adrianusk",
     "Address": "0x0100d8",
-    "Note": "[8-bit] Dome Island - Telescope handle position up\/down"
+    "Note": "[8-bit] Temple Island - Telescope handle position up\/down"
   },
   {
     "User": "adrianusk",
     "Address": "0x0100da",
-    "Note": "[16-bit] Dome Island Telescope Pin\r\n0x00 = Inserted\r\n0x01 = Removed"
+    "Note": "[16-bit] Temple Island Telescope Pin\r\n0x00 = Inserted\r\n0x01 = Removed"
   },
   {
     "User": "adrianusk",
     "Address": "0x0100dc",
-    "Note": "[16-bit] Dome Island Telescope Hatch Combo Counter\r\nIncrements with each correct button press"
+    "Note": "[16-bit] Temple Island Telescope Hatch Combo Counter\r\nIncrements with each correct button press"
   },
   {
     "User": "adrianusk",
     "Address": "0x0100de",
-    "Note": "[16-bit] Dome Island Arrival Cage (Unused)\r\nThis flag used to control the cage in the arrival area after\/during the intro cutscene, but now it's set to 0x01 and never used again. The cage is handled in-movie rather than in-game."
+    "Note": "[16-bit] Temple Island Arrival Cage (Unused)\r\nThis flag used to control the cage in the arrival area after\/during the intro cutscene, but now it's set to 0x01 and never used again. The cage is handled in-movie rather than in-game."
   },
   {
     "User": "adrianusk",
     "Address": "0x0100e0",
-    "Note": "[16-bit] Dome Island Beetle Opened\r\n0x00 = Closed\r\n0x01 = Open"
+    "Note": "[16-bit] Temple Island Beetle Opened\r\n0x00 = Closed\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
@@ -577,17 +577,17 @@
   {
     "User": "adrianusk",
     "Address": "0x0100e8",
-    "Note": "[16-bit] Dome Island Dome-Book State\r\n0x00 = Closed\r\n0x01 = Opened but blank?\r\n0x02 = Opened with image"
+    "Note": "[16-bit] Temple Island Dome-Book State\r\n0x00 = Closed\r\n0x01 = Opened but blank?\r\n0x02 = Opened with image"
   },
   {
     "User": "adrianusk",
     "Address": "0x0100ea",
-    "Note": "[16-bit] Dome Island Unused Door\r\nThis is the state of a door that no longer exists in the game. If you hack your way into room 0x801d78b8, the door still functions, but there's no way to reach this state in the normal game. The door was part of an alternate path to the dome; it was replaced by the elevator."
+    "Note": "[16-bit] Temple Island Unused Door\r\nThis is the state of a door that no longer exists in the game. If you hack your way into room 0x801d78b8, the door still functions, but there's no way to reach this state in the normal game. The door was part of an alternate path to the dome; it was replaced by the elevator."
   },
   {
     "User": "adrianusk",
     "Address": "0x0100ec",
-    "Note": "[16-bit] Dome Island Elevator Raising Animation\r\nTemporary flag used when turning the player around to\r\nwatch the elevator rise. Set to 0x01 when the elevator movie should play, then reset to 0x00 after it's done."
+    "Note": "[16-bit] Temple Island Elevator Raising Animation\r\nTemporary flag used when turning the player around to\r\nwatch the elevator rise. Set to 0x01 when the elevator movie should play, then reset to 0x00 after it's done."
   },
   {
     "User": "adrianusk",
@@ -877,7 +877,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010168",
-    "Note": "[16-bit] Dome Island Telescope Hatch Combo\r\nThe bottom 3 bits are the first button, the next three bits are the 2nd button, etc, with 5 button presses required. Button indices start at 0x01 (on the left \r\nSet to random value on startup, and rerolled when receiving Catherine's journal.\r\nTODO: Sentence above is cut off at \"(on the left\""
+    "Note": "[16-bit] Temple Island Telescope Hatch Combo\r\nThe bottom 3 bits are the first button, the next three bits are the 2nd button, etc, with 5 button presses required. Button indices start at 0x01 (on the left \r\nSet to random value on startup, and rerolled when receiving Catherine's journal.\r\nTODO: Sentence above is cut off at \"(on the left\""
   },
   {
     "User": "adrianusk",
@@ -957,7 +957,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010198",
-    "Note": "[16-bit] Maybe: Crater Island Zip State"
+    "Note": "[16-bit] Maybe: Boiler Island Zip State"
   },
   {
     "User": "adrianusk",
@@ -1086,8 +1086,23 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x09d99c",
+    "Note": "[8-bit] Hotspot click state (Europe, Germany)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x09db1c",
+    "Note": "[8-bit] Hotspot click state (Japan)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x09db68",
     "Note": "[32-bit] Screen pointer (France)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x09e360",
+    "Note": "[8-bit] Hotspot click state (France)"
   },
   {
     "User": "adrianusk",
@@ -1111,8 +1126,23 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x19e5b8",
+    "Note": "[16-bit] Interactive area index that cursor will activate (Europe, Germany)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x19e738",
+    "Note": "[16-bit] Interactive area index that cursor will activate (Japan)"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x19e784",
     "Note": "[16-bit] Interactive area index that cursor will activate"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x19ef7c",
+    "Note": "[16-bit] Interactive area index that cursor will activate (France)"
   },
   {
     "User": "adrianusk",

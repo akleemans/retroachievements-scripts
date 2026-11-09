@@ -10,240 +10,1180 @@
     "wireframe-arrived": 26038
   },
   "addresses": [
-    { "address": "0x10000", "size": "u16", "label": "Cursor Icon Type" },
-    { "address": "0x10004", "size": "u16", "label": "Tay Prison Cell Sequence" },
-    { "address": "0x10006", "size": "u16", "label": "Trap Book Location" },
-    { "address": "0x10008", "size": "u16", "label": "Easter Egg Progress" },
-    { "address": "0x1000a", "size": "u16", "label": "Tay Age Rebel Guard Pace Location" },
-    { "address": "0x1000c", "size": "u16", "label": "Tay Prison Townsfolk Timer" },
-    { "address": "0x1000e", "size": "u16", "label": "Boiler Door Lock" },
-    { "address": "0x10010", "size": "u16", "label": "Crater Boiler Pump Rotation" },
-    { "address": "0x10012", "size": "u16", "label": "Crater Boiler Door" },
-    { "address": "0x10014", "size": "u16", "label": "Boiler Grate Position" },
-    { "address": "0x10016", "size": "u16", "label": "Boiler Water Level" },
-    { "address": "0x10018", "size": "u16", "label": "Crater to Dome Bridge" },
-    { "address": "0x1001a", "size": "u16", "label": "Dome Island Dome" },
-    { "address": "0x1001c", "size": "u16", "label": "Steam Dome Elevator" },
-    { "address": "0x1001e", "size": "u16", "label": "Crater to Dome Bridge Handle" },
-    { "address": "0x10020", "size": "u16", "label": "Dome Power to Crater Bridge" },
-    { "address": "0x10022", "size": "u16", "label": "Crater-Survey Maglev Location" },
-    { "address": "0x10024", "size": "u16", "label": "Crater Vent Lever State" },
-    { "address": "0x10026", "size": "u16", "label": "Crater Double Doors" },
-    { "address": "0x10028", "size": "u16", "label": "Lab Front Door" },
-    { "address": "0x1002a", "size": "u16", "label": "Maybe: Lab Front Door Lock" },
-    { "address": "0x1002c", "size": "u16", "label": "Gehn Returned To Lab" },
-    { "address": "0x1002e", "size": "u16", "label": "Gehn's Lab Vice" },
-    { "address": "0x10030", "size": "u16", "label": "Lab Back Door" },
-    { "address": "0x10032", "size": "u16", "label": "Unused" },
-    { "address": "0x10034", "size": "u16", "label": "Lab Back Door Lock" },
-    { "address": "0x10036", "size": "u16", "label": "Crater-Survey Maglev Direction" },
-    { "address": "0x10038", "size": "u16", "label": "Survey Island Unknown Magcar Flag" },
-    { "address": "0x1003a", "size": "u16", "label": "Frog Catch Count" },
-    { "address": "0x1003c", "size": "u16", "label": "Crater Island Gehn's Lab Egg Drawer" },
-    { "address": "0x1003e", "size": "u16", "label": "Easter Egg Unlock" },
-    { "address": "0x10040", "size": "u16", "label": "Gehn's Lab Vent Cover" },
-    { "address": "0x10042", "size": "u16", "label": "Lab Wooden Eye Roll" },
-    { "address": "0x10044", "size": "u16", "label": "Maybe: Lab book state" },
-    { "address": "0x10046", "size": "u16", "label": "Maybe: Lab stove door state" },
-    { "address": "0x10048", "size": "u16", "label": "Boiler Feed Line Handle Position" },
-    { "address": "0x1004a", "size": "u16", "label": "Crater Steam Main Valve Direction" },
-    { "address": "0x1004c", "size": "u16", "label": "Boiler Heat Lever Position" },
-    { "address": "0x1004e", "size": "u16", "label": "Boiler Heat" },
-    { "address": "0x10050", "size": "u16", "label": "Boiler Platform Lever Position" },
-    { "address": "0x10052", "size": "u16", "label": "Crater Hatch Shortcut" },
-    { "address": "0x10054", "size": "u16", "label": "Crater Island Ridge Seagulls" },
-    { "address": "0x10056", "size": "u16", "label": "Crater Book Press" },
-    { "address": "0x10058", "size": "u16", "label": "Crater Island Ytram Trap State" },
-    { "address": "0x1005a", "size": "u16", "label": "Crater Island Ytram Trap Bait" },
-    { "address": "0x1005c", "size": "u16", "label": "Crater Island Ytram Trap Timer" },
-    { "address": "0x1005e", "size": "u16", "label": "Has caught frog" },
-    { "address": "0x10060", "size": "u16", "label": "Unused" },
-    { "address": "0x10062", "size": "u16", "label": "Crater Dome Door" },
-    { "address": "0x10064", "size": "u16", "label": "Crater Dome State" },
-    { "address": "0x10066", "size": "u16", "label": "Crater Island Dome-Book State" },
-    { "address": "0x10068", "size": "u16", "label": "Dome Power" },
-    { "address": "0x1006a", "size": "u16", "label": "Something related to the dome viewers" },
-    { "address": "0x1006c", "size": "u16", "label": "Crater Island Lumber Cart Pipe Cover" },
-    { "address": "0x1006e", "size": "u16", "label": "Prison Island Dome State" },
-    { "address": "0x10070", "size": "u16", "label": "Prison Island Cage State" },
-    { "address": "0x10072", "size": "u16", "label": "233rd Age Cage State" },
-    { "address": "0x10074", "size": "u16", "label": "233rd Age Office Ambient Sound" },
-    { "address": "0x10076", "size": "u8", "label": "Dome Island - Rotation room position (0x01-0x05)" },
-    { "address": "0x10078", "size": "u16", "label": "Dome-Jungle Maglev Location Override" },
-    { "address": "0x1007a", "size": "u16", "label": "Rotation Room Main Gate" },
-    { "address": "0x1007c", "size": "u16", "label": "Temple Hidden Door" },
-    { "address": "0x1007e", "size": "u16", "label": "Temple Main Door" },
-    { "address": "0x10080", "size": "u16", "label": "Steam Dome to Beetle Temple Shortcut" },
-    { "address": "0x10082", "size": "u16", "label": "Rotation Room Shortcut Gate" },
-    { "address": "0x10084", "size": "u16", "label": "Steam Dome Shortcut" },
-    { "address": "0x10086", "size": "u16", "label": "Prison Island Catherine State" },
-    { "address": "0x10088", "size": "u16", "label": "Catherine Pacing Timer (Unused)" },
-    { "address": "0x1008a", "size": "u16", "label": "Maybe: Has Met Catherine" },
-    { "address": "0x1008c", "size": "u16", "label": "Prison Island Combo Counter" },
-    { "address": "0x1008e", "size": "u16", "label": "Prison Island Left Button" },
-    { "address": "0x10090", "size": "u16", "label": "Prison Island Middle Button" },
-    { "address": "0x10092", "size": "u16", "label": "Prison Island Right Button" },
-    { "address": "0x10094", "size": "u16", "label": "Prison Island Dome-Book State" },
-    { "address": "0x10096", "size": "u16", "label": "Survey Island Gold Elevator State" },
-    { "address": "0x10098", "size": "u16", "label": "Survey-Jungle Maglev Location" },
-    { "address": "0x1009a", "size": "u16", "label": "Survey Island Maglev Door" },
-    { "address": "0x1009c", "size": "u16", "label": "Wahrk Visit Count" },
-    { "address": "0x1009e", "size": "u16", "label": "Survey Island Selection" },
-    { "address": "0x100a0", "size": "u16", "label": "Survey Island Map Room Bridge" },
-    { "address": "0x100a2", "size": "u16", "label": "Survey Island Dome Cover" },
-    { "address": "0x100a4", "size": "u16", "label": "Survey Island Selected Chunk" },
-    { "address": "0x100a6", "size": "u16", "label": "Survey Island Chunk Rotation" },
-    { "address": "0x100a8", "size": "u16", "label": "Survey Room Unknown Flag" },
-    { "address": "0x100aa", "size": "u16", "label": "Survey Room Unknown Temp Var" },
-    { "address": "0x100ac", "size": "u16", "label": "Survey Island Dome-Book State" },
-    { "address": "0x100ae", "size": "u16", "label": "Survey Room Unknown Temp Var 3" },
-    { "address": "0x100b0", "size": "u16", "label": "Survey-Jungle Maglev Location" },
-    { "address": "0x100b2", "size": "u16", "label": "Survey Island Underwater Light" },
-    { "address": "0x100b4", "size": "u16", "label": "Survey Underwater Camera" },
-    { "address": "0x100b6", "size": "u16", "label": "Survey Island Prev/Current Light" },
-    { "address": "0x100b8", "size": "u16", "label": "Has Met Wahrk" },
-    { "address": "0x100ba", "size": "u16", "label": "Survey Video Feed" },
-    { "address": "0x100bc", "size": "u16", "label": "Catherine Pacing Timer" },
-    { "address": "0x100be", "size": "u16", "label": "Survey Island Catherine State" },
-    { "address": "0x100c0", "size": "u16", "label": "Dome Temple Projector Door (Bugged)" },
-    { "address": "0x100c2", "size": "u16", "label": "Dome Island Projector Seat Cage" },
-    { "address": "0x100c4", "size": "u16", "label": "Dome Island Projector Seat Power Lever" },
-    { "address": "0x100c6", "size": "u16", "label": "Temple Gehn Scene State" },
-    { "address": "0x100c8", "size": "u16", "label": "Dome Island Cho State (will be set to 0x01 once Dome is entered)" },
-    { "address": "0x100ca", "size": "u16", "label": "Dome-Jungle Maglev Location" },
-    { "address": "0x100cc", "size": "u16", "label": "Sunner State" },
-    { "address": "0x100ce", "size": "u16", "label": "Maybe: Has left starting area?" },
-    { "address": "0x100d0", "size": "u16", "label": "Dome to Beetle Bridge" },
-    { "address": "0x100d2", "size": "u16", "label": "Dome Island Telescope Height" },
-    { "address": "0x100d4", "size": "u16", "label": "Dome Island Telescope Hatch" },
-    { "address": "0x100d6", "size": "u16", "label": "Telescope Power Lever" },
-    { "address": "0x100d8", "size": "u8", "label": "Dome Island - Telescope handle position up/down" },
-    { "address": "0x100da", "size": "u16", "label": "Dome Island Telescope Pin" },
-    { "address": "0x100dc", "size": "u16", "label": "Dome Island Telescope Hatch Combo Counter" },
-    { "address": "0x100de", "size": "u16", "label": "Dome Island Arrival Cage (Unused)" },
-    { "address": "0x100e0", "size": "u16", "label": "Dome Island Beetle Opened" },
-    { "address": "0x100e2", "size": "u16", "label": "Marble Compactor State" },
-    { "address": "0x100e4", "size": "u16", "label": "Dome to Beetle Temple Bridge Power" },
-    { "address": "0x100e6", "size": "u16", "label": "Dome to Beetle Temple Bridge Lever" },
-    { "address": "0x100e8", "size": "u16", "label": "Dome Island Dome-Book State" },
-    { "address": "0x100ea", "size": "u16", "label": "Dome Island Unused Door" },
-    { "address": "0x100ec", "size": "u16", "label": "Dome Island Elevator Raising Animation" },
-    { "address": "0x100ee", "size": "u16", "label": "Maybe: Jungle Island Zip Flags" },
-    { "address": "0x100f0", "size": "u16", "label": "Jungle Scarab Beetle State" },
-    { "address": "0x100f2", "size": "u16", "label": "Jungle Door To Clearing" },
-    { "address": "0x100f4", "size": "u16", "label": "Jungle Dome State" },
-    { "address": "0x100f6", "size": "u16", "label": "Jungle Flying Beetle Random Var" },
-    { "address": "0x100f8", "size": "u16", "label": "Jungle Door to Cave" },
-    { "address": "0x100fa", "size": "u16", "label": "Execution Tower Door" },
-    { "address": "0x100fc", "size": "u16", "label": "Village Alarm Sounded" },
-    { "address": "0x100fe", "size": "u16", "label": "Execution Platform Floor" },
-    { "address": "0x10100", "size": "u16", "label": "Submersible Position" },
-    { "address": "0x10102", "size": "u16", "label": "Execution Ledge Door" },
-    { "address": "0x10104", "size": "u16", "label": "Starting Dock State" },
-    { "address": "0x10106", "size": "u16", "label": "Pentagon Dock State" },
-    { "address": "0x10108", "size": "u16", "label": "Execution Platform Dock State" },
-    { "address": "0x1010a", "size": "u16", "label": "Classroom Dock State" },
-    { "address": "0x1010c", "size": "u16", "label": "Control Room Dock State" },
-    { "address": "0x1010e", "size": "u16", "label": "Execution Prisoner State" },
-    { "address": "0x10110", "size": "u16", "label": "Execution Prison Secret Door" },
-    { "address": "0x10112", "size": "u16", "label": "Tay Cave Light Count" },
-    { "address": "0x10114", "size": "u16", "label": "Rebel Cave Door" },
-    { "address": "0x10116", "size": "u16", "label": "Maybe: Tay Age Book State" },
-    { "address": "0x10118", "size": "u16", "label": "Village Water Basin Filled" },
-    { "address": "0x1011a", "size": "u16", "label": "Submersible Facing Direction" },
-    { "address": "0x1011c", "size": "u16", "label": "Temporary script variable" },
-    { "address": "0x1011e", "size": "u16", "label": "Execution Prison Drain Cover" },
-    { "address": "0x10120", "size": "u16", "label": "Jungle Island Wahrk Under Platform" },
-    { "address": "0x10122", "size": "u16", "label": "Prison Ledge Ladder" },
-    { "address": "0x10124", "size": "u16", "label": "Jungle Island Dome-Book State" },
-    { "address": "0x10126", "size": "u16", "label": "Town Camera Rotation" },
-    { "address": "0x10128", "size": "u16", "label": "Village Door Knock State" },
-    { "address": "0x1012a", "size": "u16", "label": "Jungle Totem Stairs" },
-    { "address": "0x1012c", "size": "u16", "label": "Maybe: Girl after idol shortcut state TODO" },
-    { "address": "0x1012e", "size": "u16", "label": "Village Evacuation State" },
-    { "address": "0x10132", "size": "u16", "label": "Submersible Turning Direction" },
-    { "address": "0x10134", "size": "u16", "label": "Unused" },
-    { "address": "0x10136", "size": "u16", "label": "Classroom Door" },
-    { "address": "0x10138", "size": "u16", "label": "Sunner Idle Animation Timer" },
-    { "address": "0x1013a", "size": "u16", "label": "Classroom Left Hangman Position" },
-    { "address": "0x1013c", "size": "u16", "label": "Classroom Right Hangman Position" },
-    { "address": "0x1013e", "size": "u16", "label": "Classroom Hangman Current Turn" },
-    { "address": "0x10140", "size": "u16", "label": "Gehn State" },
-    { "address": "0x10142", "size": "u16", "label": "233rd Age Pager" },
-    { "address": "0x10144", "size": "u16", "label": "233rd Age New Book" },
-    { "address": "0x10146", "size": "u16", "label": "233rd Age Gehn's Record Player" },
-    { "address": "0x10148", "size": "u16", "label": "233rd Age Stove" },
-    { "address": "0x1014e", "size": "u16", "label": "Red Marble Column" },
-    { "address": "0x10150", "size": "u16", "label": "Orange Marble Column" },
-    { "address": "0x10152", "size": "u16", "label": "Yellow Marble Column" },
-    { "address": "0x10154", "size": "u16", "label": "Green Marble Column" },
-    { "address": "0x10156", "size": "u16", "label": "Blue Marble Column" },
-    { "address": "0x10158", "size": "u16", "label": "Purple Marble Column" },
-    { "address": "0x1015a", "size": "u16", "label": "Red Marble Row" },
-    { "address": "0x1015c", "size": "u16", "label": "Orange Marble Row" },
-    { "address": "0x1015e", "size": "u16", "label": "Yellow Marble Row" },
-    { "address": "0x10160", "size": "u16", "label": "Green Marble Row" },
-    { "address": "0x10162", "size": "u16", "label": "Blue Marble Row" },
-    { "address": "0x10164", "size": "u16", "label": "Purple Marble Row" },
-    { "address": "0x10168", "size": "u16", "label": "Dome Island Telescope Hatch Combo" },
-    { "address": "0x1016a", "size": "u16", "label": "Dome Code Digit 1" },
-    { "address": "0x1016c", "size": "u16", "label": "Dome Code Digit 2" },
-    { "address": "0x1016e", "size": "u16", "label": "Dome Code Digit 3" },
-    { "address": "0x10170", "size": "u16", "label": "Dome Code Digit 4" },
-    { "address": "0x10172", "size": "u16", "label": "Dome Code Digit 5" },
-    { "address": "0x10175", "size": "u8", "label": "Tay Gateway Wehlk Statue" },
-    { "address": "0x1017d", "size": "u8", "label": "Tay Gateway Frog Statue" },
-    { "address": "0x1017f", "size": "u8", "label": "Tay Gateway Fish Statue" },
-    { "address": "0x10184", "size": "u8", "label": "Tay Gateway Scarab Statue" },
-    { "address": "0x1018b", "size": "u8", "label": "Tay Gateway Sunner Statue" },
-    { "address": "0x10190", "size": "u8", "label": "Tay Gateway Last Pressed Statue" },
-    { "address": "0x10191", "size": "u8", "label": "Tay Gateway 2nd Last Pressed Statue" },
-    { "address": "0x10192", "size": "u8", "label": "Tay Gateway 3rd Last Pressed Statue" },
-    { "address": "0x10193", "size": "u8", "label": "Tay Gateway 4th Last Pressed Statue" },
-    { "address": "0x10194", "size": "u8", "label": "Tay Gateway 5th Last Pressed Statue" },
-    { "address": "0x10198", "size": "u16", "label": "Maybe: Crater Island Zip State" },
-    { "address": "0x1019c", "size": "u16", "label": "Gehn's Lab Notes Page" },
-    { "address": "0x1019e", "size": "u16", "label": "Crater Boiler Water Bubble Movie Index" },
-    { "address": "0x101a4", "size": "u16", "label": "Survey Room Display Related" },
-    { "address": "0x101a6", "size": "u16", "label": "Prison Island Catherine Elevator Combo" },
-    { "address": "0x101aa", "size": "u16", "label": "Atrus's Journal Page" },
-    { "address": "0x101ac", "size": "u16", "label": "Catherine's Journal Page" },
-    { "address": "0x10700", "size": "u32", "label": "Boot disc and region (read-only)" },
-    { "address": "0x125fd", "size": "u8", "label": "Europe/Germany language (read-only)" },
-    { "address": "0x146a8", "size": "u8", "label": "Boot disc layout (USA, read-only)" },
-    { "address": "0x6237c", "size": "u32", "label": "CdlSetLoc location buffer" },
-    { "address": "0x62690", "size": "u32", "label": "Number of sectors read" },
-    { "address": "0x660ec", "size": "u32", "label": "Affects which movie will be played/loaded next" },
-    { "address": "0x6c5b8", "size": "u16", "label": "Movie index on disk (Europe, Germany)" },
-    { "address": "0x6c730", "size": "u32", "label": "Zip Flags 1" },
-    { "address": "0x6c734", "size": "u32", "label": "Zip Flags 2" },
-    { "address": "0x6c738", "size": "u32", "label": "Zip Flags 3 (USA)" },
-    { "address": "0x6c73c", "size": "u32", "label": "Zip Flags 4" },
-    { "address": "0x6c740", "size": "u32", "label": "Zip Flags 5" },
-    { "address": "0x6c744", "size": "u32", "label": "Zip Flags 6" },
-    { "address": "0x6c784", "size": "u16", "label": "Movie index on disk" },
-    { "address": "0x6cf7c", "size": "u16", "label": "Movie index on disk (France)" },
-    { "address": "0x9d1a4", "size": "u32", "label": "Screen pointer (Europe, Germany)" },
-    { "address": "0x9d324", "size": "u32", "label": "Screen pointer (Japan)" },
-    { "address": "0x9d370", "size": "u32", "label": "Screen pointer (USA)" },
-    { "address": "0x9d3a8", "size": "u32", "label": "Pointer to info about current screen, it's a list of interactive areas of the screen, variadic length" },
-    { "address": "0x9db68", "size": "u32", "label": "Screen pointer (France)" },
-    { "address": "0xa4ce4", "size": "u8", "label": "Movie playing state (Europe, Germany)" },
-    { "address": "0xa4e64", "size": "u8", "label": "Movie playing state (Japan)" },
-    { "address": "0xa4eb0", "size": "u8", "label": "Movie playing state" },
-    { "address": "0xa56a8", "size": "u8", "label": "Movie playing state (France)" },
-    { "address": "0x19e784", "size": "u16", "label": "Interactive area index that cursor will activate" },
-    { "address": "0x1b22cc", "size": "u8", "label": "Current island (Europe, Germany)" },
-    { "address": "0x1b244c", "size": "u8", "label": "Current island (Japan)" },
-    { "address": "0x1b2498", "size": "u8", "label": "Current island (USA)" },
-    { "address": "0x1b2518", "size": "u16", "label": "Movie index on screen" },
-    { "address": "0x1b2c94", "size": "u8", "label": "Current island (France)" },
-    { "address": "0x1b45b0", "size": "u8", "label": "Disk swapping state" },
-    { "address": "0x1ffd2c", "size": "u32", "label": "Current page, Gehn Bedside Journal (Stack location)" },
-    { "address": "0x1ffd6c", "size": "u32", "label": "Current page, Gehn Bedside Journal (Stack location) v2" },
-    { "address": "0x1ffe1c", "size": "u32", "label": "Current page, Gehn Lab both books (Stack location)" },
-    { "address": "0x1ffe5c", "size": "u32", "label": "Current page, Gehn Lab both books (Stack location) v2" },
-    { "address": "0x1ffea4", "size": "u32", "label": "Current page via menu (Stack location)" },
-    { "address": "0x1ffee4", "size": "u32", "label": "Current page via menu (Stack location) copy" }
+    {
+      "address": "0x10000",
+      "size": "u16",
+      "label": "Cursor Icon Type"
+    },
+    {
+      "address": "0x10004",
+      "size": "u16",
+      "label": "Tay Prison Cell Sequence"
+    },
+    {
+      "address": "0x10006",
+      "size": "u16",
+      "label": "Trap Book Location"
+    },
+    {
+      "address": "0x10008",
+      "size": "u16",
+      "label": "Easter Egg Progress"
+    },
+    {
+      "address": "0x1000a",
+      "size": "u16",
+      "label": "Tay Age Rebel Guard Pace Location"
+    },
+    {
+      "address": "0x1000c",
+      "size": "u16",
+      "label": "Tay Prison Townsfolk Timer"
+    },
+    {
+      "address": "0x1000e",
+      "size": "u16",
+      "label": "Boiler Door Lock"
+    },
+    {
+      "address": "0x10010",
+      "size": "u16",
+      "label": "Crater Boiler Pump Rotation"
+    },
+    {
+      "address": "0x10012",
+      "size": "u16",
+      "label": "Crater Boiler Door"
+    },
+    {
+      "address": "0x10014",
+      "size": "u16",
+      "label": "Boiler Grate Position"
+    },
+    {
+      "address": "0x10016",
+      "size": "u16",
+      "label": "Boiler Water Level"
+    },
+    {
+      "address": "0x10018",
+      "size": "u16",
+      "label": "Boiler to Dome Bridge"
+    },
+    {
+      "address": "0x1001a",
+      "size": "u16",
+      "label": "Temple Island Dome State"
+    },
+    {
+      "address": "0x1001c",
+      "size": "u16",
+      "label": "Steam Dome Elevator"
+    },
+    {
+      "address": "0x1001e",
+      "size": "u16",
+      "label": "Crater to Dome Bridge Handle"
+    },
+    {
+      "address": "0x10020",
+      "size": "u16",
+      "label": "Dome Power to Boiler Bridge"
+    },
+    {
+      "address": "0x10022",
+      "size": "u16",
+      "label": "Boiler-Survey Maglev Location"
+    },
+    {
+      "address": "0x10024",
+      "size": "u16",
+      "label": "Crater Vent Lever State"
+    },
+    {
+      "address": "0x10026",
+      "size": "u16",
+      "label": "Crater Double Doors"
+    },
+    {
+      "address": "0x10028",
+      "size": "u16",
+      "label": "Lab Front Door"
+    },
+    {
+      "address": "0x1002a",
+      "size": "u16",
+      "label": "Lab Front Door Lock"
+    },
+    {
+      "address": "0x1002c",
+      "size": "u16",
+      "label": "Gehn Returned To Lab"
+    },
+    {
+      "address": "0x1002e",
+      "size": "u16",
+      "label": "Gehn's Lab Vice"
+    },
+    {
+      "address": "0x10030",
+      "size": "u16",
+      "label": "Lab Back Door"
+    },
+    {
+      "address": "0x10032",
+      "size": "u16",
+      "label": "Unused"
+    },
+    {
+      "address": "0x10034",
+      "size": "u16",
+      "label": "Lab Back Door Lock"
+    },
+    {
+      "address": "0x10036",
+      "size": "u16",
+      "label": "Crater-Survey Maglev Direction"
+    },
+    {
+      "address": "0x10038",
+      "size": "u16",
+      "label": "Survey Island Unknown Magcar Flag"
+    },
+    {
+      "address": "0x1003a",
+      "size": "u16",
+      "label": "Frog Catch Count"
+    },
+    {
+      "address": "0x1003c",
+      "size": "u16",
+      "label": "Boiler Island Gehn's Lab Egg Drawer"
+    },
+    {
+      "address": "0x1003e",
+      "size": "u16",
+      "label": "Easter Egg Unlock"
+    },
+    {
+      "address": "0x10040",
+      "size": "u16",
+      "label": "Gehn's Lab Vent Cover"
+    },
+    {
+      "address": "0x10042",
+      "size": "u16",
+      "label": "Lab Wooden Eye Roll"
+    },
+    {
+      "address": "0x10044",
+      "size": "u16",
+      "label": "Maybe: Lab book state"
+    },
+    {
+      "address": "0x10046",
+      "size": "u16",
+      "label": "Maybe: Lab stove door state"
+    },
+    {
+      "address": "0x10048",
+      "size": "u16",
+      "label": "Boiler Feed Line Handle Position"
+    },
+    {
+      "address": "0x1004a",
+      "size": "u16",
+      "label": "Crater Steam Main Valve Direction"
+    },
+    {
+      "address": "0x1004c",
+      "size": "u16",
+      "label": "Boiler Heat Lever Position"
+    },
+    {
+      "address": "0x1004e",
+      "size": "u16",
+      "label": "Boiler Heat"
+    },
+    {
+      "address": "0x10050",
+      "size": "u16",
+      "label": "Boiler Platform Lever Position"
+    },
+    {
+      "address": "0x10052",
+      "size": "u16",
+      "label": "Crater Hatch Shortcut"
+    },
+    {
+      "address": "0x10054",
+      "size": "u16",
+      "label": "Boiler Island Ridge Seagulls"
+    },
+    {
+      "address": "0x10056",
+      "size": "u16",
+      "label": "Crater Book Press"
+    },
+    {
+      "address": "0x10058",
+      "size": "u16",
+      "label": "Boiler Island Ytram Trap State"
+    },
+    {
+      "address": "0x1005a",
+      "size": "u16",
+      "label": "Boiler Island Ytram Trap Bait"
+    },
+    {
+      "address": "0x1005c",
+      "size": "u16",
+      "label": "Boiler Island Ytram Trap Timer"
+    },
+    {
+      "address": "0x1005e",
+      "size": "u16",
+      "label": "Has caught frog"
+    },
+    {
+      "address": "0x10060",
+      "size": "u16",
+      "label": "Unused"
+    },
+    {
+      "address": "0x10062",
+      "size": "u16",
+      "label": "Boiler Dome Door"
+    },
+    {
+      "address": "0x10064",
+      "size": "u16",
+      "label": "Boiler Dome State"
+    },
+    {
+      "address": "0x10066",
+      "size": "u16",
+      "label": "Boiler Island Dome-Book State"
+    },
+    {
+      "address": "0x10068",
+      "size": "u16",
+      "label": "Dome Power"
+    },
+    {
+      "address": "0x1006a",
+      "size": "u16",
+      "label": "Something related to the dome viewers"
+    },
+    {
+      "address": "0x1006c",
+      "size": "u16",
+      "label": "Boiler Island Lumber Cart Pipe Cover"
+    },
+    {
+      "address": "0x1006e",
+      "size": "u16",
+      "label": "Prison Island Dome State"
+    },
+    {
+      "address": "0x10070",
+      "size": "u16",
+      "label": "Prison Island Cage State"
+    },
+    {
+      "address": "0x10072",
+      "size": "u16",
+      "label": "233rd Age Cage State"
+    },
+    {
+      "address": "0x10074",
+      "size": "u16",
+      "label": "233rd Age Office Ambient Sound"
+    },
+    {
+      "address": "0x10076",
+      "size": "u8",
+      "label": "Temple Island - Rotation room position (0x01-0x05)"
+    },
+    {
+      "address": "0x10078",
+      "size": "u16",
+      "label": "Dome-Jungle Maglev Location Override"
+    },
+    {
+      "address": "0x1007a",
+      "size": "u16",
+      "label": "Rotation Room Main Gate"
+    },
+    {
+      "address": "0x1007c",
+      "size": "u16",
+      "label": "Temple Hidden Door"
+    },
+    {
+      "address": "0x1007e",
+      "size": "u16",
+      "label": "Temple Main Door"
+    },
+    {
+      "address": "0x10080",
+      "size": "u16",
+      "label": "Steam Dome to Beetle Temple Shortcut"
+    },
+    {
+      "address": "0x10082",
+      "size": "u16",
+      "label": "Rotation Room Shortcut Gate"
+    },
+    {
+      "address": "0x10084",
+      "size": "u16",
+      "label": "Steam Dome Shortcut"
+    },
+    {
+      "address": "0x10086",
+      "size": "u16",
+      "label": "Prison Island Catherine State"
+    },
+    {
+      "address": "0x10088",
+      "size": "u16",
+      "label": "Catherine Pacing Timer (Unused)"
+    },
+    {
+      "address": "0x1008a",
+      "size": "u16",
+      "label": "Maybe: Has Met Catherine"
+    },
+    {
+      "address": "0x1008c",
+      "size": "u16",
+      "label": "Prison Island Combo Counter"
+    },
+    {
+      "address": "0x1008e",
+      "size": "u16",
+      "label": "Prison Island Left Button"
+    },
+    {
+      "address": "0x10090",
+      "size": "u16",
+      "label": "Prison Island Middle Button"
+    },
+    {
+      "address": "0x10092",
+      "size": "u16",
+      "label": "Prison Island Right Button"
+    },
+    {
+      "address": "0x10094",
+      "size": "u16",
+      "label": "Prison Island Dome-Book State"
+    },
+    {
+      "address": "0x10096",
+      "size": "u16",
+      "label": "Survey Island Gold Elevator State"
+    },
+    {
+      "address": "0x10098",
+      "size": "u16",
+      "label": "Survey-Jungle Maglev Location"
+    },
+    {
+      "address": "0x1009a",
+      "size": "u16",
+      "label": "Survey Island Maglev Door"
+    },
+    {
+      "address": "0x1009c",
+      "size": "u16",
+      "label": "Wahrk Visit Count"
+    },
+    {
+      "address": "0x1009e",
+      "size": "u16",
+      "label": "Survey Island Selection"
+    },
+    {
+      "address": "0x100a0",
+      "size": "u16",
+      "label": "Survey Island Map Room Bridge"
+    },
+    {
+      "address": "0x100a2",
+      "size": "u16",
+      "label": "Survey Island Dome State"
+    },
+    {
+      "address": "0x100a4",
+      "size": "u16",
+      "label": "Survey Island Selected Chunk"
+    },
+    {
+      "address": "0x100a6",
+      "size": "u16",
+      "label": "Survey Island Chunk Rotation"
+    },
+    {
+      "address": "0x100a8",
+      "size": "u16",
+      "label": "Survey Room Unknown Flag"
+    },
+    {
+      "address": "0x100aa",
+      "size": "u16",
+      "label": "Survey Room Unknown Temp Var"
+    },
+    {
+      "address": "0x100ac",
+      "size": "u16",
+      "label": "Survey Island Dome-Book State"
+    },
+    {
+      "address": "0x100ae",
+      "size": "u16",
+      "label": "Survey Room Unknown Temp Var 3"
+    },
+    {
+      "address": "0x100b0",
+      "size": "u16",
+      "label": "Survey-Jungle Maglev Location"
+    },
+    {
+      "address": "0x100b2",
+      "size": "u16",
+      "label": "Survey Island Underwater Light"
+    },
+    {
+      "address": "0x100b4",
+      "size": "u16",
+      "label": "Survey Underwater Camera"
+    },
+    {
+      "address": "0x100b6",
+      "size": "u16",
+      "label": "Survey Island Prev/Current Light"
+    },
+    {
+      "address": "0x100b8",
+      "size": "u16",
+      "label": "Has Met Wahrk"
+    },
+    {
+      "address": "0x100ba",
+      "size": "u16",
+      "label": "Survey Video Feed"
+    },
+    {
+      "address": "0x100bc",
+      "size": "u16",
+      "label": "Catherine Pacing Timer"
+    },
+    {
+      "address": "0x100be",
+      "size": "u16",
+      "label": "Survey Island Catherine State"
+    },
+    {
+      "address": "0x100c0",
+      "size": "u16",
+      "label": "Dome Temple Projector Door (Bugged)"
+    },
+    {
+      "address": "0x100c2",
+      "size": "u16",
+      "label": "Temple Island Projector Seat Cage"
+    },
+    {
+      "address": "0x100c4",
+      "size": "u16",
+      "label": "Temple Island Projector Seat Power Lever"
+    },
+    {
+      "address": "0x100c6",
+      "size": "u16",
+      "label": "Temple Gehn Scene State"
+    },
+    {
+      "address": "0x100c8",
+      "size": "u16",
+      "label": "Temple Island Cho State (will be set to 0x01 once Dome is entered)"
+    },
+    {
+      "address": "0x100ca",
+      "size": "u16",
+      "label": "Temple-Jungle Maglev Location"
+    },
+    {
+      "address": "0x100cc",
+      "size": "u16",
+      "label": "Sunner State"
+    },
+    {
+      "address": "0x100ce",
+      "size": "u16",
+      "label": "Maybe: Has left starting area?"
+    },
+    {
+      "address": "0x100d0",
+      "size": "u16",
+      "label": "Dome to Beetle Bridge"
+    },
+    {
+      "address": "0x100d2",
+      "size": "u16",
+      "label": "Temple Island Telescope Height"
+    },
+    {
+      "address": "0x100d4",
+      "size": "u16",
+      "label": "Temple Island Telescope Hatch"
+    },
+    {
+      "address": "0x100d6",
+      "size": "u16",
+      "label": "Telescope Power Lever"
+    },
+    {
+      "address": "0x100d8",
+      "size": "u8",
+      "label": "Temple Island - Telescope handle position up/down"
+    },
+    {
+      "address": "0x100da",
+      "size": "u16",
+      "label": "Temple Island Telescope Pin"
+    },
+    {
+      "address": "0x100dc",
+      "size": "u16",
+      "label": "Temple Island Telescope Hatch Combo Counter"
+    },
+    {
+      "address": "0x100de",
+      "size": "u16",
+      "label": "Temple Island Arrival Cage (Unused)"
+    },
+    {
+      "address": "0x100e0",
+      "size": "u16",
+      "label": "Temple Island Beetle Opened"
+    },
+    {
+      "address": "0x100e2",
+      "size": "u16",
+      "label": "Marble Compactor State"
+    },
+    {
+      "address": "0x100e4",
+      "size": "u16",
+      "label": "Dome to Beetle Temple Bridge Power"
+    },
+    {
+      "address": "0x100e6",
+      "size": "u16",
+      "label": "Dome to Beetle Temple Bridge Lever"
+    },
+    {
+      "address": "0x100e8",
+      "size": "u16",
+      "label": "Temple Island Dome-Book State"
+    },
+    {
+      "address": "0x100ea",
+      "size": "u16",
+      "label": "Temple Island Unused Door"
+    },
+    {
+      "address": "0x100ec",
+      "size": "u16",
+      "label": "Temple Island Elevator Raising Animation"
+    },
+    {
+      "address": "0x100ee",
+      "size": "u16",
+      "label": "Maybe: Jungle Island Zip Flags"
+    },
+    {
+      "address": "0x100f0",
+      "size": "u16",
+      "label": "Jungle Scarab Beetle State"
+    },
+    {
+      "address": "0x100f2",
+      "size": "u16",
+      "label": "Jungle Door To Clearing"
+    },
+    {
+      "address": "0x100f4",
+      "size": "u16",
+      "label": "Jungle Dome State"
+    },
+    {
+      "address": "0x100f6",
+      "size": "u16",
+      "label": "Jungle Flying Beetle Random Var"
+    },
+    {
+      "address": "0x100f8",
+      "size": "u16",
+      "label": "Jungle Door to Cave"
+    },
+    {
+      "address": "0x100fa",
+      "size": "u16",
+      "label": "Execution Tower Door"
+    },
+    {
+      "address": "0x100fc",
+      "size": "u16",
+      "label": "Village Alarm Sounded"
+    },
+    {
+      "address": "0x100fe",
+      "size": "u16",
+      "label": "Execution Platform Floor"
+    },
+    {
+      "address": "0x10100",
+      "size": "u16",
+      "label": "Submersible Position"
+    },
+    {
+      "address": "0x10102",
+      "size": "u16",
+      "label": "Execution Ledge Door"
+    },
+    {
+      "address": "0x10104",
+      "size": "u16",
+      "label": "Starting Dock State"
+    },
+    {
+      "address": "0x10106",
+      "size": "u16",
+      "label": "Pentagon Dock State"
+    },
+    {
+      "address": "0x10108",
+      "size": "u16",
+      "label": "Execution Platform Dock State"
+    },
+    {
+      "address": "0x1010a",
+      "size": "u16",
+      "label": "Classroom Dock State"
+    },
+    {
+      "address": "0x1010c",
+      "size": "u16",
+      "label": "Control Room Dock State"
+    },
+    {
+      "address": "0x1010e",
+      "size": "u16",
+      "label": "Execution Prisoner State"
+    },
+    {
+      "address": "0x10110",
+      "size": "u16",
+      "label": "Execution Prison Secret Door"
+    },
+    {
+      "address": "0x10112",
+      "size": "u16",
+      "label": "Tay Cave Light Count"
+    },
+    {
+      "address": "0x10114",
+      "size": "u16",
+      "label": "Rebel Cave Door"
+    },
+    {
+      "address": "0x10116",
+      "size": "u16",
+      "label": "Maybe: Tay Age Book State"
+    },
+    {
+      "address": "0x10118",
+      "size": "u16",
+      "label": "Village Water Basin Filled"
+    },
+    {
+      "address": "0x1011a",
+      "size": "u16",
+      "label": "Submersible Facing Direction"
+    },
+    {
+      "address": "0x1011c",
+      "size": "u16",
+      "label": "Temporary script variable"
+    },
+    {
+      "address": "0x1011e",
+      "size": "u16",
+      "label": "Execution Prison Drain Cover"
+    },
+    {
+      "address": "0x10120",
+      "size": "u16",
+      "label": "Jungle Island Wahrk Under Platform"
+    },
+    {
+      "address": "0x10122",
+      "size": "u16",
+      "label": "Prison Ledge Ladder"
+    },
+    {
+      "address": "0x10124",
+      "size": "u16",
+      "label": "Jungle Island Dome-Book State"
+    },
+    {
+      "address": "0x10126",
+      "size": "u16",
+      "label": "Town Camera Rotation"
+    },
+    {
+      "address": "0x10128",
+      "size": "u16",
+      "label": "Village Door Knock State"
+    },
+    {
+      "address": "0x1012a",
+      "size": "u16",
+      "label": "Jungle Totem Stairs"
+    },
+    {
+      "address": "0x1012c",
+      "size": "u16",
+      "label": "Maybe: Girl after idol shortcut state TODO"
+    },
+    {
+      "address": "0x1012e",
+      "size": "u16",
+      "label": "Village Evacuation State"
+    },
+    {
+      "address": "0x10132",
+      "size": "u16",
+      "label": "Submersible Turning Direction"
+    },
+    {
+      "address": "0x10134",
+      "size": "u16",
+      "label": "Unused"
+    },
+    {
+      "address": "0x10136",
+      "size": "u16",
+      "label": "Classroom Door"
+    },
+    {
+      "address": "0x10138",
+      "size": "u16",
+      "label": "Sunner Idle Animation Timer"
+    },
+    {
+      "address": "0x1013a",
+      "size": "u16",
+      "label": "Classroom Left Hangman Position"
+    },
+    {
+      "address": "0x1013c",
+      "size": "u16",
+      "label": "Classroom Right Hangman Position"
+    },
+    {
+      "address": "0x1013e",
+      "size": "u16",
+      "label": "Classroom Hangman Current Turn"
+    },
+    {
+      "address": "0x10140",
+      "size": "u16",
+      "label": "Gehn State"
+    },
+    {
+      "address": "0x10142",
+      "size": "u16",
+      "label": "233rd Age Pager"
+    },
+    {
+      "address": "0x10144",
+      "size": "u16",
+      "label": "233rd Age New Book"
+    },
+    {
+      "address": "0x10146",
+      "size": "u16",
+      "label": "233rd Age Gehn's Record Player"
+    },
+    {
+      "address": "0x10148",
+      "size": "u16",
+      "label": "233rd Age Stove"
+    },
+    {
+      "address": "0x1014e",
+      "size": "u16",
+      "label": "Red Marble Column"
+    },
+    {
+      "address": "0x10150",
+      "size": "u16",
+      "label": "Orange Marble Column"
+    },
+    {
+      "address": "0x10152",
+      "size": "u16",
+      "label": "Yellow Marble Column"
+    },
+    {
+      "address": "0x10154",
+      "size": "u16",
+      "label": "Green Marble Column"
+    },
+    {
+      "address": "0x10156",
+      "size": "u16",
+      "label": "Blue Marble Column"
+    },
+    {
+      "address": "0x10158",
+      "size": "u16",
+      "label": "Purple Marble Column"
+    },
+    {
+      "address": "0x1015a",
+      "size": "u16",
+      "label": "Red Marble Row"
+    },
+    {
+      "address": "0x1015c",
+      "size": "u16",
+      "label": "Orange Marble Row"
+    },
+    {
+      "address": "0x1015e",
+      "size": "u16",
+      "label": "Yellow Marble Row"
+    },
+    {
+      "address": "0x10160",
+      "size": "u16",
+      "label": "Green Marble Row"
+    },
+    {
+      "address": "0x10162",
+      "size": "u16",
+      "label": "Blue Marble Row"
+    },
+    {
+      "address": "0x10164",
+      "size": "u16",
+      "label": "Purple Marble Row"
+    },
+    {
+      "address": "0x10168",
+      "size": "u16",
+      "label": "Temple Island Telescope Hatch Combo"
+    },
+    {
+      "address": "0x1016a",
+      "size": "u16",
+      "label": "Dome Code Digit 1"
+    },
+    {
+      "address": "0x1016c",
+      "size": "u16",
+      "label": "Dome Code Digit 2"
+    },
+    {
+      "address": "0x1016e",
+      "size": "u16",
+      "label": "Dome Code Digit 3"
+    },
+    {
+      "address": "0x10170",
+      "size": "u16",
+      "label": "Dome Code Digit 4"
+    },
+    {
+      "address": "0x10172",
+      "size": "u16",
+      "label": "Dome Code Digit 5"
+    },
+    {
+      "address": "0x10175",
+      "size": "u8",
+      "label": "Tay Gateway Wehlk Statue"
+    },
+    {
+      "address": "0x1017d",
+      "size": "u8",
+      "label": "Tay Gateway Frog Statue"
+    },
+    {
+      "address": "0x1017f",
+      "size": "u8",
+      "label": "Tay Gateway Fish Statue"
+    },
+    {
+      "address": "0x10184",
+      "size": "u8",
+      "label": "Tay Gateway Scarab Statue"
+    },
+    {
+      "address": "0x1018b",
+      "size": "u8",
+      "label": "Tay Gateway Sunner Statue"
+    },
+    {
+      "address": "0x10190",
+      "size": "u8",
+      "label": "Tay Gateway Last Pressed Statue"
+    },
+    {
+      "address": "0x10191",
+      "size": "u8",
+      "label": "Tay Gateway 2nd Last Pressed Statue"
+    },
+    {
+      "address": "0x10192",
+      "size": "u8",
+      "label": "Tay Gateway 3rd Last Pressed Statue"
+    },
+    {
+      "address": "0x10193",
+      "size": "u8",
+      "label": "Tay Gateway 4th Last Pressed Statue"
+    },
+    {
+      "address": "0x10194",
+      "size": "u8",
+      "label": "Tay Gateway 5th Last Pressed Statue"
+    },
+    {
+      "address": "0x10198",
+      "size": "u16",
+      "label": "Maybe: Boiler Island Zip State"
+    },
+    {
+      "address": "0x1019c",
+      "size": "u16",
+      "label": "Gehn's Lab Notes Page"
+    },
+    {
+      "address": "0x1019e",
+      "size": "u16",
+      "label": "Crater Boiler Water Bubble Movie Index"
+    },
+    {
+      "address": "0x101a4",
+      "size": "u16",
+      "label": "Survey Room Display Related"
+    },
+    {
+      "address": "0x101a6",
+      "size": "u16",
+      "label": "Prison Island Catherine Elevator Combo"
+    },
+    {
+      "address": "0x101aa",
+      "size": "u16",
+      "label": "Atrus's Journal Page"
+    },
+    {
+      "address": "0x101ac",
+      "size": "u16",
+      "label": "Catherine's Journal Page"
+    },
+    {
+      "address": "0x10700",
+      "size": "u32",
+      "label": "Boot disc and region (read-only)"
+    },
+    {
+      "address": "0x125fd",
+      "size": "u8",
+      "label": "Europe/Germany language (read-only)"
+    },
+    {
+      "address": "0x146a8",
+      "size": "u8",
+      "label": "Boot disc layout (USA, read-only)"
+    },
+    {
+      "address": "0x6237c",
+      "size": "u32",
+      "label": "CdlSetLoc location buffer"
+    },
+    {
+      "address": "0x62690",
+      "size": "u32",
+      "label": "Number of sectors read"
+    },
+    {
+      "address": "0x660ec",
+      "size": "u32",
+      "label": "Affects which movie will be played/loaded next"
+    },
+    {
+      "address": "0x6c5b8",
+      "size": "u16",
+      "label": "Movie index on disk (Europe, Germany)"
+    },
+    {
+      "address": "0x6c730",
+      "size": "u32",
+      "label": "Zip Flags 1"
+    },
+    {
+      "address": "0x6c734",
+      "size": "u32",
+      "label": "Zip Flags 2"
+    },
+    {
+      "address": "0x6c738",
+      "size": "u32",
+      "label": "Zip Flags 3 (USA)"
+    },
+    {
+      "address": "0x6c73c",
+      "size": "u32",
+      "label": "Zip Flags 4"
+    },
+    {
+      "address": "0x6c740",
+      "size": "u32",
+      "label": "Zip Flags 5"
+    },
+    {
+      "address": "0x6c744",
+      "size": "u32",
+      "label": "Zip Flags 6"
+    },
+    {
+      "address": "0x6c784",
+      "size": "u16",
+      "label": "Movie index on disk"
+    },
+    {
+      "address": "0x6cf7c",
+      "size": "u16",
+      "label": "Movie index on disk (France)"
+    },
+    {
+      "address": "0x9d1a4",
+      "size": "u32",
+      "label": "Screen pointer (Europe, Germany)"
+    },
+    {
+      "address": "0x9d324",
+      "size": "u32",
+      "label": "Screen pointer (Japan)"
+    },
+    {
+      "address": "0x9d370",
+      "size": "u32",
+      "label": "Screen pointer (USA)"
+    },
+    {
+      "address": "0x9d3a8",
+      "size": "u32",
+      "label": "Pointer to info about current screen, it's a list of interactive areas of the screen, variadic length"
+    },
+    {
+      "address": "0x9db68",
+      "size": "u32",
+      "label": "Screen pointer (France)"
+    },
+    {
+      "address": "0xa4ce4",
+      "size": "u8",
+      "label": "Movie playing state (Europe, Germany)"
+    },
+    {
+      "address": "0xa4e64",
+      "size": "u8",
+      "label": "Movie playing state (Japan)"
+    },
+    {
+      "address": "0xa4eb0",
+      "size": "u8",
+      "label": "Movie playing state"
+    },
+    {
+      "address": "0xa56a8",
+      "size": "u8",
+      "label": "Movie playing state (France)"
+    },
+    {
+      "address": "0x19e784",
+      "size": "u16",
+      "label": "Interactive area index that cursor will activate"
+    },
+    {
+      "address": "0x1b22cc",
+      "size": "u8",
+      "label": "Current island (Europe, Germany)"
+    },
+    {
+      "address": "0x1b244c",
+      "size": "u8",
+      "label": "Current island (Japan)"
+    },
+    {
+      "address": "0x1b2498",
+      "size": "u8",
+      "label": "Current island (USA)"
+    },
+    {
+      "address": "0x1b2518",
+      "size": "u16",
+      "label": "Movie index on screen"
+    },
+    {
+      "address": "0x1b2c94",
+      "size": "u8",
+      "label": "Current island (France)"
+    },
+    {
+      "address": "0x1b45b0",
+      "size": "u8",
+      "label": "Disk swapping state"
+    },
+    {
+      "address": "0x1ffd2c",
+      "size": "u32",
+      "label": "Current page, Gehn Bedside Journal (Stack location)"
+    },
+    {
+      "address": "0x1ffd6c",
+      "size": "u32",
+      "label": "Current page, Gehn Bedside Journal (Stack location) v2"
+    },
+    {
+      "address": "0x1ffe1c",
+      "size": "u32",
+      "label": "Current page, Gehn Lab both books (Stack location)"
+    },
+    {
+      "address": "0x1ffe5c",
+      "size": "u32",
+      "label": "Current page, Gehn Lab both books (Stack location) v2"
+    },
+    {
+      "address": "0x1ffea4",
+      "size": "u32",
+      "label": "Current page via menu (Stack location)"
+    },
+    {
+      "address": "0x1ffee4",
+      "size": "u32",
+      "label": "Current page via menu (Stack location) copy"
+    }
   ]
 }

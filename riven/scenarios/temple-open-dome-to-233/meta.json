@@ -71,12 +71,12 @@
     {
       "address": "0x10018",
       "size": "u16",
-      "label": "Crater to Dome Bridge"
+      "label": "Boiler to Dome Bridge"
     },
     {
       "address": "0x1001a",
       "size": "u16",
-      "label": "Dome Island Dome"
+      "label": "Temple Island Dome State"
     },
     {
       "address": "0x1001c",
@@ -91,12 +91,12 @@
     {
       "address": "0x10020",
       "size": "u16",
-      "label": "Dome Power to Crater Bridge"
+      "label": "Dome Power to Boiler Bridge"
     },
     {
       "address": "0x10022",
       "size": "u16",
-      "label": "Crater-Survey Maglev Location"
+      "label": "Boiler-Survey Maglev Location"
     },
     {
       "address": "0x10024",
@@ -116,7 +116,7 @@
     {
       "address": "0x1002a",
       "size": "u16",
-      "label": "Maybe: Lab Front Door Lock"
+      "label": "Lab Front Door Lock"
     },
     {
       "address": "0x1002c",
@@ -161,7 +161,7 @@
     {
       "address": "0x1003c",
       "size": "u16",
-      "label": "Crater Island Gehn's Lab Egg Drawer"
+      "label": "Boiler Island Gehn's Lab Egg Drawer"
     },
     {
       "address": "0x1003e",
@@ -221,7 +221,7 @@
     {
       "address": "0x10054",
       "size": "u16",
-      "label": "Crater Island Ridge Seagulls"
+      "label": "Boiler Island Ridge Seagulls"
     },
     {
       "address": "0x10056",
@@ -231,17 +231,17 @@
     {
       "address": "0x10058",
       "size": "u16",
-      "label": "Crater Island Ytram Trap State"
+      "label": "Boiler Island Ytram Trap State"
     },
     {
       "address": "0x1005a",
       "size": "u16",
-      "label": "Crater Island Ytram Trap Bait"
+      "label": "Boiler Island Ytram Trap Bait"
     },
     {
       "address": "0x1005c",
       "size": "u16",
-      "label": "Crater Island Ytram Trap Timer"
+      "label": "Boiler Island Ytram Trap Timer"
     },
     {
       "address": "0x1005e",
@@ -256,17 +256,17 @@
     {
       "address": "0x10062",
       "size": "u16",
-      "label": "Crater Dome Door"
+      "label": "Boiler Dome Door"
     },
     {
       "address": "0x10064",
       "size": "u16",
-      "label": "Crater Dome State"
+      "label": "Boiler Dome State"
     },
     {
       "address": "0x10066",
       "size": "u16",
-      "label": "Crater Island Dome-Book State"
+      "label": "Boiler Island Dome-Book State"
     },
     {
       "address": "0x10068",
@@ -281,7 +281,7 @@
     {
       "address": "0x1006c",
       "size": "u16",
-      "label": "Crater Island Lumber Cart Pipe Cover"
+      "label": "Boiler Island Lumber Cart Pipe Cover"
     },
     {
       "address": "0x1006e",
@@ -306,7 +306,7 @@
     {
       "address": "0x10076",
       "size": "u8",
-      "label": "Dome Island - Rotation room position (0x01-0x05)"
+      "label": "Temple Island - Rotation room position (0x01-0x05)"
     },
     {
       "address": "0x10078",
@@ -416,7 +416,7 @@
     {
       "address": "0x100a2",
       "size": "u16",
-      "label": "Survey Island Dome Cover"
+      "label": "Survey Island Dome State"
     },
     {
       "address": "0x100a4",
@@ -496,12 +496,12 @@
     {
       "address": "0x100c2",
       "size": "u16",
-      "label": "Dome Island Projector Seat Cage"
+      "label": "Temple Island Projector Seat Cage"
     },
     {
       "address": "0x100c4",
       "size": "u16",
-      "label": "Dome Island Projector Seat Power Lever"
+      "label": "Temple Island Projector Seat Power Lever"
     },
     {
       "address": "0x100c6",
@@ -511,12 +511,12 @@
     {
       "address": "0x100c8",
       "size": "u16",
-      "label": "Dome Island Cho State (will be set to 0x01 once Dome is entered)"
+      "label": "Temple Island Cho State (will be set to 0x01 once Dome is entered)"
     },
     {
       "address": "0x100ca",
       "size": "u16",
-      "label": "Dome-Jungle Maglev Location"
+      "label": "Temple-Jungle Maglev Location"
     },
     {
       "address": "0x100cc",
@@ -536,12 +536,12 @@
     {
       "address": "0x100d2",
       "size": "u16",
-      "label": "Dome Island Telescope Height"
+      "label": "Temple Island Telescope Height"
     },
     {
       "address": "0x100d4",
       "size": "u16",
-      "label": "Dome Island Telescope Hatch"
+      "label": "Temple Island Telescope Hatch"
     },
     {
       "address": "0x100d6",
@@ -551,27 +551,27 @@
     {
       "address": "0x100d8",
       "size": "u8",
-      "label": "Dome Island - Telescope handle position up/down"
+      "label": "Temple Island - Telescope handle position up/down"
     },
     {
       "address": "0x100da",
       "size": "u16",
-      "label": "Dome Island Telescope Pin"
+      "label": "Temple Island Telescope Pin"
     },
     {
       "address": "0x100dc",
       "size": "u16",
-      "label": "Dome Island Telescope Hatch Combo Counter"
+      "label": "Temple Island Telescope Hatch Combo Counter"
     },
     {
       "address": "0x100de",
       "size": "u16",
-      "label": "Dome Island Arrival Cage (Unused)"
+      "label": "Temple Island Arrival Cage (Unused)"
     },
     {
       "address": "0x100e0",
       "size": "u16",
-      "label": "Dome Island Beetle Opened"
+      "label": "Temple Island Beetle Opened"
     },
     {
       "address": "0x100e2",
@@ -591,17 +591,17 @@
     {
       "address": "0x100e8",
       "size": "u16",
-      "label": "Dome Island Dome-Book State"
+      "label": "Temple Island Dome-Book State"
     },
     {
       "address": "0x100ea",
       "size": "u16",
-      "label": "Dome Island Unused Door"
+      "label": "Temple Island Unused Door"
     },
     {
       "address": "0x100ec",
       "size": "u16",
-      "label": "Dome Island Elevator Raising Animation"
+      "label": "Temple Island Elevator Raising Animation"
     },
     {
       "address": "0x100ee",
@@ -891,7 +891,7 @@
     {
       "address": "0x10168",
       "size": "u16",
-      "label": "Dome Island Telescope Hatch Combo"
+      "label": "Temple Island Telescope Hatch Combo"
     },
     {
       "address": "0x1016a",
@@ -971,7 +971,7 @@
     {
       "address": "0x10198",
       "size": "u16",
-      "label": "Maybe: Crater Island Zip State"
+      "label": "Maybe: Boiler Island Zip State"
     },
     {
       "address": "0x1019c",
