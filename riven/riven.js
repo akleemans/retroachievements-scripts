@@ -194,6 +194,7 @@ const DomeScreenEnum = {
   GehnWatching: 0x801be0cc, // temple, plays movie 33 of Gehn watching the player
   MarblePress: 0x801ccefc, // tIslandExterior7500, fire marble press
   TempleLamps: 0x801be450,
+  TelescopeView: 0x801c3e40, // looking through the eyepiece of the telescope
 };
 
 const JungleScreenEnum = {
@@ -491,7 +492,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650605,
-  title: 'Deep Into the Earth',
+  title: 'Deep into the Earth',
   description: 'Find a way into the underground of Survey Island',
   points: 3,
   // Last movie of the ride down: elevator door opens onto the underground corridor
@@ -520,7 +521,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650608,
-  title: 'Is that glass thick enough?',
+  title: 'Is That Glass Thick Enough?',
   description: 'Annoy the Wahrk',
   points: 2,
   // GWHARK6 (116): the wahrk charges at the glass. Played on the 4th call (0x1009c Wahrk Visit Count 3 -> 4)
@@ -683,6 +684,23 @@ set.addAchievement({
   ),
 });
 
+const telescopeHeight = 0x0100d2; // 1 = lowest position above the glass, goes up from there
+const telescopeHatch = 0x0100d4; // 0 = Closed, 1 = Open
+
+set.addAchievement({
+  id: 650804,
+  title: 'The Abyss Will Gaze Back',
+  description: 'Look into the Star Fissure through the telescope without breaking the glass',
+  points: 2,
+  type: 'missable',
+  // The fissure only shows through the open hatch with the telescope one step above the glass (2 and up is a blur)
+  conditions: arrivedOnScreen(
+    DomeScreenEnum.TelescopeView,
+    ['', 'Mem', '16bit', telescopeHatch,  '=', 'Value', '', 1],
+    ['', 'Mem', '16bit', telescopeHeight, '=', 'Value', '', 1],
+  ),
+});
+
 set.addAchievement({
   id: 650621,
   title: 'The Ending Can Never Truly Be Written',
@@ -792,12 +810,30 @@ set.addAchievement({
 /* -------------------- Easter Eggs ------------------ */
 
 const easterEggUnlock = 0x01003e; // 0 = Locked, 1 = Unlocked (set on the last step)
+const easterEggProgress = 0x010008; // Steps done in the unlock chain, 0-5
+
+set.addAchievement({
+  id: 650805,
+  title: 'Egg Hunt',
+  description: 'Unlock the Easter Eggs',
+  points: 10,
+  type: 'missable',
+  // Click all 5 spots, with indicator. Loading a save with the eggs unlocked doesn't count. Paused during boot.
+  conditions: {
+    core: $(
+      ...pauseIfNoScreen(),
+      ['',         'Delta', '16bit', easterEggProgress, '=', 'Value', '', 4],
+      ['Measured', 'Mem',   '16bit', easterEggProgress, '=', 'Value', '', 5],
+    ),
+  },
+});
 
 set.addAchievement({
   id: 650624,
   title: 'Commercial Break',
   description: 'Watch an Ad on Gehn\'s CCTV',
-  points: 5,
+  points: 3,
+  type: 'missable',
   // Left scope in Wahrk Room plays movie 145 (Silly Putty ad) instead of the feed if the egg is unlocked
   conditions: movieFinished(
     SurveyScreenEnum.WahrkRoomLeftScope,
@@ -810,7 +846,8 @@ set.addAchievement({
   title: 'Deck the Halls',
   id: 650625,
   description: 'Decorate the Temple in Green and Red',
-  points: 5,
+  points: 3,
+  type: 'missable',
   // The lights only appear after clicking the lamp: hotspot 8 shows picture 3 if the egg is unlocked
   conditions: clickedHotspot(
     DomeScreenEnum.TempleLamps,
@@ -823,7 +860,8 @@ set.addAchievement({
   id: 650626,
   title: 'The Wireframe',
   description: 'See the Jungle Village before it was Rendered',
-  points: 5,
+  points: 3,
+  type: 'missable',
   // Turning right on jVillage2710 leads to jVillage2725 instead of jVillage2700 if the egg is unlocked
   conditions: arrivedOnScreen(
     JungleScreenEnum.WireframeVillage,
@@ -835,7 +873,8 @@ set.addAchievement({
   id: 650627,
   title: 'A Walk in the Sky',
   description: 'Enjoy the view on the sky walk',
-  points: 5,
+  points: 3,
+  type: 'missable',
   // Clicking the lamp on jGThrone450 (hotspot 9) shows picture 3, the stairs in a blue sky if egg unlocked
   conditions: clickedHotspot(
     JungleScreenEnum.ThroneStairs,
@@ -892,10 +931,9 @@ set.addAchievement({
   ),
 });
 
-
 set.addAchievement({
   id: 650633,
-  title: 'Gehn\'s victory',
+  title: 'Gehn\'s Victory',
   description: 'Retrieve the Trap Book without capturing Gehn and open the Star Fissure', // E6
   points: 10,
   type: 'missable',
@@ -904,7 +942,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650634,
-  title: 'Pity for the old man',
+  title: 'Pity for the Old Man',
   description: 'Capture Gehn, then use the Trap Book on Riven', // E7
   points: 5,
   conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [1]),

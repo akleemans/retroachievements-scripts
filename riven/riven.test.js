@@ -408,7 +408,7 @@ describe('Gehn\'s Map', () => {
 });
 
 describe('Deep Into the Earth', () => {
-  const cheevo = achievement('Deep Into the Earth');
+  const cheevo = achievement('Deep into the Earth');
 
   const goldenLiftScenarios = ['survey-use-golden-lift'];
 
@@ -465,7 +465,7 @@ describe('Meet the Wahrk', () => {
 });
 
 describe('Is that glass thick enough?', () => {
-  const cheevo = achievement('Is that glass thick enough?');
+  const cheevo = achievement('Is That Glass Thick Enough?');
 
   test('pops when the wahrk attack movie finishes', () => {
     const s = scenario('survey-watch-wahrk');
@@ -777,8 +777,8 @@ describe('Endings', () => {
     {title: 'You Have My Sympathy', scenarios: ['ending3-use-trap-book-without-visiting-gehn']},
     {title: 'Trap Book in Riven after Gehn', scenarios: ['ending4-use-trap-book-on-riven-after-gehn']},
     {title: 'No Thanks, After You', scenarios: ['ending5-refuse-gehn-three-times']},
-    {title: 'Gehn\'s victory', scenarios: ['ending6-open-star-fissure-without-capturing-gehn']},
-    {title: 'Pity for the old man', scenarios: ['ending7-release-gehn-in-233', 'ending7-release-gehn-on-prison-island']},
+    {title: 'Gehn\'s Victory', scenarios: ['ending6-open-star-fissure-without-capturing-gehn']},
+    {title: 'Pity for the Old Man', scenarios: ['ending7-release-gehn-in-233', 'ending7-release-gehn-on-prison-island']},
     {title: 'Betraying the Moiety', scenarios: ['ending8-release-gehn-on-tay']},
     {title: 'We Will Never Know Her Fate', scenarios: ['ending9-forget-catherine']},
     {title: 'The Ending Can Never Truly Be Written', scenarios: ['temple-best-ending']},
@@ -942,6 +942,112 @@ describe('Commercial Break', () => {
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('ad-finished'));
   });
+});
+
+describe('The Abyss Will Gaze Back', () => {
+  const cheevo = achievement('The Abyss Will Gaze Back');
+
+  test('pops when looking through the eyepiece with the telescope lowered', () => {
+    const s = scenario('temple-look-into-abyss');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('abyss-shown'));
+  });
+
+  test('does not pop when the telescope is still too high', () => {
+    // same walk with the telescope one step higher, but the view is blurry
+    const s = scenario('temple-look-into-abyss-not-close-enough');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(false);
+  });
+
+  test('does not pop on startup', () => {
+    const result = runAchievement(cheevo, scenario('start-game-usa'));
+
+    expect(result.triggered).toBe(false);
+  });
+});
+
+describe('Egg Hunt', () => {
+  const cheevo = achievement('Egg Hunt');
+
+  test('shows 4/5 before the last step and pops on it', () => {
+    const s = scenario('easter-egg-activate-and-christmas');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.measuredTarget).toBe(5);
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.measuredAt(s.marker('egg-unlocked') - 1)).toBe(4);
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('egg-unlocked'));
+  });
+
+  for (const name of ['easter-egg-silly-putty', 'easter-egg-sky-walk', 'easter-egg-wireframe']) {
+    test(`does not pop while playing with the eggs already unlocked: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.measuredAt(s.lastFrame)).toBe(5);
+      expect(result.triggered).toBe(false);
+    });
+  }
+
+  const steps = [
+    // [scenario, frame of the step, progress after it]
+    ['easter-egg-first-step', 574790, 1],
+    ['easter-egg-third-step', 1280306, 3],
+    ['easter-egg-fourth-step-with-another-click', 1356068, 4],
+  ];
+
+  for (const [name, stepFrame, progress] of steps) {
+    test(`counts the step without popping: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(stepFrame)).toBe('active');
+      expect(result.measuredAt(stepFrame - 1)).toBe(progress - 1);
+      expect(result.measuredAt(stepFrame)).toBe(progress);
+      expect(result.triggered).toBe(false);
+    });
+  }
+
+  test('falls back to 0/5 when something else is clicked in between', () => {
+    // the click at 1356243 after the fourth step isn't the fifth step, so the game clears the progress
+    const s = scenario('easter-egg-fourth-step-with-another-click');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.measuredAt(1356243 - 1)).toBe(4);
+    expect(result.measuredAt(1356243)).toBe(0);
+    expect(result.measuredAt(s.lastFrame)).toBe(0);
+  });
+
+  const bootScenarios = [
+    // [scenario, first frame with junk in the progress, first frame after it]
+    ['start-game-usa', 468, 777],
+    ['start-game-europe', 408, 673],
+    ['start-game-france', 408, 673],
+    ['start-game-germany', 408, 673],
+    ['start-game-japan', 468, 777],
+    ['load-state-europe', 408, 673],
+    ['load-state-france', 408, 673],
+    ['load-state-japan', 468, 777],
+  ];
+
+  for (const [name, junkStart, junkEnd] of bootScenarios) {
+    test(`is paused while the progress holds junk during boot: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(junkStart)).toBe('paused');
+      expect(result.stateAt(junkEnd - 1)).toBe('paused');
+      expect(result.measuredAt(s.lastFrame)).toBe(0);
+      expect(result.triggered).toBe(false);
+    });
+  }
 });
 
 describe('Deck the Halls', () => {
