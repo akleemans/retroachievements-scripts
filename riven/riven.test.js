@@ -744,8 +744,8 @@ describe('The Ending Can Never Truly Be Written', () => {
   });
 });
 
-describe('Pity for the old man', () => {
-  const cheevo = achievement('Pity for the old man');
+describe('Pity for the Old Man', () => {
+  const cheevo = achievement('Pity for the Old Man');
 
   const scenarios = ['ending7-release-gehn-in-233', 'ending7-release-gehn-on-prison-island'];
 
@@ -970,6 +970,43 @@ describe('The Abyss Will Gaze Back', () => {
 
     expect(result.triggered).toBe(false);
   });
+});
+
+describe('Scholar of the Ages', () => {
+  const cheevo = achievement('Scholar of the Ages');
+
+  test('counts each journal on its last page and pops on the fourth', () => {
+    // Gehn's bedside journal is read from the first page, his lab notes open on the last page (read earlier),
+    // Atrus's journal is read from the first page and closed, Catherine's journal opens on the last page
+    const s = scenario('read-all-journals');
+    const result = runAchievement(cheevo, s);
+
+    const bedsideLastPage = 1358875;
+    const labNotesOpened = 1374960;
+    const atrusClosed = 1386249;
+    const catherineOpened = 1386784;
+
+    expect(result.measuredTarget).toBe(4);
+    expect(result.measuredAt(bedsideLastPage - 1)).toBe(0);
+    expect(result.measuredAt(bedsideLastPage)).toBe(1);
+    expect(result.measuredAt(labNotesOpened - 1)).toBe(1);
+    expect(result.measuredAt(labNotesOpened)).toBe(2);
+    expect(result.measuredAt(atrusClosed - 1)).toBe(2);
+    expect(result.measuredAt(atrusClosed)).toBe(3);
+    expect(result.stateAt(catherineOpened - 1)).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(catherineOpened);
+  });
+
+  for (const name of ['start-game-usa', 'start-game-europe', 'start-game-france', 'start-game-germany', 'start-game-japan']) {
+    test(`counts nothing during boot: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.measuredAt(s.lastFrame)).toBe(0);
+      expect(result.triggered).toBe(false);
+    });
+  }
 });
 
 describe('Egg Hunt', () => {

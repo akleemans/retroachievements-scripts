@@ -218,6 +218,7 @@ const JungleScreenEnum = {
 };
 
 const BoilerScreenEnum = {
+  LabNotesDesk: 0x801cc044, // Gehn's lab, the desk with his lab notes (the book opens on this screen)
   YtramTrapDown: 0x801d5558, // bYtram_TrapDown810
   BoilerInterior: 0x801bd080, // bBoilerInterior17
   YtramCave: 0x801d7ad0, // bYtramCave_S2250
@@ -237,8 +238,8 @@ const SurveyScreenEnum = {
 };
 
 const Age233ScreenEnum = {
-  CageArrival: 0x801b90bc, // inside Gehn's cage, where every fire marble dome book links to
-  // Gehn's study, after handing him the trap book. Plays 26 (O6_10Z, Gehn opens the book and links into it)
+  BedsideJournal: 0x801c4514, // Gehn's bedroom, his journal on the bedside table
+  CageArrival: 0x801b90bc, // inside Gehn's cage, where every fire marble dome book links to Gehn's study
   // E5: the same screen plays 24 (OGR_B, Gehn gives up after the third refusal) with Gehn State 3
   GehnTakesTrapBook: 0x801bf65c,
   // Black screen after touching the Prison Island book in Gehn's study. Plays 18 and 19 (GEHN.BIN, linking to Prison Island)
@@ -806,6 +807,50 @@ set.addAchievement({
   },
 });
 
+// Open page of a journal, on the stack (two cells each)
+const bedsideJournalPage = 0x1ffd2c; // Gehn's journal in his bedroom in the 233rd Age
+const bedsideJournalPage2 = 0x1ffd6c;
+const labNotesPage = 0x1ffe1c; // Gehn's lab notes
+const labNotesPage2 = 0x1ffe5c;
+const menuJournalPage = 0x1ffea4; // Atrus's and Catherine's journal, opened from the menu
+const menuJournalPage2 = 0x1ffee4;
+const atrusJournalSavedPage = 0x0101aa; // written when the journal is closed
+
+const bedsideJournalLastPage = 0x15;
+const labNotesLastPage = 0x24;
+const atrusJournalLastPage = 0x1d;
+const catherineJournalLastPage = 0x3d;
+
+set.addAchievement({
+  title: 'Scholar of the Ages',
+  description: 'Read through all 4 Journals in one session',
+  points: 10,
+  // One hit per journal on its last page is open
+  conditions: (() => {
+    const conditions = {
+      core: $(
+        ...resetOnBoot(),
+      ),
+    };
+    for (const region of regions) {
+      conditions[region.alt] = $(
+        ['AndNext',  'Mem',   '32bit', region.screenPointer,  '=', 'Value', '', screenValue(region, Age233ScreenEnum.BedsideJournal)],
+        ['AndNext',  'Mem',   '32bit', bedsideJournalPage2,   '=', 'Value', '', bedsideJournalLastPage],
+        ['AddHits',  'Mem',   '32bit', bedsideJournalPage,    '=', 'Value', '', bedsideJournalLastPage, 1],
+        ['AndNext',  'Mem',   '32bit', region.screenPointer,  '=', 'Value', '', screenValue(region, BoilerScreenEnum.LabNotesDesk)],
+        ['AndNext',  'Mem',   '32bit', labNotesPage2,         '=', 'Value', '', labNotesLastPage],
+        ['AddHits',  'Mem',   '32bit', labNotesPage,          '=', 'Value', '', labNotesLastPage, 1],
+        ['AndNext',  'Mem',   '16bit', atrusJournalSavedPage, '=', 'Value', '', atrusJournalLastPage],
+        ['AndNext',  'Delta', '32bit', menuJournalPage,       '=', 'Value', '', atrusJournalLastPage],
+        ['AddHits',  'Mem',   '32bit', menuJournalPage2,      '=', 'Value', '', atrusJournalLastPage, 1],
+        ['AndNext',  'Mem',   '32bit', menuJournalPage,       '=', 'Value', '', catherineJournalLastPage],
+        ['AddHits',  'Mem',   '32bit', menuJournalPage2,      '=', 'Value', '', catherineJournalLastPage, 1],
+        ['Measured', 'Value', '',      0,                     '=', 'Value', '', 1, 4],
+      );
+    }
+    return conditions;
+  })(),
+});
 
 /* -------------------- Easter Eggs ------------------ */
 
