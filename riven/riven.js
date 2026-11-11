@@ -292,6 +292,7 @@ const purpleMarbleColumn = 0x010158;
 // On boot, the marble columns are set from 0x00 to 0xffff
 set.addAchievement({
   id: 648931,
+  badge: '743475',
   title: 'WARNING',
   description: 'Game always has to be started with Disc 1! Discs can be switched inside the game.',
   points: 0,
@@ -308,6 +309,7 @@ const domeIslandChoState = 0x0100c8;
 
 set.addAchievement({
   id: 648932,
+  badge: '743476',
   title: 'Cho?',
   description: 'Find out what happened to the guard',
   points: 1,
@@ -321,6 +323,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 648933,
+  badge: '743477',
   title: 'The Chapel',
   description: 'Inspect all art displays in the Gate Room at Dome Island',
   points: 2,
@@ -338,6 +341,7 @@ const rotationRoomMainGate = 0x01007a; // 0 = Up, 1 = Down
 
 set.addAchievement({
   id: 648934,
+  badge: '743478',
   title: 'Outsmart the Gate',
   description: 'Solve the rotating Gate Room puzzle',
   points: 10,
@@ -354,6 +358,7 @@ const domeJungleMaglevLocation = 0x0100ca; // 0 = Dome, 1 = Jungle
 
 set.addAchievement({
   id: 648935,
+  badge: '743479',
   title: 'Jungle Island',
   description: 'Arrive at Jungle Island',
   points: 5,
@@ -367,6 +372,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 648936,
+  badge: '743480',
   title: 'Meet the Scarab Beetle',
   description: 'Find a Scarab Beetle friend',
   points: 2,
@@ -375,6 +381,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650594,
+  badge: '743481',
   title: 'Meet the Sunner',
   description: 'Get up close and personal with a giant Sunner',
   points: 3,
@@ -383,6 +390,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650595,
+  badge: '743482',
   title: 'Knock, Knock',
   description: 'Check if someone\'s home at a villager\'s hut by knocking multiple times',
   points: 3,
@@ -392,6 +400,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650596,
+  badge: '743483',
   title: 'Eye Spy',
   description: 'Find and rotate all 4 wooden animal eyes',
   points: 5,
@@ -406,6 +415,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650597,
+  badge: '743484',
   title: 'Submarine',
   description: 'Get access to the submarine',
   points: 5,
@@ -414,8 +424,9 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650598,
-  title: 'D\'ni Scholar',
-  description: 'Make both players "win" in the Classroom',
+  badge: '743485',
+  title: 'D\'ni Scholar', // TODO improve
+  description: 'Make both players "win" in the Classroom', // TODO improve
   points: 5,
   conditions: seenAllMovies([
     {screen: JungleScreenEnum.Classroom, movie: 300},
@@ -425,6 +436,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650599,
+  badge: '743486',
   title: 'Boiler Island',
   description: 'Arrive at Boiler Island',
   points: 5,
@@ -434,6 +446,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650600,
+  badge: '743487',
   title: 'Boiler Puzzle',
   description: 'Complete the Boiler puzzle',
   points: 10,
@@ -443,6 +456,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650601,
+  badge: '743488',
   title: 'Meet the Ytram',
   description: 'Capture a poisonous Ytram',
   points: 5,
@@ -451,6 +465,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650602,
+  badge: '743489',
   title: 'Gehn\'s Lab',
   description: 'Find a way into Gehn\'s Lab',
   points: 10,
@@ -460,6 +475,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650603,
+  badge: '743490',
   title: 'Survey Island',
   description: 'Arrive at Survey Island',
   points: 5,
@@ -480,7 +496,8 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650604,
-  title: 'Gehn\'s Map',
+  badge: '743491',
+  title: 'Gehn\'s Map', // TODO rename
   description: 'Interact with the relief map on Survey Island',
   points: 5,
   // Selecting a chunk on the detailed map is the first interaction, regardless of the chosen island
@@ -493,6 +510,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650605,
+  badge: '743492',
   title: 'Deep into the Earth',
   description: 'Find a way into the underground of Survey Island',
   points: 3,
@@ -503,6 +521,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650606,
+  badge: '743493',
   title: 'Unwelcome Visitor',
   description: 'Follow the Scribe to see him flee',
   points: 1,
@@ -513,6 +532,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650607,
+  badge: '743494',
   title: 'Meet the Wahrk',
   description: 'Finally meet one of Gehn\'s fearsome pets',
   points: 2,
@@ -522,6 +542,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650608,
+  badge: '743495',
   title: 'Is That Glass Thick Enough?',
   description: 'Annoy the Wahrk',
   points: 2,
@@ -531,17 +552,18 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650609,
-  title: 'Is that Catherine?',
+  badge: '743496',
+  title: 'Is that Catherine?', // TODO rename or move order
   description: 'Take a look into Catherine\'s chamber',
   points: 2,
   type: 'missable',
-  // G6_ASCP (136): first look at Catherine's feed, she walks from the room (0x100be state 3) to left of the doorway (1).
-  // The first look always starts "in room", so later variants (other *_ASCP clips) shouldn't be needed.
+  // G6_ASCP (136): first look at Catherine's feed, she walks from the room (0x100be state 3) to left of the doorway
   conditions: movieFinished(SurveyScreenEnum.WahrkRoomLeftScope, [136]),
 });
 
 set.addAchievement({
   id: 650610,
+  badge: '743497',
   title: 'Gehn Is Watching You',
   description: 'Find Gehn watching you in the Temple',
   points: 2,
@@ -552,6 +574,7 @@ const domePower = 0x010068; // 0 = Off, 1 = Books are powered (set when the marb
 
 set.addAchievement({
   id: 650611,
+  badge: '743498',
   title: 'Marble Puzzle',
   description: 'Solve the Marble Puzzle',
   points: 25,
@@ -567,6 +590,7 @@ set.addAchievement({
 // TODO test options
 set.addAchievement({
   id: 650612,
+  badge: '743499',
   title: 'Gehn\'s Realm',
   description: 'Find a way into Gehn\'s realm',
   points: 10,
@@ -588,6 +612,7 @@ const executionPlatformFloor = 0x0100fe; // 0 = Closed, 1 = Open
 
 set.addAchievement({
   id: 650613,
+  badge: '743500',
   title: 'The Wahrk Gallows',
   description: 'Find a way up to the prison ledge',
   points: 5,
@@ -603,6 +628,7 @@ const tayAgeBookState = 0x010116; // 0 = Hidden, 1 = Revealing, 2 = Revealed and
 
 set.addAchievement({
   id: 650614,
+  badge: '743501',
   title: 'Find the Moiety Cave',
   description: 'Locate the Moiety\'s hidden cavern',
   points: 10,
@@ -616,6 +642,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650615,
+  badge: '743502',
   title: 'Secrets of Stonehenge',
   description: 'Solve the Moiety\'s hardest puzzle',
   points: 25,
@@ -629,6 +656,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650616,
+  badge: '743503',
   title: 'The New Great Tree',
   description: 'Enter the Moiety\'s new stronghold in Tay',
   points: 3,
@@ -639,6 +667,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650617,
+  badge: '743504',
   title: 'Captive Audience',
   description: 'Not quite a prisoner, not quite welcome - watch the rebels of Tay go about their lives in 4 different scenes from your prison cell',
   points: 5,
@@ -655,6 +684,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650618,
+  badge: '743505',
   title: 'Not Prepared Enough',
   description: 'Trap Gehn',
   points: 10,
@@ -667,6 +697,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650619,
+  badge: '743506',
   title: 'Visit the Once Great Tree',
   description: 'Arrive on Prison Island',
   points: 5,
@@ -675,6 +706,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650620,
+  badge: '743507',
   title: 'Music to Her Ears',
   description: 'Free Catherine',
   points: 10,
@@ -690,6 +722,7 @@ const telescopeHatch = 0x0100d4; // 0 = Closed, 1 = Open
 
 set.addAchievement({
   id: 650804,
+  badge: '743524',
   title: 'The Abyss Will Gaze Back',
   description: 'Look into the Star Fissure through the telescope without breaking the glass',
   points: 2,
@@ -704,6 +737,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650621,
+  badge: '743508',
   title: 'The Ending Can Never Truly Be Written',
   description: 'Trap Gehn, save Catherine, and get home - safely?',
   points: 25,
@@ -742,6 +776,7 @@ const jungleDome = 0x0100f4;
 // Test: Save state 9b: Jungle -> Survey -> Boiler -> 233, Trap Gehn -> Prison Island -> Temple
 set.addAchievement({
   id: 650622,
+  badge: '743509',
   title: 'Full Coverage',
   description: 'Restore Gehn\'s transportation network by opening all five Golden Domes across Riven in a single session',
   points: 10,
@@ -779,6 +814,7 @@ const templeBeetleRoomInnerGate = 0x010082; // Rotation Room Shortcut Gate, 1 = 
 
 set.addAchievement({
   id: 650623,
+  badge: '743510',
   title: 'Gehn\'s Secret Paths',
   description: 'Open all seven permanent shortcuts across Riven before Gehn is caught',
   points: 10,
@@ -822,6 +858,8 @@ const atrusJournalLastPage = 0x1d;
 const catherineJournalLastPage = 0x3d;
 
 set.addAchievement({
+  id: 651157,
+  badge: '743526',
   title: 'Scholar of the Ages',
   description: 'Read through all 4 Journals in one session',
   points: 10,
@@ -836,16 +874,16 @@ set.addAchievement({
       conditions[region.alt] = $(
         ['AndNext',  'Mem',   '32bit', region.screenPointer,  '=', 'Value', '', screenValue(region, Age233ScreenEnum.BedsideJournal)],
         ['AndNext',  'Mem',   '32bit', bedsideJournalPage2,   '=', 'Value', '', bedsideJournalLastPage],
-        ['AddHits',  'Mem',   '32bit', bedsideJournalPage,    '=', 'Value', '', bedsideJournalLastPage, 1],
+        ['AddHits',  'Mem',   '32bit', bedsideJournalPage,    '=', 'Value', '', bedsideJournalLastPage,                               1],
         ['AndNext',  'Mem',   '32bit', region.screenPointer,  '=', 'Value', '', screenValue(region, BoilerScreenEnum.LabNotesDesk)],
         ['AndNext',  'Mem',   '32bit', labNotesPage2,         '=', 'Value', '', labNotesLastPage],
-        ['AddHits',  'Mem',   '32bit', labNotesPage,          '=', 'Value', '', labNotesLastPage, 1],
+        ['AddHits',  'Mem',   '32bit', labNotesPage,          '=', 'Value', '', labNotesLastPage,                                     1],
         ['AndNext',  'Mem',   '16bit', atrusJournalSavedPage, '=', 'Value', '', atrusJournalLastPage],
         ['AndNext',  'Delta', '32bit', menuJournalPage,       '=', 'Value', '', atrusJournalLastPage],
-        ['AddHits',  'Mem',   '32bit', menuJournalPage2,      '=', 'Value', '', atrusJournalLastPage, 1],
+        ['AddHits',  'Mem',   '32bit', menuJournalPage2,      '=', 'Value', '', atrusJournalLastPage,                                 1],
         ['AndNext',  'Mem',   '32bit', menuJournalPage,       '=', 'Value', '', catherineJournalLastPage],
-        ['AddHits',  'Mem',   '32bit', menuJournalPage2,      '=', 'Value', '', catherineJournalLastPage, 1],
-        ['Measured', 'Value', '',      0,                     '=', 'Value', '', 1, 4],
+        ['AddHits',  'Mem',   '32bit', menuJournalPage2,      '=', 'Value', '', catherineJournalLastPage,                             1],
+        ['Measured', 'Value', '',      0,                     '=', 'Value', '', 1,                                                    4],
       );
     }
     return conditions;
@@ -859,6 +897,7 @@ const easterEggProgress = 0x010008; // Steps done in the unlock chain, 0-5
 
 set.addAchievement({
   id: 650805,
+  badge: '743525',
   title: 'Egg Hunt',
   description: 'Unlock the Easter Eggs',
   points: 10,
@@ -875,6 +914,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650624,
+  badge: '743511',
   title: 'Commercial Break',
   description: 'Watch an Ad on Gehn\'s CCTV',
   points: 3,
@@ -888,8 +928,9 @@ set.addAchievement({
 });
 
 set.addAchievement({
-  title: 'Deck the Halls',
   id: 650625,
+  badge: '743512',
+  title: 'Deck the Halls',
   description: 'Decorate the Temple in Green and Red',
   points: 3,
   type: 'missable',
@@ -903,6 +944,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650626,
+  badge: '743513',
   title: 'The Wireframe',
   description: 'See the Jungle Village before it was Rendered',
   points: 3,
@@ -916,6 +958,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650627,
+  badge: '743514',
   title: 'A Walk in the Sky',
   description: 'Enjoy the view on the sky walk',
   points: 3,
@@ -932,6 +975,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650628,
+  badge: '743515',
   title: 'Alone in the Dark',
   description: 'Open the Star Fissure without ever visiting Tay or Gehn', // E1
   points: 5,
@@ -941,6 +985,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650629,
+  badge: '743516',
   title: 'What Does This Do Again?',
   description: 'Retrieve the Trap Book and use it in Tay', // E2
   points: 3,
@@ -949,6 +994,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650630,
+  badge: '743517',
   title: 'You Have My Sympathy',
   description: 'Retrieve the Trap Book before visiting Gehn and use it on Riven', // E3
   points: 5,
@@ -958,6 +1004,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650631,
+  badge: '743518',
   title: 'Trap Book in Riven after Gehn',
   description: 'Visit Gehn, then retrieve the Trap Book and use it on Riven', // E4
   points: 5,
@@ -966,6 +1013,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650632,
+  badge: '743519',
   title: 'No Thanks, After You',
   description: 'Refuse Gehn\'s invitation of entering the Trap Book three times', // E5
   points: 10,
@@ -978,6 +1026,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650633,
+  badge: '743520',
   title: 'Gehn\'s Victory',
   description: 'Retrieve the Trap Book without capturing Gehn and open the Star Fissure', // E6
   points: 10,
@@ -987,6 +1036,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650634,
+  badge: '743521',
   title: 'Pity for the Old Man',
   description: 'Capture Gehn, then use the Trap Book on Riven', // E7
   points: 5,
@@ -995,6 +1045,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650635,
+  badge: '743522',
   title: 'Betraying the Moiety',
   description: 'Capture Gehn, return to Tay, and use the Trap Book there', // E8
   points: 10,
@@ -1003,6 +1054,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650636,
+  badge: '743523',
   title: 'We Will Never Know Her Fate',
   description: 'Capture Gehn and open the Star Fissure without freeing Catherine', // E9
   points: 10,
