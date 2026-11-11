@@ -726,7 +726,6 @@ set.addAchievement({
   title: 'The Abyss Will Gaze Back',
   description: 'Look into the Star Fissure through the telescope without breaking the glass',
   points: 2,
-  type: 'missable',
   // The fissure only shows through the open hatch with the telescope one step above the glass (2 and up is a blur)
   conditions: arrivedOnScreen(
     DomeScreenEnum.TelescopeView,
