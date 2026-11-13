@@ -294,7 +294,7 @@ set.addAchievement({
   id: 648931,
   badge: '743475',
   title: 'WARNING',
-  description: 'Game always has to be started with Disc 1! Discs can be switched inside the game.',
+  description: 'The game always has to be started from Disc 1! Discs can be switched inside the game.',
   points: 0,
   conditions: $(
     ['', 'Delta', '16bit', orangeMarbleColumn, '=', 'Value', '', 0],
@@ -325,7 +325,7 @@ set.addAchievement({
   id: 648933,
   badge: '743477',
   title: 'The Chapel',
-  description: 'Inspect all art displays in the Gate Room at Dome Island',
+  description: 'Inspect all art displays in the Gate Room at Dome Island and learn who Riven is taught to worship',
   points: 2,
   conditions: seenAllScreens([
     {before: DomeScreenEnum.GateRoomArt1before, screen: DomeScreenEnum.GateRoomArt1},
@@ -392,7 +392,7 @@ set.addAchievement({
   id: 650595,
   badge: '743482',
   title: 'Knock, Knock',
-  description: 'Check if someone\'s home at a villager\'s hut by knocking multiple times',
+  description: 'Check if someone\'s home at a villager\'s hut by persistent knocking',
   points: 3,
   type: 'missable',
   conditions: movieFinished(JungleScreenEnum.VillagerInHut, [253]),
@@ -416,17 +416,18 @@ set.addAchievement({
 set.addAchievement({
   id: 650597,
   badge: '743484',
-  title: 'Submarine',
+  title: 'Lake Floor Express',
   description: 'Get access to the submarine',
   points: 5,
+  type: 'progression',
   conditions: movieFinished(JungleScreenEnum.SubmarineHatchVillageDock, [289]),
 });
 
 set.addAchievement({
   id: 650598,
   badge: '743485',
-  title: 'D\'ni Scholar', // TODO improve
-  description: 'Make both players "win" in the Classroom', // TODO improve
+  title: 'Counting on Fear',
+  description: 'Finish the schoolroom game for both sides',
   points: 5,
   conditions: seenAllMovies([
     {screen: JungleScreenEnum.Classroom, movie: 300},
@@ -447,8 +448,8 @@ set.addAchievement({
 set.addAchievement({
   id: 650600,
   badge: '743487',
-  title: 'Boiler Puzzle',
-  description: 'Complete the Boiler puzzle',
+  title: 'Paper Pulp',
+  description: 'Master the boiler in which wood chips are cooked into pulp',
   points: 10,
   type: 'progression',
   conditions: movieFinished(BoilerScreenEnum.BoilerDoor, [10]),
@@ -458,7 +459,7 @@ set.addAchievement({
   id: 650601,
   badge: '743488',
   title: 'Meet the Ytram',
-  description: 'Capture a poisonous Ytram',
+  description: 'Capture a poisonous Ytram, prized by some for a rather unusual smoking extract',
   points: 5,
   conditions: movieFinished(BoilerScreenEnum.YtramTrapDown, [117, 118, 119, 120, 121]),
 });
@@ -497,8 +498,8 @@ set.addAchievement({
 set.addAchievement({
   id: 650604,
   badge: '743491',
-  title: 'Gehn\'s Map', // TODO rename
-  description: 'Interact with the relief map on Survey Island',
+  title: 'Advanced Island Topography',
+  description: 'Bring the relief map on Survey Island to life',
   points: 5,
   // Selecting a chunk on the detailed map is the first interaction, regardless of the chosen island
   conditions: onScreen(
@@ -513,7 +514,7 @@ set.addAchievement({
   badge: '743492',
   title: 'Deep into the Earth',
   description: 'Find a way into the underground of Survey Island',
-  points: 3,
+  points: 2,
   // Last movie of the ride down: elevator door opens onto the underground corridor
   conditions: movieFinished(SurveyScreenEnum.GoldElevator, [10]),
 });
@@ -523,7 +524,7 @@ set.addAchievement({
   id: 650606,
   badge: '743493',
   title: 'Unwelcome Visitor',
-  description: 'Follow the Scribe to see him flee',
+  description: 'Follow the Scribe',
   points: 1,
   type: 'missable',
   // Not 97 GPTTY: that's the first glimpse of the Scribe, which also plays when following him too late
@@ -545,7 +546,7 @@ set.addAchievement({
   badge: '743495',
   title: 'Is That Glass Thick Enough?',
   description: 'Annoy the Wahrk',
-  points: 2,
+  points: 3,
   // GWHARK6 (116): the wahrk charges at the glass. Played on the 4th call (0x1009c Wahrk Visit Count 3 -> 4)
   conditions: movieFinished(SurveyScreenEnum.WahrkRoom, [116]),
 });
@@ -553,7 +554,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650609,
   badge: '743496',
-  title: 'Is that Catherine?', // TODO rename or move order
+  title: 'Under Observation',
   description: 'Take a look into Catherine\'s chamber',
   points: 2,
   type: 'missable',
@@ -567,6 +568,7 @@ set.addAchievement({
   title: 'Gehn Is Watching You',
   description: 'Find Gehn watching you in the Temple',
   points: 2,
+  type: 'missable',
   conditions: movieFinished(DomeScreenEnum.GehnWatching, [33]),
 });
 
@@ -575,8 +577,8 @@ const domePower = 0x010068; // 0 = Off, 1 = Books are powered (set when the marb
 set.addAchievement({
   id: 650611,
   badge: '743498',
-  title: 'Marble Puzzle',
-  description: 'Solve the Marble Puzzle',
+  title: 'Fire Marbles',
+  description: 'Solve the Fire Marble puzzle',
   points: 25,
   type: 'progression',
   // Movie 90 plays after pressing with the correct marble placement + Dome Power (0 -> 1) is set at its start
@@ -614,8 +616,9 @@ set.addAchievement({
   id: 650613,
   badge: '743500',
   title: 'The Wahrk Gallows',
-  description: 'Find a way up to the prison ledge',
+  description: 'Find a way up to the prison ledge, where those who defy Gehn wait for the Wahrk',
   points: 5,
+  type: 'progression',
   conditions: movieFinished(
     JungleScreenEnum.GallowsWinch,
     [113],
@@ -629,9 +632,10 @@ const tayAgeBookState = 0x010116; // 0 = Hidden, 1 = Revealing, 2 = Revealed and
 set.addAchievement({
   id: 650614,
   badge: '743501',
-  title: 'Find the Moiety Cave',
-  description: 'Locate the Moiety\'s hidden cavern',
+  title: 'Rebel Ground',
+  description: 'Locate the hidden cavern of the Moiety',
   points: 10,
+  type: 'progression',
   // Switching the door to the animal puzzle plays 50 (JRBTDROP); the door state flips 0 -> 1 at its start
   conditions: movieFinished(
     JungleScreenEnum.RebelCaveDoor,
@@ -646,6 +650,7 @@ set.addAchievement({
   title: 'Secrets of Stonehenge',
   description: 'Solve the Moiety\'s hardest puzzle',
   points: 25,
+  type: 'progression',
   // The correct last stone sets the book state to 1 (Revealing), then 51 (JRTWATER) floods the room.
   conditions: movieFinished(
     JungleScreenEnum.StonehengeTunnel,
@@ -660,6 +665,7 @@ set.addAchievement({
   title: 'The New Great Tree',
   description: 'Enter the Moiety\'s new stronghold in Tay',
   points: 3,
+  type: 'progression',
   conditions: movieFinished(TayScreenEnum.BoatRide, [25]),
   // TODO Other idea: first screen in the tree prison cell, probably too late
   // conditions: arrivedOnScreen(TayScreenEnum.PrisonCell),
@@ -685,9 +691,10 @@ set.addAchievement({
 set.addAchievement({
   id: 650618,
   badge: '743505',
-  title: 'Not Prepared Enough',
-  description: 'Trap Gehn',
+  title: 'A One-Man Prison',
+  description: 'Find a way to trap Gehn',
   points: 10,
+  type: 'progression',
   conditions: movieFinished(
     Age233ScreenEnum.GehnTakesTrapBook,
     [26],
@@ -698,9 +705,10 @@ set.addAchievement({
 set.addAchievement({
   id: 650619,
   badge: '743506',
-  title: 'Visit the Once Great Tree',
+  title: 'The Once Great Tree',
   description: 'Arrive on Prison Island',
   points: 5,
+  type: 'progression',
   conditions: movieFinished(Age233ScreenEnum.PrisonBookLink, [19]),
 });
 
@@ -710,6 +718,7 @@ set.addAchievement({
   title: 'Music to Her Ears',
   description: 'Free Catherine',
   points: 10,
+  type: 'progression',
   conditions: movieFinished(
     PrisonScreenEnum.CatherineCage,
     [6],
@@ -862,6 +871,7 @@ set.addAchievement({
   title: 'Scholar of the Ages',
   description: 'Read through all 4 Journals in one session',
   points: 10,
+  type: 'missable',
   // One hit per journal on its last page is open
   conditions: (() => {
     const conditions = {
@@ -898,7 +908,7 @@ set.addAchievement({
   id: 650805,
   badge: '743525',
   title: 'Egg Hunt',
-  description: 'Unlock the Easter Eggs',
+  description: 'Unlock Easter egg mode',
   points: 10,
   type: 'missable',
   // Click all 5 spots, with indicator. Loading a save with the eggs unlocked doesn't count. Paused during boot.
@@ -915,7 +925,7 @@ set.addAchievement({
   id: 650624,
   badge: '743511',
   title: 'Commercial Break',
-  description: 'Watch an Ad on Gehn\'s CCTV',
+  description: 'Watch an ad on Gehn\'s CCTV',
   points: 3,
   type: 'missable',
   // Left scope in Wahrk Room plays movie 145 (Silly Putty ad) instead of the feed if the egg is unlocked
@@ -930,7 +940,7 @@ set.addAchievement({
   id: 650625,
   badge: '743512',
   title: 'Deck the Halls',
-  description: 'Decorate the Temple in Green and Red',
+  description: 'Decorate the Temple in green and red',
   points: 3,
   type: 'missable',
   // The lights only appear after clicking the lamp: hotspot 8 shows picture 3 if the egg is unlocked
@@ -945,7 +955,7 @@ set.addAchievement({
   id: 650626,
   badge: '743513',
   title: 'The Wireframe',
-  description: 'See the Jungle Village before it was Rendered',
+  description: 'See the Jungle Village before it was rendered',
   points: 3,
   type: 'missable',
   // Turning right on jVillage2710 leads to jVillage2725 instead of jVillage2700 if the egg is unlocked
@@ -1004,7 +1014,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650631,
   badge: '743518',
-  title: 'Trap Book in Riven after Gehn',
+  title: 'Second Thoughts',
   description: 'Visit Gehn, then retrieve the Trap Book and use it on Riven', // E4
   points: 5,
   conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [2]),
@@ -1014,7 +1024,7 @@ set.addAchievement({
   id: 650632,
   badge: '743519',
   title: 'No Thanks, After You',
-  description: 'Refuse Gehn\'s invitation of entering the Trap Book three times', // E5
+  description: 'Refuse Gehn\'s invitation to enter the Trap Book three times', // E5
   points: 10,
   conditions: movieFinished(
     Age233ScreenEnum.GehnTakesTrapBook,
