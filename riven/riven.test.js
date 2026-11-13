@@ -1144,6 +1144,16 @@ describe('A Walk in the Sky', () => {
     expect(result.triggeredFrame).toBe(s.marker('lamp-clicked'));
   });
 
+  test('pops on the lamp click on the French version', () => {
+    // the sky comes up between screenshots 122689 (without) and 122719 (with)
+    const s = scenario('easter-egg-sky-walk-france');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('lamp-clicked') - 1)).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('lamp-clicked'));
+  });
+
   test('does not pop on the Temple lamp click (other screen)', () => {
     const s = scenario('easter-egg-activate-and-christmas');
     const result = runAchievement(cheevo, s);
