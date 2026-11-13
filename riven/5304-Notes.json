@@ -1,6 +1,11 @@
 [
   {
     "User": "adrianusk",
+    "Address": "0x000000",
+    "Note": "[General game notes]\r\nCruncheevos script: https:\/\/github.com\/akleemans\/retroachievements-scripts"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x010000",
     "Note": "[16-bit] Cursor Icon Type\r\n0x06 = Grab\r\n0x08 = Pointer up\/neutral\r\n0x09 = Pointer left\r\n0x0a = Pointer right\r\n0x0d = Pointer down\r\n0x0e = Pointer left turn\r\n0x0f = Pointer right turn\r\n0x10 = Pointer down (under door)"
   },
