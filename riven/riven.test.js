@@ -248,8 +248,8 @@ describe('Eye Spy', () => {
   }
 });
 
-describe('Submarine', () => {
-  const cheevo = achievement('Submarine');
+describe('Lake Floor Express', () => {
+  const cheevo = achievement('Lake Floor Express');
 
   const submarineScenarios = ['jungle-enter-submarine'];
 
@@ -266,8 +266,8 @@ describe('Submarine', () => {
   }
 });
 
-describe('Dni Scholar', () => {
-  const cheevo = achievement('D\'ni Scholar');
+describe('Counting on Fear', () => {
+  const cheevo = achievement('Counting on Fear');
 
   const submarineScenarios = ['jungle-school-game'];
 
@@ -307,8 +307,8 @@ describe('Boiler Island', () => {
   }
 });
 
-describe('Boiler Puzzle', () => {
-  const cheevo = achievement('Boiler Puzzle');
+describe('Paper Pulp', () => {
+  const cheevo = achievement('Paper Pulp');
 
   const boilerPuzzleScenarios = ['boiler-solve-boiler-puzzle'];
 
@@ -383,8 +383,8 @@ describe('Survey Island', () => {
   }
 });
 
-describe('Gehn\'s Map', () => {
-  const cheevo = achievement('Gehn\'s Map');
+describe('Advanced Island Topography', () => {
+  const cheevo = achievement('Advanced Island Topography');
 
   // One recording per chosen island: Survey, Crater, Jungle, Prison
   const mapScenarios = [
@@ -479,8 +479,8 @@ describe('Is that glass thick enough?', () => {
   });
 });
 
-describe('Is that Catherine?', () => {
-  const cheevo = achievement('Is that Catherine?');
+describe('Under Observation', () => {
+  const cheevo = achievement('Under Observation');
 
   test('pops when the Catherine movie finishes', () => {
     const s = scenario('survey-watch-catherine');
@@ -515,8 +515,8 @@ describe('Gehn Is Watching You', () => {
   });
 });
 
-describe('Marble Puzzle', () => {
-  const cheevo = achievement('Marble Puzzle');
+describe('Fire Marbles', () => {
+  const cheevo = achievement('Fire Marbles');
 
   test('pops when the solved movie finishes', () => {
     const s = scenario('temple-marble-puzzle');
@@ -571,8 +571,8 @@ describe('The Wahrk Gallows', () => {
   });
 });
 
-describe('Find the Moiety Cave', () => {
-  const cheevo = achievement('Find the Moiety Cave');
+describe('Rebel Ground', () => {
+  const cheevo = achievement('Rebel Ground');
 
   test('pops when the door switch movie finishes', () => {
     const s = scenario('jungle-moiety-cave-found');
@@ -664,8 +664,8 @@ describe('What Does This Do Again?', () => {
   });
 });
 
-describe('Trap Book in Riven after Gehn', () => {
-  const cheevo = achievement('Trap Book in Riven after Gehn');
+describe('Second Thoughts', () => {
+  const cheevo = achievement('Second Thoughts');
 
   test('pops when the Gehn trap book ending finishes', () => {
     const s = scenario('ending4-use-trap-book-on-riven-after-gehn');
@@ -687,8 +687,8 @@ describe('Trap Book in Riven after Gehn', () => {
   }
 });
 
-describe('Not Prepared Enough', () => {
-  const cheevo = achievement('Not Prepared Enough');
+describe('A One-Man Prison', () => {
+  const cheevo = achievement('A One-Man Prison');
 
   test('pops when Gehn links into the trap book', () => {
     const s = scenario('233-trap-gehn');
@@ -701,8 +701,8 @@ describe('Not Prepared Enough', () => {
   });
 });
 
-describe('Visit the Once Great Tree', () => {
-  const cheevo = achievement('Visit the Once Great Tree');
+describe('The Once Great Tree', () => {
+  const cheevo = achievement('The Once Great Tree');
 
   test('pops after the link to Prison Island', () => {
     const s = scenario('233-go-to-prison-island');
@@ -775,7 +775,7 @@ describe('Endings', () => {
     {title: 'Alone in the Dark', scenarios: ['ending1-open-fissure-without-visiting-gehn-or-tay']},
     {title: 'What Does This Do Again?', scenarios: ['ending2-use-trap-book-on-tay']},
     {title: 'You Have My Sympathy', scenarios: ['ending3-use-trap-book-without-visiting-gehn']},
-    {title: 'Trap Book in Riven after Gehn', scenarios: ['ending4-use-trap-book-on-riven-after-gehn']},
+    {title: 'Second Thoughts', scenarios: ['ending4-use-trap-book-on-riven-after-gehn']},
     {title: 'No Thanks, After You', scenarios: ['ending5-refuse-gehn-three-times']},
     {title: 'Gehn\'s Victory', scenarios: ['ending6-open-star-fissure-without-capturing-gehn']},
     {title: 'Pity for the Old Man', scenarios: ['ending7-release-gehn-in-233', 'ending7-release-gehn-on-prison-island']},
@@ -1146,6 +1146,13 @@ describe('A Walk in the Sky', () => {
 
   test('does not pop on the Temple lamp click (other screen)', () => {
     const s = scenario('easter-egg-activate-and-christmas');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.triggered).toBe(false);
+  });
+
+  test('does not pop if easter egg mode not unlocked', () => {
+    const s = scenario('easter-egg-sky-walk-clicked-without-eggs-unlocked');
     const result = runAchievement(cheevo, s);
 
     expect(result.triggered).toBe(false);
