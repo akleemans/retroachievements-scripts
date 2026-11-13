@@ -14,34 +14,6 @@ Lookup:Book
 3=The book is in other hands
 *=Empty-handed
 
-Lookup:RotatingRoom
-1=Rotating room at position 1
-2=Rotating room at position 2
-3=Rotating room at position 3
-4=Rotating room at position 4
-5=Rotating room at position 5
-*=Rotating room
-
-Lookup:Submersible
-0=Sub is parked
-1=Sub at the ladder dock
-2=Sub at the pentagon dock
-3=Sub at the gallows dock
-4=Sub at the control tower
-5=Sub at the schoolhouse dock
-*=Sub somewhere below
-
-Lookup:SteamValve
-0=Steam to the frog trap
-1=Steam to the boiler
-2=Steam to the woodchipper
-*=Steam somewhere
-
-Lookup:GoldElevator
-0=Gold elevator below
-1=Gold elevator above
-*=
-
 Lookup:PalRegion
 0x30=Europe
 0x31=Germany
@@ -57,26 +29,6 @@ Display:
 ?0xX010700=h8001bd7cS0xH1b22cc=6_0xX09d1a4=h801c4a5cS0xH1b22cc=6_0xX09d1a4=h801c4ac0S0xH1b22cc=6_0xX09d1a4=h801c4b24S0xH1b22cc=6_0xX09d1a4=h801c4b88S0xH1b22cc=6_0xX09d1a4=h801b9338S0xH1b22cc=3_0xX09d1a4=h801b8d74?Watching an ending • @PalRegion(0xH0125fd)
 ?0xX010700=h800161f4S0xH1b2c94=6_0xX09db68=h801c5424S0xH1b2c94=6_0xX09db68=h801c5488S0xH1b2c94=6_0xX09db68=h801c54ecS0xH1b2c94=6_0xX09db68=h801c5550S0xH1b2c94=6_0xX09db68=h801b9d00S0xH1b2c94=3_0xX09db68=h801b973c?Watching an ending • France
 ?0xX010700=h8001617cS0xH1b244c=6_0xX09d324=h801c4bdcS0xH1b244c=6_0xX09d324=h801c4c40S0xH1b244c=6_0xX09d324=h801c4ca4S0xH1b244c=6_0xX09d324=h801c4d08S0xH1b244c=6_0xX09d324=h801b94b8S0xH1b244c=3_0xX09d324=h801b8ef4?Watching an ending • Japan
-?0xX010700=h8001622c_0xH1b2498=0?Exploring @Island(0xH1b2498) • @RotatingRoom(0xH010076) • @Book(0x 010006) • USA
-?0xX010700=h8001bd7c_0xH1b22cc=0?Exploring @Island(0xH1b22cc) • @RotatingRoom(0xH010076) • @Book(0x 010006) • @PalRegion(0xH0125fd)
-?0xX010700=h800161f4_0xH1b2c94=0?Exploring @Island(0xH1b2c94) • @RotatingRoom(0xH010076) • @Book(0x 010006) • France
-?0xX010700=h8001617c_0xH1b244c=0?Exploring @Island(0xH1b244c) • @RotatingRoom(0xH010076) • @Book(0x 010006) • Japan
-?0xX010700=h8001622c_0xH1b2498=5?Exploring @Island(0xH1b2498) • @Submersible(0x 010100) • @Book(0x 010006) • USA
-?0xX010700=h8001bd7c_0xH1b22cc=5?Exploring @Island(0xH1b22cc) • @Submersible(0x 010100) • @Book(0x 010006) • @PalRegion(0xH0125fd)
-?0xX010700=h800161f4_0xH1b2c94=5?Exploring @Island(0xH1b2c94) • @Submersible(0x 010100) • @Book(0x 010006) • France
-?0xX010700=h8001617c_0xH1b244c=5?Exploring @Island(0xH1b244c) • @Submersible(0x 010100) • @Book(0x 010006) • Japan
-?0xX010700=h8001622c_0xH1b2498=4?Exploring @Island(0xH1b2498) • @SteamValve(0x 01004a) • @Book(0x 010006) • USA
-?0xX010700=h8001bd7c_0xH1b22cc=4?Exploring @Island(0xH1b22cc) • @SteamValve(0x 01004a) • @Book(0x 010006) • @PalRegion(0xH0125fd)
-?0xX010700=h800161f4_0xH1b2c94=4?Exploring @Island(0xH1b2c94) • @SteamValve(0x 01004a) • @Book(0x 010006) • France
-?0xX010700=h8001617c_0xH1b244c=4?Exploring @Island(0xH1b244c) • @SteamValve(0x 01004a) • @Book(0x 010006) • Japan
-?0xX010700=h8001622c_0xH1b2498=2?Exploring @Island(0xH1b2498) • @GoldElevator(0x 010096) • @Book(0x 010006) • USA
-?0xX010700=h8001bd7c_0xH1b22cc=2?Exploring @Island(0xH1b22cc) • @GoldElevator(0x 010096) • @Book(0x 010006) • @PalRegion(0xH0125fd)
-?0xX010700=h800161f4_0xH1b2c94=2?Exploring @Island(0xH1b2c94) • @GoldElevator(0x 010096) • @Book(0x 010006) • France
-?0xX010700=h8001617c_0xH1b244c=2?Exploring @Island(0xH1b244c) • @GoldElevator(0x 010096) • @Book(0x 010006) • Japan
-?0xX010700=h8001622c_0xH1b2498=6?Exploring @Island(0xH1b2498) • @Book(0x 010006) • USA
-?0xX010700=h8001bd7c_0xH1b22cc=6?Exploring @Island(0xH1b22cc) • @Book(0x 010006) • @PalRegion(0xH0125fd)
-?0xX010700=h800161f4_0xH1b2c94=6?Exploring @Island(0xH1b2c94) • @Book(0x 010006) • France
-?0xX010700=h8001617c_0xH1b244c=6?Exploring @Island(0xH1b244c) • @Book(0x 010006) • Japan
 ?0xX010700=h8001622c?Exploring @Island(0xH1b2498) • @Book(0x 010006) • USA
 ?0xX010700=h8001bd7c?Exploring @Island(0xH1b22cc) • @Book(0x 010006) • @PalRegion(0xH0125fd)
 ?0xX010700=h800161f4?Exploring @Island(0xH1b2c94) • @Book(0x 010006) • France
