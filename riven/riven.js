@@ -394,7 +394,6 @@ set.addAchievement({
   title: 'Knock, Knock',
   description: 'Check if someone\'s home at a villager\'s hut by persistent knocking',
   points: 3,
-  type: 'missable',
   conditions: movieFinished(JungleScreenEnum.VillagerInHut, [253]),
 });
 
@@ -480,7 +479,6 @@ set.addAchievement({
   title: 'Survey Island',
   description: 'Arrive at Survey Island',
   points: 5,
-  type: 'progression',
   conditions: anyMovieFinished([
     {
       screen: BoilerScreenEnum.MaglevToSurvey,
@@ -557,7 +555,6 @@ set.addAchievement({
   title: 'Under Observation',
   description: 'Take a look into Catherine\'s chamber',
   points: 2,
-  type: 'missable',
   // G6_ASCP (136): first look at Catherine's feed, she walks from the room (0x100be state 3) to left of the doorway
   conditions: movieFinished(SurveyScreenEnum.WahrkRoomLeftScope, [136]),
 });
@@ -788,6 +785,7 @@ set.addAchievement({
   title: 'Full Coverage',
   description: 'Restore Gehn\'s transportation network by opening all five Golden Domes across Riven in a single session',
   points: 10,
+  type: 'missable',
   conditions: {
     core: $(
       ...pauseIfNoScreen(),
@@ -998,6 +996,7 @@ set.addAchievement({
   title: 'What Does This Do Again?',
   description: 'Retrieve the Trap Book and use it in Tay', // E2
   points: 3,
+  type: 'missable',
   conditions: movieFinished(EndingScreenEnum.TrapBookTay, [1]),
 });
 
@@ -1017,6 +1016,7 @@ set.addAchievement({
   title: 'Second Thoughts',
   description: 'Visit Gehn, then retrieve the Trap Book and use it on Riven', // E4
   points: 5,
+  type: 'missable',
   conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [2]),
 });
 
@@ -1026,6 +1026,7 @@ set.addAchievement({
   title: 'No Thanks, After You',
   description: 'Refuse Gehn\'s invitation to enter the Trap Book three times', // E5
   points: 10,
+  type: 'missable',
   conditions: movieFinished(
     Age233ScreenEnum.GehnTakesTrapBook,
     [24],
@@ -1049,6 +1050,7 @@ set.addAchievement({
   title: 'Pity for the Old Man',
   description: 'Capture Gehn, then use the Trap Book on Riven', // E7
   points: 5,
+  type: 'missable',
   conditions: movieFinished(EndingScreenEnum.TrapBookRiven, [1]),
 });
 
@@ -1058,6 +1060,7 @@ set.addAchievement({
   title: 'Betraying the Moiety',
   description: 'Capture Gehn, return to Tay, and use the Trap Book there', // E8
   points: 10,
+  type: 'missable',
   conditions: movieFinished(EndingScreenEnum.TrapBookTay, [0]),
 });
 

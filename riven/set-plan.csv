@@ -5,22 +5,22 @@ Order	Feature	Miss	Achievement Name	Achievement Description	Location	Notes	Type	
 4		FALSE	Jungle Island	Arrive at Jungle Island	Jungle	Trigger on the start of the gondola ride movie	Progression	5
 5		FALSE	Meet the Scarab Beetle	Find a Scarab Beetle friend	Jungle		Fun	2
 6		FALSE	Meet the Sunner	Get up close and personal with a giant Sunner	Jungle		Fun	3
-7		TRUE	Knock, Knock	Check if someone's home at a villager's hut by persistent knocking	Jungle	Missable, after Catherine is free she saves the village's people	Easter Egg	3
+7		FALSE	Knock, Knock	Check if someone's home at a villager's hut by persistent knocking	Jungle		Easter Egg	3
 8	Measured	FALSE	Eye Spy	Find and rotate all 4 wooden animal eyes	Jungle	Possible on first Jungle visit - 1. Arrival near Maglev, 2. Dagger in dark Jungle, 3. At beach, 4. Bath in village	Side Quest	5
 9		FALSE	Lake Floor Express	Get access to the submarine	Jungle	Possible on first Jungle visit, but can also be done later	Progression	5
 10	Measured	FALSE	Counting on Fear	Finish the schoolroom game for both sides	Jungle	Random number ticks down (to learn numbers) until one player gets eaten by a Wahrk. Marked as missable in Phlosions sheet, why?	Fun	5
 11		FALSE	Boiler Island	Arrive at Boiler Island	Boiler	First time by mine cart. Can it be accessed another way?	Progression	5
 12		FALSE	Paper Pulp	Master the boiler in which wood chips are cooked into pulp	Boiler	Triggered when Boiler opens	Progression	10
 13		FALSE	Meet the Ytram	Capture a poisonous Ytram, prized by some for a rather unusual smoking extract	Boiler	Requires getting power to the trap, adding food, lowering it and waiting (timer-based)	Side Quest	5
-14		FALSE	Gehn's Lab	Find a way into Gehn's Lab	Boiler	Through vent system (has to be turned off), enter above frog trap	Progression	10
-15		FALSE	Survey Island	Arrive at Survey Island	Survey	Also possible via whark-mouth shortcut early-on - triggers both ways	Progression	5
+14		FALSE	Gehn's Lab	Find a way into Gehn's Lab	Boiler	Through vent system (has to be turned off), enter above frog trap. Progression because it contains a randomized code, can not be skipped	Progression	10
+15		FALSE	Survey Island	Arrive at Survey Island	Survey	Also possible via whark-mouth shortcut early-on - triggers both ways. Not progression because it can be missed (definition of progression) if player knows solution	Side Quest	5
 16		FALSE	Advanced Island Topography	Bring the relief map on Survey Island to life	Survey	To be able to interact, you have to select an Island from the Riven replica nearby. Triggers on showing any chunk from any Island as Detail map.	Side Quest	5
 17		FALSE	Deep into the Earth	Find a way into the underground of Survey Island	Survey	Nice title/description because it doesn't spoil anything	Side Quest	2
 18		TRUE	Unwelcome Visitor	Follow the Scribe	Survey	Missable, if you walk past and come back he is gone	Side Quest	1
 19		FALSE	Meet the Wahrk	Finally meet one of Gehn's fearsome pets	Survey		Side Quest	2
 20		FALSE	Is That Glass Thick Enough?	Annoy the Wahrk	Survey		Fun	3
-21		TRUE	Under Observation	Take a look into Catherine's chamber	Survey	Missable, if she's freed this is no longer possible	Side Quest	2
-22		TRUE	Gehn Is Watching You	Find Gehn watching you in the Temple	Temple	Missable	Side Quest	2
+21		FALSE	Under Observation	Take a look into Catherine's chamber	Survey		Side Quest	2
+22		TRUE	Gehn Is Watching You	Find Gehn watching you in the Temple	Temple	Easily missable if player takes another path back	Side Quest	2
 23		FALSE	Fire Marbles	Solve the Fire Marble puzzle	Temple		Progression	25
 24		FALSE	Gehn's Realm	Find a way into Gehn's realm	Temple	Check that this triggers both ways, going to 233rd age first vs. going to Tay first	Progression	10
 25		FALSE	The Wahrk Gallows	Find a way up to the prison ledge, where those who defy Gehn wait for the Wahrk	Jungle	Also possible earlier, but only makes sense here	Progression	5
@@ -34,18 +34,18 @@ Order	Feature	Miss	Achievement Name	Achievement Description	Location	Notes	Type	
 33		FALSE	The Abyss Will Gaze Back	Look into the Star Fissure through the telescope without breaking the glass	Temple	Telescope has to be lowered to just before breaking the glass. Not missable, as soon as glass breaks the game is finished.	Fun	2
 34		FALSE	The Ending Can Never Truly Be Written	Trap Gehn, save Catherine, and get home - safely?	Temple	Ending 10: The only good ending. All others are not really good endings, so this is the only one that counts.	Win	25
 35		TRUE	Alone in the Dark	Open the Star Fissure without ever visiting Tay or Gehn	Temple	Bad Ending 1: No-one appears, you fall into the fissure alone.	Side Quest	5
-36		FALSE	What Does This Do Again?	Retrieve the Trap Book and use it in Tay	Tay	Bad Ending 2: 2 Moeity people discussing, closing the book	Side Quest	3
+36		TRUE	What Does This Do Again?	Retrieve the Trap Book and use it in Tay	Tay	Bad Ending 2: 2 Moeity people discussing, closing the book	Side Quest	3
 37		TRUE	You Have My Sympathy	Retrieve the Trap Book before visiting Gehn and use it on Riven		Bad Ending 3: Cho first, then Gehn. "Forgive me, I don't believe we've met."	Side Quest	5
-38		FALSE	Second Thoughts	Visit Gehn, then retrieve the Trap Book and use it on Riven	any	Bad Ending 4: Cho appears to swap into the book, Gehn shoots you	Side Quest	5
-39		FALSE	No Thanks, After You	Refuse Gehn's invitation to enter the Trap Book three times	233	Bad Ending 5: Gehn annoyed, shoots you	Side Quest	10
+38		TRUE	Second Thoughts	Visit Gehn, then retrieve the Trap Book and use it on Riven	any	Bad Ending 4: Cho appears to swap into the book, Gehn shoots you	Side Quest	5
+39		TRUE	No Thanks, After You	Refuse Gehn's invitation to enter the Trap Book three times	233	Bad Ending 5: Gehn annoyed, shoots you	Side Quest	10
 40		TRUE	Gehn's Victory	Retrieve the Trap Book without capturing Gehn and open the Star Fissure	Temple	Bad Ending 6: Almost worst ending. Atrus arrives, but gets shot by Gehn. Cho then shoots you.	Side Quest	10
-41		FALSE	Pity for the Old Man	Capture Gehn, then use the Trap Book on Riven	any	Bad Ending 7: "I don't know exactly why you released me. (...) I can't take the chance that you change your mind again. (...) You've secured your place in history.".	Side Quest	5
-42		FALSE	Betraying the Moiety	Capture Gehn, return to Tay, and use the Trap Book there	any	Bad Ending 8: Worst ending. Gehn will destroy Tay end enforce D'ni culture	Side Quest	10
-43		TRUE	We Will Never Know Her Fate	Capture Gehn and open the Star Fissure without freeing Catherine	Temple	Bad Ending 9: Tragic ending, Atrus very disappointed. Own ending text.	Side Quest	10
-44	Measured	FALSE	Full Coverage	Restore Gehn's transportation network by opening all five Golden Domes across Riven in a single session	any	Communicate Lore for what Domes were actually used (before player uses them)	Collection	10
+41		TRUE	Pity for the Old Man	Capture Gehn, then use the Trap Book on Riven	any	Bad Ending 7: "I don't know exactly why you released me. (...) I can't take the chance that you change your mind again. (...) You've secured your place in history.".	Side Quest	5
+42		TRUE	Betraying the Moiety	Capture Gehn, return to Tay, and use the Trap Book there	any	Bad Ending 8: Worst ending. Gehn will destroy Tay end enforce D'ni culture. Missable because Catherine takes the Trap book when she is freed	Side Quest	10
+43		TRUE	We Will Never Know Her Fate	Capture Gehn and open the Star Fissure without freeing Catherine	Temple	Bad Ending 9: Tragic ending, Atrus very disappointed. Own ending text. Missable because not possible after Catherine is freed	Side Quest	10
+44	Measured	TRUE	Full Coverage	Restore Gehn's transportation network by opening all five Golden Domes across Riven in a single session	any	Communicate Lore for what Domes were actually used (before player uses them). Missable because short time window player is able to get this (Prison Island), not possible only before or after they do this (Prison Island would be misse).	Collection	10
 45	Measured	TRUE	Gehn's Secret Paths	Open all seven permanent shortcuts across Riven before Gehn is caught	any		Collection	10
-46	Measured	TRUE	Scholar of the Ages	Read through all 4 Journals in one session	any	Atrus' Journal, Catherine's Journal, Gehn's Lab Journal, Gehn's Bedroom Journal	Collection	10
-47	Measured	TRUE	Egg Hunt	Unlock Easter egg mode	any		Easter Egg	10
+46	Measured	TRUE	Scholar of the Ages	Read through all 4 Journals in one session	any	Atrus' Journal, Catherine's Journal, Gehn's Lab Journal, Gehn's Bedroom Journal. Missable because of short time window to get it, to warn players	Collection	10
+47	Measured	TRUE	Egg Hunt	Unlock Easter egg mode	any	Missable because of Bowl on Tay	Easter Egg	10
 48		TRUE	Commercial Break	Watch an ad on Gehn's CCTV	233	Required to enable Easter eggs	Easter Egg	3
 49		TRUE	Deck the Halls	Decorate the Temple in green and red	Temple	Required to enable Easter eggs	Easter Egg	3
 50		TRUE	The Wireframe	See the Jungle Village before it was rendered	Jungle	Required to enable Easter eggs	Easter Egg	3
