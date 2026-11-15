@@ -710,9 +710,20 @@ describe('The Once Great Tree', () => {
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.stateAt(s.marker('link-movie-start'))).toBe('active');
+    // the flyby in the open book has finished, but the player can still close the book
+    expect(result.stateAt(s.marker('link-movie-finished'))).toBe('active');
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('link-movie-finished'));
+    expect(result.triggeredFrame).toBe(s.marker('prison-island-first-screen'));
+    expect(result.triggeredFrame).toBeLessThan(s.marker('prison-dome-opened'));
   });
+
+  for (const name of ['prison-free-catherine', 'test-prison-dome-opening', '233-trap-gehn']) {
+    test(`does not pop without linking to Prison Island: ${name}`, () => {
+      const result = runAchievement(cheevo, scenario(name));
+
+      expect(result.triggered).toBe(false);
+    });
+  }
 });
 
 describe('Music to Her Ears', () => {
@@ -1017,6 +1028,16 @@ describe('Egg Hunt', () => {
     const result = runAchievement(cheevo, s);
 
     expect(result.measuredTarget).toBe(5);
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.measuredAt(s.marker('egg-unlocked') - 1)).toBe(4);
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('egg-unlocked'));
+  });
+
+  test('triggers on alternative Cho route', () => {
+    const s = scenario('easter-eggs-alternative');
+    const result = runAchievement(cheevo, s);
+
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
     expect(result.measuredAt(s.marker('egg-unlocked') - 1)).toBe(4);
     expect(result.triggered).toBe(true);

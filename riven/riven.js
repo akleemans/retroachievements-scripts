@@ -242,11 +242,15 @@ const Age233ScreenEnum = {
   CageArrival: 0x801b90bc, // inside Gehn's cage, where every fire marble dome book links to Gehn's study
   // E5: the same screen plays 24 (OGR_B, Gehn gives up after the third refusal) with Gehn State 3
   GehnTakesTrapBook: 0x801bf65c,
-  // Black screen after touching the Prison Island book in Gehn's study. Plays 18 and 19 (GEHN.BIN, linking to Prison Island)
-  PrisonBookLink: 0x801befe4,
+  // Open Prison Island book in 233. Plays 18 and 19 (flyby): the player hasn't linked yet and can still close the book
+  PrisonBookOpen: 0x801befe4,
+  // Black screen after touching the linking panel (aBlack 24333), only reachable from PrisonBookOpen
+  PrisonBookLink: 0x801bf1f0,
 };
 
 const PrisonScreenEnum = {
+  // Inside the Prison Island dome, in front of the book (aDome90). First screen after linking from Gehn's study
+  DomeArrival: 0x801bd40c,
   // Catherine's cage, after opening it. Plays 5, then 6 (Catherine is freed and links to Tay) while the cage state is 2
   CatherineCage: 0x801ba0dc,
 };
@@ -549,14 +553,16 @@ set.addAchievement({
   conditions: movieFinished(SurveyScreenEnum.WahrkRoom, [116]),
 });
 
+const catherineFeedMovies = [127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142];
+
 set.addAchievement({
   id: 650609,
   badge: '743496',
   title: 'Under Observation',
   description: 'Take a look into Catherine\'s chamber',
   points: 2,
-  // G6_ASCP (136): first look at Catherine's feed, she walks from the room (0x100be state 3) to left of the doorway
-  conditions: movieFinished(SurveyScreenEnum.WahrkRoomLeftScope, [136]),
+  // Any of the 16 clips of Catherine's feed (127-142), randomized on watching
+  conditions: movieFinished(SurveyScreenEnum.WahrkRoomLeftScope, catherineFeedMovies),
 });
 
 set.addAchievement({
@@ -586,7 +592,6 @@ set.addAchievement({
   ),
 });
 
-// TODO test options
 set.addAchievement({
   id: 650612,
   badge: '743499',
@@ -596,15 +601,6 @@ set.addAchievement({
   type: 'progression',
   // Arriving in Gehn's cage (every dome book links to the same screen)
   conditions: arrivedOnScreen(Age233ScreenEnum.CageArrival),
-  // Other option: any dome book opening with the linking panel image (before the flyby, player hasn't linked yet).
-  // Dome-Book State per dome: 0 = Closed, 1 = Opened but blank, 2 = Opened with image
-  // conditions: $(
-  //   ['OrNext', 'Mem', '16bit', 0x0100e8, '=', 'Value', '', 2], // Dome Island
-  //   ['OrNext', 'Mem', '16bit', 0x010124, '=', 'Value', '', 2], // Jungle Island
-  //   ['OrNext', 'Mem', '16bit', 0x010066, '=', 'Value', '', 2], // Crater Island
-  //   ['OrNext', 'Mem', '16bit', 0x010094, '=', 'Value', '', 2], // Prison Island
-  //   ['',       'Mem', '16bit', 0x0100ac, '=', 'Value', '', 2], // Survey Island
-  // ),
 });
 
 const executionPlatformFloor = 0x0100fe; // 0 = Closed, 1 = Open
@@ -664,15 +660,13 @@ set.addAchievement({
   points: 3,
   type: 'progression',
   conditions: movieFinished(TayScreenEnum.BoatRide, [25]),
-  // TODO Other idea: first screen in the tree prison cell, probably too late
-  // conditions: arrivedOnScreen(TayScreenEnum.PrisonCell),
 });
 
 set.addAchievement({
   id: 650617,
   badge: '743504',
   title: 'Captive Audience',
-  description: 'Not quite a prisoner, not quite welcome - watch the rebels of Tay go about their lives in 4 different scenes from your prison cell',
+  description: 'Not quite a prisoner, not quite welcome - watch the rebels of Tay go about their lives in 4 different locations from your prison cell',
   points: 5,
   type: 'missable',
   conditions: seenAllMovies([
@@ -706,7 +700,8 @@ set.addAchievement({
   description: 'Arrive on Prison Island',
   points: 5,
   type: 'progression',
-  conditions: movieFinished(Age233ScreenEnum.PrisonBookLink, [19]),
+  // First Prison Island screen, coming straight from the link screen in 233
+  conditions: movedToScreen(Age233ScreenEnum.PrisonBookLink, PrisonScreenEnum.DomeArrival),
 });
 
 set.addAchievement({
