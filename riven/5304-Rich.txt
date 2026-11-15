@@ -20,7 +20,7 @@ Lookup:PalRegion
 *=Europe
 
 Display:
-?0xX010700=h80016230S0xX010700=h8001624cS0xX010700=h8001bd80S0xX010700=h8001bd9cS0xX010700=h800161f8S0xX010700=h80016214S0xX010700=h80016180S0xX010700=h8001619c?Started from the wrong disc - restart from Disc 1 to earn achievements
+?O:0xX010700=h80016230_O:0xX010700=h8001624c_O:0xX010700=h8001bd80_O:0xX010700=h8001bd9c_O:0xX010700=h800161f8_O:0xX010700=h80016214_O:0xX010700=h80016180_0xX010700=h8001619c?Started from the wrong disc - restart from Disc 1 to earn achievements
 ?0xX010700=h8001622c_0xX09d370=0?On the title screen • USA
 ?0xX010700=h8001bd7c_0xX09d1a4=0?On the title screen • @PalRegion(0xH0125fd)
 ?0xX010700=h800161f4_0xX09db68=0?On the title screen • France
