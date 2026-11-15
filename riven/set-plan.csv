@@ -27,7 +27,7 @@ Order	Feature	Miss	Achievement Name	Achievement Description	Location	Notes	Type	
 26		FALSE	Rebel Ground	Locate the hidden cavern of the Moiety	Jungle		Progression	10
 27		FALSE	Secrets of Stonehenge	Solve the Moiety's hardest puzzle	Jungle		Progression	25
 28		FALSE	The New Great Tree	Enter the Moiety's new stronghold in Tay	Tay		Progression	3
-29	Measured	TRUE	Captive Audience	Not quite a prisoner, not quite welcome - watch the rebels of Tay go about their lives in 4 different scenes from your prison cell	Tay	Even though you can't access the area, it's still worth to watch for a while and see the (seemingly random) life unfold inside the tree	Collection	5
+29	Measured	TRUE	Captive Audience	Not quite a prisoner, not quite welcome - watch the rebels of Tay go about their lives in 4 different locations from your prison cell	Tay	Even though you can't access the area, it's still worth to watch for a while and see the (seemingly random) life unfold inside the tree	Collection	5
 30		FALSE	A One-Man Prison	Find a way to trap Gehn	233		Progression	10
 31		FALSE	The Once Great Tree	Arrive on Prison Island	Prison	Reference to cut-down tree, make the players notice.	Progression	5
 32		FALSE	Music to Her Ears	Free Catherine	Prison		Progression	10
