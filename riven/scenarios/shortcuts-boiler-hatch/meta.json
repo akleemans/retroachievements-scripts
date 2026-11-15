@@ -4,7 +4,9 @@
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
   "firstFrame": 519844,
-  "markers": {},
+  "markers": {
+    "shortcut-opened": 520789
+  },
   "addresses": [
     {
       "address": "0x10000",

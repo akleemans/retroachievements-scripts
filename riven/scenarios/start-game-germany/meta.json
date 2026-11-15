@@ -6,6 +6,8 @@
   "firstFrame": 0,
   "markers": {
     "scenario-start": 64,
+    "progress-junk-start": 408,
+    "progress-junk-end": 673,
     "flags-initialized": 1898,
     "title-screen": 2020
   },

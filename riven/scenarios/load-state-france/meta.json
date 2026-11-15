@@ -4,7 +4,12 @@
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
   "firstFrame": 113,
-  "markers": {},
+  "markers": {
+    "progress-junk-start": 408,
+    "progress-junk-end": 673,
+    "save-loaded": 3113,
+    "first-screen": 3269
+  },
   "addresses": [
     {
       "address": "0x10000",

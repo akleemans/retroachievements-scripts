@@ -839,25 +839,27 @@ describe('Full Coverage', () => {
   });
 
   test('counts the Jungle dome while it stays open across islands', () => {
-    // jdome: 0 -> 2 (about to open, frame 321484) -> 1 (open, frame 322500), island 5 -> 2 -> 5 afterwards
+    // jdome: 0 -> 2 (about to open, jungle-dome-opening) -> 1 (open, jungle-dome-opened), island 5 -> 2 -> 5 afterwards
     const s = scenario('domes-1-open-jungle-dome');
     const result = runAchievement(cheevo, s);
 
     expect(result.measuredTarget).toBe(5);
-    expect(result.measuredAt(321484)).toBe(0);
-    expect(result.measuredAt(322500)).toBe(1);
-    expect(result.measuredAt(337591)).toBe(1);
+    expect(result.measuredAt(s.marker('jungle-dome-opening'))).toBe(0);
+    expect(result.measuredAt(s.marker('jungle-dome-opened') - 1)).toBe(0);
+    expect(result.measuredAt(s.marker('jungle-dome-opened'))).toBe(1);
+    expect(result.measuredAt(s.lastFrame)).toBe(1);
     expect(result.triggered).toBe(false);
   });
 
   test('counts the Temple dome on arrival from 233, ignores the Prison dome closing', () => {
-    // pdome 1 -> 0 when stepping inside (frame 1417066), then via 233 to Temple, tdome 0 -> 1 (frame 1431410)
+    // pdome 1 -> 0 when stepping inside (prison-dome-closed), then via 233 to Temple, tdome 0 -> 1 (temple-dome-opened)
     const s = scenario('test-prison-dome-opening');
     const result = runAchievement(cheevo, s);
 
     // the recording starts mid-game with pdome = 1, which counts on the first frame (memory jumps from 0)
-    expect(result.measuredAt(1431410) - result.measuredAt(1431410 - 1)).toBe(1);
-    expect(result.measuredAt(1431410)).toBe(result.measuredAt(1417066) + 1);
+    const templeDomeOpened = s.marker('temple-dome-opened');
+    expect(result.measuredAt(templeDomeOpened) - result.measuredAt(templeDomeOpened - 1)).toBe(1);
+    expect(result.measuredAt(templeDomeOpened)).toBe(result.measuredAt(s.marker('prison-dome-closed')) + 1);
     expect(result.triggered).toBe(false);
   });
 
@@ -866,12 +868,13 @@ describe('Full Coverage', () => {
     const s = scenario('domes-open-all-5');
     const result = runAchievement(cheevo, s);
 
-    expect(result.measuredAt(1305829)).toBe(1);
-    expect(result.measuredAt(1337000)).toBe(2);
-    expect(result.measuredAt(1364823)).toBe(3);
-    expect(result.measuredAt(1414393)).toBe(4);
+    expect(result.measuredAt(s.marker('jungle-dome-opened') - 1)).toBe(0);
+    expect(result.measuredAt(s.marker('jungle-dome-opened'))).toBe(1);
+    expect(result.measuredAt(s.marker('survey-dome-opened'))).toBe(2);
+    expect(result.measuredAt(s.marker('boiler-dome-opened'))).toBe(3);
+    expect(result.measuredAt(s.marker('prison-dome-opened'))).toBe(4);
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(1425927);
+    expect(result.triggeredFrame).toBe(s.marker('temple-dome-opened'));
   });
 
   for (const name of ['start-game-usa', 'start-game-europe', 'start-game-france', 'start-game-germany', 'start-game-japan']) {
@@ -896,18 +899,14 @@ describe('Full Coverage', () => {
     });
   }
 
-  const regionLoads = [
-    // [scenario, save flags written, first screen]
-    ['load-state-europe', 3086, 3837],
-    ['load-state-france', 3113, 3269],
-    ['load-state-japan', 3153, 3981],
-  ];
-
-  for (const [name, loadFrame, screenFrame] of regionLoads) {
+  // markers: save-loaded = save flags written, first-screen = first screen after loading
+  for (const name of ['load-state-europe', 'load-state-france', 'load-state-japan']) {
     test(`is paused while loading a save: ${name}`, () => {
-      const result = runAchievement(cheevo, scenario(name));
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+      const screenFrame = s.marker('first-screen');
 
-      expect(result.stateAt(loadFrame)).toBe('paused');
+      expect(result.stateAt(s.marker('save-loaded'))).toBe('paused');
       expect(result.stateAt(screenFrame - 1)).toBe('paused');
       expect(result.stateAt(screenFrame)).toBe('active');
       expect(result.measuredAt(screenFrame)).toBe(0);
@@ -915,13 +914,13 @@ describe('Full Coverage', () => {
   }
 
   test('does not count a dome opened by loading a save', () => {
-    // all save flags (jdome 0 -> 1) are written at frame 3038, the first screen loads at 3891
+    // all save flags (jdome 0 -> 1) are written at save-loaded, the first screen loads at first-screen
     const s = scenario('domes-load-save-file-jungle-dome-open');
     const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(3038)).toBe('paused');
-    expect(result.stateAt(3891)).toBe('active');
-    expect(result.measuredAt(3891)).toBe(0);
+    expect(result.stateAt(s.marker('save-loaded'))).toBe('paused');
+    expect(result.stateAt(s.marker('first-screen'))).toBe('active');
+    expect(result.measuredAt(s.marker('first-screen'))).toBe(0);
     expect(result.triggered).toBe(false);
   });
 
@@ -992,10 +991,10 @@ describe('Scholar of the Ages', () => {
     const s = scenario('read-all-journals');
     const result = runAchievement(cheevo, s);
 
-    const bedsideLastPage = 1358875;
-    const labNotesOpened = 1374960;
-    const atrusClosed = 1386249;
-    const catherineOpened = 1386784;
+    const bedsideLastPage = s.marker('bedside-last-page');
+    const labNotesOpened = s.marker('lab-notes-opened');
+    const atrusClosed = s.marker('atrus-closed');
+    const catherineOpened = s.marker('catherine-opened');
 
     expect(result.measuredTarget).toBe(4);
     expect(result.measuredAt(bedsideLastPage - 1)).toBe(0);
@@ -1055,16 +1054,17 @@ describe('Egg Hunt', () => {
   }
 
   const steps = [
-    // [scenario, frame of the step, progress after it]
-    ['easter-egg-first-step', 574790, 1],
-    ['easter-egg-third-step', 1280306, 3],
-    ['easter-egg-fourth-step-with-another-click', 1356068, 4],
+    // [scenario, progress after the step (marker step-clicked)]
+    ['easter-egg-first-step', 1],
+    ['easter-egg-third-step', 3],
+    ['easter-egg-fourth-step-with-another-click', 4],
   ];
 
-  for (const [name, stepFrame, progress] of steps) {
+  for (const [name, progress] of steps) {
     test(`counts the step without popping: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
+      const stepFrame = s.marker('step-clicked');
 
       expect(result.stateAt(stepFrame)).toBe('active');
       expect(result.measuredAt(stepFrame - 1)).toBe(progress - 1);
@@ -1074,34 +1074,34 @@ describe('Egg Hunt', () => {
   }
 
   test('falls back to 0/5 when something else is clicked in between', () => {
-    // the click at 1356243 after the fourth step isn't the fifth step, so the game clears the progress
+    // the click after the fourth step (other-spot-clicked) isn't the fifth step, so the game clears the progress
     const s = scenario('easter-egg-fourth-step-with-another-click');
     const result = runAchievement(cheevo, s);
 
-    expect(result.measuredAt(1356243 - 1)).toBe(4);
-    expect(result.measuredAt(1356243)).toBe(0);
+    expect(result.measuredAt(s.marker('other-spot-clicked') - 1)).toBe(4);
+    expect(result.measuredAt(s.marker('other-spot-clicked'))).toBe(0);
     expect(result.measuredAt(s.lastFrame)).toBe(0);
   });
 
+  // markers: progress-junk-start = first frame with junk in the progress, progress-junk-end = first frame after it
   const bootScenarios = [
-    // [scenario, first frame with junk in the progress, first frame after it]
-    ['start-game-usa', 468, 777],
-    ['start-game-europe', 408, 673],
-    ['start-game-france', 408, 673],
-    ['start-game-germany', 408, 673],
-    ['start-game-japan', 468, 777],
-    ['load-state-europe', 408, 673],
-    ['load-state-france', 408, 673],
-    ['load-state-japan', 468, 777],
+    'start-game-usa',
+    'start-game-europe',
+    'start-game-france',
+    'start-game-germany',
+    'start-game-japan',
+    'load-state-europe',
+    'load-state-france',
+    'load-state-japan',
   ];
 
-  for (const [name, junkStart, junkEnd] of bootScenarios) {
+  for (const name of bootScenarios) {
     test(`is paused while the progress holds junk during boot: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
 
-      expect(result.stateAt(junkStart)).toBe('paused');
-      expect(result.stateAt(junkEnd - 1)).toBe('paused');
+      expect(result.stateAt(s.marker('progress-junk-start'))).toBe('paused');
+      expect(result.stateAt(s.marker('progress-junk-end') - 1)).toBe('paused');
       expect(result.measuredAt(s.lastFrame)).toBe(0);
       expect(result.triggered).toBe(false);
     });
@@ -1193,19 +1193,15 @@ describe('A Walk in the Sky', () => {
 describe('Gehn\'s Secret Paths', () => {
   const cheevo = achievement('Gehn\'s Secret Paths');
 
-  const regionLoads = [
-    // [scenario, save flags written, first screen]
-    ['load-state-europe', 3086, 3837],
-    ['load-state-france', 3113, 3269],
-    ['load-state-japan', 3153, 3981],
-  ];
-
-  for (const [name, loadFrame, screenFrame] of regionLoads) {
+  // markers: save-loaded = save flags written, first-screen = first screen after loading
+  for (const name of ['load-state-europe', 'load-state-france', 'load-state-japan']) {
     test(`is paused while loading a save: ${name}`, () => {
       // these saves have only the beetle room inner gate open
-      const result = runAchievement(cheevo, scenario(name));
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+      const screenFrame = s.marker('first-screen');
 
-      expect(result.stateAt(loadFrame)).toBe('paused');
+      expect(result.stateAt(s.marker('save-loaded'))).toBe('paused');
       expect(result.stateAt(screenFrame - 1)).toBe('paused');
       expect(result.stateAt(screenFrame)).toBe('active');
       expect(result.measuredAt(screenFrame)).toBe(1);
@@ -1213,41 +1209,42 @@ describe('Gehn\'s Secret Paths', () => {
   }
 
   test('does not pop when a save is loaded', () => {
-    // early save, only the beetle room inner gate open (save flags written at 3038, first screen at 3891)
+    // early save, only the beetle room inner gate open (save flags written at save-loaded)
     const s = scenario('domes-load-save-file-jungle-dome-open');
     const result = runAchievement(cheevo, s);
 
     expect(result.measuredTarget).toBe(7);
-    expect(result.stateAt(3038)).toBe('paused');
-    expect(result.stateAt(3891)).toBe('active');
-    expect(result.measuredAt(3891)).toBe(1);
+    expect(result.stateAt(s.marker('save-loaded'))).toBe('paused');
+    expect(result.stateAt(s.marker('first-screen'))).toBe('active');
+    expect(result.measuredAt(s.marker('first-screen'))).toBe(1);
     expect(result.triggered).toBe(false);
   });
 
   test('pops when the last shortcut is opened (Prison Ledge Ladder)', () => {
-    // the other six are open, the ladder goes 0 -> 1 at frame 1013951
+    // the other six are open, the ladder goes 0 -> 1 at shortcut-opened
     const s = scenario('shortcuts-prison-ledge');
     const result = runAchievement(cheevo, s);
 
-    expect(result.measuredAt(1013951 - 1)).toBe(6);
+    expect(result.measuredAt(s.marker('shortcut-opened') - 1)).toBe(6);
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(1013951);
+    expect(result.triggeredFrame).toBe(s.marker('shortcut-opened'));
   });
 
-  // each recording opens one more shortcut: [scenario, frame, progress before, progress after]
+  // each recording opens one more shortcut (marker shortcut-opened): [scenario, progress before, progress after]
   const progressSteps = [
-    ['shortcuts-temple-beetle-inner-gate', 88313, 0, 1],
-    ['shortcuts-boiler-hatch', 520789, 1, 2],
-    ['shortcuts-boiler-gehns-lab-door', 553273, 2, 3],
-    ['shortcuts-boiler-to-temple-dome-bridge', 586087, 3, 4],
-    ['shortcuts-temple-dome-inner-bridge', 596715, 4, 5],
-    ['shortcuts-temple-dome-to-beetle-outer-door', 616496, 5, 6],
+    ['shortcuts-temple-beetle-inner-gate', 0, 1],
+    ['shortcuts-boiler-hatch', 1, 2],
+    ['shortcuts-boiler-gehns-lab-door', 2, 3],
+    ['shortcuts-boiler-to-temple-dome-bridge', 3, 4],
+    ['shortcuts-temple-dome-inner-bridge', 4, 5],
+    ['shortcuts-temple-dome-to-beetle-outer-door', 5, 6],
   ];
 
-  for (const [name, frame, before, after] of progressSteps) {
+  for (const [name, before, after] of progressSteps) {
     test(`counts the shortcut and keeps it across islands: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
+      const frame = s.marker('shortcut-opened');
 
       expect(result.measuredAt(frame - 1)).toBe(before);
       expect(result.measuredAt(frame)).toBe(after);
@@ -1257,18 +1254,18 @@ describe('Gehn\'s Secret Paths', () => {
   }
 
   test('pauses when Gehn is trapped', () => {
-    // all seven open, Gehn State 1 -> 4 at frame 1312806
+    // all seven open, Gehn State 1 -> 4 at gehn-trapped
     const s = scenario('233-trap-gehn');
     const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(1312806 - 1)).toBe('active');
-    expect(result.measuredAt(1312806 - 1)).toBe(7);
-    expect(result.stateAt(1312806)).toBe('paused');
+    expect(result.stateAt(s.marker('gehn-trapped') - 1)).toBe('active');
+    expect(result.measuredAt(s.marker('gehn-trapped') - 1)).toBe(7);
+    expect(result.stateAt(s.marker('gehn-trapped'))).toBe('paused');
     expect(result.triggered).toBe(false);
   });
 
   test('stays paused when the endgame closes the steam dome paths', () => {
-    // Gehn trapped, 0x10080 and 0x10084 go back to 0 at frame 1390852 when Catherine is freed
+    // Gehn trapped, 0x10080 and 0x10084 go back to 0 when Catherine is freed
     const s = scenario('prison-free-catherine');
     const result = runAchievement(cheevo, s);
 

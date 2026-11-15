@@ -4,7 +4,10 @@
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
   "firstFrame": 1355876,
-  "markers": {},
+  "markers": {
+    "step-clicked": 1356068,
+    "other-spot-clicked": 1356243
+  },
   "addresses": [
     { "address": "0x10000", "size": "u16", "label": "Cursor Icon Type" },
     { "address": "0x10004", "size": "u16", "label": "Tay Prison Cell Sequence" },
