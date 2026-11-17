@@ -44,7 +44,7 @@ Order	Feature	Miss	Achievement Name	Achievement Description	Location	Notes	Type	
 43		TRUE	We Will Never Know Her Fate	Capture Gehn and open the Star Fissure without freeing Catherine	Temple	Bad Ending 9: Tragic ending, Atrus very disappointed. Own ending text. Missable because not possible after Catherine is freed	Side Quest	10
 44	Measured	TRUE	Full Coverage	Restore Gehn's transportation network by opening all five Golden Domes across Riven in a single session	any	Communicate Lore for what Domes were actually used (before player uses them). Missable because short time window player is able to get this (Prison Island), not possible only before or after they do this (Prison Island would be misse).	Collection	10
 45	Measured	TRUE	Gehn's Secret Paths	Open all seven permanent shortcuts across Riven before Gehn is caught	any		Collection	10
-46	Measured	TRUE	Scholar of the Ages	Read through all 4 journals in one session	any	Atrus' Journal, Catherine's Journal, Gehn's Lab Journal, Gehn's Bedroom Journal. Missable because of short time window to get it, to warn players	Collection	10
+46	Measured	TRUE	Scholar of the Ages	Read all 4 journals to the end in one session; close carried journals on the last page	any	Atrus' Journal, Catherine's Journal, Gehn's Lab Journal, Gehn's Bedroom Journal. Missable because of short time window to get it, to warn players	Collection	10
 47	Measured	TRUE	Egg Hunt	Unlock Easter egg mode	any	Missable because of Bowl on Tay	Easter Egg	10
 48		TRUE	Commercial Break	Watch an ad on Gehn's CCTV	233	Required to enable Easter eggs	Easter Egg	3
 49		TRUE	Deck the Halls	Decorate the Temple in green and red	Temple	Required to enable Easter eggs	Easter Egg	3
