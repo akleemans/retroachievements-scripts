@@ -1,10 +1,17 @@
 {
   "name": "read-all-journals-atrus-france",
-  "description": "",
+  "description": "France, in game, with the France journal page cells 0x1ffe8c/0x1ffe94/0x1ffed4/0x1ffedc recorded. Atrus's journal is opened from the menu on page 0x1b (saved page 0x1b), turned to 0x1c and to the last page 0x1d, turned back to 0x1c and closed there (saved page 0x1b -> 0x1c). Then it is opened again (on 0x1c), turned to the last page and closed (saved page 0x1c -> 0x1d).",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
   "firstFrame": 264504,
-  "markers": {},
+  "markers": {
+    "journal-opened": 264820,
+    "last-page-shown": 264987,
+    "closed-on-second-to-last-page": 265198,
+    "journal-reopened": 265570,
+    "last-page-shown-again": 265661,
+    "closed-on-last-page": 265787
+  },
   "addresses": [
     {
       "address": "0x0000",

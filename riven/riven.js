@@ -844,13 +844,14 @@ set.addAchievement({
   },
 });
 
-// Open page of a journal, on the stack (two cells each)
+// Open page of Gehn's journals, on the stack (two cells each, same addresses on USA and France)
 const bedsideJournalPage = 0x1ffd2c; // Gehn's journal in his bedroom in the 233rd Age
 const bedsideJournalPage2 = 0x1ffd6c;
 const labNotesPage = 0x1ffe1c; // Gehn's lab notes
 const labNotesPage2 = 0x1ffe5c;
-const menuJournalPage = 0x1ffea4; // Atrus's and Catherine's journal, opened from the menu
-const menuJournalPage2 = 0x1ffee4;
+// Atrus's and Catherine's journal, opened from the menu. Stack cell: the open page on USA and Japan, the page the
+// journal was opened on on France. On close it changes to 1 (USA, France) or to a pointer (Japan).
+const menuJournalPage = 0x1ffea4;
 const atrusJournalSavedPage = 0x0101aa; // written when the journal is closed
 const catherineJournalSavedPage = 0x0101ac; // written when the journal is closed
 
@@ -863,12 +864,11 @@ set.addAchievement({
   id: 651157,
   badge: '743526',
   title: 'Scholar of the Ages',
-  description: 'Read through all 4 journals in one session',
+  description: 'Read all 4 journals to the end in one session; close carried journals on the last page',
   points: 10,
   type: 'missable',
-  // One hit per journal on its last page is open. The menu journals also need their saved page, because the stack
-  // cells hold equal small values in normal play. Catherine's counts when opened on the last page (Mem) or when
-  // closed after reading to the end (Delta, the cell changes on the frame the saved page is written).
+  // One hit per journal. Gehn's journals count when their last page is shown (screen and both stack cells).
+  // Atrus's and Catherine's journals count when they are closed on their last page.
   conditions: (() => {
     const conditions = {
       core: $(
@@ -877,20 +877,30 @@ set.addAchievement({
     };
     for (const region of regions) {
       conditions[region.alt] = $(
-        ['AndNext',  'Mem',   '32bit', region.screenPointer,  '=', 'Value', '', screenValue(region, Age233ScreenEnum.BedsideJournal)],
-        ['AndNext',  'Mem',   '32bit', bedsideJournalPage2,   '=', 'Value', '', bedsideJournalLastPage],
-        ['AddHits',  'Mem',   '32bit', bedsideJournalPage,    '=', 'Value', '', bedsideJournalLastPage,                               1],
-        ['AndNext',  'Mem',   '32bit', region.screenPointer,  '=', 'Value', '', screenValue(region, BoilerScreenEnum.LabNotesDesk)],
-        ['AndNext',  'Mem',   '32bit', labNotesPage2,         '=', 'Value', '', labNotesLastPage],
-        ['AddHits',  'Mem',   '32bit', labNotesPage,          '=', 'Value', '', labNotesLastPage,                                     1],
-        ['AndNext',  'Mem',   '16bit', atrusJournalSavedPage, '=', 'Value', '', atrusJournalLastPage],
-        ['AndNext',  'Delta', '32bit', menuJournalPage,       '=', 'Value', '', atrusJournalLastPage],
-        ['AddHits',  'Mem',   '32bit', menuJournalPage2,      '=', 'Value', '', atrusJournalLastPage,                                 1],
-        ['OrNext',   'Delta', '32bit', menuJournalPage,       '=', 'Value', '', catherineJournalLastPage],
-        ['AndNext',  'Mem',   '32bit', menuJournalPage,       '=', 'Value', '', catherineJournalLastPage],
-        ['AndNext',  'Mem',   '16bit', catherineJournalSavedPage, '=', 'Value', '', catherineJournalLastPage],
-        ['AddHits',  'Mem',   '32bit', menuJournalPage2,      '=', 'Value', '', catherineJournalLastPage,                             1],
-        ['Measured', 'Value', '',      0,                     '=', 'Value', '', 1,                                                    4],
+        ['AndNext',   'Mem',   '32bit', region.screenPointer,      '=',  'Value', '', screenValue(region, Age233ScreenEnum.BedsideJournal)],
+        ['AndNext',   'Mem',   '32bit', bedsideJournalPage2,       '=',  'Value', '', bedsideJournalLastPage],
+        ['AddHits',   'Mem',   '32bit', bedsideJournalPage,        '=',  'Value', '', bedsideJournalLastPage,                               1],
+        ['AndNext',   'Mem',   '32bit', region.screenPointer,      '=',  'Value', '', screenValue(region, BoilerScreenEnum.LabNotesDesk)],
+        ['AndNext',   'Mem',   '32bit', labNotesPage2,             '=',  'Value', '', labNotesLastPage],
+        ['AddHits',   'Mem',   '32bit', labNotesPage,              '=',  'Value', '', labNotesLastPage,                                     1],
+        // Atrus's journal. Case 1: Menu journal cell is 1 (or pointer) AND last page
+        // Case 2: Saved page changed AND on a screen AND saved page is the last
+        ['OrNext',    'Mem',   '32bit', menuJournalPage,           '=',  'Value', '', 1],
+        ['AndNext',   'Mem',   '32bit', menuJournalPage,           '>=', 'Value', '', 0x80000000],
+        ['OrNext',    'Delta', '32bit', menuJournalPage,           '=',  'Value', '', atrusJournalLastPage],
+        ['AndNext',   'Delta', '16bit', atrusJournalSavedPage,     '!=', 'Value', '', atrusJournalLastPage],
+        ['AddSource', 'Mem',   '32bit', region.screenPointer,      '/',  'Value', '', 0x100000],
+        ['AndNext',   'Value', '',      0,                         '=',  'Value', '', 0x801],
+        ['AddHits',   'Mem',   '16bit', atrusJournalSavedPage,     '=',  'Value', '', atrusJournalLastPage,                                 1],
+        // Catherine's journal: same as Atrus's
+        ['OrNext',    'Mem',   '32bit', menuJournalPage,           '=',  'Value', '', 1],
+        ['AndNext',   'Mem',   '32bit', menuJournalPage,           '>=', 'Value', '', 0x80000000],
+        ['OrNext',    'Delta', '32bit', menuJournalPage,           '=',  'Value', '', catherineJournalLastPage],
+        ['AndNext',   'Delta', '16bit', catherineJournalSavedPage, '!=', 'Value', '', catherineJournalLastPage],
+        ['AddSource', 'Mem',   '32bit', region.screenPointer,      '/',  'Value', '', 0x100000],
+        ['AndNext',   'Value', '',      0,                         '=',  'Value', '', 0x801],
+        ['AddHits',   'Mem',   '16bit', catherineJournalSavedPage, '=',  'Value', '', catherineJournalLastPage,                             1],
+        ['Measured',  'Value', '',      0,                         '=',  'Value', '', 1,                                                    4],
       );
     }
     return conditions;

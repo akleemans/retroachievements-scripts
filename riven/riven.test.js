@@ -987,7 +987,8 @@ describe('Scholar of the Ages', () => {
 
   test('counts each journal on its last page and pops on the fourth', () => {
     // Gehn's bedside journal is read from the first page, his lab notes open on the last page (read earlier),
-    // Atrus's journal is read from the first page and closed, Catherine's journal opens on the last page
+    // Atrus's journal is read from the first page and closed on the last page. Catherine's journal opens on the last
+    // page (read earlier), so it only counts when it is closed there again.
     const s = scenario('read-all-journals');
     const result = runAchievement(cheevo, s);
 
@@ -995,6 +996,7 @@ describe('Scholar of the Ages', () => {
     const labNotesOpened = s.marker('lab-notes-opened');
     const atrusClosed = s.marker('atrus-closed');
     const catherineOpened = s.marker('catherine-opened');
+    const catherineClosed = s.marker('catherine-closed');
 
     expect(result.measuredTarget).toBe(4);
     expect(result.measuredAt(bedsideLastPage - 1)).toBe(0);
@@ -1003,25 +1005,84 @@ describe('Scholar of the Ages', () => {
     expect(result.measuredAt(labNotesOpened)).toBe(2);
     expect(result.measuredAt(atrusClosed - 1)).toBe(2);
     expect(result.measuredAt(atrusClosed)).toBe(3);
-    expect(result.stateAt(catherineOpened - 1)).toBe('active');
+    expect(result.measuredAt(catherineOpened)).toBe(3);
+    expect(result.stateAt(catherineClosed - 1)).toBe('active');
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(catherineOpened);
+    expect(result.triggeredFrame).toBe(catherineClosed);
   });
 
-  test('counts Atrus\'s journal when closed on the last page, not on the page before: France', () => {
-    // Read to the end, turned back one page and closed, then opened again, turned to the last page and closed
-    const s = scenario('read-all-journals-atrus-france-old');
-    const result = runAchievement(cheevo, s);
+  const menuJournalScenarios = [
+    'read-all-journals-atrus-france-old',
+    'read-all-journals-atrus-france',
+    'read-all-journals-catherine-france',
+  ];
 
-    const closedOnSecondToLastPage = s.marker('closed-on-second-to-last-page');
-    const closedOnLastPage = s.marker('closed-on-last-page');
+  for (const name of menuJournalScenarios) {
+    test(`counts a menu journal when closed on the last page, not on the page before: ${name}`, () => {
+      // Read to the end, turned back one page and closed, then opened again, turned to the last page and closed
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.measuredAt(closedOnSecondToLastPage)).toBe(0);
-    expect(result.measuredAt(closedOnLastPage - 1)).toBe(0);
-    expect(result.measuredAt(closedOnLastPage)).toBe(1);
-    expect(result.measuredAt(s.lastFrame)).toBe(1);
-    expect(result.triggered).toBe(false);
-  });
+      const closedOnSecondToLastPage = s.marker('closed-on-second-to-last-page');
+      const closedOnLastPage = s.marker('closed-on-last-page');
+
+      expect(result.measuredAt(closedOnSecondToLastPage)).toBe(0);
+      expect(result.measuredAt(closedOnLastPage - 1)).toBe(0);
+      expect(result.measuredAt(closedOnLastPage)).toBe(1);
+      expect(result.measuredAt(s.lastFrame)).toBe(1);
+      expect(result.triggered).toBe(false);
+    });
+  }
+
+  const closedOnLastPageScenarios = [
+    'read-all-journals-atrus-japan',
+    'read-all-journals-catherine-japan',
+    'read-all-journals-reread-atrus-japan',
+    'read-all-journals-reread-catherine-japan',
+    'read-all-journals-atrus-europe',
+    'read-all-journals-reread-atrus-europe',
+    'read-all-journals-catherine-europe',
+    'read-all-journals-reread-catherine-europe',
+  ];
+
+  for (const name of closedOnLastPageScenarios) {
+    test(`counts a menu journal when closed on the last page, also when re-read: ${name}`, () => {
+      // The re-read recordings open a journal already saved on its last page and close it right away
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      const closedOnLastPage = s.marker('closed-on-last-page');
+
+      expect(result.measuredAt(closedOnLastPage - 1)).toBe(0);
+      expect(result.measuredAt(closedOnLastPage)).toBe(1);
+      expect(result.measuredAt(s.lastFrame)).toBe(1);
+      expect(result.triggered).toBe(false);
+    });
+  }
+
+  const gehnsJournalScenarios = [
+    'read-all-journals-gehns-bedroom-france',
+    'read-all-journals-gehns-lab-france',
+    'read-all-journals-gehns-bedroom-japan',
+    'read-all-journals-gehns-lab-japan',
+    'read-all-journals-gehns-bedroom-europe',
+    'read-all-journals-gehns-lab-europe',
+  ];
+
+  for (const name of gehnsJournalScenarios) {
+    test(`counts one of Gehn's journals when the last page is shown, once: ${name}`, () => {
+      // France: read to the end, turned back one page and closed, then read to the last page again. Japan, Europe: read once.
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      const lastPageShown = s.marker('last-page-shown');
+
+      expect(result.measuredAt(lastPageShown - 1)).toBe(0);
+      expect(result.measuredAt(lastPageShown)).toBe(1);
+      expect(result.measuredAt(s.lastFrame)).toBe(1);
+      expect(result.triggered).toBe(false);
+    });
+  }
 
   for (const name of ['start-game-usa', 'start-game-europe', 'start-game-france', 'start-game-germany', 'start-game-japan']) {
     test(`counts nothing during boot: ${name}`, () => {

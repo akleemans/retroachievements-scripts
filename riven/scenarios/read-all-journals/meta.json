@@ -1,6 +1,6 @@
 {
   "name": "read-all-journals",
-  "description": "",
+  "description": "USA, in game. Gehn's bedside journal is read from the first to the last page, his lab notes open on the last page (read earlier), Atrus's journal is read from the first page and closed on the last page. Catherine's journal opens on the last page (saved page already 0x3d), is turned back one page and forward again, and closed on the last page.",
   "game": "Riven: The Sequel to Myst",
   "console": "PSX",
   "firstFrame": 1356751,
@@ -8,7 +8,8 @@
     "bedside-last-page": 1358875,
     "lab-notes-opened": 1374960,
     "atrus-closed": 1386249,
-    "catherine-opened": 1386784
+    "catherine-opened": 1386784,
+    "catherine-closed": 1387249
   },
   "addresses": [
     {
