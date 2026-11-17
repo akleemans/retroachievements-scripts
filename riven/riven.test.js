@@ -1008,6 +1008,21 @@ describe('Scholar of the Ages', () => {
     expect(result.triggeredFrame).toBe(catherineOpened);
   });
 
+  test('counts Atrus\'s journal when closed on the last page, not on the page before: France', () => {
+    // Read to the end, turned back one page and closed, then opened again, turned to the last page and closed
+    const s = scenario('read-all-journals-atrus-france-old');
+    const result = runAchievement(cheevo, s);
+
+    const closedOnSecondToLastPage = s.marker('closed-on-second-to-last-page');
+    const closedOnLastPage = s.marker('closed-on-last-page');
+
+    expect(result.measuredAt(closedOnSecondToLastPage)).toBe(0);
+    expect(result.measuredAt(closedOnLastPage - 1)).toBe(0);
+    expect(result.measuredAt(closedOnLastPage)).toBe(1);
+    expect(result.measuredAt(s.lastFrame)).toBe(1);
+    expect(result.triggered).toBe(false);
+  });
+
   for (const name of ['start-game-usa', 'start-game-europe', 'start-game-france', 'start-game-germany', 'start-game-japan']) {
     test(`counts nothing during boot: ${name}`, () => {
       const s = scenario(name);
