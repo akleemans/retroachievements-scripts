@@ -1202,12 +1202,12 @@
   {
     "User": "adrianusk",
     "Address": "0x1ffe8c",
-    "Note": "[32-bit] Atrus' journal page (switches between 0x05 and page nr.)"
+    "Note": "[32-bit] Atrus' journal page (France) (switches between 0x05 and page nr.)"
   },
   {
     "User": "adrianusk",
     "Address": "0x1ffe94",
-    "Note": "[32-bit] Atrus' journal current page"
+    "Note": "[32-bit] Atrus' journal current page (France)"
   },
   {
     "User": "adrianusk",
@@ -1217,12 +1217,12 @@
   {
     "User": "adrianusk",
     "Address": "0x1ffed4",
-    "Note": "[32-bit] Atrus' journal next page to load (switches earlier than 0x1ffe94 on page turn)"
+    "Note": "[32-bit] Atrus' journal next page to load (France) (switches earlier than 0x1ffe94 on page turn)"
   },
   {
     "User": "adrianusk",
     "Address": "0x1ffedc",
-    "Note": "[32-bit] Atrus' journal page (switches between 0x00 and page nr.)"
+    "Note": "[32-bit] Atrus' journal page (France) (switches between 0x00 and page nr.)"
   },
   {
     "User": "adrianusk",
