@@ -44,12 +44,12 @@
     {
       "address": "0x10010",
       "size": "u16",
-      "label": "Crater Boiler Pump Rotation"
+      "label": "Boiler Pump Rotation"
     },
     {
       "address": "0x10012",
       "size": "u16",
-      "label": "Crater Boiler Door"
+      "label": "Boiler Door"
     },
     {
       "address": "0x10014",
@@ -64,7 +64,7 @@
     {
       "address": "0x10018",
       "size": "u16",
-      "label": "Boiler to Dome Bridge"
+      "label": "Boiler to Temple Dome Bridge"
     },
     {
       "address": "0x1001a",
@@ -79,7 +79,7 @@
     {
       "address": "0x1001e",
       "size": "u16",
-      "label": "Crater to Dome Bridge Handle"
+      "label": "Boiler to Temple Dome Bridge Handle"
     },
     {
       "address": "0x10020",
@@ -94,12 +94,12 @@
     {
       "address": "0x10024",
       "size": "u16",
-      "label": "Crater Vent Lever State"
+      "label": "Boiler Vent Lever State"
     },
     {
       "address": "0x10026",
       "size": "u16",
-      "label": "Crater Double Doors"
+      "label": "Boiler Double Doors"
     },
     {
       "address": "0x10028",
@@ -139,7 +139,7 @@
     {
       "address": "0x10036",
       "size": "u16",
-      "label": "Crater-Survey Maglev Direction"
+      "label": "Boiler-Survey Maglev Direction"
     },
     {
       "address": "0x10038",
@@ -189,7 +189,7 @@
     {
       "address": "0x1004a",
       "size": "u16",
-      "label": "Crater Steam Main Valve Direction"
+      "label": "Boiler Steam Main Valve Direction"
     },
     {
       "address": "0x1004c",
@@ -209,7 +209,7 @@
     {
       "address": "0x10052",
       "size": "u16",
-      "label": "Crater Hatch Shortcut"
+      "label": "Boiler Hatch Shortcut"
     },
     {
       "address": "0x10054",
@@ -219,7 +219,7 @@
     {
       "address": "0x10056",
       "size": "u16",
-      "label": "Crater Book Press"
+      "label": "Boiler Book Press"
     },
     {
       "address": "0x10058",
@@ -304,7 +304,7 @@
     {
       "address": "0x10078",
       "size": "u16",
-      "label": "Dome-Jungle Maglev Location Override"
+      "label": "Temple-Jungle Maglev Location Override"
     },
     {
       "address": "0x1007a",
@@ -384,7 +384,7 @@
     {
       "address": "0x10098",
       "size": "u16",
-      "label": "Survey-Jungle Maglev Location"
+      "label": "Jungle-Survey Maglev Location (see also 0x0100b0)"
     },
     {
       "address": "0x1009a",
@@ -444,7 +444,7 @@
     {
       "address": "0x100b0",
       "size": "u16",
-      "label": "Survey-Jungle Maglev Location"
+      "label": "Survey-Jungle Maglev Location (see also 0x010098)"
     },
     {
       "address": "0x100b2",
@@ -754,7 +754,7 @@
     {
       "address": "0x1012c",
       "size": "u16",
-      "label": "Maybe: Girl after idol shortcut state TODO"
+      "label": "Girl after idol shortcut state"
     },
     {
       "address": "0x1012e",
@@ -829,7 +829,7 @@
     {
       "address": "0x10150",
       "size": "u16",
-      "label": "Orange Marble Column"
+      "label": "Orange Marble Column (0xffff = Not on the grid. Set on boot, 0 -> 0xffff just before the title screen, and after the puzzle is solved)"
     },
     {
       "address": "0x10152",
@@ -849,7 +849,7 @@
     {
       "address": "0x10158",
       "size": "u16",
-      "label": "Purple Marble Column"
+      "label": "Purple Marble Column (0xffff = Not on the grid. Set on boot, 0 -> 0xffff just before the title screen, and after the puzzle is solved)"
     },
     {
       "address": "0x1015a",
@@ -974,7 +974,7 @@
     {
       "address": "0x1019e",
       "size": "u16",
-      "label": "Crater Boiler Water Bubble Movie Index"
+      "label": "Boiler Water Bubble Movie Index"
     },
     {
       "address": "0x101a4",
@@ -1154,32 +1154,32 @@
     {
       "address": "0x1ffd2c",
       "size": "u32",
-      "label": "Current page, Gehn Bedside Journal (Stack location)"
+      "label": "Current page, Gehn's Bedside Journal (Stack location)"
     },
     {
       "address": "0x1ffd6c",
       "size": "u32",
-      "label": "Current page, Gehn Bedside Journal (Stack location) v2"
+      "label": "Current page, Gehn's Bedside Journal (Stack location, 2nd cell)"
     },
     {
       "address": "0x1ffe1c",
       "size": "u32",
-      "label": "Current page, Gehn Lab both books (Stack location)"
+      "label": "Current page, Gehn's Lab Books (Stack location)"
     },
     {
       "address": "0x1ffe5c",
       "size": "u32",
-      "label": "Current page, Gehn Lab both books (Stack location) v2"
+      "label": "Current page, Gehn's Lab Books (Stack location, 2nd cell)"
     },
     {
       "address": "0x1ffea4",
       "size": "u32",
-      "label": "Current page via menu (Stack location)"
+      "label": "Current page, Atrus's or Catherine's Journal via menu (Stack location)"
     },
     {
       "address": "0x1ffee4",
       "size": "u32",
-      "label": "Current page via menu (Stack location) copy"
+      "label": "Current page, Atrus's or Catherine's Journal via menu (Stack location, 2nd cell)"
     }
   ]
 }
