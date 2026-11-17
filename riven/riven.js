@@ -103,7 +103,7 @@ const seenAllScreens = (screens) => {
   for (const region of regions) {
     const altConditions = [];
     for (const {before, screen} of screens) {
-      altConditions.push(['AndNext', 'Delta', '32bit', region.screenPointer, '!=', 'Value', '', screenValue(region, before)]);
+      altConditions.push(['AndNext', 'Delta', '32bit', region.screenPointer, '=',  'Value', '', screenValue(region, before)]);
       altConditions.push(['AddHits', 'Mem',   '32bit', region.screenPointer, '=',  'Value', '', screenValue(region, screen), 1]);
     }
     altConditions.push(['Measured', 'Value', '', 0, '=', 'Value', '', 1, screens.length]);
@@ -329,7 +329,7 @@ set.addAchievement({
   id: 648933,
   badge: '743477',
   title: 'The Chapel',
-  description: 'Inspect all art displays in the Gate Room at Dome Island and learn who Riven is taught to worship',
+  description: 'Inspect all art displays in the Gate Room at Temple Island and learn who Riven is taught to worship',
   points: 2,
   conditions: seenAllScreens([
     {before: DomeScreenEnum.GateRoomArt1before, screen: DomeScreenEnum.GateRoomArt1},
@@ -852,6 +852,7 @@ const labNotesPage2 = 0x1ffe5c;
 const menuJournalPage = 0x1ffea4; // Atrus's and Catherine's journal, opened from the menu
 const menuJournalPage2 = 0x1ffee4;
 const atrusJournalSavedPage = 0x0101aa; // written when the journal is closed
+const catherineJournalSavedPage = 0x0101ac; // written when the journal is closed
 
 const bedsideJournalLastPage = 0x15;
 const labNotesLastPage = 0x24;
@@ -862,10 +863,12 @@ set.addAchievement({
   id: 651157,
   badge: '743526',
   title: 'Scholar of the Ages',
-  description: 'Read through all 4 Journals in one session',
+  description: 'Read through all 4 journals in one session',
   points: 10,
   type: 'missable',
-  // One hit per journal on its last page is open
+  // One hit per journal on its last page is open. The menu journals also need their saved page, because the stack
+  // cells hold equal small values in normal play. Catherine's counts when opened on the last page (Mem) or when
+  // closed after reading to the end (Delta, the cell changes on the frame the saved page is written).
   conditions: (() => {
     const conditions = {
       core: $(
@@ -883,7 +886,9 @@ set.addAchievement({
         ['AndNext',  'Mem',   '16bit', atrusJournalSavedPage, '=', 'Value', '', atrusJournalLastPage],
         ['AndNext',  'Delta', '32bit', menuJournalPage,       '=', 'Value', '', atrusJournalLastPage],
         ['AddHits',  'Mem',   '32bit', menuJournalPage2,      '=', 'Value', '', atrusJournalLastPage,                                 1],
+        ['OrNext',   'Delta', '32bit', menuJournalPage,       '=', 'Value', '', catherineJournalLastPage],
         ['AndNext',  'Mem',   '32bit', menuJournalPage,       '=', 'Value', '', catherineJournalLastPage],
+        ['AndNext',  'Mem',   '16bit', catherineJournalSavedPage, '=', 'Value', '', catherineJournalLastPage],
         ['AddHits',  'Mem',   '32bit', menuJournalPage2,      '=', 'Value', '', catherineJournalLastPage,                             1],
         ['Measured', 'Value', '',      0,                     '=', 'Value', '', 1,                                                    4],
       );
