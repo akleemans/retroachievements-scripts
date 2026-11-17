@@ -1201,8 +1201,28 @@
   },
   {
     "User": "adrianusk",
+    "Address": "0x1ffe8c",
+    "Note": "[32-bit] Atrus' journal page (switches between 0x05 and page nr.)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x1ffe94",
+    "Note": "[32-bit] Atrus' journal current page"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x1ffea4",
     "Note": "[32-bit] Current page, Atrus's or Catherine's Journal via menu (Stack location)\r\nOnly valid while a journal is open, other code uses this stack cell\r\nChanges on the frame the journal is closed, when 0x0101aa \/ 0x0101ac is written\r\n0x1d = Last page of Atrus's journal\r\n0x3d = Last page of Catherine's journal"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x1ffed4",
+    "Note": "[32-bit] Atrus' journal next page to load (switches earlier than 0x1ffe94 on page turn)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x1ffedc",
+    "Note": "[32-bit] Atrus' journal page (switches between 0x00 and page nr.)"
   },
   {
     "User": "adrianusk",
