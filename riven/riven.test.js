@@ -82,7 +82,7 @@ describe('The Chapel', () => {
   const cheevo = achievement('The Chapel');
 
   const inspectArtScenarios = [
-    // 'temple-inspect-all-art-displays',
+    'temple-inspect-all-art-displays',
     'temple-inspect-all-art-displays-germany',
   ];
 
