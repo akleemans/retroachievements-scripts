@@ -822,12 +822,12 @@
   {
     "User": "adrianusk",
     "Address": "0x01014e",
-    "Note": "[16-bit] Red Marble Column (0xffff = Not on the grid. Set on boot, 0 -> 0xffff just before the title screen, and after the puzzle is solved)"
+    "Note": "[16-bit] Red Marble Column"
   },
   {
     "User": "adrianusk",
     "Address": "0x010150",
-    "Note": "[16-bit] Orange Marble Column"
+    "Note": "[16-bit] Orange Marble Column (0xffff = Not on the grid. Set on boot, 0 -> 0xffff just before the title screen, and after the puzzle is solved)"
   },
   {
     "User": "adrianusk",
@@ -847,7 +847,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010158",
-    "Note": "[16-bit] Purple Marble Column"
+    "Note": "[16-bit] Purple Marble Column (0xffff = Not on the grid. Set on boot, 0 -> 0xffff just before the title screen, and after the puzzle is solved)"
   },
   {
     "User": "adrianusk",
@@ -987,12 +987,12 @@
   {
     "User": "adrianusk",
     "Address": "0x0101aa",
-    "Note": "[16-bit] Atrus's Journal Page"
+    "Note": "[16-bit] Atrus's Journal Page\r\nPage the journal was last closed on (written on close)\r\n0x00 = Not opened yet\r\n0x1d = Last page"
   },
   {
     "User": "adrianusk",
     "Address": "0x0101ac",
-    "Note": "[16-bit] Catherine's Journal Page"
+    "Note": "[16-bit] Catherine's Journal Page\r\nPage the journal was last closed on (written on close)\r\n0x00 = Not opened yet\r\n0x3d = Last page"
   },
   {
     "User": "adrianusk",
@@ -1187,7 +1187,7 @@
   {
     "User": "adrianusk",
     "Address": "0x1ffd6c",
-    "Note": "[32-bit] Current page, Gehn Bedside Journal (Stack location) v2"
+    "Note": "[32-bit] Current page, Gehn's Bedside Journal (Stack location, 2nd cell)\r\nOnly valid while the journal is open, other code uses this stack cell\r\n0x15 = Last page"
   },
   {
     "User": "adrianusk",
@@ -1197,7 +1197,7 @@
   {
     "User": "adrianusk",
     "Address": "0x1ffe5c",
-    "Note": "[32-bit] Current page, Gehn Lab both books (Stack location) v2"
+    "Note": "[32-bit] Current page, Gehn's Lab Books (Stack location, 2nd cell)\r\nOnly valid while a book is open, other code uses this stack cell\r\n0x24 = Last page of the lab notes"
   },
   {
     "User": "adrianusk",
