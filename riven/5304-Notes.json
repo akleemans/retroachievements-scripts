@@ -252,7 +252,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010064",
-    "Note": "[16-bit] Boiler Dome State\r\n0x00 = Spinning\r\n0x01 = Open"
+    "Note": "[16-bit] Boiler Dome State\r\n0x00 = Spinning\r\n0x01 = Open\r\n0x02 = About-to-open"
   },
   {
     "User": "adrianusk",
@@ -407,7 +407,7 @@
   {
     "User": "adrianusk",
     "Address": "0x0100a2",
-    "Note": "[16-bit] Survey Island Dome State\r\n0x00 = Spinning\r\n0x01 = Open"
+    "Note": "[16-bit] Survey Island Dome State\r\n0x00 = Spinning\r\n0x01 = Open\r\n0x02 = About-to-open"
   },
   {
     "User": "adrianusk",
@@ -527,7 +527,7 @@
   {
     "User": "adrianusk",
     "Address": "0x0100d2",
-    "Note": "[16-bit] Temple Island Telescope Height"
+    "Note": "[16-bit] Temple Island Telescope Height\r\n0x05 = Highest (start position)\r\n0x01 = Lowest position above the glass"
   },
   {
     "User": "adrianusk",
@@ -822,7 +822,7 @@
   {
     "User": "adrianusk",
     "Address": "0x01014e",
-    "Note": "[16-bit] Red Marble Column"
+    "Note": "[16-bit] Red Marble Column (0xffff = Not on the grid. Set on boot, 0 -> 0xffff just before the title screen, and after the puzzle is solved)"
   },
   {
     "User": "adrianusk",
@@ -1102,7 +1102,7 @@
   {
     "User": "adrianusk",
     "Address": "0x09db68",
-    "Note": "[32-bit] Screen pointer (France)"
+    "Note": "[32-bit] Screen pointer (France)\r\nUSA: [8-bit] Hotspot click state\r\n0x00 = No click\r\n0x01 = Hotspot clicked (one frame)"
   },
   {
     "User": "adrianusk",
@@ -1182,7 +1182,7 @@
   {
     "User": "adrianusk",
     "Address": "0x1ffd2c",
-    "Note": "[32-bit] Current page, Gehn Bedside Journal (Stack location)"
+    "Note": "[32-bit] Current page, Gehn's Bedside Journal (Stack location)\r\nOnly valid while the journal is open, other code uses this stack cell\r\n0x15 = Last page"
   },
   {
     "User": "adrianusk",
@@ -1192,7 +1192,7 @@
   {
     "User": "adrianusk",
     "Address": "0x1ffe1c",
-    "Note": "[32-bit] Current page, Gehn Lab both books (Stack location)"
+    "Note": "[32-bit] Current page, Gehn's Lab Books (Stack location)\r\nOnly valid while a book is open, other code uses this stack cell\r\n0x24 = Last page of the lab notes"
   },
   {
     "User": "adrianusk",
@@ -1202,11 +1202,11 @@
   {
     "User": "adrianusk",
     "Address": "0x1ffea4",
-    "Note": "[32-bit] Current page via menu (Stack location)"
+    "Note": "[32-bit] Current page, Atrus's or Catherine's Journal via menu (Stack location)\r\nOnly valid while a journal is open, other code uses this stack cell\r\nChanges on the frame the journal is closed, when 0x0101aa \/ 0x0101ac is written\r\n0x1d = Last page of Atrus's journal\r\n0x3d = Last page of Catherine's journal"
   },
   {
     "User": "adrianusk",
     "Address": "0x1ffee4",
-    "Note": "[32-bit] Current page via menu (Stack location) copy"
+    "Note": "[32-bit] Current page, Atrus's or Catherine's Journal via menu (Stack location, 2nd cell)\r\nOnly valid while a journal is open, other code uses this stack cell\r\nStill holds the page on the frame the journal is closed\r\n0x1d = Last page of Atrus's journal\r\n0x3d = Last page of Catherine's journal"
   }
 ]
