@@ -1212,7 +1212,7 @@
   {
     "User": "adrianusk",
     "Address": "0x1ffea4",
-    "Note": "[32-bit] Current page, Atrus's or Catherine's Journal via menu (Stack location)\r\nOnly valid while a journal is open, other code uses this stack cell\r\nChanges on the frame the journal is closed, when 0x0101aa \/ 0x0101ac is written\r\n0x1d = Last page of Atrus's journal\r\n0x3d = Last page of Catherine's journal"
+    "Note": "[32-bit] Current page, Atrus's or Catherine's Journal via menu (Stack location)\r\nOnly valid while a journal is open, other code uses this stack cell\r\nUSA: the open page. France: the page the journal was opened on\r\n0x01 = Journal closed (same frame as 0x0101aa \/ 0x0101ac is written)\r\n0x1d = Last page of Atrus's journal\r\n0x3d = Last page of Catherine's journal"
   },
   {
     "User": "adrianusk",
