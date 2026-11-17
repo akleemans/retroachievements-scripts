@@ -42,12 +42,12 @@
   {
     "User": "adrianusk",
     "Address": "0x010010",
-    "Note": "[16-bit] Crater Boiler Pump Rotation\r\n0x00 = Pipe to boiler\r\n0x01 = Pipe to air"
+    "Note": "[16-bit] Boiler Pump Rotation\r\n0x00 = Pipe to boiler\r\n0x01 = Pipe to air"
   },
   {
     "User": "adrianusk",
     "Address": "0x010012",
-    "Note": "[16-bit] Crater Boiler Door\r\n0x00 = Closed\r\n0x01 = Open"
+    "Note": "[16-bit] Boiler Door\r\n0x00 = Closed\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
@@ -62,7 +62,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010018",
-    "Note": "[16-bit] Boiler to Dome Bridge\r\n0x00 = Raised\r\n0x01 = Lowered"
+    "Note": "[16-bit] Boiler to Temple Dome Bridge\r\n0x00 = Raised\r\n0x01 = Lowered"
   },
   {
     "User": "adrianusk",
@@ -77,7 +77,7 @@
   {
     "User": "adrianusk",
     "Address": "0x01001e",
-    "Note": "[16-bit] Crater to Dome Bridge Handle\r\n0x00 = Raise\r\n0x01 = Lower"
+    "Note": "[16-bit] Boiler to Temple Dome Bridge Handle\r\n0x00 = Raise\r\n0x01 = Lower"
   },
   {
     "User": "adrianusk",
@@ -92,12 +92,12 @@
   {
     "User": "adrianusk",
     "Address": "0x010024",
-    "Note": "[16-bit] Crater Vent Lever State\r\n0x01 = Enabled\r\n0x00 = Disabled"
+    "Note": "[16-bit] Boiler Vent Lever State\r\n0x01 = Enabled\r\n0x00 = Disabled"
   },
   {
     "User": "adrianusk",
     "Address": "0x010026",
-    "Note": "[16-bit] Crater Double Doors\r\n0x00 = Closed\r\n0x01 = Open"
+    "Note": "[16-bit] Boiler Double Doors\r\n0x00 = Closed\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
@@ -137,7 +137,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010036",
-    "Note": "[16-bit] Crater-Survey Maglev Direction\r\n0x00 = Forward (upper path)\r\n0x01 = Backward (lower path)"
+    "Note": "[16-bit] Boiler-Survey Maglev Direction\r\n0x00 = Forward (upper path)\r\n0x01 = Backward (lower path)"
   },
   {
     "User": "adrianusk",
@@ -187,7 +187,7 @@
   {
     "User": "adrianusk",
     "Address": "0x01004a",
-    "Note": "[16-bit] Crater Steam Main Valve Direction\r\n0x00 = Frog trap\r\n0x01 = Boiler\r\n0x02 = Woodchipper"
+    "Note": "[16-bit] Boiler Steam Main Valve Direction\r\n0x00 = Frog trap\r\n0x01 = Boiler\r\n0x02 = Woodchipper"
   },
   {
     "User": "adrianusk",
@@ -207,7 +207,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010052",
-    "Note": "[16-bit] Crater Hatch Shortcut\r\n0x00 = Closed\r\n0x01 = Open"
+    "Note": "[16-bit] Boiler Hatch Shortcut\r\n0x00 = Closed\r\n0x01 = Open"
   },
   {
     "User": "adrianusk",
@@ -217,7 +217,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010056",
-    "Note": "[16-bit] Crater Book Press\r\nOpen\/closed flag for the cut Book Press device"
+    "Note": "[16-bit] Boiler Book Press\r\nOpen\/closed flag for the cut Book Press device"
   },
   {
     "User": "adrianusk",
@@ -302,7 +302,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010078",
-    "Note": "[16-bit] Dome-Jungle Maglev Location Override\r\n0x00 = Maglev is nowhere; need to press call button first\r\n0x01 = Maglev is somewhere, use normal location flag\r\nWeird!"
+    "Note": "[16-bit] Temple-Jungle Maglev Location Override\r\n0x00 = Maglev is nowhere; need to press call button first\r\n0x01 = Maglev is somewhere, use normal location flag\r\nWeird!"
   },
   {
     "User": "adrianusk",
@@ -382,7 +382,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010098",
-    "Note": "[16-bit] Survey-Jungle Maglev Location\r\n0x00 = Jungle Island\r\n0x01 = Survey Island\r\nTODO: Same title as 0x0100b0 but opposite values, check which is right"
+    "Note": "[16-bit] Jungle-Survey Maglev Location (see also 0x0100b0)\r\n0x00 = Jungle Island\r\n0x01 = Survey Island"
   },
   {
     "User": "adrianusk",
@@ -442,7 +442,7 @@
   {
     "User": "adrianusk",
     "Address": "0x0100b0",
-    "Note": "[16-bit] Survey-Jungle Maglev Location\r\n0x00 = Survey Island\r\n0x01 = Jungle Island\r\nTODO: Same title as 0x010098 but opposite values, check which is right"
+    "Note": "[16-bit] Survey-Jungle Maglev Location (see also 0x010098)\r\n0x00 = Survey Island\r\n0x01 = Jungle Island"
   },
   {
     "User": "adrianusk",
@@ -752,7 +752,7 @@
   {
     "User": "adrianusk",
     "Address": "0x01012c",
-    "Note": "[16-bit] Maybe: Girl after idol shortcut state TODO\r\n0x02 = Completed"
+    "Note": "[16-bit] Girl after idol shortcut state\r\n0x00 = Not yet visited\r\n0x01 = Will appear, after exiting Idol\r\n0x02 = Appearing, or has appeared"
   },
   {
     "User": "adrianusk",
@@ -882,7 +882,7 @@
   {
     "User": "adrianusk",
     "Address": "0x010168",
-    "Note": "[16-bit] Temple Island Telescope Hatch Combo\r\nThe bottom 3 bits are the first button, the next three bits are the 2nd button, etc, with 5 button presses required. Button indices start at 0x01 (on the left \r\nSet to random value on startup, and rerolled when receiving Catherine's journal.\r\nTODO: Sentence above is cut off at \"(on the left\""
+    "Note": "[16-bit] Temple Island Telescope Hatch Combo\r\nThe bottom 3 bits are the first button, the next three bits are the 2nd button, etc, with 5 button presses required. Button indices start at 0x01 (on the left). Set to random value on startup, and rerolled when receiving Catherine's journal."
   },
   {
     "User": "adrianusk",
@@ -972,7 +972,7 @@
   {
     "User": "adrianusk",
     "Address": "0x01019e",
-    "Note": "[16-bit] Crater Boiler Water Bubble Movie Index\r\nLocal movie index for which bubble animation to play. The movies are different for platform-raised and platform-lowered."
+    "Note": "[16-bit] Boiler Water Bubble Movie Index\r\nLocal movie index for which bubble animation to play. The movies are different for platform-raised and platform-lowered."
   },
   {
     "User": "adrianusk",
@@ -1167,7 +1167,7 @@
   {
     "User": "adrianusk",
     "Address": "0x1b2518",
-    "Note": "[16-bit] Movie index on screen\r\nNumbering starts at 0x00 among all movies on this screen.\r\nThis is translated to a full-disk movie id at 0x06c784.\r\nIs not reset after movie completes.\r\nTODO: Check if size correct"
+    "Note": "[16-bit] Movie index on screen\r\nNumbering starts at 0x00 among all movies on this screen.\r\nThis is translated to a full-disk movie id at 0x06c784.\r\nIs not reset after movie completes."
   },
   {
     "User": "adrianusk",
