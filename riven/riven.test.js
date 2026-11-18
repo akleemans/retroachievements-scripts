@@ -212,9 +212,9 @@ describe('Sunner', () => {
 describe('Knock, Knock', () => {
   const cheevo = achievement('Knock, Knock');
 
-  const sunnerScenarios = ['jungle-knock-knock'];
+  const knockKnockScenarios = ['jungle-knock-knock', 'jungle-knock-knock-japan'];
 
-  for (const name of sunnerScenarios) {
+  for (const name of knockKnockScenarios) {
     test(`pops when villager movie finishes: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
@@ -251,7 +251,7 @@ describe('Eye Spy', () => {
 describe('Lake Floor Express', () => {
   const cheevo = achievement('Lake Floor Express');
 
-  const submarineScenarios = ['jungle-enter-submarine'];
+  const submarineScenarios = ['jungle-enter-submarine', 'jungle-submarine-europe', 'jungle-submarine-germany'];
 
   for (const name of submarineScenarios) {
     test(`pops when hatch opening movie finishes: ${name}`, () => {
@@ -264,6 +264,15 @@ describe('Lake Floor Express', () => {
       expect(result.triggeredFrame).toBe(s.marker('hatch-movie-finished'));
     });
   }
+
+  test('pops when hatch opening movie finishes, recorded during the movie', () => {
+    const s = scenario('jungle-submarine-japan');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('hatch-movie-finished'));
+  });
 });
 
 describe('Counting on Fear', () => {
@@ -292,6 +301,8 @@ describe('Boiler Island', () => {
   const lumberCartScenarios = [
     'boiler-island-mine-cart',
     'boiler-island-mine-cart-skipped',
+    // skipped right after the start
+    'jungle-minecart-to-boiler-japan',
   ];
 
   for (const name of lumberCartScenarios) {
@@ -310,7 +321,7 @@ describe('Boiler Island', () => {
 describe('Paper Pulp', () => {
   const cheevo = achievement('Paper Pulp');
 
-  const boilerPuzzleScenarios = ['boiler-solve-boiler-puzzle'];
+  const boilerPuzzleScenarios = ['boiler-solve-boiler-puzzle', 'boiler-solve-boiler-puzzle-japan'];
 
   for (const name of boilerPuzzleScenarios) {
     test(`pops when boiler door movie finishes: ${name}`, () => {
@@ -355,6 +366,19 @@ describe('Gehn\'s Lab', () => {
 
       expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
       expect(result.stateAt(s.marker('crawl-pipe-entered'))).toBe('active');
+      expect(result.stateAt(s.marker('vent-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('vent-movie-finished'));
+    });
+  }
+
+  // recorded from the end of the crawl pipe
+  for (const name of ['boiler-access-gehns-lab-europe', 'boiler-access-gehns-lab-japan']) {
+    test(`pops when vent cover movie finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
       expect(result.stateAt(s.marker('vent-movie-start'))).toBe('active');
       expect(result.triggered).toBe(true);
       expect(result.triggeredFrame).toBe(s.marker('vent-movie-finished'));
@@ -518,15 +542,25 @@ describe('Gehn Is Watching You', () => {
 describe('Fire Marbles', () => {
   const cheevo = achievement('Fire Marbles');
 
-  test('pops when the solved movie finishes', () => {
-    const s = scenario('temple-marble-puzzle');
-    const result = runAchievement(cheevo, s);
+  const marbleScenarios = [
+    'temple-marble-puzzle',
+    'temple-marble-puzzle-europe',
+    'temple-marble-puzzle-france',
+    'temple-marble-puzzle-germany',
+    'temple-marble-puzzle-japan',
+  ];
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.stateAt(s.marker('puzzle-solved'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('solved-movie-finished'));
-  });
+  for (const name of marbleScenarios) {
+    test(`pops when the solved movie finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('puzzle-solved'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('solved-movie-finished'));
+    });
+  }
 
   test('does not pop with a wrong marble placement', () => {
     const s = scenario('temple-marble-puzzle-wrong');
@@ -541,18 +575,34 @@ describe('Fire Marbles', () => {
 describe('Gehn\'s Realm', () => {
   const cheevo = achievement('Gehn\'s Realm');
 
-  test('pops when arriving in Gehns cage', () => {
-    const s = scenario('temple-open-dome-to-233');
-    const result = runAchievement(cheevo, s);
+  for (const name of ['temple-open-dome-to-233', 'temple-233-visit-gehn-japan']) {
+    test(`pops when arriving in Gehns cage: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.stateAt(s.marker('book-opened'))).toBe('active');
-    expect(result.stateAt(s.marker('panel-active'))).toBe('active');
-    expect(result.stateAt(s.marker('link-screen'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('arrived-233'));
-    // Option 2 (dome book opening): expect(result.triggeredFrame).toBe(s.marker('book-opened'));
-  });
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('book-opened'))).toBe('active');
+      expect(result.stateAt(s.marker('panel-active'))).toBe('active');
+      expect(result.stateAt(s.marker('link-screen'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('arrived-233'));
+      // Option 2 (dome book opening): expect(result.triggeredFrame).toBe(s.marker('book-opened'));
+    });
+  }
+
+  // recorded with the dome book already open
+  for (const name of ['temple-233-visit-gehn-france', 'temple-233-visit-gehn-germany']) {
+    test(`pops when arriving in Gehns cage: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('panel-touched'))).toBe('active');
+      expect(result.stateAt(s.marker('link-screen'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('arrived-233'));
+    });
+  }
 });
 
 describe('The Wahrk Gallows', () => {
@@ -569,24 +619,38 @@ describe('The Wahrk Gallows', () => {
     expect(result.triggeredFrame).toBe(s.marker('winch-movie-finished'));
     expect(result.triggeredFrame).toBeLessThan(s.marker('ledge-reached'));
   });
+
+  for (const name of ['jungle-wahrk-gallows-europe', 'jungle-wahrk-gallows-germany', 'jungle-wahrk-gallows-japan']) {
+    test(`pops when the winch movie finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('winch-pulled'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('winch-movie-finished'));
+    });
+  }
 });
 
 describe('Rebel Ground', () => {
   const cheevo = achievement('Rebel Ground');
 
-  test('pops when the door switch movie finishes', () => {
-    const s = scenario('jungle-moiety-cave-found');
-    const result = runAchievement(cheevo, s);
+  for (const name of ['jungle-moiety-cave-found', 'jungle-moiety-cave-found-japan']) {
+    test(`pops when the door switch movie finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.stateAt(s.marker('door-switched'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('door-movie-finished'));
-  });
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('door-switched'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('door-movie-finished'));
+    });
+  }
 });
 
-describe('Secrets of Stonehenge', () => {
-  const cheevo = achievement('Secrets of Stonehenge');
+describe('Within the Circle', () => {
+  const cheevo = achievement('Within the Circle');
 
   test('pops when the water movie finishes', () => {
     const s = scenario('jungle-moiety-cave-puzzle-solved');
@@ -610,6 +674,29 @@ describe('Secrets of Stonehenge', () => {
     expect(result.stateAt(s.marker('last-stone-pressed'))).toBe('active');
     expect(result.triggered).toBe(true);
     // Water movie was skipped here, which still counts
+    expect(result.triggeredFrame).toBe(s.marker('water-movie-finished'));
+  });
+
+  // Germany skips the water movie
+  for (const name of ['jungle-moiety-cave-puzzle-solved-germany', 'jungle-moiety-cave-puzzle-solved-japan']) {
+    test(`pops when the water movie finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('last-stone-pressed'))).toBe('active');
+      expect(result.stateAt(s.marker('water-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('water-movie-finished'));
+    });
+  }
+
+  test('pops when the water movie finishes, recorded during the movie', () => {
+    const s = scenario('jungle-moiety-cave-puzzle-solved-europe');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('water-movie-finished'));
   });
 });
@@ -652,16 +739,18 @@ describe('Captive Audience', () => {
 describe('What Does This Do Again?', () => {
   const cheevo = achievement('What Does This Do Again?');
 
-  test('pops when the Tay trap book ending finishes', () => {
-    const s = scenario('ending2-use-trap-book-on-tay');
-    const result = runAchievement(cheevo, s);
+  for (const name of ['ending2-use-trap-book-on-tay', 'ending2-use-trap-book-on-tay-europe']) {
+    test(`pops when the Tay trap book ending finishes: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.stateAt(s.marker('trap-book-movie-start'))).toBe('active');
-    expect(result.stateAt(s.marker('ending-movie-start'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('ending-movie-finished'));
-  });
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('trap-book-movie-start'))).toBe('active');
+      expect(result.stateAt(s.marker('ending-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('ending-movie-finished'));
+    });
+  }
 });
 
 describe('Second Thoughts', () => {
@@ -678,7 +767,13 @@ describe('Second Thoughts', () => {
     expect(result.triggeredFrame).toBe(s.marker('ending-movie-finished'));
   });
 
-  for (const name of ['ending7-release-gehn-in-233', 'ending7-release-gehn-on-prison-island']) {
+  const e7Scenarios = [
+    'ending7-release-gehn-in-233',
+    'ending7-release-gehn-on-prison-island',
+    'ending7-release-gehn-on-temple-island-germany',
+  ];
+
+  for (const name of e7Scenarios) {
     test(`does not pop on the E7 ending (same screen, other movie): ${name}`, () => {
       const result = runAchievement(cheevo, scenario(name));
 
@@ -690,15 +785,19 @@ describe('Second Thoughts', () => {
 describe('A One-Man Prison', () => {
   const cheevo = achievement('A One-Man Prison');
 
-  test('pops when Gehn links into the trap book', () => {
-    const s = scenario('233-trap-gehn');
-    const result = runAchievement(cheevo, s);
+  const trapGehnScenarios = ['233-trap-gehn', '233-trap-gehn-europe', '233-trap-gehn-france', '233-trap-gehn-japan'];
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.stateAt(s.marker('trap-movie-start'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('trap-movie-finished'));
-  });
+  for (const name of trapGehnScenarios) {
+    test(`pops when Gehn links into the trap book: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('trap-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('trap-movie-finished'));
+    });
+  }
 });
 
 describe('The Once Great Tree', () => {
@@ -717,7 +816,29 @@ describe('The Once Great Tree', () => {
     expect(result.triggeredFrame).toBeLessThan(s.marker('prison-dome-opened'));
   });
 
-  for (const name of ['prison-free-catherine', 'test-prison-dome-opening', '233-trap-gehn']) {
+  test('pops after the link to Prison Island', () => {
+    // ends before the Prison Island dome is opened
+    const s = scenario('233-go-to-prison-island-france');
+    const result = runAchievement(cheevo, s);
+
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(s.marker('link-movie-start'))).toBe('active');
+    expect(result.stateAt(s.marker('link-movie-finished'))).toBe('active');
+    expect(result.triggered).toBe(true);
+    expect(result.triggeredFrame).toBe(s.marker('prison-island-first-screen'));
+  });
+
+  const noLinkScenarios = [
+    'prison-free-catherine',
+    'prison-free-catherine-france',
+    'test-prison-dome-opening',
+    '233-trap-gehn',
+    '233-trap-gehn-europe',
+    '233-trap-gehn-france',
+    '233-trap-gehn-japan',
+  ];
+
+  for (const name of noLinkScenarios) {
     test(`does not pop without linking to Prison Island: ${name}`, () => {
       const result = runAchievement(cheevo, scenario(name));
 
@@ -729,36 +850,44 @@ describe('The Once Great Tree', () => {
 describe('Music to Her Ears', () => {
   const cheevo = achievement('Music to Her Ears');
 
-  test('pops after Catherine is freed: prison-free-catherine', () => {
-    const s = scenario('prison-free-catherine');
-    const result = runAchievement(cheevo, s);
+  for (const name of ['prison-free-catherine', 'prison-free-catherine-france']) {
+    test(`pops after Catherine is freed: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.stateAt(s.marker('cage-opened'))).toBe('active');
-    expect(result.stateAt(s.marker('freed-movie-start'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('freed-movie-finished'));
-  });
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('cage-opened'))).toBe('active');
+      expect(result.stateAt(s.marker('freed-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('freed-movie-finished'));
+    });
+  }
 });
 
 describe('The Ending Can Never Truly Be Written', () => {
   const cheevo = achievement('The Ending Can Never Truly Be Written');
 
-  test('pops at the end of the final scene: temple-best-ending', () => {
-    const s = scenario('temple-best-ending');
-    const result = runAchievement(cheevo, s);
+  for (const name of ['temple-best-ending', 'temple-best-ending-france']) {
+    test(`pops at the end of the final scene: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.stateAt(s.marker('ending-movie-start'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('ending-movie-finished'));
-  });
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.stateAt(s.marker('ending-movie-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('ending-movie-finished'));
+    });
+  }
 });
 
 describe('Pity for the Old Man', () => {
   const cheevo = achievement('Pity for the Old Man');
 
-  const scenarios = ['ending7-release-gehn-in-233', 'ending7-release-gehn-on-prison-island'];
+  const scenarios = [
+    'ending7-release-gehn-in-233',
+    'ending7-release-gehn-on-prison-island',
+    'ending7-release-gehn-on-temple-island-germany',
+  ];
 
   for (const name of scenarios) {
     test(`pops after the ending movie: ${name}`, () => {
@@ -784,15 +913,29 @@ describe('Endings', () => {
   // Each ending achievement with its recordings; every recording is also run against every other ending achievement
   const endings = [
     {title: 'Alone in the Dark', scenarios: ['ending1-open-fissure-without-visiting-gehn-or-tay']},
-    {title: 'What Does This Do Again?', scenarios: ['ending2-use-trap-book-on-tay']},
-    {title: 'You Have My Sympathy', scenarios: ['ending3-use-trap-book-without-visiting-gehn']},
+    {title: 'What Does This Do Again?', scenarios: ['ending2-use-trap-book-on-tay', 'ending2-use-trap-book-on-tay-europe']},
+    {
+      title: 'You Have My Sympathy',
+      scenarios: [
+        'ending3-use-trap-book-without-visiting-gehn',
+        'ending3-use-trap-book-without-visiting-gehn-france',
+        'ending3-use-trap-book-without-visiting-gehn-japan',
+      ],
+    },
     {title: 'Second Thoughts', scenarios: ['ending4-use-trap-book-on-riven-after-gehn']},
     {title: 'No Thanks, After You', scenarios: ['ending5-refuse-gehn-three-times']},
     {title: 'Gehn\'s Victory', scenarios: ['ending6-open-star-fissure-without-capturing-gehn']},
-    {title: 'Pity for the Old Man', scenarios: ['ending7-release-gehn-in-233', 'ending7-release-gehn-on-prison-island']},
+    {
+      title: 'Pity for the Old Man',
+      scenarios: [
+        'ending7-release-gehn-in-233',
+        'ending7-release-gehn-on-prison-island',
+        'ending7-release-gehn-on-temple-island-germany',
+      ],
+    },
     {title: 'Betraying the Moiety', scenarios: ['ending8-release-gehn-on-tay']},
-    {title: 'We Will Never Know Her Fate', scenarios: ['ending9-forget-catherine']},
-    {title: 'The Ending Can Never Truly Be Written', scenarios: ['temple-best-ending']},
+    {title: 'We Will Never Know Her Fate', scenarios: ['ending9-forget-catherine', 'ending9-forget-catherine-germany']},
+    {title: 'The Ending Can Never Truly Be Written', scenarios: ['temple-best-ending', 'temple-best-ending-france']},
   ];
 
   for (const ending of endings) {
@@ -838,18 +981,35 @@ describe('Full Coverage', () => {
     expect(result.triggered).toBe(false);
   });
 
-  test('counts the Jungle dome while it stays open across islands', () => {
-    // jdome: 0 -> 2 (about to open, jungle-dome-opening) -> 1 (open, jungle-dome-opened), island 5 -> 2 -> 5 afterwards
-    const s = scenario('domes-1-open-jungle-dome');
-    const result = runAchievement(cheevo, s);
+  // jdome: 0 -> 2 (about to open, jungle-dome-opening) -> 1 (open, jungle-dome-opened)
+  // USA: island 5 -> 2 -> 5 afterwards, so the dome stays counted across islands
+  for (const name of ['domes-1-open-jungle-dome', 'domes-open-jungle-dome-germany']) {
+    test(`counts the Jungle dome when it opens and keeps it: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.measuredTarget).toBe(5);
-    expect(result.measuredAt(s.marker('jungle-dome-opening'))).toBe(0);
-    expect(result.measuredAt(s.marker('jungle-dome-opened') - 1)).toBe(0);
-    expect(result.measuredAt(s.marker('jungle-dome-opened'))).toBe(1);
-    expect(result.measuredAt(s.lastFrame)).toBe(1);
-    expect(result.triggered).toBe(false);
-  });
+      expect(result.measuredTarget).toBe(5);
+      expect(result.measuredAt(s.marker('jungle-dome-opening'))).toBe(0);
+      expect(result.measuredAt(s.marker('jungle-dome-opened') - 1)).toBe(0);
+      expect(result.measuredAt(s.marker('jungle-dome-opened'))).toBe(1);
+      expect(result.measuredAt(s.lastFrame)).toBe(1);
+      expect(result.triggered).toBe(false);
+    });
+  }
+
+  // tdome: 0 -> 2 (temple-dome-opening) -> 1 (temple-dome-opened); Japan closes it again afterwards
+  for (const name of ['temple-open-dome-france', 'temple-233-visit-gehn-japan']) {
+    test(`counts the Temple dome when it opens and keeps it: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.measuredAt(s.marker('temple-dome-opening'))).toBe(0);
+      expect(result.measuredAt(s.marker('temple-dome-opened') - 1)).toBe(0);
+      expect(result.measuredAt(s.marker('temple-dome-opened'))).toBe(1);
+      expect(result.measuredAt(s.lastFrame)).toBe(1);
+      expect(result.triggered).toBe(false);
+    });
+  }
 
   test('counts the Temple dome on arrival from 233, ignores the Prison dome closing', () => {
     // pdome 1 -> 0 when stepping inside (prison-dome-closed), then via 233 to Temple, tdome 0 -> 1 (temple-dome-opened)
@@ -957,14 +1117,16 @@ describe('Commercial Break', () => {
 describe('The Abyss Will Gaze Back', () => {
   const cheevo = achievement('The Abyss Will Gaze Back');
 
-  test('pops when looking through the eyepiece with the telescope lowered', () => {
-    const s = scenario('temple-look-into-abyss');
-    const result = runAchievement(cheevo, s);
+  for (const name of ['temple-look-into-abyss', 'temple-abyss-france']) {
+    test(`pops when looking through the eyepiece with the telescope lowered: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('abyss-shown'));
-  });
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('abyss-shown'));
+    });
+  }
 
   test('does not pop when the telescope is still too high', () => {
     // same walk with the telescope one step higher, but the view is blurry
@@ -1043,6 +1205,10 @@ describe('Scholar of the Ages', () => {
     'read-all-journals-reread-atrus-europe',
     'read-all-journals-catherine-europe',
     'read-all-journals-reread-catherine-europe',
+    'read-all-journals-atrus-germany',
+    'read-all-journals-reread-atrus-germany',
+    'read-all-journals-catherine-germany',
+    'read-all-journals-reread-catherine-germany',
   ];
 
   for (const name of closedOnLastPageScenarios) {
@@ -1067,11 +1233,14 @@ describe('Scholar of the Ages', () => {
     'read-all-journals-gehns-lab-japan',
     'read-all-journals-gehns-bedroom-europe',
     'read-all-journals-gehns-lab-europe',
+    'read-all-journals-gehns-bedroom-germany',
+    'read-all-journals-gehns-lab-germany',
   ];
 
   for (const name of gehnsJournalScenarios) {
     test(`counts one of Gehn's journals when the last page is shown, once: ${name}`, () => {
-      // France: read to the end, turned back one page and closed, then read to the last page again. Japan, Europe: read once.
+      // France: read to the end, turned back one page and closed, then read to the last page again.
+      // Japan, Europe, Germany: read once (the Germany lab notes are closed on page 1 first, then read to the end).
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
 
@@ -1119,7 +1288,16 @@ describe('Egg Hunt', () => {
     expect(result.triggeredFrame).toBe(s.marker('egg-unlocked'));
   });
 
-  for (const name of ['easter-egg-silly-putty', 'easter-egg-sky-walk', 'easter-egg-wireframe']) {
+  // the Europe and Germany recordings have the eggs unlocked with the progress at 0, so they are left out here
+  const unlockedScenarios = [
+    'easter-egg-silly-putty',
+    'easter-egg-sky-walk',
+    'easter-egg-wireframe',
+    'easter-egg-sky-walk-japan',
+    'easter-egg-wireframe-japan',
+  ];
+
+  for (const name of unlockedScenarios) {
     test(`does not pop while playing with the eggs already unlocked: ${name}`, () => {
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
@@ -1211,14 +1389,16 @@ describe('Deck the Halls', () => {
 describe('The Wireframe', () => {
   const cheevo = achievement('The Wireframe');
 
-  test('pops when turning right into the wireframe village', () => {
-    const s = scenario('easter-egg-wireframe');
-    const result = runAchievement(cheevo, s);
+  for (const name of ['easter-egg-wireframe', 'easter-egg-wireframe-germany', 'easter-egg-wireframe-japan']) {
+    test(`pops when turning right into the wireframe village: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('ladder-view-arrived'))).toBe('active');
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('wireframe-arrived'));
-  });
+      expect(result.stateAt(s.marker('ladder-view-arrived'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('wireframe-arrived'));
+    });
+  }
 
   test('does not pop on startup', () => {
     const s = scenario('start-game-usa');
@@ -1240,6 +1420,17 @@ describe('A Walk in the Sky', () => {
     expect(result.triggered).toBe(true);
     expect(result.triggeredFrame).toBe(s.marker('lamp-clicked'));
   });
+
+  for (const name of ['easter-egg-sky-walk-europe', 'easter-egg-sky-walk-germany', 'easter-egg-sky-walk-japan']) {
+    test(`pops when the lamp on the throne stairs is clicked, not on arrival: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('throne-stairs-arrived'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('lamp-clicked'));
+    });
+  }
 
   test('pops on the lamp click on the French version', () => {
     // the sky comes up between screenshots 122689 (without) and 122719 (with)
@@ -1296,15 +1487,18 @@ describe('Gehn\'s Secret Paths', () => {
     expect(result.triggered).toBe(false);
   });
 
-  test('pops when the last shortcut is opened (Prison Ledge Ladder)', () => {
-    // the other six are open, the ladder goes 0 -> 1 at shortcut-opened
-    const s = scenario('shortcuts-prison-ledge');
-    const result = runAchievement(cheevo, s);
+  // the other six are open, the last one goes 0 -> 1 at shortcut-opened:
+  // USA the Prison Ledge Ladder, France and Japan the Steam Dome to Beetle Tunnel door
+  for (const name of ['shortcuts-prison-ledge', 'shortcuts-last-one-france', 'shortcuts-last-one-japan']) {
+    test(`pops when the last shortcut is opened: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.measuredAt(s.marker('shortcut-opened') - 1)).toBe(6);
-    expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('shortcut-opened'));
-  });
+      expect(result.measuredAt(s.marker('shortcut-opened') - 1)).toBe(6);
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('shortcut-opened'));
+    });
+  }
 
   // each recording opens one more shortcut (marker shortcut-opened): [scenario, progress before, progress after]
   const progressSteps = [
@@ -1329,25 +1523,29 @@ describe('Gehn\'s Secret Paths', () => {
     });
   }
 
-  test('pauses when Gehn is trapped', () => {
-    // all seven open, Gehn State 1 -> 4 at gehn-trapped
-    const s = scenario('233-trap-gehn');
-    const result = runAchievement(cheevo, s);
+  for (const name of ['233-trap-gehn', '233-trap-gehn-europe', '233-trap-gehn-france', '233-trap-gehn-japan']) {
+    test(`pauses when Gehn is trapped: ${name}`, () => {
+      // all seven open, Gehn State 1 -> 4 (USA) or 0 -> 4 at gehn-trapped
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.stateAt(s.marker('gehn-trapped') - 1)).toBe('active');
-    expect(result.measuredAt(s.marker('gehn-trapped') - 1)).toBe(7);
-    expect(result.stateAt(s.marker('gehn-trapped'))).toBe('paused');
-    expect(result.triggered).toBe(false);
-  });
+      expect(result.stateAt(s.marker('gehn-trapped') - 1)).toBe('active');
+      expect(result.measuredAt(s.marker('gehn-trapped') - 1)).toBe(7);
+      expect(result.stateAt(s.marker('gehn-trapped'))).toBe('paused');
+      expect(result.triggered).toBe(false);
+    });
+  }
 
-  test('stays paused when the endgame closes the steam dome paths', () => {
-    // Gehn trapped, 0x10080 and 0x10084 go back to 0 when Catherine is freed
-    const s = scenario('prison-free-catherine');
-    const result = runAchievement(cheevo, s);
+  for (const name of ['prison-free-catherine', 'prison-free-catherine-france']) {
+    test(`stays paused when the endgame closes the steam dome paths: ${name}`, () => {
+      // Gehn trapped, 0x10080 and 0x10084 go back to 0 when Catherine is freed
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
 
-    expect(result.framesInState('active')).toEqual([]);
-    expect(result.triggered).toBe(false);
-  });
+      expect(result.framesInState('active')).toEqual([]);
+      expect(result.triggered).toBe(false);
+    });
+  }
 
   for (const name of ['start-game-usa', 'start-game-japan', 'start-game-usa-disc-2']) {
     test(`does not pop on boot garbage: ${name}`, () => {
