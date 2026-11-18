@@ -405,7 +405,7 @@ set.addAchievement({
   id: 650596,
   badge: '743483',
   title: 'Eye Spy',
-  description: 'Find and rotate all 4 wooden animal eyes',
+  description: 'Find and rotate all 4 wooden animal eyes in one session',
   points: 5,
   conditions: seenAllMovies([
     {screen: JungleScreenEnum.EyeYtramMaglevRoom, movie: 304},
@@ -640,7 +640,7 @@ set.addAchievement({
 set.addAchievement({
   id: 650615,
   badge: '743502',
-  title: 'Secrets of Stonehenge',
+  title: 'Within the Circle',
   description: 'Solve the Moiety\'s hardest puzzle',
   points: 25,
   type: 'progression',
