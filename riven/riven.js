@@ -864,7 +864,7 @@ set.addAchievement({
   id: 651157,
   badge: '743526',
   title: 'Scholar of the Ages',
-  description: 'Read all 4 journals to the end in one session; close carried journals on the last page',
+  description: 'Finish reading all 4 journals in one session; close carried journals on the last page',
   points: 10,
   type: 'missable',
   // One hit per journal. Gehn's journals count when their last page is shown (screen and both stack cells).
