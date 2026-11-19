@@ -1233,6 +1233,7 @@ describe('Scholar of the Ages', () => {
     'read-all-journals-gehns-lab-japan',
     'read-all-journals-gehns-bedroom-europe',
     'read-all-journals-gehns-lab-europe',
+    'read-all-journals-reread-gehns-lab-europe',
     'read-all-journals-gehns-bedroom-germany',
     'read-all-journals-gehns-lab-germany',
   ];
@@ -1241,6 +1242,7 @@ describe('Scholar of the Ages', () => {
     test(`counts one of Gehn's journals when the last page is shown, once: ${name}`, () => {
       // France: read to the end, turned back one page and closed, then read to the last page again.
       // Japan, Europe, Germany: read once (the Germany lab notes are closed on page 1 first, then read to the end).
+      // Europe re-read: the lab notes were saved on the last page and open directly on it.
       const s = scenario(name);
       const result = runAchievement(cheevo, s);
 
