@@ -14,7 +14,7 @@ Sets:
 * [Hugo 2 (GB)](/hugo2) | 2026-10-24 | [RA](https://retroachievements.org/game/22119)
 * [Terminator 2: Judgment Day (GB)](/terminator2) | 2026-10-30 | [RA](https://retroachievements.org/game/2574)
 * [Koneko Monogatari (FDS)](/koneko) | 2026-10-31 | [RA](https://retroachievements.org/game/6821) - FDS game for the DevJam
-* [Last Action Hero (GB)](/last-action-hero) | unreleased | [RA](https://retroachievements.org/game/2459)
+* [Last Action Hero (GB)](/last-action-hero) | 2026-11-20 | [RA](https://retroachievements.org/game/2459)
 * [Riven: The Sequel to Myst (PSX)](/riven) | unreleased | [RA](https://retroachievements.org/game/5304)
 
 ## Setup
