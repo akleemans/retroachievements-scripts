@@ -1,0 +1,167 @@
+[
+  {
+    "User": "adrianusk",
+    "Address": "0x00d042",
+    "Note": "[8-bit] Health (0xff initially)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d043",
+    "Note": "[8-bit] Lives (0x03 initially)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d044",
+    "Note": "[8-bit] Power level (0x00-0x05, defines attack damage, increases on power-up)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d054",
+    "Note": "[8-bit] Spider-Man dying (death animation)\r\n0x00 = Alive\r\n0xff = Dying"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d056",
+    "Note": "[8-Bit] Invincibility countdown timer (set to 0x0f when hit or 0x50 from invincibility pickup)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d057",
+    "Note": "[8-bit] Stage 1-3 cleared flag (starts fading)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d070",
+    "Note": "[16-bit] Score \/ 10"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d075",
+    "Note": "[8-bit] Stage timer"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d076",
+    "Note": "[8-bit] Subtimer (0x00 -> 0x13), will decrement timer (0x00d075) when going from 0x13 to 0x00"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d077",
+    "Note": "[16-bit] Hi-score \/ 10 (initialized as 0x64)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d079",
+    "Note": "[8-bit] Amount of muggers remaining in Stage 1-1 (0x14 initially)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d07b",
+    "Note": "[8-bit] Death cause\r\n0x00 = Other\r\n0x01 = Timer running out"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d07c",
+    "Note": "[8-bit] Amount of skateboarders on screen in Stage 1-1 (spawning stops at 0x02)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d084",
+    "Note": "[8-bit] Enemies left in 1-3 (Tower 2)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d08a",
+    "Note": "[8-bit] Boss\/object knocked off the screen (Stage 1-2, 3-5)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d090",
+    "Note": "[8-bit] Countdown for spawning (Stage 1-3, 2-2)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d091",
+    "Note": "[8-bit] Objective done in Stage 2-1"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d093",
+    "Note": "[8-bit] Spawn countdown in Stage 2-1"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d096",
+    "Note": "[8-bit] Bomb triggered in Stage 2-2 TODO check size"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d09d",
+    "Note": "[8-bit] Hazard active in Stage 3-5 (2 damage every 8 frames)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d09f",
+    "Note": "[8-bit] Second objective done in Stage 3-5"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0a3",
+    "Note": "[8-bit] Guardians destroyed in Stage 5-2 (3 needed)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0a7",
+    "Note": "[8-bit] Big Bug beaten in Stage 4-2 TODO name"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0a9",
+    "Note": "[8-bit] Game beaten flag (0 -> 1 after final boss, before end text)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d0f9",
+    "Note": "[8-bit] Player state (animation)\r\n0x86 = Swinging on rope\r\n0x8c = Kicking\r\n0x8d = Hit\r\n0x91 = Jumping up"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d115",
+    "Note": "[8-bit] Player screen Y"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d116",
+    "Note": "[8-bit] Player Screen X"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d11d",
+    "Note": "[8-bit] Stage 1-2 boss health (0x46 initially)"
+  },
+  {
+    "User": "jackolantern",
+    "Address": "0x00d64a",
+    "Note": "stage value?"
+  },
+  {
+    "User": "jackolantern",
+    "Address": "0x00d64b",
+    "Note": "stage value?"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00ffc6",
+    "Note": "[8-bit] Map position horizontal"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00ffc7",
+    "Note": "[8-bit] Map position vertical"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00ffcc",
+    "Note": "[8-bit] Stage ID\r\n0x00 = Startup of game\r\n0x01 = Stage 1-1\r\n0x02 = Stage 1-3 (first part?)\r\n0x03 = Stage 1-3 (second part?)\r\n0x04 = Stage 1-2\r\n0x05 = Stage 2-1\r\n0x06 = Stage 2-2\r\n0x07 = Stage 3-1\r\n0x08 = Stage 3-2\r\n0x09 = Stage 3-3\r\n0x0a = Stage 3-4\r\n0x0b = Stage 3-5\r\n0x0c = Stage 4-1\r\n0x10 = Stage 4-2\r\n0x0d = Stage 5-1\r\n0x0e = Stage 5-2\r\n0x0f = Stage 5-3"
+  }
+]
