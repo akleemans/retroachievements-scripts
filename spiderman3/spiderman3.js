@@ -52,6 +52,9 @@ set.addAchievement({
       // Hitting an innocent costs 15 points, the only score decrease in world 1
       ...resetNextOnNewGame(),
       ['PauseIf', 'Delta', '16bit', score, '>', 'Mem', '16bit', score, 1],
+      // Don't prime on startup of game
+      ['OrNext',  'Mem',   '8bit',  stageId, '=', 'Value', '', StageEnum.Stage1_1],
+      ['',        'Prior', '8bit',  stageId, '=', 'Value', '', StageEnum.Stage1_1],
       ...stageCleared(StageEnum.Stage1_1, 'Trigger'),
     ),
   },

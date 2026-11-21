@@ -32,7 +32,7 @@ describe('Ride a skateboard for 5 seconds', () => {
 describe('No innocents hit', () => {
   const cheevo = achievement('Friendly Neighborhood Spider-Man');
 
-  // only Trigger conditions besides the pause lock, so it's 'primed' (trigger icon) unless locked
+  // 'primed' (trigger icon) while in 1-1 and not locked
   test('pause lock after hitting an innocent, survives death and respawn', () => {
     const s = scenario('stage1-1-harm-innocent-civilians');
     const result = runAchievement(cheevo, s);
@@ -55,9 +55,22 @@ describe('No innocents hit', () => {
     const scoreReset = 21732;
     const newGameStarted = 22264; // stageId 0 -> 1
 
-    expect(result.stateAt(s.marker('scenario-start'))).toBe('primed');
-    expect(result.stateAt(scoreReset)).toBe('primed');
+    // in 1-3 / game over screen: no trigger icon, but not locked either
+    expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+    expect(result.stateAt(scoreReset)).toBe('active');
     expect(result.stateAt(newGameStarted)).toBe('primed');
+  });
+
+  test('trigger icon only shows once 1-1 starts, not on start-up', () => {
+    const s = scenario('game-start-up');
+    const result = runAchievement(cheevo, s);
+
+    const stage1_1Started = 1626; // stageId 0 -> 1
+
+    expect(result.stateAt(s.firstFrame)).toBe('active');
+    expect(result.stateAt(stage1_1Started - 1)).toBe('active');
+    expect(result.stateAt(stage1_1Started)).toBe('primed');
+    expect(result.triggered).toBe(false);
   });
 
   test('does not pop on the 1-3 clear', () => {
