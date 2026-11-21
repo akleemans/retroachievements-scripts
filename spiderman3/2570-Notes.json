@@ -140,16 +140,6 @@
     "Note": "[8-bit] Stage 1-2 boss health (0x46 initially)"
   },
   {
-    "User": "jackolantern",
-    "Address": "0x00d64a",
-    "Note": "stage value?"
-  },
-  {
-    "User": "jackolantern",
-    "Address": "0x00d64b",
-    "Note": "stage value?"
-  },
-  {
     "User": "adrianusk",
     "Address": "0x00ffc6",
     "Note": "[8-bit] Map position horizontal"

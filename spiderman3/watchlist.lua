@@ -28,8 +28,6 @@ return {
     { address = 0xd115, size = "u8", label = "Player screen Y" },
     { address = 0xd116, size = "u8", label = "Player Screen X" },
     { address = 0xd11d, size = "u8", label = "Stage 1-2 boss health (0x46 initially)" },
-    { address = 0xd64a, size = "u8", label = "stage value?" },
-    { address = 0xd64b, size = "u8", label = "stage value?" },
     { address = 0xffc6, size = "u8", label = "Map position horizontal" },
     { address = 0xffc7, size = "u8", label = "Map position vertical" },
     { address = 0xffcc, size = "u8", label = "Stage ID" },
