@@ -5,18 +5,22 @@ const set = new AchievementSet({gameId: 2570, title: 'Spider-Man 3: Invasion of 
 const stageId = 0x00ffcc;
 const score = 0x00d070;
 const lives = 0x00d043;
+const mapPosX = 0x00ffc6;
 
 const StageEnum = {
   Stage1_1: 0x01,
   Stage1_3Tower1: 0x02,
   Stage1_3Tower2: 0x03,
+  Stage2_2: 0x06,
+  Stage3_4: 0x0a,
+  Stage3_5: 0x0b,
 };
 
 // Stage ID goes from target stage to 0, and a bit later the score goes up
 const stageCleared = (stage, flag = '') => [
-  [flag, 'Prior', '8bit',  stageId, '=',  'Value', '',    stage],
-  [flag, 'Mem',   '8bit',  stageId, '=',  'Value', '',    0],
-  [flag, 'Delta',   '16bit', score,   '<',  'Mem', '16bit', score],
+  [flag, 'Prior', '8bit',  stageId, '=', 'Value', '',      stage],
+  [flag, 'Mem',   '8bit',  stageId, '=', 'Value', '',      0],
+  [flag, 'Delta', '16bit', score,   '<', 'Mem',   '16bit', score],
 ];
 
 const resetNextOnNewGame = () => [
@@ -31,7 +35,7 @@ const resetNextOnNewGame = () => [
 const rideContinuous = (frames) => $(
   ['SubSource', 'Delta', '16bit', score],
   ['ResetIf',   'Mem',   '16bit', score,   '!=', 'Value', '', 1],
-  ['Measured%',  'Mem',   '8bit',  stageId, '=',  'Value', '', StageEnum.Stage1_1, frames],
+  ['Measured%', 'Mem',   '8bit',  stageId, '=',  'Value', '', StageEnum.Stage1_1, frames],
 );
 
 set.addAchievement({
@@ -51,10 +55,10 @@ set.addAchievement({
     core: $(
       // Hitting an innocent costs 15 points, the only score decrease in world 1
       ...resetNextOnNewGame(),
-      ['PauseIf', 'Delta', '16bit', score, '>', 'Mem', '16bit', score, 1],
+      ['PauseIf', 'Delta', '16bit', score,   '>', 'Mem',   '16bit', score,              1],
       // Don't prime on startup of game
-      ['OrNext',  'Mem',   '8bit',  stageId, '=', 'Value', '', StageEnum.Stage1_1],
-      ['',        'Prior', '8bit',  stageId, '=', 'Value', '', StageEnum.Stage1_1],
+      ['OrNext',  'Mem',   '8bit',  stageId, '=', 'Value', '',      StageEnum.Stage1_1],
+      ['',        'Prior', '8bit',  stageId, '=', 'Value', '',      StageEnum.Stage1_1],
       ...stageCleared(StageEnum.Stage1_1, 'Trigger'),
     ),
   },
@@ -73,5 +77,43 @@ set.addAchievement({
   },
 });
 
+
+set.addAchievement({
+  title: 'Enter Electro',
+  description: 'Beat Stage 2',
+  points: 10,
+  type: 'progression',
+  conditions: {
+    core: $(
+      ...stageCleared(StageEnum.Stage2_2),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Ain\'t Got Time For Autoscrollers',
+  description: 'Use the secret exit in stage 3-4',
+  points: 5,
+  type: 'missable',
+  conditions: {
+    core: $(
+      // The regular exit is at the end of the autoscroller (map X = 60), the secret one at map X = 28
+      ['', 'Mem', '8bit', mapPosX, '<', 'Value', '', 50],
+      ...stageCleared(StageEnum.Stage3_4),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'The Scorpion\'s Tale',
+  description: 'Beat Stage 3',
+  points: 10,
+  type: 'progression',
+  conditions: {
+    core: $(
+      ...stageCleared(StageEnum.Stage3_5),
+    ),
+  },
+});
 
 export default set;

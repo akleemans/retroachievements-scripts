@@ -5,7 +5,9 @@
   "console": "GB",
   "firstFrame": 21005,
   "markers": {
-    "scenario-start": 21019
+    "scenario-start": 21019,
+    "score-reset": 21732,
+    "new-game": 22264
   },
   "addresses": [
     {

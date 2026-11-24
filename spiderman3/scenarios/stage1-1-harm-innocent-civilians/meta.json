@@ -4,7 +4,11 @@
   "game": "Spider-Man 3: Invasion of the Spider-Slayers",
   "console": "GB",
   "firstFrame": 6391,
-  "markers": {},
+  "markers": {
+    "innocent-hit": 6598,
+    "died": 7200,
+    "respawned": 7399
+  },
   "addresses": [
     { "address": "0xd042", "size": "u8", "label": "Health (0xff initially)" },
     { "address": "0xd043", "size": "u8", "label": "Lives (0x03 initially)" },
