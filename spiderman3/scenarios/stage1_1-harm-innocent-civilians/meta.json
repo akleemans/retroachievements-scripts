@@ -1,10 +1,14 @@
 {
-  "name": "stage1-3-timer-ended",
+  "name": "stage1_1-harm-innocent-civilians",
   "description": "",
   "game": "Spider-Man 3: Invasion of the Spider-Slayers",
   "console": "GB",
-  "firstFrame": 22319,
-  "markers": {},
+  "firstFrame": 6391,
+  "markers": {
+    "innocent-hit": 6598,
+    "died": 7200,
+    "respawned": 7399
+  },
   "addresses": [
     { "address": "0xd042", "size": "u8", "label": "Health (0xff initially)" },
     { "address": "0xd043", "size": "u8", "label": "Lives (0x03 initially)" },

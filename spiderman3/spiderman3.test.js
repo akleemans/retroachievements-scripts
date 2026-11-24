@@ -9,7 +9,7 @@ describe('Ride a skateboard for 5 seconds', () => {
   const cheevo = achievement('Way before THPS2');
 
   test('pops after 300 riding frames', () => {
-    const s = scenario('stage1-1-ride-skateboard');
+    const s = scenario('stage1_1-ride-skateboard');
     const result = runAchievement(cheevo, s);
 
     // first ride: score ticks +1 every frame from 'ride-start' to 4882 (one board, no gap)
@@ -22,7 +22,7 @@ describe('Ride a skateboard for 5 seconds', () => {
   });
 
   test('does not pop on the 1-3 time bonus', () => {
-    const s = scenario('stage1-3-finished');
+    const s = scenario('stage1_3-finished');
     const result = runAchievement(cheevo, s);
 
     expect(result.triggered).toBe(false);
@@ -34,7 +34,7 @@ describe('No innocents hit', () => {
 
   // 'primed' (trigger icon) while in 1-1 and not locked
   test('pause lock after hitting an innocent, survives death and respawn', () => {
-    const s = scenario('stage1-1-harm-innocent-civilians');
+    const s = scenario('stage1_1-harm-innocent-civilians');
     const result = runAchievement(cheevo, s);
 
     // innocent-hit: score 1027 -> 1012; respawned: stage reloaded after death (stageId 1 -> 0 -> 1)
@@ -46,7 +46,7 @@ describe('No innocents hit', () => {
   });
 
   test('score reset on game over does not lock', () => {
-    const s = scenario('stage1-3-game-over');
+    const s = scenario('stage1_3-game-over');
     const result = runAchievement(cheevo, s);
 
     // in 1-3 / game over screen: no trigger icon, but not locked either
@@ -59,22 +59,22 @@ describe('No innocents hit', () => {
     const s = scenario('game-start-up');
     const result = runAchievement(cheevo, s);
 
-    // stage1-1-start: stageId 0 -> 1
+    // stage1_1-start: stageId 0 -> 1
     expect(result.stateAt(s.firstFrame)).toBe('active');
-    expect(result.stateAt(s.marker('stage1-1-start') - 1)).toBe('active');
-    expect(result.stateAt(s.marker('stage1-1-start'))).toBe('primed');
+    expect(result.stateAt(s.marker('stage1_1-start') - 1)).toBe('active');
+    expect(result.stateAt(s.marker('stage1_1-start'))).toBe('primed');
     expect(result.triggered).toBe(false);
   });
 
   test('does not pop on the 1-3 clear', () => {
-    const s = scenario('stage1-3-finished');
+    const s = scenario('stage1_3-finished');
     const result = runAchievement(cheevo, s);
 
     expect(result.triggered).toBe(false);
   });
 
   test('pause lock is released on game over', () => {
-    const s = scenario('stage1-1-harm-innocent-and-game-over');
+    const s = scenario('stage1_1-harm-innocent-and-game-over');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('innocent-hit') - 1)).toBe('primed');
@@ -88,7 +88,7 @@ describe('No innocents hit', () => {
   });
 
   test('pops on the 1-1 time bonus screen without innocents hit', () => {
-    const s = scenario('stage1-1-harm-no-innocent');
+    const s = scenario('stage1_1-harm-no-innocent');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.firstFrame)).toBe('primed');
@@ -100,7 +100,7 @@ describe('Progression: Beat Stage 1-3', () => {
   const cheevo = achievement('Marked for Death');
 
   test('pops on the time bonus screen after beating the boss', () => {
-    const s = scenario('stage1-3-finished');
+    const s = scenario('stage1_3-finished');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.firstFrame)).toBe('active');
@@ -108,7 +108,7 @@ describe('Progression: Beat Stage 1-3', () => {
   });
 
   test('pops when jumping down after beating the boss', () => {
-    const s = scenario('stage1-3-boss-defeated-then-jumped-down');
+    const s = scenario('stage1_3-boss-defeated-then-jumped-down');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.firstFrame)).toBe('active');
@@ -116,7 +116,7 @@ describe('Progression: Beat Stage 1-3', () => {
   });
 
   test('does not pop on death', () => {
-    const s = scenario('stage1-3-died');
+    const s = scenario('stage1_3-died');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
@@ -124,7 +124,7 @@ describe('Progression: Beat Stage 1-3', () => {
   });
 
   test('does not pop on game over', () => {
-    const s = scenario('stage1-3-game-over');
+    const s = scenario('stage1_3-game-over');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
@@ -132,7 +132,7 @@ describe('Progression: Beat Stage 1-3', () => {
   });
 
   test('does not pop when the timer runs out', () => {
-    const s = scenario('stage1-3-timer-ended');
+    const s = scenario('stage1_3-timer-ended');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.firstFrame)).toBe('active');
@@ -161,7 +161,7 @@ describe('Progression: Beat Stage 2-2', () => {
   });
 
   test('does not pop on the 1-3 clear', () => {
-    const s = scenario('stage1-3-finished');
+    const s = scenario('stage1_3-finished');
     const result = runAchievement(cheevo, s);
 
     expect(result.triggered).toBe(false);
@@ -200,7 +200,30 @@ describe('Secret exit in 3-4', () => {
   });
 
   test('does not pop on other stage clears', () => {
-    for (const name of ['stage1-3-finished', 'stage2_2-finished']) {
+    for (const name of ['stage1_3-finished', 'stage2_2-finished', 'stage3_5-finished']) {
+      const result = runAchievement(cheevo, scenario(name));
+
+      expect(result.triggered).toBe(false);
+    }
+  });
+});
+
+describe('Progression: Beat Stage 3-5', () => {
+  const cheevo = achievement('The Scorpion\'s Tale');
+
+  test('pops on the time bonus screen after leaving the stage', () => {
+    const s = scenario('stage3_5-finished');
+    const result = runAchievement(cheevo, s);
+
+    // boss-knocked-off: +50 score while still in 3-5, stage-left: stageId 0x0b -> 0, score-screen: score starts going up
+    expect(result.stateAt(s.firstFrame)).toBe('active');
+    expect(result.stateAt(s.marker('boss-knocked-off'))).toBe('active');
+    expect(result.stateAt(s.marker('stage-left'))).toBe('active');
+    expect(result.triggeredFrame).toBe(s.marker('score-screen'));
+  });
+
+  test('does not pop on other stage clears', () => {
+    for (const name of ['stage1_3-finished', 'stage2_2-finished', 'stage3_4-shortcut', 'stage3_4-regular-finish']) {
       const result = runAchievement(cheevo, scenario(name));
 
       expect(result.triggered).toBe(false);

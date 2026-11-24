@@ -1,13 +1,11 @@
 {
-  "name": "stage1-1-harm-innocent-civilians",
+  "name": "stage1_1-ride-skateboard",
   "description": "",
   "game": "Spider-Man 3: Invasion of the Spider-Slayers",
   "console": "GB",
-  "firstFrame": 6391,
+  "firstFrame": 2078,
   "markers": {
-    "innocent-hit": 6598,
-    "died": 7200,
-    "respawned": 7399
+    "ride-start": 4525
   },
   "addresses": [
     { "address": "0xd042", "size": "u8", "label": "Health (0xff initially)" },

@@ -7,7 +7,7 @@
   "markers": {
     "stage-left": 47834,
     "score-screen": 48007,
-    "stage2-3-start": 48711
+    "stage2_3-start": 48711
   },
   "addresses": [
     { "address": "0xd042", "size": "u8", "label": "Health (0xff initially)" },

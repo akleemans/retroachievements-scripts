@@ -1,12 +1,10 @@
 {
-  "name": "stage1-1-ride-skateboard",
+  "name": "stage1_3-timer-ended",
   "description": "",
   "game": "Spider-Man 3: Invasion of the Spider-Slayers",
   "console": "GB",
-  "firstFrame": 2078,
-  "markers": {
-    "ride-start": 4525
-  },
+  "firstFrame": 22319,
+  "markers": {},
   "addresses": [
     { "address": "0xd042", "size": "u8", "label": "Health (0xff initially)" },
     { "address": "0xd043", "size": "u8", "label": "Lives (0x03 initially)" },

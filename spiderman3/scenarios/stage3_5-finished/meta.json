@@ -4,7 +4,12 @@
   "game": "Spider-Man 3: Invasion of the Spider-Slayers",
   "console": "GB",
   "firstFrame": 76305,
-  "markers": {},
+  "markers": {
+    "boss-knocked-off": 76483,
+    "stage-left": 76651,
+    "score-screen": 76824,
+    "stage4_1-start": 77537
+  },
   "addresses": [
     { "address": "0xd042", "size": "u8", "label": "Health (0xff initially)" },
     { "address": "0xd043", "size": "u8", "label": "Lives (0x03 initially)" },

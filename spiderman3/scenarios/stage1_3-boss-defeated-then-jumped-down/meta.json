@@ -1,13 +1,11 @@
 {
-  "name": "stage1-3-game-over",
+  "name": "stage1_3-boss-defeated-then-jumped-down",
   "description": "",
   "game": "Spider-Man 3: Invasion of the Spider-Slayers",
   "console": "GB",
-  "firstFrame": 21005,
+  "firstFrame": 22000,
   "markers": {
-    "scenario-start": 21019,
-    "score-reset": 21732,
-    "new-game": 22264
+    "score-screen": 23283
   },
   "addresses": [
     {
@@ -149,16 +147,6 @@
       "address": "0xd11d",
       "size": "u8",
       "label": "Stage 1-2 boss health (0x46 initially)"
-    },
-    {
-      "address": "0xd64a",
-      "size": "u8",
-      "label": "stage value?"
-    },
-    {
-      "address": "0xd64b",
-      "size": "u8",
-      "label": "stage value?"
     },
     {
       "address": "0xffc6",

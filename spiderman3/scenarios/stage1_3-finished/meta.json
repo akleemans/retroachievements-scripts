@@ -1,13 +1,11 @@
 {
-  "name": "stage1-1-harm-innocent-and-game-over",
+  "name": "stage1_3-finished",
   "description": "",
   "game": "Spider-Man 3: Invasion of the Spider-Slayers",
   "console": "GB",
-  "firstFrame": 6491,
+  "firstFrame": 21987,
   "markers": {
-    "innocent-hit": 7084,
-    "score-reset": 8400,
-    "new-game": 8982
+    "score-screen": 23443
   },
   "addresses": [
     {
