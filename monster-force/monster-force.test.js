@@ -2305,18 +2305,19 @@ describe('Ranking achievements: skip-level cheat protection', () => {
     expect(s.valueAt(s.marker('score-screen'), desertShadowRanking)).toBe(5);
   });
 
-  test.each(rankingCheevos)('%s is locked from the skip until the level select', (title) => {
-    const s = scenario('desert-shadow-cheat-finish');
-    const result = runAchievement(achievement(title), s);
-    const skipUsed = 164299;
+  for (const title of rankingCheevos) {
+    test(`${title} is locked from the skip until the level select`, () => {
+      const s = scenario('desert-shadow-cheat-finish');
+      const result = runAchievement(achievement(title), s);
 
-    expect(result.stateAt(skipUsed - 1)).toBe('active');
-    expect(result.stateAt(skipUsed)).toBe('paused');
-    expect(result.stateAt(s.marker('score-screen'))).toBe('paused');
+      expect(result.stateAt(s.marker('skip-used') - 1)).toBe('active');
+      expect(result.stateAt(s.marker('skip-used'))).toBe('paused');
+      expect(result.stateAt(s.marker('score-screen'))).toBe('paused');
 
-    // The lock is not permanent: leaving for the level select clears it again
-    expect(result.stateAt(s.marker('level-select-screen'))).toBe('active');
-  });
+      // The lock is not permanent: leaving for the level select clears it again
+      expect(result.stateAt(s.marker('level-select-screen'))).toBe('active');
+    });
+  }
 
   test('a clean ranking run is not locked', () => {
     const s = scenario('silver-for-all-trials-and-boss-levels');

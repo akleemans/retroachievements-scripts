@@ -524,12 +524,14 @@ describe('Big-Screen Bandit', () => {
 
 describe('Game startup', () => {
   // Uninitialized memory at power-on (0xff) is set to 0 on the title screen, then to the starting values in Scene 1
-  test.each(Object.values(set.achievements).map((a) => [a.title, a]))('%s does not pop on a fresh boot', (title, cheevo) => {
-    const s = scenario('game-startup');
-    const result = runAchievement(cheevo, s);
+  for (const cheevo of Object.values(set.achievements)) {
+    test(`${cheevo.title} does not pop on a fresh boot`, () => {
+      const s = scenario('game-startup');
+      const result = runAchievement(cheevo, s);
 
-    expect(result.triggered).toBe(false);
-  });
+      expect(result.triggered).toBe(false);
+    });
+  }
 });
 
 /* ========= LEADERBOARDS ========= */
