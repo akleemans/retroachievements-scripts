@@ -270,6 +270,7 @@ const TayScreenEnum = {
   BoatRide: 0x801bacc0,
   PrisonCell: 0x801b90dc, // first view inside the tree prison cell, after a black hand-over screen
   PrisonWindow: 0x801b9b88,
+  PrisonTable: 0x801b92c4, // close-up of the table in the prison cell, where the Trap Book and Catherine's journal lie
 };
 
 const EndingScreenEnum = {
@@ -280,6 +281,9 @@ const EndingScreenEnum = {
   TrapBookRiven: 0x801b9504,
 };
 
+// 0 = Start, 1-3 = looked around the cell, 4 = given the Trap Book and Catherine's journal (on the table),
+// 5 = picked them up, 6 = given the Tay linking book
+const tayPrisonCellSequence = 0x010004;
 const gehnState = 0x010140; // 1 at the start of the 233rd age scenes, 4 once Gehn is trapped
 const prisonCage = 0x010070; // 0 = Closed, 1 = Opening, 2 = Catherine is free
 
@@ -349,7 +353,6 @@ set.addAchievement({
   title: 'Outsmart the Gate',
   description: 'Solve the rotating Gate Room puzzle',
   points: 10,
-  type: 'progression',
   conditions: onScreen(
     DomeScreenEnum.GateRoomEntry,
     ['', 'Delta', '8bit',  rotationRoomPosition, '=', 'Value', '', 5],
@@ -366,7 +369,6 @@ set.addAchievement({
   title: 'Jungle Island',
   description: 'Arrive at Jungle Island',
   points: 5,
-  type: 'progression',
   conditions: onScreen(
     DomeScreenEnum.MaglevToJungleForward,
     ['', 'Delta', '16bit', domeJungleMaglevLocation, '=', 'Value', '', 0],
@@ -422,7 +424,6 @@ set.addAchievement({
   title: 'Lake Floor Express',
   description: 'Get access to the submarine',
   points: 5,
-  type: 'progression',
   conditions: movieFinished(JungleScreenEnum.SubmarineHatchVillageDock, [289]),
 });
 
@@ -444,7 +445,6 @@ set.addAchievement({
   title: 'Boiler Island',
   description: 'Arrive at Boiler Island',
   points: 5,
-  type: 'progression',
   conditions: movieFinished(JungleScreenEnum.LumberCartToBoiler, [257]),
 });
 
@@ -454,7 +454,6 @@ set.addAchievement({
   title: 'Paper Pulp',
   description: 'Master the boiler in which wood chips are cooked into pulp',
   points: 10,
-  type: 'progression',
   conditions: movieFinished(BoilerScreenEnum.BoilerDoor, [10]),
 });
 
@@ -473,7 +472,6 @@ set.addAchievement({
   title: 'Gehn\'s Lab',
   description: 'Find a way into Gehn\'s Lab',
   points: 10,
-  type: 'progression',
   conditions: movieFinished(BoilerScreenEnum.LabVentCover, [125]),
 });
 
@@ -583,7 +581,6 @@ set.addAchievement({
   title: 'Fire Marbles',
   description: 'Solve the Fire Marble puzzle',
   points: 25,
-  type: 'progression',
   // Movie 90 plays after pressing with the correct marble placement + Dome Power (0 -> 1) is set at its start
   conditions: movieFinished(
     DomeScreenEnum.MarblePress,
@@ -598,7 +595,6 @@ set.addAchievement({
   title: 'Gehn\'s Realm',
   description: 'Find a way into Gehn\'s realm',
   points: 10,
-  type: 'progression',
   // Arriving in Gehn's cage (every dome book links to the same screen)
   conditions: arrivedOnScreen(Age233ScreenEnum.CageArrival),
 });
@@ -611,7 +607,6 @@ set.addAchievement({
   title: 'The Wahrk Gallows',
   description: 'Find a way up to the prison ledge, where those who defy Gehn wait for the Wahrk',
   points: 5,
-  type: 'progression',
   conditions: movieFinished(
     JungleScreenEnum.GallowsWinch,
     [113],
@@ -628,7 +623,6 @@ set.addAchievement({
   title: 'Rebel Ground',
   description: 'Locate the hidden cavern of the Moiety',
   points: 10,
-  type: 'progression',
   // Switching the door to the animal puzzle plays 50 (JRBTDROP); the door state flips 0 -> 1 at its start
   conditions: movieFinished(
     JungleScreenEnum.RebelCaveDoor,
@@ -643,7 +637,6 @@ set.addAchievement({
   title: 'Within the Circle',
   description: 'Solve the Moiety\'s hardest puzzle',
   points: 25,
-  type: 'progression',
   // The correct last stone sets the book state to 1 (Revealing), then 51 (JRTWATER) floods the room.
   conditions: movieFinished(
     JungleScreenEnum.StonehengeTunnel,
@@ -654,12 +647,17 @@ set.addAchievement({
 
 set.addAchievement({
   id: 650616,
-  badge: '743503',
-  title: 'The New Great Tree',
-  description: 'Enter the Moiety\'s new stronghold in Tay',
-  points: 3,
+  badge: '746609',
+  title: 'Lost and Found',
+  description: 'Get the Trap Book back',
+  points: 5,
   type: 'progression',
-  conditions: movieFinished(TayScreenEnum.BoatRide, [25]),
+  // Taking the Trap Book and Catherine's journal from the table in the Tay prison cell
+  conditions: onScreen(
+    TayScreenEnum.PrisonTable,
+    ['', 'Delta', '16bit', tayPrisonCellSequence, '=', 'Value', '', 4],
+    ['', 'Mem',   '16bit', tayPrisonCellSequence, '=', 'Value', '', 5],
+  ),
 });
 
 set.addAchievement({
@@ -683,7 +681,7 @@ set.addAchievement({
   id: 650618,
   badge: '743505',
   title: 'A One-Man Prison',
-  description: 'Find a way to trap Gehn',
+  description: 'Trap Gehn',
   points: 10,
   type: 'progression',
   conditions: movieFinished(
@@ -699,7 +697,6 @@ set.addAchievement({
   title: 'The Once Great Tree',
   description: 'Arrive on Prison Island',
   points: 5,
-  type: 'progression',
   // First Prison Island screen, coming straight from the link screen in 233
   conditions: movedToScreen(Age233ScreenEnum.PrisonBookLink, PrisonScreenEnum.DomeArrival),
 });
@@ -739,7 +736,7 @@ set.addAchievement({
   id: 650621,
   badge: '743508',
   title: 'The Ending Can Never Truly Be Written',
-  description: 'Trap Gehn, save Catherine, and get home - safely?',
+  description: 'Signal Atrus after setting things right on Riven and get home - safely?',
   points: 25,
   type: 'win_condition',
   conditions: movieFinished(

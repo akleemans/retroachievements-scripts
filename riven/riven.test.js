@@ -701,20 +701,48 @@ describe('Within the Circle', () => {
   });
 });
 
-describe('The New Great Tree', () => {
-  const cheevo = achievement('The New Great Tree');
+describe('Lost and Found', () => {
+  const cheevo = achievement('Lost and Found');
 
-  test('pops when the boat ride to the tree finishes: tay-enter-tree', () => {
-    const s = scenario('tay-enter-tree');
+  test('pops when the Trap Book is picked up: tay-get-trap-book-back', () => {
+    const s = scenario('tay-get-trap-book-back');
     const result = runAchievement(cheevo, s);
 
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.stateAt(s.marker('captors-movie-start'))).toBe('active');
-    expect(result.stateAt(s.marker('boat-movie-start'))).toBe('active');
+    expect(result.stateAt(s.marker('book-given'))).toBe('active');
     expect(result.triggered).toBe(true);
-    expect(result.triggeredFrame).toBe(s.marker('boat-movie-finished'));
-    // Option 2 (cell arrival): expect(result.triggeredFrame).toBe(s.marker('cell-reached'));
+    expect(result.triggeredFrame).toBe(s.marker('book-picked-up'));
   });
+
+  for (const name of ['tay-get-trap-book-back-germany', 'tay-get-trap-book-back-japan', 'tay-get-trap-book-back-france']) {
+    test(`pops when the Trap Book is picked up: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
+      expect(result.triggered).toBe(true);
+      expect(result.triggeredFrame).toBe(s.marker('book-picked-up'));
+    });
+  }
+
+  const scenariosWithoutPickup = [
+    'tay-enter-tree',
+    'tay-watch-people',
+    'ending2-use-trap-book-on-tay',
+    'read-all-journals-catherine-europe',
+    'start-game-usa',
+    'load-state-europe',
+    'domes-load-save-file-jungle-dome-open',
+  ];
+
+  for (const name of scenariosWithoutPickup) {
+    test(`does not pop: ${name}`, () => {
+      const s = scenario(name);
+      const result = runAchievement(cheevo, s);
+
+      expect(result.triggered).toBe(false);
+    });
+  }
 });
 
 describe('Captive Audience', () => {
