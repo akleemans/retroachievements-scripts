@@ -234,16 +234,13 @@ set.addAchievement({
   conditions: {
     core: $(
       // The pickup sets the timer to 80 (getting hit only to 15), and respawns after a death
-      ['AndNext',  'Delta', '8bit', stageId,            '=', 'Value', '', StageEnum.Stage1_2],
-      ['AddHits',  'Delta', '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
-      ['AndNext',  'Delta', '8bit', stageId,            '=', 'Value', '', StageEnum.Stage4_2],
-      ['AddHits',  'Delta', '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
-      ['',         'Value', '',     0,                  '=', 'Value', '', 1,                  1],
-      ['AndNext',  'Mem',   '8bit', stageId,            '=', 'Value', '', StageEnum.Stage1_2],
-      ['AddHits',  'Mem',   '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
-      ['AndNext',  'Mem',   '8bit', stageId,            '=', 'Value', '', StageEnum.Stage4_2],
-      ['AddHits',  'Mem',   '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
-      ['Measured', 'Value', '',     0,                  '=', 'Value', '', 1,                  2],
+      ['AndNext',  'Mem',   '8bit', stageId,            '=',  'Value', '', StageEnum.Stage1_2],
+      ['AndNext',  'Delta', '8bit', invincibilityTimer, '<=', 'Value', '', 15],
+      ['AddHits',  'Mem',   '8bit', invincibilityTimer, '>',  'Value', '', 15,                 1],
+      ['AndNext',  'Mem',   '8bit', stageId,            '=',  'Value', '', StageEnum.Stage4_2],
+      ['AndNext',  'Delta', '8bit', invincibilityTimer, '<=', 'Value', '', 15],
+      ['AddHits',  'Mem',   '8bit', invincibilityTimer, '>',  'Value', '', 15,                 1],
+      ['Measured', 'Value', '',     0,                  '=',  'Value', '', 1,                  2],
       ...newGame(),
     ),
   },
