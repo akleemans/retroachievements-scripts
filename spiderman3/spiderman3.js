@@ -5,15 +5,27 @@ const set = new AchievementSet({gameId: 2570, title: 'Spider-Man 3: Invasion of 
 const stageId = 0x00ffcc;
 const score = 0x00d070;
 const lives = 0x00d043;
+const power = 0x00d044;
+const invincibilityTimer = 0x00d056;
 const mapPosX = 0x00ffc6;
+const playerState = 0x00d0f9;
 
 const StageEnum = {
   Stage1_1: 0x01,
+  Stage1_2: 0x04,
   Stage1_3Tower1: 0x02,
   Stage1_3Tower2: 0x03,
+  Stage2_1: 0x05,
   Stage2_2: 0x06,
   Stage3_4: 0x0a,
   Stage3_5: 0x0b,
+  Stage4_1: 0x0c,
+  Stage4_2: 0x10,
+  Stage5_3: 0x0f,
+};
+
+const PlayerStateEnum = {
+  WebShot: 0x96, // climbing with the web line uses other states (0x86, 0x8a)
 };
 
 // Stage ID goes from target stage to 0, and a bit later the score goes up
@@ -23,10 +35,11 @@ const stageCleared = (stage, flag = '') => [
   [flag, 'Delta', '16bit', score,   '<', 'Mem',   '16bit', score],
 ];
 
-const resetNextOnNewGame = () => [
-  ['AndNext',     'Mem', '8bit',  stageId, '=', 'Value', '', 0],
-  ['AndNext',     'Mem', '8bit',  lives,   '=', 'Value', '', 3],
-  ['ResetNextIf', 'Mem', '16bit', score,   '=', 'Value', '', 0],
+// Title screen of a new game: score 0 and 3 lives (also right after a game over)
+const newGame = (flag) => [
+  ['AndNext', 'Mem', '8bit',  stageId, '=', 'Value', '', 0],
+  ['AndNext', 'Mem', '8bit',  lives,   '=', 'Value', '', 3],
+  [flag,      'Mem', '16bit', score,   '=', 'Value', '', 0],
 ];
 
 /* ----------------------------- */
@@ -40,7 +53,7 @@ const rideContinuous = (frames) => $(
 
 set.addAchievement({
   title: 'Way before THPS2',
-  description: 'Ride a skateboard for 5 seconds',
+  description: 'Ride a skateboard for 5 seconds in Central Park',
   points: 3,
   type: 'missable',
   conditions: rideContinuous(5 * 60),
@@ -54,7 +67,7 @@ set.addAchievement({
   conditions: {
     core: $(
       // Hitting an innocent costs 15 points, the only score decrease in world 1
-      ...resetNextOnNewGame(),
+      ...newGame('ResetNextIf'),
       ['PauseIf', 'Delta', '16bit', score,   '>', 'Mem',   '16bit', score,              1],
       // Don't prime on startup of game
       ['OrNext',  'Mem',   '8bit',  stageId, '=', 'Value', '',      StageEnum.Stage1_1],
@@ -73,6 +86,24 @@ set.addAchievement({
     // After the boss the game always throws you down to tower 1, so 1-3 ends with 0x02 -> 0x00
     core: $(
       ...stageCleared(StageEnum.Stage1_3Tower1),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'TODO collect both power-ups in stage 2',
+  description: 'Collect both power-ups in Stage 2',
+  points: 3,
+  type: 'missable',
+  conditions: {
+    core: $(
+      // One capped hit per stage, the Measured condition itself is never true and only adds them up
+      ...newGame('ResetIf'),
+      ['AndNext',  'Mem',   '8bit', stageId, '=', 'Value', '',     StageEnum.Stage2_1],
+      ['AddHits',  'Delta', '8bit', power,   '<', 'Mem',   '8bit', power,              1],
+      ['AndNext',  'Mem',   '8bit', stageId, '=', 'Value', '',     StageEnum.Stage2_2],
+      ['AddHits',  'Delta', '8bit', power,   '<', 'Mem',   '8bit', power,              1],
+      ['Measured', 'Value', '',     0,       '=', 'Value', '',     1,                  2],
     ),
   },
 });
@@ -112,6 +143,125 @@ set.addAchievement({
   conditions: {
     core: $(
       ...stageCleared(StageEnum.Stage3_5),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Web of Spider-Man',
+  description: 'Beat the Scorpion, Tarantula and Black Widow without using web shots',
+  points: 5,
+  type: 'missable',
+  conditions: {
+    core: $(
+      // Dying restarts 4-1 with all bosses back, so a lost life or entering 4-1 releases the lock
+      ['AndNext',     'Delta', '8bit', stageId,     '!=', 'Value', '',     StageEnum.Stage4_1],
+      ['OrNext',      'Mem',   '8bit', stageId,     '=',  'Value', '',     StageEnum.Stage4_1],
+      ['ResetNextIf', 'Delta', '8bit', lives,       '>',  'Mem',   '8bit', lives],
+      ['AndNext',     'Mem',   '8bit', stageId,     '=',  'Value', '',     StageEnum.Stage4_1],
+      ['PauseIf',     'Mem',   '8bit', playerState, '=',  'Value', '',     PlayerStateEnum.WebShot, 1],
+      // Trigger icon while in 4-1 (and on the frames between leaving it and the score screen)
+      ['OrNext',      'Mem',   '8bit', stageId,     '=',  'Value', '',     StageEnum.Stage4_1],
+      ['',            'Prior', '8bit', stageId,     '=',  'Value', '',     StageEnum.Stage4_1],
+      ...stageCleared(StageEnum.Stage4_1, 'Trigger'),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Deconstruction',
+  description: 'Beat Stage 4',
+  points: 10,
+  type: 'progression',
+  conditions: {
+    core: $(
+      ...stageCleared(StageEnum.Stage4_2),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'The Ultimate Spider-Slayer Slayer',
+  description: 'Beat Stage 5 and finish the game',
+  points: 25,
+  type: 'progression',
+  conditions: {
+    core: $(
+      ...stageCleared(StageEnum.Stage5_3),
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Face it, Tiger... You Just Hit the Jackpot',
+  description: 'Reach the maximum Power of 4',
+  points: 5,
+  type: 'missable',
+  conditions: {
+    // Only 4 power-ups exist
+    core: $(
+      ['',         'Delta', '8bit', power, '=', 'Value', '', 3],
+      ['Measured', 'Mem',   '8bit', power, '=', 'Value', '', 4],
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Spider-Armor',
+  description: 'Collect both invulnerability pick-ups',
+  points: 5,
+  type: 'missable',
+  conditions: {
+    core: $(
+      // The pickup sets the timer to 80 (getting hit only to 15), and respawns after a death
+      ...newGame('ResetIf'),
+      ['AndNext',  'Mem',   '8bit', stageId,            '=', 'Value', '', StageEnum.Stage1_2],
+      ['AddHits',  'Mem',   '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
+      ['AndNext',  'Mem',   '8bit', stageId,            '=', 'Value', '', StageEnum.Stage4_2],
+      ['AddHits',  'Mem',   '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
+      ['Measured', 'Value', '',     0,                  '=', 'Value', '', 1,                  2],
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Not-so-Sinister Six',
+  description: 'Collect all 5 extra lives',
+  points: 10,
+  type: 'missable',
+  conditions: {
+    core: $(
+      // A new game also raises lives (to 3), but the reset fires on that same frame
+      ...newGame('ResetIf'),
+      ['Measured', 'Delta', '8bit', lives, '<', 'Mem', '8bit', lives, 5],
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Spectacular Spider-Man',
+  description: 'Reach a score of 50,000',
+  points: 10,
+  conditions: {
+    // Score is stored / 10
+    core: $(
+      ['', 'Delta', '16bit', score, '<',  'Value', '', 5000],
+      ['', 'Mem',   '16bit', score, '>=', 'Value', '', 5000],
+    ),
+  },
+});
+
+set.addAchievement({
+  title: 'Superior Spider-Man',
+  description: 'Beat the game without dying',
+  points: 10,
+  type: 'missable',
+  conditions: {
+    core: $(
+      // A lost life locks the achievement until a new game
+      ...newGame('ResetNextIf'),
+      ['PauseIf', 'Delta', '8bit', lives, '>', 'Mem', '8bit', lives, 1],
+      ...stageCleared(StageEnum.Stage5_3),
     ),
   },
 });

@@ -8,7 +8,8 @@
     "boss-knocked-off": 76483,
     "stage-left": 76651,
     "score-screen": 76824,
-    "stage4_1-start": 77537
+    "stage4_1-start": 77537,
+    "stage-id-blip": 77592
   },
   "addresses": [
     { "address": "0xd042", "size": "u8", "label": "Health (0xff initially)" },
