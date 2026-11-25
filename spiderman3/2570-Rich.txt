@@ -1,0 +1,27 @@
+Format:Percent
+FormatType=VALUE
+
+Lookup:Stage
+0x00=Startup of game
+0x01=Stage 1-1
+0x02=Stage 1-3
+0x03=Stage 1-3
+0x04=Stage 1-2
+0x05=Stage 2-1
+0x06=Stage 2-2
+0x07=Stage 3-1
+0x08=Stage 3-2
+0x09=Stage 3-3
+0x0a=Stage 3-4
+0x0b=Stage 3-5
+0x0c=Stage 4-1
+0x10=Stage 4-2
+0x0d=Stage 5-1
+0x0e=Stage 5-2
+0x0f=Stage 5-3
+
+Display:
+?0xHffcc=0?In the Menu
+?0xHffcc<=16?@Stage(0xHffcc) • @Percent(0xHd042*f0.393)% Health • @Number(0xHd043) Lives • Power Level @Number(0xHd044) • Score @Score(0x d070*10)
+?0xHffcc>16?In the Menu
+Playing Spider-Man 3: Invasion of the Spider-Slayers
