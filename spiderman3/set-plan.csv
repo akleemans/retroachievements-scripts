@@ -13,4 +13,4 @@ Order	Feature	Miss	Achievement Name	Achievement Description	Notes	Type	Points
 12	Measured	TRUE	Spider-Armor	Collect both invulnerability pick-ups		Collection	5
 13	Measured	TRUE	Not-So-Sinister Six	Collect all 5 extra lives		Collection	10
 14		FALSE	Spectacular Spider-Man	Reach a score of 50,000		Challenge	10
-15		TRUE	Superior Spider-Man	Beat the game without dying		Challenge	10
+15	Trigger	TRUE	Superior Spider-Man	Beat the game without dying		Challenge	10
