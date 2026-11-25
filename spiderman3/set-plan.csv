@@ -2,7 +2,7 @@ Order	Feature	Miss	Achievement Name	Achievement Description	Notes	Type	Points
 1	Measured%	TRUE	Way before THPS2	Ride a skateboard for 5 seconds in Central Park	Requires continuous ride	Fun	3
 2	Trigger	TRUE	Friendly Neighborhood Spider-Man	Don't hit any innocent civilians in Central Park	Muggers only reveal themselves after they draw a weapon	Challenge	5
 3		FALSE	Marked for Death	Beat Stage 1	Beat Stage 1-3	Progression	5
-4	Measured	TRUE	TODO	Collect both power-ups in Stage 2	One in 2-1, the other in 2-2	Collection	3
+4	Measured	TRUE	Orb Hiest	Collect both power-ups in Stage 2	One in 2-1, the other in 2-2	Collection	3
 5		FALSE	Enter Electro	Beat Stage 2	Beat Stage 2-2	Progression	10
 6		TRUE	Ain't Got Time For Autoscrollers	Use the secret exit in stage 3-4		Side Quest	5
 7		FALSE	The Scorpion's Tale	Beat Stage 3	Beat Stage 3-5	Progression	10

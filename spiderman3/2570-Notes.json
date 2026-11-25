@@ -1,6 +1,11 @@
 [
   {
     "User": "adrianusk",
+    "Address": "0x000000",
+    "Note": "[General game notes]\r\nCruncheevos script: https:\/\/github.com\/akleemans\/retroachievements-scripts"
+  },
+  {
+    "User": "adrianusk",
     "Address": "0x00d042",
     "Note": "[8-bit] Health (0xff initially), called \"EN\" (Energy) in-game"
   },

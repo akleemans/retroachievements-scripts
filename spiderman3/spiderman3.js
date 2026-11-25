@@ -53,6 +53,7 @@ const rideContinuous = (frames) => $(
 );
 
 set.addAchievement({
+  id: 654844,
   title: 'Way before THPS2',
   description: 'Ride a skateboard for 5 seconds in Central Park',
   points: 3,
@@ -61,6 +62,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654846,
   title: 'Friendly Neighborhood Spider-Man',
   description: 'Don\'t hit any innocent civilians in Central Park',
   points: 5,
@@ -81,6 +83,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654845,
   title: 'Marked for Death',
   description: 'Beat Stage 1',
   points: 5,
@@ -94,7 +97,8 @@ set.addAchievement({
 });
 
 set.addAchievement({
-  title: 'TODO collect both power-ups in stage 2',
+  id: 654847,
+  title: 'Orb Hiest', // Yes, the same typo they used on "Jewelry Hiest"
   description: 'Collect both power-ups in Stage 2',
   points: 3,
   type: 'missable',
@@ -113,6 +117,7 @@ set.addAchievement({
 
 
 set.addAchievement({
+  id: 654848,
   title: 'Enter Electro',
   description: 'Beat Stage 2',
   points: 10,
@@ -125,6 +130,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654849,
   title: 'Ain\'t Got Time For Autoscrollers',
   description: 'Use the secret exit in stage 3-4',
   points: 5,
@@ -139,6 +145,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654850,
   title: 'The Scorpion\'s Tale',
   description: 'Beat Stage 3',
   points: 10,
@@ -151,6 +158,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654851,
   title: 'Web of Spider-Man',
   description: 'Beat the Scorpion, Tarantula and Black Widow without using web shots',
   points: 5,
@@ -172,6 +180,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654852,
   title: 'Deconstruction',
   description: 'Beat Stage 4',
   points: 10,
@@ -184,6 +193,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654853,
   title: 'The Ultimate Spider-Slayer Slayer',
   description: 'Beat Stage 5 and finish the game',
   points: 25,
@@ -196,6 +206,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654854,
   title: 'Face it, Tiger... You Just Hit the Jackpot',
   description: 'Reach the maximum Power of 4',
   points: 5,
@@ -210,6 +221,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654855,
   title: 'Spider-Armor',
   description: 'Collect both invulnerability pick-ups',
   points: 5,
@@ -228,6 +240,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654856,
   title: 'Not-so-Sinister Six',
   description: 'Collect all 5 extra lives',
   points: 10,
@@ -242,6 +255,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654857,
   title: 'Spectacular Spider-Man',
   description: 'Reach a score of 50,000',
   points: 10,
@@ -255,6 +269,7 @@ set.addAchievement({
 });
 
 set.addAchievement({
+  id: 654858,
   title: 'Superior Spider-Man',
   description: 'Beat the game without dying',
   points: 10,
