@@ -6,7 +6,7 @@ const achievement = (title) => Object.values(set.achievements).find((a) => a.tit
 const scenario = (name) => loadScenario(new URL(`./scenarios/${name}`, import.meta.url));
 
 describe('Ride a skateboard for 5 seconds', () => {
-  const cheevo = achievement('Way before THPS2');
+  const cheevo = achievement('Way Before THPS2');
 
   test('pops after 300 riding frames', () => {
     const s = scenario('stage1_1-ride-skateboard');
@@ -170,7 +170,7 @@ describe('Progression: Beat Stage 2-2', () => {
 });
 
 describe('Secret exit in 3-4', () => {
-  const cheevo = achievement('Ain\'t Got Time For Autoscrollers');
+  const cheevo = achievement('Ain\'t Got Time for Autoscrollers');
 
   test('pops on the time bonus screen after taking the shortcut', () => {
     const s = scenario('stage3_4-shortcut');
@@ -367,7 +367,7 @@ describe('Progression: Beat Stage 5-3', () => {
 });
 
 describe('Collect all 5 extra lives', () => {
-  const cheevo = achievement('Not-so-Sinister Six');
+  const cheevo = achievement('Not-So-Sinister Six');
 
   test('counts the 1-1 1-up from a new game', () => {
     const s = scenario('collect-life-from-title');
@@ -403,7 +403,7 @@ describe('Collect all 5 extra lives', () => {
 });
 
 describe('Collect both power-ups in Stage 2', () => {
-  const cheevo = achievement('TODO collect both power-ups in stage 2');
+  const cheevo = achievement('Orb Hiest');
 
   test('pops when the 2-2 power-up is collected after the 2-1 one', () => {
     const s = scenario('stage2-collect-both-powerups');
@@ -455,7 +455,7 @@ describe('Collect both invincibility pickups', () => {
 });
 
 describe('Reach power 4', () => {
-  const cheevo = achievement('Face it, Tiger... You Just Hit the Jackpot');
+  const cheevo = achievement('Face It, Tiger... You Just Hit the Jackpot');
 
   test('pops when power goes from 3 to 4', () => {
     const s = scenario('power-level-reach-4');

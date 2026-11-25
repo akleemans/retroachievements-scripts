@@ -21,6 +21,7 @@ const StageEnum = {
   Stage3_5: 0x0b,
   Stage4_1: 0x0c,
   Stage4_2: 0x10,
+  Stage5_2: 0x0e,
   Stage5_3: 0x0f,
 };
 
@@ -47,9 +48,10 @@ const newGame = () => [
 
 // Continuous skateboard ride: Every frame the score goes up by 1
 const rideContinuous = (frames) => $(
-  ['SubSource', 'Delta', '16bit', score],
-  ['ResetIf',   'Mem',   '16bit', score,   '!=', 'Value', '', 1],
-  ['Measured%', 'Mem',   '8bit',  stageId, '=',  'Value', '', StageEnum.Stage1_1, frames],
+  ['SubSource',  'Delta', '16bit', score],
+  ['ResetIf',    'Mem',   '16bit', score,   '!=', 'Value', '', 1],
+  ['MeasuredIf', 'Mem',   '8bit',  stageId, '=',  'Value', '', StageEnum.Stage1_1],
+  ['Measured%',  'Mem',   '8bit',  stageId, '=',  'Value', '', StageEnum.Stage1_1, frames],
 );
 
 set.addAchievement({
@@ -212,10 +214,11 @@ set.addAchievement({
   points: 5,
   type: 'missable',
   conditions: {
-    // Only 4 power-ups exist
+    // The power-ups are in 1-3, 2-1, 2-2 and 5-2 and never respawn, so the 4th is always the 5-2 one
     core: $(
-      ['',         'Delta', '8bit', power, '=', 'Value', '', 3],
-      ['Measured', 'Mem',   '8bit', power, '=', 'Value', '', 4],
+      ['',         'Mem',   '8bit', stageId, '=', 'Value', '', StageEnum.Stage5_2],
+      ['',         'Delta', '8bit', power,   '=', 'Value', '', 3],
+      ['Measured', 'Mem',   '8bit', power,   '=', 'Value', '', 4],
     ),
   },
 });
@@ -229,12 +232,17 @@ set.addAchievement({
   conditions: {
     core: $(
       // The pickup sets the timer to 80 (getting hit only to 15), and respawns after a death
-      ...newGame(),
+      ['AndNext',  'Delta', '8bit', stageId,            '=', 'Value', '', StageEnum.Stage1_2],
+      ['AddHits',  'Delta', '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
+      ['AndNext',  'Delta', '8bit', stageId,            '=', 'Value', '', StageEnum.Stage4_2],
+      ['AddHits',  'Delta', '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
+      ['',         'Value', '',     0,                  '=', 'Value', '', 1,                  1],
       ['AndNext',  'Mem',   '8bit', stageId,            '=', 'Value', '', StageEnum.Stage1_2],
       ['AddHits',  'Mem',   '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
       ['AndNext',  'Mem',   '8bit', stageId,            '=', 'Value', '', StageEnum.Stage4_2],
       ['AddHits',  'Mem',   '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
       ['Measured', 'Value', '',     0,                  '=', 'Value', '', 1,                  2],
+      ...newGame(),
     ),
   },
 });
@@ -248,8 +256,8 @@ set.addAchievement({
   conditions: {
     core: $(
       // A new game also raises lives (to 3), but the reset fires on that same frame
-      ...newGame(),
       ['Measured', 'Delta', '8bit', lives, '<', 'Mem', '8bit', lives, 5],
+      ...newGame(),
     ),
   },
 });
@@ -260,10 +268,11 @@ set.addAchievement({
   description: 'Reach a score of 50,000',
   points: 10,
   conditions: {
-    // Score is stored / 10
+    // Score is stored / 10. Stage ID is garbage after power-on until a new game, 4-2 (0x10) is the highest valid ID
     core: $(
-      ['', 'Delta', '16bit', score, '<',  'Value', '', 5000],
-      ['', 'Mem',   '16bit', score, '>=', 'Value', '', 5000],
+      ['', 'Mem',   '8bit',  stageId, '<=', 'Value', '', StageEnum.Stage4_2],
+      ['', 'Delta', '16bit', score,   '<',  'Value', '', 5000],
+      ['', 'Mem',   '16bit', score,   '>=', 'Value', '', 5000],
     ),
   },
 });
