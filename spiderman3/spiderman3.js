@@ -9,6 +9,8 @@ const power = 0x00d044;
 const invincibilityTimer = 0x00d056;
 const mapPosX = 0x00ffc6;
 const playerState = 0x00d0f9;
+const hiScore = 0x00d077;
+const gameBeaten = 0x00d0a9;
 
 const StageEnum = {
   Stage1_1: 0x01,
@@ -291,6 +293,42 @@ set.addAchievement({
     ),
     alt1: $(
       ...newGame(),
+    ),
+  },
+});
+
+/* ----------------------------- */
+
+set.addLeaderboard({
+  title: 'High Score',
+  description: 'Score the most points',
+  lowerIsBetter: false,
+  type: 'SCORE',
+  conditions: {
+    start: {
+      core: $(
+        ['', 'Mem', '8bit', stageId, '=', 'Value', '', 0],
+      ),
+      // Game over: back on the title the score resets and lives go 0 -> 3
+      // The hi-score is updated on that frame, which excludes the new game after power-on (garbage score > hi-score)
+      alt1: $(
+        ['', 'Delta', '8bit',  lives, '=',  'Value', '',      0],
+        ['', 'Mem',   '8bit',  lives, '=',  'Value', '',      3],
+        ['', 'Delta', '16bit', score, '>',  'Value', '',      0],
+        ['', 'Mem',   '16bit', score, '=',  'Value', '',      0],
+        ['', 'Delta', '16bit', score, '<=', 'Mem',   '16bit', hiScore],
+      ),
+      // Game beaten: set after the final bonus count-up
+      alt2: $(
+        ['', 'Delta', '8bit', gameBeaten, '=', 'Value', '', 0],
+        ['', 'Mem',   '8bit', gameBeaten, '=', 'Value', '', 1],
+      ),
+    },
+    cancel: '0=1',
+    submit: '0=0',
+    value: $(
+      // Score is stored / 10, Delta because the score is already reset on the game over frame
+      ['Measured', 'Delta', '16bit', score, '*', 'Value', '', 10],
     ),
   },
 });

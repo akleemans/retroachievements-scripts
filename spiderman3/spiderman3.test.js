@@ -517,3 +517,69 @@ describe('Beat the game without dying', () => {
     expect(result.triggered).toBe(false);
   });
 });
+
+/* ========= LEADERBOARDS ========= */
+
+const leaderboard = (title) => Object.values(set.leaderboards).find((l) => l.title === title);
+
+// Use LB start/cancel/submit as conditions like achievement
+const lbTrigger = (lb, part) => ({conditions: lb.conditions[part]});
+
+// Make value expression parseable as a trigger while measuredAt() still reports the value
+const lbValue = (lb) => {
+  const groups = lb.conditions.value;
+  if (groups.length > 1) throw new Error(`leaderboard "${lb.title}": max-of ($) values are not supported`);
+  const conditions = groups[0].map((condition) => `${condition}`);
+  const measured = conditions.pop();
+  if (/[<>=!]/.test(measured)) {
+    conditions.push(`${measured}.4294967295.`);
+  } else {
+    // Modified value (e.g. score * 10) can't take a comparison, move it to an AddSource
+    conditions.push(measured.replace(/^M:/, 'A:'), 'M:0>=4294967295');
+  }
+  return conditions.join('_');
+};
+
+describe('Leaderboard: High Score', () => {
+  const lb = leaderboard('High Score');
+
+  const gameOvers = [
+    {name: 'stage1_1-harm-innocent-and-game-over', score: 10950},
+    {name: 'stage1_3-game-over', score: 2770},
+    {name: 'stage5_3-death-then-game-over', score: 33370},
+  ];
+
+  for (const {name, score} of gameOvers) {
+    test(`submits ${score} on game over (${name})`, () => {
+      const s = scenario(name);
+      const start = runAchievement(lbTrigger(lb, 'start'), s);
+      const value = runAchievement(lbValue(lb), s);
+
+      expect(start.triggeredFrame).toBe(s.marker('score-reset'));
+      expect(value.measuredAt(s.marker('score-reset'))).toBe(score);
+    });
+  }
+
+  test('submits when the game is beaten', () => {
+    const s = scenario('stage5_3-finished');
+    const start = runAchievement(lbTrigger(lb, 'start'), s);
+    const value = runAchievement(lbValue(lb), s);
+
+    expect(start.triggeredFrame).toBe(s.marker('game-beaten-flag'));
+    expect(value.measuredAt(s.marker('game-beaten-flag'))).toBe(39760);
+  });
+
+  test('does not start on the new game after power-on', () => {
+    const s = scenario('game-start-up');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.triggered).toBe(false);
+  });
+
+  test('does not start on a death with lives left', () => {
+    const s = scenario('stage4_2-invincibility-death');
+    const result = runAchievement(lbTrigger(lb, 'start'), s);
+
+    expect(result.triggered).toBe(false);
+  });
+});
