@@ -137,7 +137,7 @@
   {
     "User": "adrianusk",
     "Address": "0x00d0f9",
-    "Note": "[8-bit] Player state (animation)\r\n0x86 = Swinging on rope\r\n0x8c = Kicking\r\n0x8d = Hit\r\n0x91 = Jumping up"
+    "Note": "[8-bit] Player state (animation)\r\n0x86 = Swinging on rope\r\n0x8c = Kicking\r\n0x8d = Hit\r\n0x91 = Jumping up\r\n0x96 = Web shot"
   },
   {
     "User": "adrianusk",

@@ -19,6 +19,7 @@ Lookup:Stage
 0x0d=Stage 5-1
 0x0e=Stage 5-2
 0x0f=Stage 5-3
+*=
 
 Display:
 ?0xHffcc=0?In the Menu

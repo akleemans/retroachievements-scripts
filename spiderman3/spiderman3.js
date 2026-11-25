@@ -109,12 +109,12 @@ set.addAchievement({
   conditions: {
     core: $(
       // One capped hit per stage
-      ...newGame(),
       ['AndNext',  'Mem',   '8bit', stageId, '=', 'Value', '',     StageEnum.Stage2_1],
       ['AddHits',  'Delta', '8bit', power,   '<', 'Mem',   '8bit', power,              1],
       ['AndNext',  'Mem',   '8bit', stageId, '=', 'Value', '',     StageEnum.Stage2_2],
       ['AddHits',  'Delta', '8bit', power,   '<', 'Mem',   '8bit', power,              1],
       ['Measured', 'Value', '',     0,       '=', 'Value', '',     1,                  2],
+      ...newGame(),
     ),
   },
 });
@@ -201,7 +201,7 @@ set.addAchievement({
   title: 'The Ultimate Spider-Slayer Slayer',
   description: 'Beat Stage 5 and finish the game',
   points: 25,
-  type: 'progression',
+  type: 'win_condition',
   conditions: {
     core: $(
       ...stageCleared(StageEnum.Stage5_3),
