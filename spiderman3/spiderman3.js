@@ -36,10 +36,11 @@ const stageCleared = (stage, flag = '') => [
 ];
 
 // Title screen of a new game: score 0 and 3 lives (also right after a game over)
-const newGame = (flag) => [
+// Used in an alt when core has a pause lock, a paused core can't reset itself
+const newGame = () => [
   ['AndNext', 'Mem', '8bit',  stageId, '=', 'Value', '', 0],
   ['AndNext', 'Mem', '8bit',  lives,   '=', 'Value', '', 3],
-  [flag,      'Mem', '16bit', score,   '=', 'Value', '', 0],
+  ['ResetIf', 'Mem', '16bit', score,   '=', 'Value', '', 0],
 ];
 
 /* ----------------------------- */
@@ -67,12 +68,14 @@ set.addAchievement({
   conditions: {
     core: $(
       // Hitting an innocent costs 15 points, the only score decrease in world 1
-      ...newGame('ResetNextIf'),
       ['PauseIf', 'Delta', '16bit', score,   '>', 'Mem',   '16bit', score,              1],
       // Don't prime on startup of game
       ['OrNext',  'Mem',   '8bit',  stageId, '=', 'Value', '',      StageEnum.Stage1_1],
       ['',        'Prior', '8bit',  stageId, '=', 'Value', '',      StageEnum.Stage1_1],
       ...stageCleared(StageEnum.Stage1_1, 'Trigger'),
+    ),
+    alt1: $(
+      ...newGame(),
     ),
   },
 });
@@ -97,8 +100,8 @@ set.addAchievement({
   type: 'missable',
   conditions: {
     core: $(
-      // One capped hit per stage, the Measured condition itself is never true and only adds them up
-      ...newGame('ResetIf'),
+      // One capped hit per stage
+      ...newGame(),
       ['AndNext',  'Mem',   '8bit', stageId, '=', 'Value', '',     StageEnum.Stage2_1],
       ['AddHits',  'Delta', '8bit', power,   '<', 'Mem',   '8bit', power,              1],
       ['AndNext',  'Mem',   '8bit', stageId, '=', 'Value', '',     StageEnum.Stage2_2],
@@ -214,7 +217,7 @@ set.addAchievement({
   conditions: {
     core: $(
       // The pickup sets the timer to 80 (getting hit only to 15), and respawns after a death
-      ...newGame('ResetIf'),
+      ...newGame(),
       ['AndNext',  'Mem',   '8bit', stageId,            '=', 'Value', '', StageEnum.Stage1_2],
       ['AddHits',  'Mem',   '8bit', invincibilityTimer, '>', 'Value', '', 15,                 1],
       ['AndNext',  'Mem',   '8bit', stageId,            '=', 'Value', '', StageEnum.Stage4_2],
@@ -232,7 +235,7 @@ set.addAchievement({
   conditions: {
     core: $(
       // A new game also raises lives (to 3), but the reset fires on that same frame
-      ...newGame('ResetIf'),
+      ...newGame(),
       ['Measured', 'Delta', '8bit', lives, '<', 'Mem', '8bit', lives, 5],
     ),
   },
@@ -259,9 +262,11 @@ set.addAchievement({
   conditions: {
     core: $(
       // A lost life locks the achievement until a new game
-      ...newGame('ResetNextIf'),
       ['PauseIf', 'Delta', '8bit', lives, '>', 'Mem', '8bit', lives, 1],
       ...stageCleared(StageEnum.Stage5_3),
+    ),
+    alt1: $(
+      ...newGame(),
     ),
   },
 });

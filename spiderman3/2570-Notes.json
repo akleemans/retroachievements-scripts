@@ -2,17 +2,27 @@
   {
     "User": "adrianusk",
     "Address": "0x00d042",
-    "Note": "[8-bit] Health (0xff initially)"
+    "Note": "[8-bit] Health (0xff initially), called \"EN\" (Energy) in-game"
   },
   {
     "User": "adrianusk",
     "Address": "0x00d043",
-    "Note": "[8-bit] Lives (0x03 initially)"
+    "Note": "[8-bit] Lives (0x03 initially), called \"TR\" (Tries) in-game"
   },
   {
     "User": "adrianusk",
     "Address": "0x00d044",
     "Note": "[8-bit] Power level (0x00-0x05, defines attack damage, increases on power-up)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d046",
+    "Note": "[8-bit] Punch current damage (based on power level)"
+  },
+  {
+    "User": "adrianusk",
+    "Address": "0x00d047",
+    "Note": "[8-bit] Kick current damage (based on power level)"
   },
   {
     "User": "adrianusk",
@@ -152,6 +162,6 @@
   {
     "User": "adrianusk",
     "Address": "0x00ffcc",
-    "Note": "[8-bit] Stage ID\r\n0x00 = Startup of game\r\n0x01 = Stage 1-1\r\n0x02 = Stage 1-3 (first part?)\r\n0x03 = Stage 1-3 (second part?)\r\n0x04 = Stage 1-2\r\n0x05 = Stage 2-1\r\n0x06 = Stage 2-2\r\n0x07 = Stage 3-1\r\n0x08 = Stage 3-2\r\n0x09 = Stage 3-3\r\n0x0a = Stage 3-4\r\n0x0b = Stage 3-5\r\n0x0c = Stage 4-1\r\n0x10 = Stage 4-2\r\n0x0d = Stage 5-1\r\n0x0e = Stage 5-2\r\n0x0f = Stage 5-3"
+    "Note": "[8-bit] Stage ID\r\n0x00 = Startup of game\r\n0x01 = Stage 1-1\r\n0x02 = Stage 1-3 (first part)\r\n0x03 = Stage 1-3 (second part)\r\n0x04 = Stage 1-2\r\n0x05 = Stage 2-1\r\n0x06 = Stage 2-2\r\n0x07 = Stage 3-1\r\n0x08 = Stage 3-2\r\n0x09 = Stage 3-3\r\n0x0a = Stage 3-4\r\n0x0b = Stage 3-5\r\n0x0c = Stage 4-1\r\n0x10 = Stage 4-2\r\n0x0d = Stage 5-1\r\n0x0e = Stage 5-2\r\n0x0f = Stage 5-3"
   }
 ]

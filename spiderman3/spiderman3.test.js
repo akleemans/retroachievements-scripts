@@ -51,7 +51,8 @@ describe('No innocents hit', () => {
 
     // in 1-3 / game over screen: no trigger icon, but not locked either
     expect(result.stateAt(s.marker('scenario-start'))).toBe('active');
-    expect(result.stateAt(s.marker('score-reset'))).toBe('active');
+    expect(result.stateAt(s.marker('score-reset'))).toBe('reset');
+    expect(result.stateAt(s.marker('score-reset') + 1)).toBe('active');
     expect(result.stateAt(s.marker('new-game'))).toBe('primed');
   });
 
@@ -80,9 +81,9 @@ describe('No innocents hit', () => {
     expect(result.stateAt(s.marker('innocent-hit') - 1)).toBe('primed');
     expect(result.stateAt(s.marker('innocent-hit'))).toBe('paused');
     expect(result.stateAt(s.marker('score-reset') - 1)).toBe('paused');
-    // new game: stageId 0, lives 3, score 0 -> ResetNextIf clears the lock ('reset' for one frame)
+    // new game: stageId 0, lives 3, score 0 -> ResetIf in alt1 clears the lock, no trigger icon on the title
     expect(result.stateAt(s.marker('score-reset'))).toBe('reset');
-    expect(result.stateAt(s.marker('score-reset') + 1)).toBe('primed');
+    expect(result.stateAt(s.marker('score-reset') + 1)).toBe('active');
     expect(result.stateAt(s.marker('new-game'))).toBe('primed');
     expect(result.triggered).toBe(false);
   });
