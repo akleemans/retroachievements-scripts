@@ -54,7 +54,7 @@ const rideContinuous = (frames) => $(
 
 set.addAchievement({
   id: 654844,
-  title: 'Way before THPS2',
+  title: 'Way Before THPS2',
   description: 'Ride a skateboard for 5 seconds in Central Park',
   points: 3,
   type: 'missable',
@@ -131,7 +131,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 654849,
-  title: 'Ain\'t Got Time For Autoscrollers',
+  title: 'Ain\'t Got Time for Autoscrollers',
   description: 'Use the secret exit in stage 3-4',
   points: 5,
   type: 'missable',
@@ -207,7 +207,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 654854,
-  title: 'Face it, Tiger... You Just Hit the Jackpot',
+  title: 'Face It, Tiger... You Just Hit the Jackpot',
   description: 'Reach the maximum Power of 4',
   points: 5,
   type: 'missable',
@@ -241,7 +241,7 @@ set.addAchievement({
 
 set.addAchievement({
   id: 654856,
-  title: 'Not-so-Sinister Six',
+  title: 'Not-So-Sinister Six',
   description: 'Collect all 5 extra lives',
   points: 10,
   type: 'missable',
